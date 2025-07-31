@@ -1,0 +1,16 @@
+# Ignore local builds
+/public/
+/resources/
+/deploy.sh
+
+# OS & editor junk
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# VSCode
+.vscode/
+
+# Logs
+*.log
