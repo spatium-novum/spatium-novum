@@ -1,0 +1,4 @@
+baseURL = "https://spatium-novum.com/"
+title = "Spatium Novum"
+languageCode = "en-us"
+theme = "PaperMod"
