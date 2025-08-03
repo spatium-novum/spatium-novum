@@ -47,14 +47,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: exampleSite
+          submodules: recursive  # This will fetch the theme submodule
+          fetch-depth: 0         # This is recommended for Hugo sites
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
-      - name: Get Theme
-        run: git submodule update --init --recursive
-      - name: Update theme to Latest commit
-        run: git submodule update --remote --merge
       - name: Build with Hugo
         run: |
           hugo \
