@@ -2,17 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/thoughts/2025-08-01-first-post/</loc>
-    <lastmod>2025-07-31T15:08:18+02:00</lastmod>
+    <loc>https://spatium-novum.com/</loc>
+    <lastmod>2025-08-03T17:22:54+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2025-07-31T15:08:18+02:00</lastmod>
+    <loc>https://spatium-novum.com/thoughts/2025-08-01-first-post/</loc>
+    <lastmod>2025-08-03T17:22:54+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/thoughts/</loc>
-    <lastmod>2025-07-31T15:08:18+02:00</lastmod>
+    <loc>https://spatium-novum.com/thoughts/</loc>
+    <lastmod>2025-08-03T17:22:54+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://spatium-novum.com/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://spatium-novum.com/tags/</loc>
   </url>
 </urlset>
