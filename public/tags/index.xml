@@ -6,27 +6,48 @@
     <description>Recent content in Tags on Spatium Novum</description>
     <generator>Hugo -- 0.148.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 04 Aug 2025 23:52:04 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 05 Aug 2025 21:50:33 +0200</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Goals</title>
-      <link>http://localhost:1313/tags/goals/</link>
-      <pubDate>Mon, 04 Aug 2025 23:52:04 +0200</pubDate>
-      <guid>http://localhost:1313/tags/goals/</guid>
+      <title>Cognitive-Science</title>
+      <link>http://localhost:1313/tags/cognitive-science/</link>
+      <pubDate>Tue, 05 Aug 2025 21:50:33 +0200</pubDate>
+      <guid>http://localhost:1313/tags/cognitive-science/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cybernetics</title>
+      <link>http://localhost:1313/tags/cybernetics/</link>
+      <pubDate>Tue, 05 Aug 2025 21:50:33 +0200</pubDate>
+      <guid>http://localhost:1313/tags/cybernetics/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Emergence</title>
+      <link>http://localhost:1313/tags/emergence/</link>
+      <pubDate>Tue, 05 Aug 2025 21:50:33 +0200</pubDate>
+      <guid>http://localhost:1313/tags/emergence/</guid>
       <description></description>
     </item>
     <item>
       <title>Philosophy</title>
       <link>http://localhost:1313/tags/philosophy/</link>
-      <pubDate>Mon, 04 Aug 2025 23:52:04 +0200</pubDate>
+      <pubDate>Tue, 05 Aug 2025 21:50:33 +0200</pubDate>
       <guid>http://localhost:1313/tags/philosophy/</guid>
       <description></description>
     </item>
     <item>
       <title>Systems-Thinking</title>
       <link>http://localhost:1313/tags/systems-thinking/</link>
-      <pubDate>Mon, 04 Aug 2025 23:52:04 +0200</pubDate>
+      <pubDate>Tue, 05 Aug 2025 21:50:33 +0200</pubDate>
       <guid>http://localhost:1313/tags/systems-thinking/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Goals</title>
+      <link>http://localhost:1313/tags/goals/</link>
+      <pubDate>Mon, 04 Aug 2025 23:52:04 +0200</pubDate>
+      <guid>http://localhost:1313/tags/goals/</guid>
       <description></description>
     </item>
   </channel>

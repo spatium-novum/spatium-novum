@@ -2,8 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/thoughts/2025-08-05-emergent-beliefs-and-goals/</loc>
+    <lastmod>2025-08-05T21:50:33+02:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2025-08-04T23:52:04+02:00</lastmod>
+    <lastmod>2025-08-05T21:50:33+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/cognitive-science/</loc>
+    <lastmod>2025-08-05T21:50:33+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/cybernetics/</loc>
+    <lastmod>2025-08-05T21:50:33+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/emergence/</loc>
+    <lastmod>2025-08-05T21:50:33+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/models-of-mind/</loc>
+    <lastmod>2025-08-05T21:50:33+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/philosophy/</loc>
+    <lastmod>2025-08-05T21:50:33+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2025-08-05T21:50:33+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/systems-thinking/</loc>
+    <lastmod>2025-08-05T21:50:33+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2025-08-05T21:50:33+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/thoughts/</loc>
+    <lastmod>2025-08-05T21:50:33+02:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/thoughts/2025-08-04-goal-making-in-an-unmapped-world/</loc>
     <lastmod>2025-08-04T23:52:04+02:00</lastmod>
@@ -12,21 +42,6 @@
     <lastmod>2025-08-04T23:52:04+02:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/metacognition/</loc>
-    <lastmod>2025-08-04T23:52:04+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/philosophy/</loc>
-    <lastmod>2025-08-04T23:52:04+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2025-08-04T23:52:04+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/systems-thinking/</loc>
-    <lastmod>2025-08-04T23:52:04+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2025-08-04T23:52:04+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/thoughts/</loc>
     <lastmod>2025-08-04T23:52:04+02:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/thoughts/2025-08-03-first-post/</loc>
