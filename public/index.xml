@@ -32,5 +32,14 @@
 &lt;p&gt;But as I grew older, I had to confront a more sobering thought: maybe I was born too late. Maybe, as Truman is told, &lt;em&gt;“there&amp;rsquo;s really nothing left to explore.”&lt;/em&gt;
 The physical world—at least the surface of it—seemed mapped, measured, and monetized.&lt;/p&gt;</description>
     </item>
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;p&gt;Welcome to Spatium Novum, fellow explorer.&lt;/p&gt;
+&lt;p&gt;I am a researcher in computational systems biology, exploring the gaps between our models of the world and reality itself. This space is for tracing the outlines of big questions and mapping the territory of ideas.&lt;/p&gt;
+&lt;p&gt;Thank you for joining me on this exploration.&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>
