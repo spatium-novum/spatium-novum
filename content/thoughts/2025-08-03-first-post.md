@@ -2,6 +2,8 @@
 date = '2025-08-03T17:22:54+02:00'
 draft = false
 title = 'Spatium Novum – On Models, Gaps, and the Space Left to Map'
+ShowToc = true
+TocOpen = false # Set to true if you want it open by default
 +++
 
 ## The Drive to Explore

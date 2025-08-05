@@ -2,6 +2,10 @@
 date = '2025-08-04T23:52:04+02:00'
 draft = false
 title = 'Goal Making in an Unmapped World'
+tags = ["philosophy", "systems-thinking", "goals"]
+categories = ["Metacognition"]
+ShowToc = true
+TocOpen = false # Set to true if you want it open by default
 +++
 
 ### Introduction: When Exploration Requires a Destination

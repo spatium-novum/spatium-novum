@@ -2,3 +2,37 @@ baseURL = "https://spatium-novum.com/"
 title = "Spatium Novum"
 languageCode = "en-us"
 theme = "PaperMod"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"] # Enable JSON output for the homepage
+
+[outputFormats]
+  [outputFormats.JSON]
+    mediaType = "application/json"
+
+[menu]
+  [[menu.main]]
+    identifier = "search"
+    name = "Search"
+    url = "/search/"
+    weight = 10
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+[params]
+  [params.profileMode]
+    enabled = true
+    title = "Spatium Novum"
+    subtitle = "On Models, Gaps, and the Space Left to Map"
+    # imageUrl = "/path/to/your/image.jpg" # Optional: link to a profile picture
+    # imageTitle = "My Picture" # Optional: alt text for the image
+    # imageWidth = 120 # Optional
+    # imageHeight = 120 # Optional
+    [[params.profileMode.buttons]]
+      name = "Posts"
+      url = "/thoughts"
+    [[params.profileMode.buttons]]
+      name = "About"
+      url = "/about"
