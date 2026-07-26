@@ -10,7 +10,7 @@
 <link rel="canonical" href="https://spatium-novum.com/posts/commodity-trading-world.html">
 <meta property="og:site_name" content="Spatium Novum">
 <meta property="og:title" content="The Commodity Trading World, on Two Axes">
-<meta property="og:description" content="An interactive map that places every kind of commodity-market actor on a grid of what they do against what they move — so you can see where a firm like Trafigura actually sits.">
+<meta property="og:description" content="An interactive map that places every kind of commodity-market actor on a grid of what they do against what they move, so you can see where a firm like Trafigura actually sits.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://spatium-novum.com/posts/commodity-trading-world.html">
 <meta property="og:image" content="https://spatium-novum.com/assets/og-default.png">
@@ -18,166 +18,252 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/favicon-180.png">
 <link rel="alternate" type="application/rss+xml" title="Spatium Novum" href="/feed.xml">
+<link rel="stylesheet" href="../assets/style.css">
 <style>
+  /* Page interactive : reprend les tokens de assets/style.css.
+     La couleur ne fait qu'un seul travail ici — l'intensite. La categorie est
+     encodee par la position dans la grille, jamais par une teinte. */
   :root{
-    --bg:#faf8f5; --panel:#ffffff; --ink:#1f2937; --muted:#6b7280; --line:#e7e2da;
-    --gold:#b45309; --gold-soft:#f6ede0;
-    --c-energy:#1d4ed8; --c-metals:#b45309; --c-agri:#15803d; --c-multi:#7c3aed;
-    --c-bank:#0e7490; --c-ins:#be123c; --c-insp:#4d7c0f; --c-audit:#7c3aed; --c-legal:#475569; --c-serv:#0f766e;
-    --traf:#2563eb; --glen:#0f766e; --vitol:#b45309; --carg:#15803d; --om:#7c3aed;
-    --shadow:0 1px 3px rgba(31,41,55,.07),0 8px 24px rgba(31,41,55,.06);
+    --bg:var(--paper); --line:var(--rule); --gold:var(--signal);
+    /* niveaux d'activite d'une firme : rampe rouge validee (L monotone) */
+    --lv1:#ef8e9b; --lv2:#d6001c; --lv3:#8f0013;
+    /* toutes les anciennes couleurs de categorie deviennent de l'encre :
+       les etiquettes et la position portent l'information, pas la teinte */
+    --c-energy:#0a0a0a; --c-metals:#0a0a0a; --c-agri:#0a0a0a; --c-multi:#0a0a0a;
+    --c-bank:#0a0a0a; --c-ins:#0a0a0a; --c-insp:#0a0a0a; --c-audit:#0a0a0a;
+    --c-legal:#0a0a0a; --c-serv:#0a0a0a;
   }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    line-height:1.6;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
-  header.hero{padding:64px 0 30px;border-bottom:1px solid var(--line)}
-  .kicker{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700}
-  h1{font-size:clamp(28px,4.4vw,46px);line-height:1.12;margin:.35em 0 .25em;letter-spacing:-.02em}
-  .lede{font-size:18px;color:#374151;max-width:46em}
-  .byline{margin-top:18px;font-size:13px;color:var(--muted)}
-  section{padding:46px 0;border-bottom:1px solid var(--line)}
-  h2{font-size:clamp(21px,2.6vw,28px);letter-spacing:-.01em;margin:0 0 6px}
-  h2 .num{color:var(--gold);font-variant-numeric:tabular-nums;margin-right:.5em;font-weight:800}
-  .sub{color:var(--muted);max-width:50em;margin:0 0 26px}
-  h3{font-size:17px;margin:26px 0 8px}
-  p{max-width:50em}
+  body{background:var(--paper);color:var(--body);font-family:var(--sans);
+    font-size:16.5px;line-height:1.6;font-variant-numeric:tabular-nums}
+  .wrap{max-width:66rem;margin:0 auto;padding:0 40px}
+  @media(max-width:820px){.wrap{padding:0 22px}}
 
-  /* framework diagram */
-  .axes{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:8px}
+  header.hero{padding:48px 0 30px;border-bottom:1px solid var(--rule)}
+  header.hero .kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--signal);font-weight:400}
+  header.hero h1{font-size:clamp(30px,4.8vw,46px);line-height:1.02;letter-spacing:-.038em;
+    font-weight:700;margin:.3em 0 .3em;color:var(--ink);max-width:20ch}
+  .lede{font-size:19px;line-height:1.45;color:var(--body);max-width:40rem}
+  .byline{margin-top:20px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--muted)}
+  .byline b{font-weight:500}
+
+  section{padding:44px 0;border-bottom:1px solid var(--rule)}
+  h2{font-size:23px;letter-spacing:-.022em;font-weight:700;margin:0 0 8px;color:var(--ink)}
+  h2 .num{font-family:var(--mono);font-size:13px;font-weight:400;color:var(--signal);
+    margin-right:.9em;letter-spacing:.06em}
+  .sub{color:var(--muted);max-width:44rem;margin:0 0 26px;font-size:16px}
+  h3{font-size:18px;font-weight:600;letter-spacing:-.012em;margin:26px 0 8px;color:var(--ink)}
+  p{max-width:44rem}
+  b,strong{font-weight:600;color:var(--ink)}
+
+  /* --- schema des deux axes --- */
+  .axes{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:8px;
+    border-top:2px solid var(--rule-strong)}
   @media(max-width:760px){.axes{grid-template-columns:1fr}}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 20px 18px;box-shadow:var(--shadow)}
-  .card h4{margin:0 0 4px;font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--gold)}
-  .chain{display:flex;flex-direction:column;gap:7px;margin-top:12px}
-  .stage{display:flex;align-items:center;gap:11px;font-size:14.5px}
-  .dot{width:9px;height:9px;border-radius:50%;flex:none;background:var(--ink)}
-  .stage.spine{font-weight:700}
-  .stage.spine .dot{width:13px;height:13px;background:var(--gold);box-shadow:0 0 0 4px var(--gold-soft)}
-  .support-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px;padding-top:13px;border-top:1px dashed var(--line)}
-  .pill{font-size:12.5px;padding:4px 10px;border-radius:999px;background:#f3f4f6;border:1px solid var(--line);color:#374151}
-  .classlist{display:flex;flex-direction:column;gap:11px;margin-top:12px}
-  .cl{display:flex;gap:11px;align-items:flex-start;font-size:14.5px}
-  .swatch{width:11px;height:11px;border-radius:3px;margin-top:6px;flex:none}
-  .cl b{font-weight:700}.cl span{color:var(--muted)}
+  .card{background:var(--paper);border-right:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);padding:22px 26px 22px 0}
+  .axes .card:last-child{border-right:0;padding-left:26px}
+  @media(max-width:760px){.card{border-right:0;padding:22px 0}.axes .card:last-child{padding-left:0}}
+  .card h4{margin:0 0 4px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--signal);font-weight:400}
+  .chain{display:flex;flex-direction:column;gap:0;margin-top:14px}
+  .stage{display:flex;align-items:center;gap:11px;font-size:14.5px;
+    padding:7px 0;border-bottom:1px solid var(--rule)}
+  .chain .dot{width:7px;height:7px;flex:none;background:var(--muted)}
+  .stage.spine{font-weight:600;color:var(--ink)}
+  .chain .stage.spine .dot{width:11px;height:11px;background:var(--signal)}
+  .support-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;padding-top:12px}
+  .pill{font-family:var(--mono);font-size:11px;letter-spacing:.04em;padding:4px 8px;
+    background:var(--panel);color:var(--body);border:0}
+  .classlist{display:flex;flex-direction:column;gap:0;margin-top:14px}
+  .cl{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;
+    padding:9px 0;border-bottom:1px solid var(--rule)}
+  .swatch{width:9px;height:9px;margin-top:7px;flex:none;background:var(--ink)}
+  .cl b{font-weight:600}.cl span{color:var(--muted)}
 
-  /* heatmap */
-  .controls{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 18px}
-  .cbtn{cursor:pointer;border:1px solid var(--line);background:var(--panel);border-radius:999px;
-    padding:8px 15px;font-size:14px;font-weight:600;color:#374151;display:flex;align-items:center;gap:8px;
-    transition:all .15s;box-shadow:var(--shadow)}
-  .cbtn:hover{transform:translateY(-1px)}
-  .cbtn .sw{width:11px;height:11px;border-radius:50%;flex:none}
-  .cbtn.active{color:#fff;border-color:transparent}
-  .cbtn[data-co="density"].active{background:#374151}
-  .matrix-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--panel);box-shadow:var(--shadow)}
-  table.matrix{border-collapse:collapse;width:100%;min-width:680px}
+  /* --- selecteur de firme --- */
+  .controls{display:flex;flex-wrap:wrap;gap:0;margin:4px 0 20px;
+    border-top:1px solid var(--rule);border-bottom:2px solid var(--rule-strong)}
+  .cbtn{cursor:pointer;border:0;border-right:1px solid var(--rule);background:transparent;
+    padding:11px 16px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--muted);transition:none}
+  .cbtn:hover{color:var(--ink);background:var(--panel)}
+  .cbtn .sw{display:none}
+  .cbtn.active{background:var(--signal)!important;color:#fff}
+  .cbtn[data-co="density"].active{background:var(--ink)!important;color:#fff}
+
+  /* --- matrice --- */
+  .matrix-wrap{overflow-x:auto;border:1px solid var(--rule);background:var(--paper)}
+  table.matrix{border-collapse:collapse;width:auto;min-width:700px}
+  table.matrix tbody th,table.matrix thead th:first-child{width:210px;max-width:210px}
   table.matrix th,table.matrix td{text-align:center;padding:0}
-  table.matrix thead .grp{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;
-    padding:11px 6px 5px;color:#fff}
-  table.matrix thead .grp.energy{background:var(--c-energy)}
-  table.matrix thead .grp.metals{background:var(--c-metals)}
-  table.matrix thead .grp.agri{background:var(--c-agri)}
-  table.matrix thead .sc{font-size:11.5px;color:var(--muted);font-weight:600;padding:7px 4px;
-    border-bottom:1px solid var(--line);vertical-align:bottom;line-height:1.2}
-  table.matrix tbody th{text-align:right;font-size:13px;font-weight:600;color:#374151;
-    padding:0 14px 0 16px;white-space:nowrap;border-right:1px solid var(--line);background:#fcfbf9}
-  table.matrix tbody th.spine{color:var(--gold);font-weight:800}
-  .cell{width:46px;height:42px;border:1px solid #f0ece5;position:relative;cursor:default;transition:background .18s}
+  table.matrix thead .grp{font-family:var(--mono);font-size:10px;letter-spacing:.1em;
+    text-transform:uppercase;font-weight:400;padding:9px 6px;color:#fff;background:var(--ink)}
+  table.matrix thead .grp.energy,
+  table.matrix thead .grp.metals,
+  table.matrix thead .grp.agri{background:var(--ink)}
+  table.matrix thead .sc{font-family:var(--mono);font-size:10px;letter-spacing:.02em;
+    color:var(--muted);font-weight:400;padding:8px 4px;text-transform:uppercase;
+    border-bottom:1px solid var(--rule);vertical-align:bottom;line-height:1.25;
+    width:46px;overflow-wrap:anywhere}
+  table.matrix tbody th{text-align:right;font-size:12.5px;font-weight:500;color:var(--body);
+    padding:0 14px 0 4px;white-space:nowrap;border-right:2px solid var(--rule-strong);
+    background:var(--paper)}
+  table.matrix tbody th.spine{color:var(--signal);font-weight:600}
+  .cell{width:46px;height:40px;border:1px solid var(--rule);position:relative;
+    cursor:default;transition:none}
   .cell.hot{cursor:pointer}
   .cell .ico{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-    font-size:11px;font-weight:800;color:#fff;opacity:0;transition:opacity .18s}
-  .cell.lvl3 .ico,.cell.lvl2 .ico{opacity:.9}
-  .grpsep{border-left:2px solid #efe9e0}
-  .legend{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:14px;font-size:13px;color:var(--muted)}
+    font-family:var(--mono);font-size:10.5px;font-weight:500;color:#fff;opacity:0}
+  .cell.lvl2 .ico,.cell.lvl3 .ico{opacity:1}
+  /* encodage secondaire : le niveau le plus fort porte un contour, pas seulement
+     une couleur — sous protanopie le rouge et les gris foncés se rapprochent */
+  .cell.lvl3{outline:2px solid var(--ink);outline-offset:-2px}
+  .grpsep{border-left:2px solid var(--rule-strong)}
+  .legend{display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin-top:14px;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--muted)}
   .legend .li{display:flex;align-items:center;gap:7px}
-  .legend .box{width:16px;height:16px;border-radius:4px;border:1px solid var(--line)}
-  /* profile */
-  .profile{margin-top:20px;background:var(--panel);border:1px solid var(--line);border-left-width:5px;
-    border-radius:12px;padding:18px 20px;box-shadow:var(--shadow)}
-  .profile .tag{display:inline-block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
-    font-weight:800;padding:3px 9px;border-radius:999px;color:#fff;margin-bottom:8px}
-  .profile h3{margin:0 0 4px;font-size:20px}
-  .profile p{margin:.3em 0;font-size:14.5px;color:#374151}
-  .profile .inh{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
-  .profile .inh .pill{background:var(--gold-soft);border-color:#ecd9bb;color:#7c4a07;font-weight:600}
+  .legend .box{width:14px;height:14px;border:1px solid var(--rule)}
 
-  /* archetypes */
-  .arch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:6px}
-  .arch{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 17px;box-shadow:var(--shadow)}
-  .arch b{display:block;font-size:14px;margin-bottom:3px}
-  .arch .ex{color:var(--gold);font-weight:700}
+  /* --- fiche firme --- */
+  .profile{margin-top:22px;background:var(--paper);border-top:1px solid var(--rule);
+    border-left:3px solid var(--signal);padding:18px 0 18px 20px}
+  .profile .tag{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.1em;
+    text-transform:uppercase;font-weight:400;padding:3px 8px;color:#fff;margin-bottom:10px}
+  .profile h3{margin:0 0 6px;font-size:21px;letter-spacing:-.02em}
+  .profile p{margin:.3em 0;font-size:15px;color:var(--body);max-width:42rem}
+  .profile .inh{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px}
+  .profile .inh .pill{background:var(--panel);color:var(--body)}
+
+  /* --- archetypes --- */
+  .arch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:0;
+    margin-top:8px;border-top:2px solid var(--rule-strong)}
+  .arch{background:var(--paper);border-right:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);padding:16px 18px 16px 0}
+  .arch:last-child{border-right:0}
+  .arch b{display:block;font-size:14px;margin-bottom:5px;color:var(--ink)}
+  .arch .ex{font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--signal);font-weight:400}
   .arch p{font-size:13.5px;color:var(--muted);margin:.3em 0 0}
 
-  /* hub */
-  .hubfilter{display:flex;flex-wrap:wrap;gap:7px;margin:2px 0 22px}
-  .fbtn{cursor:pointer;border:1px solid var(--line);background:var(--panel);border-radius:999px;
-    padding:6px 13px;font-size:13px;font-weight:600;color:#374151;display:flex;gap:7px;align-items:center;transition:.15s}
-  .fbtn .sw{width:10px;height:10px;border-radius:50%}
-  .fbtn.active{color:#fff;border-color:transparent;box-shadow:var(--shadow)}
-  .fbtn .ct{font-variant-numeric:tabular-nums;opacity:.65;font-weight:700}
-  .hubgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  /* --- hub suisse --- */
+  .hubfilter{display:flex;flex-wrap:wrap;gap:0;margin:2px 0 24px;
+    border-top:1px solid var(--rule);border-bottom:2px solid var(--rule-strong)}
+  .fbtn{cursor:pointer;border:0;border-right:1px solid var(--rule);background:transparent;
+    padding:9px 13px;font-family:var(--mono);font-size:11px;letter-spacing:.05em;
+    text-transform:uppercase;color:var(--muted);display:flex;gap:7px;align-items:center}
+  .fbtn:hover{color:var(--ink);background:var(--panel)}
+  .fbtn .sw{display:none}
+  .fbtn .ct{opacity:.6}
+  .fbtn.active{background:var(--signal)!important;color:#fff;border-color:transparent}
+  .hubgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+    border-top:1px solid var(--rule)}
   @media(max-width:880px){.hubgrid{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:520px){.hubgrid{grid-template-columns:1fr}}
-  .col{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;box-shadow:var(--shadow)}
-  .col .ch{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;
-    display:flex;align-items:center;gap:8px;margin-bottom:4px}
-  .col .cnt{font-size:12px;color:var(--muted);margin-bottom:10px;font-weight:600}
-  .chips{display:flex;flex-wrap:wrap;gap:6px}
-  .chip{font-size:12px;padding:4px 9px;border-radius:7px;border:1px solid;background:#fff;
-    line-height:1.25;transition:.18s;cursor:default}
-  .chip.q{border-style:dashed}
-  .chip.dim{opacity:.16}
-  .hub-sep{margin:26px 0 14px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;
-    color:var(--gold);font-weight:800;display:flex;align-items:center;gap:12px}
-  .hub-sep::after{content:"";flex:1;height:1px;background:var(--line)}
+  .col{background:var(--paper);border-right:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);padding:14px 14px 16px 0}
+  .col:last-child{border-right:0}
+  .col .ch{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+    font-weight:400;color:var(--ink);display:flex;align-items:center;gap:8px;margin-bottom:2px}
+  .col .cnt{font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-bottom:10px}
+  .chips{display:flex;flex-wrap:wrap;gap:5px}
+  .chip{font-size:12px;padding:3px 7px;border:1px solid var(--rule)!important;
+    background:var(--paper);color:var(--body)!important;line-height:1.25;cursor:default}
+  .chip.q{border-style:dashed!important}
+  .chip.dim{opacity:.15}
+  .hub-sep{margin:28px 0 12px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--signal);font-weight:400;
+    display:flex;align-items:center;gap:12px}
+  .hub-sep::after{content:"";flex:1;height:1px;background:var(--rule)}
   .hubgrid.support{grid-template-columns:repeat(3,1fr)}
   @media(max-width:880px){.hubgrid.support{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:520px){.hubgrid.support{grid-template-columns:1fr}}
 
-  /* tooltip */
-  #tip{position:fixed;z-index:50;pointer-events:none;background:#1f2937;color:#fff;font-size:12.5px;
-    padding:8px 11px;border-radius:8px;max-width:240px;opacity:0;transition:opacity .12s;box-shadow:0 6px 20px rgba(0,0,0,.25)}
-  #tip b{color:#fde68a}
-  #tip .lv{display:inline-block;font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;
-    padding:1px 6px;border-radius:4px;background:#374151;margin-top:4px}
-  footer{padding:40px 0 70px;color:var(--muted);font-size:13px}
-  footer a{color:var(--gold)}
-  .note{font-size:12.5px;color:var(--muted);margin-top:14px;max-width:52em}
-  .hl{background:var(--gold-soft);padding:0 4px;border-radius:4px}
+  /* --- infobulle --- */
+  #tip{position:fixed;z-index:50;pointer-events:none;background:var(--ink);color:#fff;
+    font-family:var(--sans);font-size:12.5px;line-height:1.45;padding:9px 12px;
+    max-width:250px;opacity:0;transition:opacity .1s}
+  #tip b{color:#fff;font-weight:600}
+  #tip .lv{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;
+    text-transform:uppercase;padding:1px 6px;background:#3a3a38;margin-top:4px}
+
+  .note{font-size:13px;color:var(--muted);margin-top:16px;max-width:44rem}
+  /* --- graphiques en barres : une seule teinte, la position fait le reste --- */
+  .fig{margin:8px 0 0}
+  .fig-h{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);padding-bottom:8px;border-bottom:2px solid var(--rule-strong)}
+  .bars{max-width:46rem}
+  .bar{display:grid;grid-template-columns:200px minmax(0,1fr) 40px;align-items:center;
+    gap:16px;padding:9px 0;border-bottom:1px solid var(--rule);font-size:14.5px}
+  .bar .lb{color:var(--body)}
+  .bar .tr{height:13px;position:relative}
+  .bar .fl{position:absolute;inset:0 auto 0 0;background:var(--ink);min-width:2px}
+  .bar .vl{font-family:var(--mono);font-size:12.5px;color:var(--muted);text-align:right}
+  @media(max-width:620px){.bar{grid-template-columns:130px minmax(0,1fr) 32px;gap:10px;font-size:13px}}
+  .fig figcaption{font-family:var(--mono);font-size:10.5px;line-height:1.6;letter-spacing:.02em;
+    color:var(--muted);text-transform:none;padding-top:12px;max-width:46rem}
+  .hl{background:var(--signal);color:#fff;padding:0 4px}
+  .sources{padding:36px 0 10px;color:var(--muted);font-size:13.5px}
+  .sources a{color:var(--signal)}
 </style>
 </head>
 <body>
 <div id="tip"></div>
 
-<nav style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;border-bottom:1px solid var(--line);background:rgba(250,248,245,.9);position:sticky;top:0;z-index:50">
-  <div style="max-width:1080px;margin:0 auto;padding:14px 22px;display:flex;justify-content:space-between;align-items:baseline;gap:16px">
-    <a href="../index.html" style="font-weight:800;font-size:17px;color:var(--ink);text-decoration:none">Spatium<span style="color:var(--gold)">·</span>Novum</a>
-    <span style="font-size:14px"><a href="../index.html" style="color:var(--muted);text-decoration:none">Writing</a> &nbsp;·&nbsp; <a href="../about.html" style="color:var(--muted);text-decoration:none">About</a></span>
-  </div>
-</nav>
+<header class="site-head"><div class="bar">
+  <a class="brand" href="../index.html">Spatium<span class="dot">&middot;</span>Novum</a>
+  <nav class="nav">
+    <a href="../index.html">Writing</a>
+    <a href="../about.html">About</a>
+  </nav>
+</div></header>
 
 <header class="hero"><div class="wrap">
   <div class="kicker">SpatiumNovum · Commodities, Mapped</div>
   <h1>The Commodity Trading World, on Two Axes</h1>
-  <p class="lede">Commodity trading is one of the oldest industries on earth and one of the least understood. This is a beginner's map: every actor placed on a grid of <b>what they do</b> (the value chain) against <b>what they move</b> (the commodity class) — so you can see, at a glance, where a firm like Trafigura actually sits.</p>
+  <p class="lede">One of the oldest industries there is, and one of the least documented. A beginner's map: every kind of actor placed on a grid of <b>what they do</b> against <b>what they move</b>, so you can see where a firm like Trafigura actually sits.</p>
   <div class="byline">By <b>Denis Joly</b> · A first orientation piece · July 2026</div>
 </div></header>
 
 <section><div class="wrap">
-  <h2><span class="num">01</span>The framework</h2>
-  <p class="sub">Two axes. The first is the <b>value chain</b> — the journey of a raw material from ground to buyer, plus the support layer that finances and de-risks it. The second is the <b>commodity class</b>. A company is not a point on this map; it is a <b>footprint</b> — the set of cells it occupies.</p>
+  <h2><span class="num">01</span>Thirty-five thousand jobs, or ten thousand</h2>
+
+  <p>In March, a representative of SUISSEN&Eacute;GOCE came to give a talk at the university where I do my research. SUISSEN&Eacute;GOCE is the Swiss trade association for commodity merchants, and the talk was what you would expect: what the association does, which companies belong to it, why the sector matters to the country.</p>
+
+  <p>What stayed with me was the scale. Roughly a tenth of Swiss GDP. Tens of thousands of jobs. Something like sixty per cent of the world's traded metals and half its grain moving through a country that mines almost nothing and grows very little of it.</p>
+
+  <p>I could not name a single one of the companies.</p>
+
+  <p>That gap bothered me enough to go and check the figures afterwards, and checking them turned out to be more interesting than the figures themselves. The association puts the sector at eight to nine per cent of Swiss GDP. <a href="https://www.publiceye.ch/en/topics/commodities/switzerland/commodities-hub">Public Eye</a>, an NGO that has spent years auditing the industry and is not friendly to it, says around ten per cent, and counts about ten thousand people working in it. The <a href="https://www.aboutswitzerland.eda.admin.ch/en/commodities-trading">federal government</a> counts nine hundred companies and the same ten thousand employees. The larger employment numbers you hear quoted, in the tens of thousands, are counting something wider: the banks, inspectors, lawyers and shipping agents who live off the traders without being traders themselves.</p>
+
+  <p>Which number is right depends entirely on where you decide the industry stops. That turned out to be the real problem, and it is the reason this piece exists. Nobody I read agreed on what the sector <i>was</i>, so nobody could agree on how big it was.</p>
+
+  <p>The commodity shares held up better, with one correction to what I had in my head. Metals really is about sixty per cent. Grain is at least half, and so is coffee, which I had not expected. Sugar is around forty per cent. Cotton is closer to a quarter than to the figure I had written down, so I had carried one wrong number out of that room without noticing.</p>
+
+  <p>So this is the article I went looking for and did not find: one map of who does what, drawn carefully enough that the next person who hears those percentages has somewhere to put them. Two sources did most of the work. The value-chain and commodity taxonomies on <a href="https://commoditieshub.ch/">commoditieshub.ch</a> gave me the vocabulary the industry actually uses. The <a href="https://suissenegoce.ch/association/members/">SUISSEN&Eacute;GOCE members directory</a> gave me a roster of a hundred and seven real firms to test the framework against, which is what section five does. Where I depart from those sources, and where the map fails, is in section seven.</p>
+</div></section>
+
+<section><div class="wrap">
+  <h2><span class="num">02</span>Two questions instead of one</h2>
+
+  <p class="sub">Most explanations of commodity trading are lists. Here are the producers, here are the traders, here are the refiners, the shippers, the banks. The list is accurate and almost useless, because it tells you which kinds of company exist without telling you how any particular company relates to any other.</p>
+
+  <p>The trouble is that a list has one dimension and the industry has two. A firm is defined by what it does, and separately by what it moves. Glencore and Cargill both trade, store, process and ship. On a list they are the same animal. They are not: one works in metals and energy, the other in food. Vitol and Trafigura both work in energy, which on a list also makes them identical. Also wrong: Vitol stays close to oil, while Trafigura reaches sideways into metals and into industrial assets Vitol does not own.</p>
+
+  <p>Ask two questions instead of one and those distinctions appear on their own. The first axis is the <b>value chain</b>, the journey of a raw material from ground to buyer, plus the layer that finances and de-risks it along the way. The second is the <b>commodity class</b>. Cross them and a company stops being a point on a list. It becomes a <b>footprint</b>: the set of cells it occupies.</p>
 
   <div class="axes">
     <div class="card">
-      <h4>Axis 1 — Value chain</h4>
+      <h4>Axis 1 / Value chain</h4>
       <div style="font-size:12.5px;color:var(--muted);margin-bottom:2px">The operational pipeline, with the merchant at its center</div>
       <div class="chain">
-        <div class="stage"><span class="dot"></span>Producers &amp; suppliers <span style="color:var(--muted)">— extract / farm / drill</span></div>
-        <div class="stage"><span class="dot"></span>Processing &amp; transformation <span style="color:var(--muted)">— smelt, refine, crush, blend</span></div>
+        <div class="stage"><span class="dot"></span>Producers &amp; suppliers <span style="color:var(--muted)">extract, farm, drill</span></div>
+        <div class="stage"><span class="dot"></span>Processing &amp; transformation <span style="color:var(--muted)">smelt, refine, crush, blend</span></div>
         <div class="stage"><span class="dot"></span>Storage &amp; terminals</div>
         <div class="stage"><span class="dot"></span>Logistics &amp; shipping</div>
-        <div class="stage spine"><span class="dot"></span>Trader / Merchant <span style="color:var(--muted);font-weight:400">— orchestrates all of the above</span></div>
+        <div class="stage spine"><span class="dot"></span>Trader / Merchant <span style="color:var(--muted);font-weight:400">orchestrates all of the above</span></div>
       </div>
       <div class="support-row">
         <span style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;width:100%;margin-bottom:2px">Support &amp; infrastructure layer</span>
@@ -190,21 +276,26 @@
     </div>
 
     <div class="card">
-      <h4>Axis 2 — Commodity class</h4>
+      <h4>Axis 2 / Commodity class</h4>
       <div style="font-size:12.5px;color:var(--muted);margin-bottom:2px">Three families, each with sub-classes</div>
       <div class="classlist">
-        <div class="cl"><span class="swatch" style="background:var(--c-energy)"></span><div><b>Energy</b> <span>— crude &amp; products, gas &amp; LNG, power, coal, renewables &amp; carbon</span></div></div>
-        <div class="cl"><span class="swatch" style="background:var(--c-metals)"></span><div><b>Metals &amp; minerals</b> <span>— base, precious &amp; PGM, ferrous &amp; steel, battery &amp; critical</span></div></div>
-        <div class="cl"><span class="swatch" style="background:var(--c-agri)"></span><div><b>Agriculture</b> <span>— grains &amp; oilseeds, softs (sugar, coffee, cocoa, cotton), protein &amp; livestock, fertilizers</span></div></div>
+        <div class="cl"><span class="swatch" style="background:var(--c-energy)"></span><div><b>Energy</b> <span>crude &amp; products, gas &amp; LNG, power, coal, renewables &amp; carbon</span></div></div>
+        <div class="cl"><span class="swatch" style="background:var(--c-metals)"></span><div><b>Metals &amp; minerals</b> <span>base, precious &amp; PGM, ferrous &amp; steel, battery &amp; critical</span></div></div>
+        <div class="cl"><span class="swatch" style="background:var(--c-agri)"></span><div><b>Agriculture</b> <span>grains &amp; oilseeds, softs (sugar, coffee, cocoa, cotton), protein &amp; livestock, fertilizers</span></div></div>
       </div>
-      <div class="note" style="margin-top:16px">Why the trader sits at the center: most of the famous names in commodities are not miners or farmers — they are <b>merchants</b> who buy, finance, move, transform and sell. The pipeline exists to serve that function. Two earlier maps split these axes across separate menus and never crossed them; the value here is the crossing.</div>
+      <div class="note" style="margin-top:16px">Why the trader sits at the centre: most of the famous names in commodities are not miners or farmers. They are <b>merchants</b> who buy, finance, move, transform and sell, and the pipeline exists to serve that function. The taxonomies I started from kept these two axes in separate menus and never crossed them. The crossing is the whole point.</div>
     </div>
   </div>
 </div></section>
 
 <section><div class="wrap">
-  <h2><span class="num">02</span>Footprints, not points</h2>
-  <p class="sub">Pick a company. Its cells light up across the grid — darker means a core activity, lighter means selective. The shape of the footprint tells you what kind of animal you are looking at. Switch to <b>Industry density</b> to see where the whole pack concentrates.</p>
+  <h2><span class="num">03</span>The shape a company makes</h2>
+
+  <p class="sub">Once there are two axes there is a grid, and on a grid a company stops being a label and becomes a shape.</p>
+
+  <p>This is worth more than it sounds. Ask what Trafigura is and the honest answer is a list of activities in a list of markets, which nobody can hold in their head. Ask what shape Trafigura makes and you get something you can see and compare against the next firm: a wide band across energy, a narrower reach into metals, thin at the production end and solid everywhere below it.</p>
+
+  <p>Pick a company below. Its cells fill in across the grid, darker where the activity is core, lighter where it is selective. Switch to <b>Industry density</b> to drop the individual firms and see where all five concentrate at once.</p>
 
   <div class="controls" id="controls"></div>
   <div class="matrix-wrap">
@@ -222,35 +313,82 @@
 </div></section>
 
 <section><div class="wrap">
-  <h2><span class="num">03</span>Reading the footprint: five archetypes</h2>
-  <p class="sub">Almost every firm in commodities is a variation on one of these shapes. The footprint is the fingerprint.</p>
+  <h2><span class="num">04</span>A field guide to five shapes</h2>
+
+  <p class="sub">Spend enough time on the grid and the same five silhouettes keep reappearing. Almost every firm in commodities is a variation on one of them, and knowing which one you are looking at tells you more than knowing the company name.</p>
   <div class="arch-grid">
-    <div class="arch"><b>The integrated major <span class="ex">· Glencore</span></b><p>Owns the mines <i>and</i> trades the output. Fills nearly the whole grid in metals + energy — production through marketing. Highest capital intensity, deepest moat.</p></div>
+    <div class="arch"><b>The integrated major <span class="ex">· Glencore</span></b><p>Owns the mines <i>and</i> trades the output. Fills nearly the whole grid in metals and energy, from production through to marketing. Highest capital intensity, deepest moat.</p></div>
     <div class="arch"><b>The asset-heavy multi-trader <span class="ex">· Trafigura</span></b><p>Trading-led but vertically reaching: terminals, a vast shipping fleet, smelters (Nyrstar), fuel distribution. Spans energy <i>and</i> metals without being a pure miner.</p></div>
-    <div class="arch"><b>The specialist major <span class="ex">· Vitol</span></b><p>One commodity family, done at scale and depth. Energy only — but trading, refining (VARO), terminals (VTTI) and a huge tanker book within it.</p></div>
-    <div class="arch"><b>The agri-industrial <span class="ex">· Cargill</span></b><p>Originates, crushes, processes and ships food. Deep down the agricultural column — from elevators to meat plants — with a financial/energy desk on the side.</p></div>
-    <div class="arch"><b>The asset-light niche trader <span class="ex">· Open Mineral</span></b><p>Pure merchant, one corner of one column (metals concentrates), no hard assets — freight, finance and insurance arranged via partners. The opposite of Glencore.</p></div>
+    <div class="arch"><b>The specialist major <span class="ex">· Vitol</span></b><p>One commodity family, done at scale and depth. Energy only, but trading, refining (VARO), terminals (VTTI) and a large tanker book within it.</p></div>
+    <div class="arch"><b>The agri-industrial <span class="ex">· Cargill</span></b><p>Originates, crushes, processes and ships food. Deep down the agricultural column, from elevators to meat plants, with a financial and energy desk on the side.</p></div>
+    <div class="arch"><b>The asset-light niche trader <span class="ex">· Open Mineral</span></b><p>Pure merchant, one corner of one column (metals concentrates), no hard assets, with freight, finance and insurance arranged through partners. The opposite of Glencore.</p></div>
   </div>
 </div></section>
 
 <section><div class="wrap">
-  <h2><span class="num">04</span>The Swiss hub, mapped onto the framework</h2>
-  <p class="sub">Switzerland trades a striking share of the world's oil, metals and grain without producing much of any of it. Here is the live membership of <b>SUISSENÉGOCE</b> — the Geneva trade association — sorted into the same framework: physical merchants by commodity class, then the support &amp; infrastructure layer that surrounds them. Click a filter to isolate a slice.</p>
+  <h2><span class="num">05</span>The country that trades what it does not have</h2>
+
+  <p class="sub">A framework that only works on five hand-picked firms is not a framework. So here is the whole membership of SUISSENÉGOCE, a hundred and seven companies, sorted into the same two axes: physical merchants by what they move, then the support layer that surrounds them.</p>
+
+  <p>It is worth pausing on what this list represents. Switzerland extracts almost no oil, mines almost no metal and grows a small fraction of the grain it trades. What it has instead is the credit, the paperwork and the arbitration, and that turns out to be enough. Click a filter to isolate a slice.</p>
 
   <div class="hubfilter" id="hubfilter"></div>
 
-  <div class="hub-sep">Physical merchants — Axis 2 (what they move)</div>
+  <div class="hub-sep">Physical merchants / Axis 2, what they move</div>
   <div class="hubgrid" id="hub-traders"></div>
 
-  <div class="hub-sep">Support &amp; infrastructure — Axis 1 (the enabling layer)</div>
+  <div class="hub-sep">Support &amp; infrastructure / Axis 1, the enabling layer</div>
   <div class="hubgrid support" id="hub-support"></div>
 
-  <p class="note">Classification is by each member's <i>primary</i> activity and is illustrative, not official — several firms are multi-commodity, and a handful (shown with a dashed border) are inferred from name and public profile. Source: SUISSENÉGOCE members directory. Some banks listed also run physical desks; Macquarie, for instance, is both financier and trader.</p>
+  <p class="note">Classification is by each member's <i>primary</i> activity and is illustrative rather than official. Several firms are multi-commodity, and a handful (shown with a dashed border) are inferred from name and public profile. Source: SUISSENÉGOCE members directory. Some banks listed also run physical desks; Macquarie, for instance, is both financier and trader.</p>
 </div></section>
 
-<footer><div class="wrap">
-  <p><b>Notes &amp; sources.</b> Framework adapted and extended from the value-chain and commodity taxonomies on <a href="https://commoditieshub.ch/">commoditieshub.ch</a>; the central change is putting the <i>trader/merchant</i> at the heart of the value chain and treating each company as a footprint rather than a single category. Firm activities verified against company reports and public sources (2024–2026); Swiss-hub roster from the <a href="https://suissenegoce.ch/association/members/">SUISSENÉGOCE members directory</a>. Footprint intensities are an editorial judgement for orientation, not investment advice. — SpatiumNovum</p>
-  <p style="margin-top:22px"><a href="../index.html" style="color:var(--gold);text-decoration:none;font-weight:600">← Back to writing</a></p>
+
+<section><div class="wrap">
+  <h2><span class="num">06</span>What the membership list admits</h2>
+  <p class="sub">The same hundred and seven members, counted rather than listed. Both groups share a scale, so the bars are directly comparable.</p>
+
+  <figure class="fig">
+    <div class="fig-h">Physical merchants, by commodity class</div>
+    <div class="bars" id="bars-traders"></div>
+    <div class="fig-h" style="margin-top:28px">Support &amp; infrastructure, by function</div>
+    <div class="bars" id="bars-support"></div>
+    <figcaption>SUISSEN&Eacute;GOCE members classified by primary activity. n = 107. Counts are computed from the roster in section 05, so the chart and the lists cannot drift apart.</figcaption>
+  </figure>
+
+  <p>Two things in these counts surprised me.</p>
+
+  <p>The first is that agriculture is the largest merchant category, twenty-eight firms against twenty-two in energy. Switzerland's reputation is oil, and oil is where the famous names are, but by number of firms this is more a food hub than a fuel one. The reputation follows the size of the individual companies, not the size of the crowd.</p>
+
+  <p>The second is that roughly a third of the membership trades nothing at all. Fourteen banks, six insurers, four auditors, four law firms, three inspection companies, three technology providers. That is the support layer of axis one, and it is large enough to suggest something the merchant-centric view misses: what Geneva sells is not mainly cargo. It sells the ability to finance a cargo, insure it, certify its quality and argue about the contract afterwards. A merchant could in principle work from anywhere. The layer around it is a large part of why it does not.</p>
+
+  <p>Two cautions before anyone builds an argument on these bars. They are counts of member firms, not volumes or revenues, and one house can be worth twenty small ones. Most of the largest traders are privately held, so the revenue comparison that would settle it is not publicly available. And membership is a choice: a firm that does not join the association does not appear here at all.</p>
+</div></section>
+
+<section><div class="wrap">
+  <h2><span class="num">07</span>Where this map is wrong</h2>
+
+  <p class="sub">Four things this map does not do. The last one bothers me more than the other three.</p>
+
+  <p>It is frozen. Footprints move: firms buy refineries, sell terminals, quietly exit a commodity class after a bad year. The grid shows a position somewhere between 2024 and 2026, and it will drift out of date without announcing that it has.</p>
+
+  <p>It says nothing about size. A cell is filled or it is not. Nothing in the grid can tell you that a thin selective activity throws off most of a firm's profit while a solid core activity barely breaks even, and in this industry that happens often enough to matter.</p>
+
+  <p>It shows positions rather than relationships. Often the question worth asking in this industry is who finances whom, who charters whose vessels, who sits on the other side of a trade. A grid of positions stays silent on all of that.</p>
+
+  <p>And the intensities are a judgement, mine. I read annual reports and public sources and decided which activities counted as core, which as active, which as merely selective. Someone else working from the same documents would shade a number of cells differently, and I have no way of proving they would be wrong. Treat the map as an orientation device rather than a measurement, and certainly not as investment advice.</p>
+
+  <p>On sources: the framework is adapted and extended from the value-chain and commodity taxonomies on <a href="https://commoditieshub.ch/">commoditieshub.ch</a>, with one substantive change, which is putting the trader at the centre of the value chain and treating each company as a footprint rather than a category. Firm activities were checked against company reports and public sources from 2024 to 2026. The Swiss roster is the <a href="https://suissenegoce.ch/association/members/">SUISSEN&Eacute;GOCE members directory</a>; classification by primary activity is mine, and a handful of firms, shown with a dashed border, are inferred from name and public profile rather than confirmed.</p>
+
+  <p>If you work in this industry and a cell is wrong, I would like to know which one.</p>
+</div></section>
+
+<div class="wrap" style="padding-top:34px"><p class="backlink"><a href="../index.html">&larr; Back to writing</a></p></div>
+
+
+<footer class="site-foot"><div class="bar">
+  <div>&copy; 2026 Spatium Novum &middot; Denis Joly</div>
+  <div><a href="../index.html">Writing</a> &middot; <a href="../about.html">About</a> &middot; <a href="/feed.xml">RSS</a></div>
 </div></footer>
 
 <script>
@@ -298,11 +436,11 @@ const CO={
        storage:{oil:3,gas:1},
        logistics:{oil:3,gas:2},
        trading:{oil:3,gas:3,power:2,coal:1}},
-    n:{"trading.oil":"World's largest independent energy trader","storage.oil":"VTTI — ~8.7M m³ across 11 countries",
+    n:{"trading.oil":"World's largest independent energy trader","storage.oil":"VTTI, ~8.7M m³ across 11 countries",
        "processing.oil":"VARO refining (160 kbd) · Vivo Energy downstream","trading.power":"Growing global power & gas desk"}},
 
   cargill:{name:"Cargill",color:"var(--carg)",hex:"#15803d",tag:"Agri-industrial integrator",
-    blurb:"The archetypal agricultural house: originates, stores, crushes, processes and ships food at planetary scale — plus a meat business and a financial/energy desk.",
+    blurb:"The archetypal agricultural house: originates, stores, crushes, processes and ships food at planetary scale, plus a meat business and a financial and energy desk.",
     inhouse:["Cargill Ocean Transportation (dry bulk)","Cargill Risk Management (hedging)","Elevators & port terminals"],
     g:{production:{grains:3,softs:1,protein:1},
        processing:{grains:3,softs:2,protein:3},
@@ -310,14 +448,14 @@ const CO={
        logistics:{grains:3,softs:1,coal:1,ferrous:1},
        trading:{grains:3,softs:2,protein:2,oil:1,gas:1,power:1}},
     n:{"processing.grains":"Crushing, milling & vegetable-oil refining","processing.protein":"Cargill Meat Solutions",
-       "logistics.grains":"Cargill Ocean Transportation — global dry-bulk freight","trading.grains":"One of the 'ABCD' grain majors"}},
+       "logistics.grains":"Cargill Ocean Transportation, global dry-bulk freight","trading.grains":"One of the 'ABCD' grain majors"}},
 
   openmineral:{name:"Open Mineral",color:"var(--om)",hex:"#7c3aed",tag:"Asset-light niche trader",
-    blurb:"A Zug-based digital marketplace for metals concentrates, founded by ex-Glencore traders. Pure merchanting in one corner of one column — no hard assets.",
+    blurb:"A Zug-based digital marketplace for metals concentrates, founded by ex-Glencore traders. Pure merchanting in one corner of one column, with no hard assets.",
     inhouse:["Digital concentrates marketplace","Freight/insurance via platform partners","No owned production or terminals"],
     g:{logistics:{base:1},
        trading:{base:3,precious:1,battery:1}},
-    n:{"trading.base":"Zinc, lead & copper concentrates — matched on-platform",
+    n:{"trading.base":"Zinc, lead &amp; copper concentrates matched on-platform",
        "logistics.base":"Freight, surveying, finance & insurance arranged via partners (asset-light)"}}
 };
 const ORDER=["trafigura","glencore","vitol","cargill","openmineral"];
@@ -354,11 +492,12 @@ const cells=[...mx.querySelectorAll(".cell")];
 
 /* ---------- coloring ---------- */
 function rgba(hex,a){const n=parseInt(hex.slice(1),16);return `rgba(${n>>16&255},${n>>8&255},${n&255},${a})`;}
-const ALPHA={1:.28,2:.58,3:.92};
+const LVCOLOR={1:"#ef8e9b",2:"#d6001c",3:"#8f0013"};
+const DENSITY=["#b4b4ae","#8a8a83","#5c5c56","#2b2b28"];
 function select(key){
   document.querySelectorAll(".cbtn").forEach(b=>{
     const on=b.dataset.co===key;b.classList.toggle("active",on);
-    b.style.background=on&&CO[b.dataset.co]?CO[b.dataset.co].hex:"";
+    b.style.background="";
   });
   cells.forEach(td=>{
     td.classList.remove("hot","lvl1","lvl2","lvl3");
@@ -372,12 +511,13 @@ function select(key){
     const v=(co.g[td.dataset.row]||{})[td.dataset.col]||0;
     td.style.background="#fff";td.querySelector(".ico").textContent="";td.dataset.note="";
     if(v>0){
-      td.style.background=rgba(co.hex,ALPHA[v]);
+      td.style.background=LVCOLOR[v];
       td.classList.add("hot","lvl"+v);
-      td.querySelector(".ico").textContent=v===3?"●":"";
+      const ic2=td.querySelector(".ico");ic2.style.color="#fff";
+      ic2.textContent=v===3?"3":v===2?"2":"";
       td.dataset.note=co.n[td.dataset.row+"."+td.dataset.col]||"";
-      td.dataset.tip=`<b>${co.name}</b> — ${LV[v]}<br>${rowLabel(td.dataset.row)} · ${colLabel(td.dataset.col)}`+
-        (td.dataset.note?`<br><span style="color:#cbd5e1">${td.dataset.note}</span>`:"");
+      td.dataset.tip=`<b>${co.name}</b> &middot; ${LV[v]}<br>${rowLabel(td.dataset.row)} · ${colLabel(td.dataset.col)}`+
+        (td.dataset.note?`<br><span style="color:#b4b4ae">${td.dataset.note}</span>`:"");
     }else td.dataset.tip="";
   });
   updateProfile(co);
@@ -388,13 +528,15 @@ function renderDensity(){
     ORDER.forEach(k=>{const v=(CO[k].g[td.dataset.row]||{})[td.dataset.col]||0;if(v){sum+=v;present.push(CO[k].name);}});
     td.style.background="#fff";td.querySelector(".ico").textContent="";
     if(sum>0){
-      const a=Math.min(.9,.14+sum*0.11);
-      td.style.background=`rgba(180,83,9,${a})`;
-      td.classList.add("hot");if(sum>=5)td.classList.add("lvl3");
-      td.querySelector(".ico").textContent=present.length;
-      td.querySelector(".ico").style.opacity=.92;
+      const di=Math.min(3,present.length-1);
+      td.style.background=DENSITY[di];
+      td.classList.add("hot");
+      const ic=td.querySelector(".ico");
+      ic.textContent=present.length;
+      ic.style.opacity=1;
+      ic.style.color=di===0?"#0a0a0a":"#fff";
       td.dataset.tip=`<b>${present.length} of 5 firms active</b><br>${rowLabel(td.dataset.row)} · ${colLabel(td.dataset.col)}`+
-        `<br><span style="color:#cbd5e1">${present.join(", ")}</span>`;
+        `<br><span style="color:#b4b4ae">${present.join(", ")}</span>`;
     }else td.dataset.tip="";
   });
 }
@@ -404,16 +546,16 @@ function colLabel(k){return COLS.find(c=>c.k===k).label;}
 /* ---------- profile card ---------- */
 const prof=document.getElementById("profile");
 function updateProfile(co){
-  prof.style.borderLeftColor=co.hex;
-  prof.innerHTML=`<span class="tag" style="background:${co.hex}">${co.tag}</span>
+  prof.style.borderLeftColor="#d6001c";
+  prof.innerHTML=`<span class="tag" style="background:#d6001c">${co.tag}</span>
     <h3>${co.name}</h3><p>${co.blurb}</p>
     <div class="inh">${co.inhouse.map(x=>`<span class="pill">${x}</span>`).join("")}</div>`;
 }
 function updateProfileDensity(){
-  prof.style.borderLeftColor="#374151";
-  prof.innerHTML=`<span class="tag" style="background:#374151">All five firms</span>
+  prof.style.borderLeftColor="#0a0a0a";
+  prof.innerHTML=`<span class="tag" style="background:#0a0a0a">All five firms</span>
     <h3>Where the pack concentrates</h3>
-    <p>Overlaying the archetypes, the heat collects in the <b>trading</b> row and the <b>oil, base-metal and grain</b> columns — the liquid, high-volume markets. The thin cells (power, protein, precious, battery) are where specialists and integrated miners differentiate.</p>`;
+    <p>Overlaying the archetypes, the heat collects in the <b>trading</b> row and the <b>oil, base-metal and grain</b> columns, the liquid and high-volume markets. The thin cells (power, protein, precious, battery) are where specialists and integrated miners differentiate.</p>`;
 }
 
 /* ---------- tooltip ---------- */
@@ -429,9 +571,9 @@ mx.addEventListener("mousemove",e=>{
 mx.addEventListener("mouseleave",()=>tip.style.opacity=0);
 
 /* legend swatches */
-document.getElementById("lg3").style.background=rgba("#1f2937",.92);
-document.getElementById("lg2").style.background=rgba("#1f2937",.55);
-document.getElementById("lg1").style.background=rgba("#1f2937",.26);
+document.getElementById("lg3").style.background="#8f0013";
+document.getElementById("lg2").style.background="#d6001c";
+document.getElementById("lg1").style.background="#ef8e9b";
 
 /* ---------- SUISSENÉGOCE hub ---------- */
 // r: trader|bank|insurance|inspection|audit|legal|services  | c (traders): energy|metals|agri|multi | q: inferred
@@ -548,10 +690,28 @@ function filterHub(f,btn){
 
 /* init */
 select("trafigura");
+
+/* ---------- section 06 : effectifs, calcules depuis le meme roster ---------- */
+(function(){
+  const draw=(el,rows,max)=>{el.innerHTML=rows.map(([l,v])=>
+    `<div class="bar"><div class="lb">${l}</div>`+
+    `<div class="tr"><div class="fl" style="width:${(v/max*100).toFixed(1)}%"></div></div>`+
+    `<div class="vl">${v}</div></div>`).join("");};
+  const t=[["energy","Energy"],["metals","Metals & minerals"],["agri","Agriculture"],["multi","Multi / other"]]
+    .map(([k,l])=>[l,M.filter(m=>m.r==="trader"&&m.c===k).length]).sort((a,b)=>b[1]-a[1]);
+  const u=[["bank","Banks & trade finance"],["insurance","Insurance & risk"],
+           ["inspection","Inspection & certification"],["audit","Audit & advisory"],
+           ["legal","Legal"],["services","Fintech & services"]]
+    .map(([k,l])=>[l,M.filter(m=>m.r===k).length]).sort((a,b)=>b[1]-a[1]);
+  const mx=Math.max(...t.map(r=>r[1]),...u.map(r=>r[1]));
+  draw(document.getElementById("bars-traders"),t,mx);
+  draw(document.getElementById("bars-support"),u,mx);
+})();
 </script>
 
 <!-- Cloudflare Web Analytics — replace c4f2d3476eec4a9fab59a0c8590c2b4a with your token (see /index.html for steps). -->
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "c4f2d3476eec4a9fab59a0c8590c2b4a"}'></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "c4f2d3476eec4a9fab59a0c8590c2b4a"}'>
+</script>
 
 </body>
 </html>

@@ -71,12 +71,26 @@ a{color:inherit}
 .nav a:hover{color:var(--signal)}
 
 /* ---------- accroche de la page d'accueil ---------- */
-.hero{padding:56px 0 30px;border-bottom:1px solid var(--rule)}
+.hero{padding:56px 0 34px;border-bottom:1px solid var(--rule)}
 .hero .kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;
   text-transform:uppercase;color:var(--signal)}
 .hero h1{font-size:clamp(34px,5.6vw,54px);line-height:1;letter-spacing:-.04em;
   font-weight:700;margin:.28em 0 .3em;color:var(--ink);max-width:16ch}
-.hero .lede{font-size:19px;line-height:1.45;color:var(--body);max-width:38rem;margin:0}
+.hero .lede{font-size:18.5px;line-height:1.5;color:var(--body);max-width:36rem;margin:0 0 1em}
+.hero .lede:last-of-type{margin-bottom:0}
+
+/* accroche en citation : la source occupe le rail, la citation la colonne de lecture */
+.hero .qgrid{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);
+  column-gap:var(--gutter)}
+.hero .qsrc{font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--muted);line-height:1.5;padding-top:13px;
+  display:flex;flex-direction:column;align-items:flex-start;gap:5px}
+.hero .qsrc .nm{color:var(--signal)}
+.hero blockquote.q{margin:0 0 26px;padding:0;border:0;
+  font-size:clamp(28px,4.6vw,48px);line-height:1.06;letter-spacing:-.038em;
+  font-weight:700;color:var(--ink);max-width:19ch}
+.hero .qrub{font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--signal);margin-top:30px}
 
 /* ---------- liste d'articles ---------- */
 .list{padding:0 0 20px}
@@ -185,8 +199,9 @@ mark{background:var(--signal);color:#fff;padding:0 3px}
 @media(max-width:820px){
   :root{--rail:0px;--gutter:0px}
   .wrap,.site-head .bar,.site-foot .bar{padding-left:22px;padding-right:22px}
-  .featured,.entry,.post .wrap{grid-template-columns:minmax(0,1fr)}
+  .featured,.entry,.post .wrap,.hero .qgrid{grid-template-columns:minmax(0,1fr)}
   .featured > *,.entry > *,.post .wrap > *{grid-column:1}
+  .hero .qsrc{flex-direction:row;flex-wrap:wrap;gap:12px;padding-top:0;margin-bottom:16px}
   .featured .flag,.entry .meta,.featured .meta,.post .meta{
     grid-column:1;grid-row:auto;flex-direction:row;flex-wrap:wrap;gap:12px;
     padding-top:0;margin-bottom:10px}
