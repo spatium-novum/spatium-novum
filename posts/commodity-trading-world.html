@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Commodity Trading World, on Two Axes — Spatium Novum</title>
+<title>The Swiss Commodity Trading World, on Two Axes — Spatium Novum</title>
 <meta name="description" content="An interactive map that places every kind of commodity-market actor on a grid of what they do against what they move.">
 <meta name="author" content="Denis Joly">
 <meta name="theme-color" content="#ffffff">
 <link rel="canonical" href="https://spatium-novum.com/posts/commodity-trading-world.html">
 <meta property="og:site_name" content="Spatium Novum">
-<meta property="og:title" content="The Commodity Trading World, on Two Axes">
+<meta property="og:title" content="The Swiss Commodity Trading World, on Two Axes">
 <meta property="og:description" content="An interactive map that places every kind of commodity-market actor on a grid of what they do against what they move, so you can see where a firm like Trafigura actually sits.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://spatium-novum.com/posts/commodity-trading-world.html">
@@ -49,9 +49,11 @@
   .byline b{font-weight:500}
 
   section{padding:44px 0;border-bottom:1px solid var(--rule)}
-  h2{font-size:23px;letter-spacing:-.022em;font-weight:700;margin:0 0 8px;color:var(--ink)}
-  h2 .num{font-family:var(--mono);font-size:13px;font-weight:400;color:var(--signal);
-    margin-right:.9em;letter-spacing:.06em}
+  h2{font-size:26px;letter-spacing:-.026em;font-weight:700;margin:0 0 10px;color:var(--ink);
+    display:flex;align-items:baseline;gap:18px}
+  h2 .num{font-family:var(--mono);font-size:clamp(34px,4.6vw,46px);font-weight:400;
+    color:var(--signal);line-height:.9;letter-spacing:-.05em;margin:0;flex:none}
+  @media(max-width:620px){h2{gap:12px;font-size:22px}}
   .sub{color:var(--muted);max-width:44rem;margin:0 0 26px;font-size:16px}
   h3{font-size:18px;font-weight:600;letter-spacing:-.012em;margin:26px 0 8px;color:var(--ink)}
   p{max-width:44rem}
@@ -149,6 +151,15 @@
   .arch p{font-size:13.5px;color:var(--muted);margin:.3em 0 0}
 
   /* --- hub suisse --- */
+  .hubsearch{display:flex;align-items:center;gap:16px;margin:2px 0 24px;
+    border-top:1px solid var(--rule);border-bottom:2px solid var(--rule-strong);padding:6px 0}
+  .hubsearch input{flex:1;min-width:0;border:0;outline:0;background:transparent;
+    font-family:var(--mono);font-size:14px;color:var(--ink);padding:8px 0}
+  .hubsearch input::placeholder{color:var(--muted)}
+  .hubcount{font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--muted);flex:none}
+  .chip.hit{border-color:var(--signal)!important;color:var(--signal)!important}
+  .col.dim{opacity:.25}
   .hubfilter{display:flex;flex-wrap:wrap;gap:0;margin:2px 0 24px;
     border-top:1px solid var(--rule);border-bottom:2px solid var(--rule-strong)}
   .fbtn{cursor:pointer;border:0;border-right:1px solid var(--rule);background:transparent;
@@ -205,6 +216,12 @@
   .fig figcaption{font-family:var(--mono);font-size:10.5px;line-height:1.6;letter-spacing:.02em;
     color:var(--muted);text-transform:none;padding-top:12px;max-width:46rem}
   .hl{background:var(--signal);color:#fff;padding:0 4px}
+  .cta{border-bottom:0}
+  .cta .cta-main{font-size:19px;line-height:1.45;color:var(--ink);max-width:40rem;margin:0 0 20px}
+  .cta .cta-links{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--muted);margin:0}
+  .cta .cta-links a{color:var(--signal);text-decoration:none}
+  .cta .cta-links a:hover{text-decoration:underline}
   .sources{padding:36px 0 10px;color:var(--muted);font-size:13.5px}
   .sources a{color:var(--signal)}
 </style>
@@ -222,33 +239,33 @@
 
 <header class="hero"><div class="wrap">
   <div class="kicker">SpatiumNovum · Commodities, Mapped</div>
-  <h1>The Commodity Trading World, on Two Axes</h1>
+  <h1>The Swiss Commodity Trading World, on Two Axes</h1>
   <p class="lede">One of the oldest industries there is, and one of the least documented. A beginner's map: every kind of actor placed on a grid of <b>what they do</b> against <b>what they move</b>, so you can see where a firm like Trafigura actually sits.</p>
   <div class="byline">By <b>Denis Joly</b> · A first orientation piece · July 2026</div>
 </div></header>
 
 <section><div class="wrap">
-  <h2><span class="num">01</span>Thirty-five thousand jobs, or ten thousand</h2>
+  <h2><span class="num">01</span>35,000 jobs, or 10,000</h2>
 
   <p>In March, a representative of SUISSEN&Eacute;GOCE came to give a talk at the university where I do my research. SUISSEN&Eacute;GOCE is the Swiss trade association for commodity merchants, and the talk was what you would expect: what the association does, which companies belong to it, why the sector matters to the country.</p>
 
-  <p>What stayed with me was the scale. Roughly a tenth of Swiss GDP. Tens of thousands of jobs. Something like sixty per cent of the world's traded metals and half its grain moving through a country that mines almost nothing and grows very little of it.</p>
+  <p>What stayed with me was the scale. Roughly 10% of Swiss GDP. Tens of thousands of jobs. Something like 60% of the world's traded metals and half its grain moving through a country that mines almost nothing and grows very little of it.</p>
 
   <p>I could not name a single one of the companies.</p>
 
-  <p>That gap bothered me enough to go and check the figures afterwards, and checking them turned out to be more interesting than the figures themselves. The association puts the sector at eight to nine per cent of Swiss GDP. <a href="https://www.publiceye.ch/en/topics/commodities/switzerland/commodities-hub">Public Eye</a>, an NGO that has spent years auditing the industry and is not friendly to it, says around ten per cent, and counts about ten thousand people working in it. The <a href="https://www.aboutswitzerland.eda.admin.ch/en/commodities-trading">federal government</a> counts nine hundred companies and the same ten thousand employees. The larger employment numbers you hear quoted, in the tens of thousands, are counting something wider: the banks, inspectors, lawyers and shipping agents who live off the traders without being traders themselves.</p>
+  <p>That gap bothered me enough to go and check the figures afterwards, and checking them turned out to be more interesting than the figures themselves. The association puts the sector at 8 to 9% of Swiss GDP. <a href="https://www.publiceye.ch/en/topics/commodities/switzerland/commodities-hub">Public Eye</a>, an NGO that has spent years auditing the industry and is not friendly to it, says around 10%, and counts about 10,000 people working in it. The <a href="https://www.aboutswitzerland.eda.admin.ch/en/commodities-trading">federal government</a> counts 900 companies and the same 10,000 employees. The larger employment numbers you hear quoted, in the tens of thousands, are counting something wider: the banks, inspectors, lawyers and shipping agents who live off the traders without being traders themselves.</p>
 
-  <p>Which number is right depends entirely on where you decide the industry stops. That turned out to be the real problem, and it is the reason this piece exists. Nobody I read agreed on what the sector <i>was</i>, so nobody could agree on how big it was.</p>
+  <p>Which number is right depends entirely on where you decide the industry stops. That turned out to be the real problem, and it is the reason this piece exists. Nobody I read agreed on what the sector <i>was</i>, so nobody could agree on how big it was. For an industry whose entire function is putting a price on things, it is remarkably bad at pricing itself.</p>
 
-  <p>The commodity shares held up better, with one correction to what I had in my head. Metals really is about sixty per cent. Grain is at least half, and so is coffee, which I had not expected. Sugar is around forty per cent. Cotton is closer to a quarter than to the figure I had written down, so I had carried one wrong number out of that room without noticing.</p>
+  <p>The commodity shares held up better, with one correction to what I had in my head. Metals really is about 60%. Grain is at least half, and so is coffee, which I had not expected. Sugar is around 40%. Cotton is closer to a quarter than to the figure I had written down, so I had carried one wrong number out of that room without noticing.</p>
 
-  <p>So this is the article I went looking for and did not find: one map of who does what, drawn carefully enough that the next person who hears those percentages has somewhere to put them. Two sources did most of the work. The value-chain and commodity taxonomies on <a href="https://commoditieshub.ch/">commoditieshub.ch</a> gave me the vocabulary the industry actually uses. The <a href="https://suissenegoce.ch/association/members/">SUISSEN&Eacute;GOCE members directory</a> gave me a roster of a hundred and seven real firms to test the framework against, which is what section five does. Where I depart from those sources, and where the map fails, is in section seven.</p>
+  <p>So this is the article I went looking for and did not find: one map of who does what, drawn carefully enough that the next person who hears those percentages has somewhere to put them. Two sources did most of the work. The value-chain and commodity taxonomies on <a href="https://commoditieshub.ch/">commoditieshub.ch</a> gave me the vocabulary the industry actually uses. The <a href="https://suissenegoce.ch/association/members/">SUISSEN&Eacute;GOCE members directory</a> gave me a roster of 107 real firms to test the framework against, which is what section 05 does. Where the map fails is section 07, and every source is listed in full in section 08.</p>
 </div></section>
 
 <section><div class="wrap">
   <h2><span class="num">02</span>Two questions instead of one</h2>
 
-  <p class="sub">Most explanations of commodity trading are lists. Here are the producers, here are the traders, here are the refiners, the shippers, the banks. The list is accurate and almost useless, because it tells you which kinds of company exist without telling you how any particular company relates to any other.</p>
+  <p class="sub">Most explanations of commodity trading are lists. Here are the producers, here are the traders, here are the refiners, the shippers, the banks. The list is accurate and almost useless. It tells you which kinds of company exist and nothing about how any of them relate to each other, which is like describing a city by listing the professions of its inhabitants.</p>
 
   <p>The trouble is that a list has one dimension and the industry has two. A firm is defined by what it does, and separately by what it moves. Glencore and Cargill both trade, store, process and ship. On a list they are the same animal. They are not: one works in metals and energy, the other in food. Vitol and Trafigura both work in energy, which on a list also makes them identical. Also wrong: Vitol stays close to oil, while Trafigura reaches sideways into metals and into industrial assets Vitol does not own.</p>
 
@@ -298,6 +315,9 @@
   <p>Pick a company below. Its cells fill in across the grid, darker where the activity is core, lighter where it is selective. Switch to <b>Industry density</b> to drop the individual firms and see where all five concentrate at once.</p>
 
   <div class="controls" id="controls"></div>
+
+  <div class="profile" id="profile"></div>
+
   <div class="matrix-wrap">
     <table class="matrix" id="matrix"></table>
   </div>
@@ -309,7 +329,6 @@
     <span class="li" style="margin-left:auto">Hover any lit cell for detail</span>
   </div>
 
-  <div class="profile" id="profile"></div>
 </div></section>
 
 <section><div class="wrap">
@@ -328,11 +347,16 @@
 <section><div class="wrap">
   <h2><span class="num">05</span>The country that trades what it does not have</h2>
 
-  <p class="sub">A framework that only works on five hand-picked firms is not a framework. So here is the whole membership of SUISSENÉGOCE, a hundred and seven companies, sorted into the same two axes: physical merchants by what they move, then the support layer that surrounds them.</p>
+  <p class="sub">A framework that only works on five hand-picked firms is not a framework. So here is the whole membership of SUISSENÉGOCE, 107 companies, sorted into the same two axes: physical merchants by what they move, then the support layer that surrounds them.</p>
 
-  <p>It is worth pausing on what this list represents. Switzerland extracts almost no oil, mines almost no metal and grows a small fraction of the grain it trades. What it has instead is the credit, the paperwork and the arbitration, and that turns out to be enough. Click a filter to isolate a slice.</p>
+  <p>It is worth pausing on what this list represents. Switzerland extracts almost no oil, mines almost no metal and grows a small fraction of the grain it trades. What it has instead is the credit, the paperwork and the arbitration, and that turns out to be plenty. The country's contribution to the physical supply chain is almost entirely administrative, and the administration is worth a great deal. </p>
 
-  <div class="hubfilter" id="hubfilter"></div>
+  <p>Type a name below to find a firm.</p>
+
+  <div class="hubsearch">
+    <input id="hubq" type="search" placeholder="Search 107 members by name" autocomplete="off" spellcheck="false">
+    <span class="hubcount" id="hubcount"></span>
+  </div>
 
   <div class="hub-sep">Physical merchants / Axis 2, what they move</div>
   <div class="hubgrid" id="hub-traders"></div>
@@ -346,7 +370,7 @@
 
 <section><div class="wrap">
   <h2><span class="num">06</span>What the membership list admits</h2>
-  <p class="sub">The same hundred and seven members, counted rather than listed. Both groups share a scale, so the bars are directly comparable.</p>
+  <p class="sub">The same 107 members, counted rather than listed. Both groups share a scale, so the bars are directly comparable.</p>
 
   <figure class="fig">
     <div class="fig-h">Physical merchants, by commodity class</div>
@@ -358,11 +382,11 @@
 
   <p>Two things in these counts surprised me.</p>
 
-  <p>The first is that agriculture is the largest merchant category, twenty-eight firms against twenty-two in energy. Switzerland's reputation is oil, and oil is where the famous names are, but by number of firms this is more a food hub than a fuel one. The reputation follows the size of the individual companies, not the size of the crowd.</p>
+  <p>The first is that agriculture is the largest merchant category, 28 firms against 22 in energy. Switzerland's reputation is oil, and oil is where the famous names are, but by number of firms this is more a food hub than a fuel one. The reputation follows the size of the individual companies, not the size of the crowd.</p>
 
-  <p>The second is that roughly a third of the membership trades nothing at all. Fourteen banks, six insurers, four auditors, four law firms, three inspection companies, three technology providers. That is the support layer of axis one, and it is large enough to suggest something the merchant-centric view misses: what Geneva sells is not mainly cargo. It sells the ability to finance a cargo, insure it, certify its quality and argue about the contract afterwards. A merchant could in principle work from anywhere. The layer around it is a large part of why it does not.</p>
+  <p>The second is that roughly a third of the membership trades nothing at all. 14 banks, 6 insurers, 4 auditors, 4 law firms, 3 inspection companies, 3 technology providers. That is the support layer of axis one, and it is large enough to suggest something the merchant-centric view misses: what Geneva sells is not mainly cargo. It sells the ability to finance a cargo, insure it, certify its quality and argue about the contract afterwards. A merchant could in principle work from anywhere. The layer around it is a large part of why it does not. Geneva does not really sell oil. It sells the letter of credit that moves the oil, and then it sells the lawyer who reads the letter of credit.</p>
 
-  <p>Two cautions before anyone builds an argument on these bars. They are counts of member firms, not volumes or revenues, and one house can be worth twenty small ones. Most of the largest traders are privately held, so the revenue comparison that would settle it is not publicly available. And membership is a choice: a firm that does not join the association does not appear here at all.</p>
+  <p>Two cautions before anyone builds an argument on these bars. They are counts of member firms, not volumes or revenues, and one house can be worth 20 small ones. Most of the largest traders are privately held, so the revenue comparison that would settle it is not publicly available. And membership is a choice: a firm that does not join the association does not appear here at all.</p>
 </div></section>
 
 <section><div class="wrap">
@@ -370,7 +394,7 @@
 
   <p class="sub">Four things this map does not do. The last one bothers me more than the other three.</p>
 
-  <p>It is frozen. Footprints move: firms buy refineries, sell terminals, quietly exit a commodity class after a bad year. The grid shows a position somewhere between 2024 and 2026, and it will drift out of date without announcing that it has.</p>
+  <p>It is frozen. Footprints move: firms buy refineries, sell terminals, quietly exit a commodity class after a year they would rather not discuss. The grid shows a position somewhere between 2024 and 2026, and it will drift out of date without announcing that it has.</p>
 
   <p>It says nothing about size. A cell is filled or it is not. Nothing in the grid can tell you that a thin selective activity throws off most of a firm's profit while a solid core activity barely breaks even, and in this industry that happens often enough to matter.</p>
 
@@ -378,9 +402,26 @@
 
   <p>And the intensities are a judgement, mine. I read annual reports and public sources and decided which activities counted as core, which as active, which as merely selective. Someone else working from the same documents would shade a number of cells differently, and I have no way of proving they would be wrong. Treat the map as an orientation device rather than a measurement, and certainly not as investment advice.</p>
 
-  <p>On sources: the framework is adapted and extended from the value-chain and commodity taxonomies on <a href="https://commoditieshub.ch/">commoditieshub.ch</a>, with one substantive change, which is putting the trader at the centre of the value chain and treating each company as a footprint rather than a category. Firm activities were checked against company reports and public sources from 2024 to 2026. The Swiss roster is the <a href="https://suissenegoce.ch/association/members/">SUISSEN&Eacute;GOCE members directory</a>; classification by primary activity is mine, and a handful of firms, shown with a dashed border, are inferred from name and public profile rather than confirmed.</p>
-
   <p>If you work in this industry and a cell is wrong, I would like to know which one.</p>
+</div></section>
+
+<section><div class="wrap">
+  <h2><span class="num">08</span>Sources</h2>
+
+  <p class="sub">Everything here comes from four places, and it is worth being specific about which did what.</p>
+
+  <p>The <b>framework</b> is adapted and extended from the value-chain and commodity taxonomies published on <a href="https://commoditieshub.ch/">commoditieshub.ch</a>. One substantive change: those taxonomies keep the two axes in separate menus, and I put the trader at the centre of the value chain and treat each company as a footprint rather than a category.</p>
+
+  <p>The <b>Swiss roster</b> in sections 05 and 06 is the <a href="https://suissenegoce.ch/association/members/">SUISSEN&Eacute;GOCE members directory</a>, read in July 2026. Classification by primary activity is mine. A handful of firms, shown with a dashed border, are inferred from name and public profile rather than confirmed.</p>
+
+  <p>The <b>macro figures</b> in section 01 come from three sources that do not agree with each other, which was rather the point. SUISSEN&Eacute;GOCE gives 8 to 9% of Swiss GDP on its own <a href="https://suissenegoce.ch/association/">association page</a>. The Swiss Confederation gives 900 companies and 10,000 employees on <a href="https://www.aboutswitzerland.eda.admin.ch/en/commodities-trading">aboutswitzerland.eda.admin.ch</a>, along with more than a third of global crude trading. <a href="https://www.publiceye.ch/en/topics/commodities/switzerland/commodities-hub">Public Eye</a>, an NGO that audits the sector and is not friendly to it, gives around 10% of GDP, 60% of metals, 50% of cereals and 40% of sugar, and in its <a href="https://www.publiceye.ch/en/topics/soft-commodity-trading/switzerland-at-the-heart-of-agricultural-commodity-trade/switzerland-a-global-hub-in-agricultural-commodity-trade">agricultural breakdown</a>, at least 50% of coffee and 25% of cotton.</p>
+
+  <p>The <b>firm-level detail</b> in sections 03 and 04 was checked against company reports and public sources published between 2024 and 2026.</p>
+</div></section>
+
+<section class="cta"><div class="wrap">
+  <p class="cta-main">This is the first piece in a series. New essays go up roughly every two weeks, with shorter reading notes in between, on markets, machines, molecules and minds. The next one takes apart the capital asset pricing model, which is taught to everyone and believed by almost nobody who trades for a living.</p>
+  <p class="cta-links"><a href="/feed.xml">Follow by RSS</a> &nbsp;&middot;&nbsp; <a href="../index.html">Read the rest</a> &nbsp;&middot;&nbsp; <a href="mailto:denis.a.joly@proton.me">Tell me which cell is wrong</a></p>
 </div></section>
 
 <div class="wrap" style="padding-top:34px"><p class="backlink"><a href="../index.html">&larr; Back to writing</a></p></div>
@@ -664,29 +705,27 @@ const supBox=document.getElementById("hub-support");
 });
 
 /* hub filters */
-const hf=document.getElementById("hubfilter");
-const FILTERS=[["all","All members",null,"#374151"],
-  ["c-energy","Energy",["c","energy"],"var(--c-energy)"],["c-metals","Metals",["c","metals"],"var(--c-metals)"],
-  ["c-agri","Agriculture",["c","agri"],"var(--c-agri)"],["c-multi","Multi",["c","multi"],"var(--c-multi)"],
-  ["r-bank","Finance",["r","bank"],"var(--c-bank)"],["r-insurance","Insurance",["r","insurance"],"var(--c-ins)"],
-  ["r-inspection","Inspection",["r","inspection"],"var(--c-insp)"],["r-audit","Audit",["r","audit"],"var(--c-audit)"],
-  ["r-legal","Legal",["r","legal"],"var(--c-legal)"],["r-services","Fintech",["r","services"],"var(--c-serv)"]];
-FILTERS.forEach((f,i)=>{
-  const total=f[2]?M.filter(m=>m[f[2][0]]===f[2][1]).length:M.length;
-  const b=document.createElement("button");
-  b.className="fbtn"+(i===0?" active":"");b.dataset.f=f[0];
-  b.innerHTML=`<span class="sw" style="background:${f[3]}"></span>${f[1]} <span class="ct">${total}</span>`;
-  b.onclick=()=>filterHub(f,b);hf.appendChild(b);
-});
-function filterHub(f,btn){
-  document.querySelectorAll(".fbtn").forEach(x=>{x.classList.remove("active");x.style.background="";});
-  btn.classList.add("active");btn.style.background=f[3];
-  document.querySelectorAll(".chip").forEach(ch=>{
-    let show=true;
-    if(f[2]){const[attr,val]=f[2];show=(attr==="c"?ch.dataset.c:ch.dataset.r)===val;}
-    ch.classList.toggle("dim",!show);
+/* Les colonnes groupent deja par categorie : refiltrer par categorie ne dirait
+   rien de neuf. La recherche, elle, repond a la question qu'on se pose vraiment
+   devant 107 noms : est-ce que la mienne y est ? */
+const q=document.getElementById("hubq"), qc=document.getElementById("hubcount");
+const CHIPS=[...document.querySelectorAll(".chip")];
+function runSearch(){
+  const v=q.value.trim().toLowerCase();
+  let hits=0;
+  CHIPS.forEach(ch=>{
+    const on=!v||ch.textContent.toLowerCase().includes(v);
+    ch.classList.toggle("dim",!on);
+    ch.classList.toggle("hit",!!v&&on);
+    if(on)hits++;
   });
+  document.querySelectorAll(".col").forEach(c=>{
+    c.classList.toggle("dim",v&&!c.querySelector(".chip:not(.dim)"));
+  });
+  qc.textContent = v ? `${hits} of ${CHIPS.length}` : `${CHIPS.length} members`;
 }
+q.addEventListener("input",runSearch);
+runSearch();
 
 /* init */
 select("trafigura");
