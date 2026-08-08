@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Last Place "Optimal" Means Anything — Spatium Novum</title>
+<meta name="description" content="OPTIMIZE is the motto of the age. In one discipline the word still means something you can prove, and in 1947 that proof cost 120 man-days.">
+<meta name="author" content="Denis Joly">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111110" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://spatium-novum.com/posts/the-last-place-optimal-means-anything">
+<meta property="og:site_name" content="Spatium Novum">
+<meta property="og:title" content="The Last Place &quot;Optimal&quot; Means Anything">
+<meta property="og:description" content="OPTIMIZE is the motto of the age. In one discipline the word still means something you can prove, and in 1947 that proof cost 120 man-days.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://spatium-novum.com/posts/the-last-place-optimal-means-anything">
+<meta property="og:image" content="https://spatium-novum.com/assets/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/favicon-180.png">
+<link rel="alternate" type="application/rss+xml" title="Spatium Novum" href="/feed.xml">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<header class="site-head"><div class="bar">
+  <a class="brand" href="/">Spatium<span class="dot">·</span>Novum</a>
+  <nav class="nav">
+    <a href="/">Writing</a>
+    <a href="/about">About</a>
+  </nav>
+</div></header>
+
+<main class="post"><div class="wrap">
+  <!-- La rubrique s'affiche dans la colonne de gauche (.meta .tag), pas au-dessus du titre. -->
+  <h1>The Last Place &quot;Optimal&quot; Means Anything</h1>
+  <div class="meta">
+    <span class="tag">Optimization</span>
+    <span>Denis Joly</span>
+    <span>August 2026</span>
+    <span>~15 min read</span>
+  </div>
+  <nav class="toc">
+    <div class="toc-h">Contents</div>
+    <ul>
+      <li><a href="#pricing-a-life-1945">Pricing a life, 1945</a></li>
+      <li><a href="#three-parts-and-no-others">Three parts and no others</a></li>
+      <li><a href="#what-the-corner-comes-with">What the corner comes with</a></li>
+      <li><a href="#the-other-side-of-the-line">The other side of the line</a></li>
+      <li><a href="#two-men-one-object-no-contact">Two men, one object, no contact</a></li>
+      <li><a href="#what-this-is-for">What this is for</a></li>
+      <li><a href="#references">References</a></li>
+      <li><a href="#data-and-code">Data and code</a></li>
+    </ul>
+  </nav>
+
+  <article>
+    <aside class="callout">
+<div class="callout-h">Before we start</div>
+<p>I want to write about Markowitz, the CAPM and portfolio optimisation, and every time I begin I find I cannot do it honestly without first saying what optimisation is. So: a short detour, four pieces, and then the finance.</p>
+<p>Markowitz has waited seventy-four years. He can wait four more posts.</p>
+</aside>
+
+    <p>"OPTIMIZE" is the motto of our age. Everyone is an optimiser now. Sleep, morning routines, tax, protein intake, the loading order of a web page. The word has been worn down until it means roughly <em>better than what I was doing last month</em>, which is something you feel rather than something you check.</p>
+
+    <p>All is not lost, dear reader. One discipline kept the older meaning. In mathematical optimisation, optimal does not mean better. It means that no plan exists which beats this one, and that the claim can be handed to a sceptic in a form they can check without redoing any of the work. That is an odd thing to be able to buy. It has a price, and it has a boundary past which it is not for sale at any price.</p>
+
+    <h2 id="pricing-a-life-1945">Pricing a life, 1945</h2>
+
+    <p>In 1945 George Stigler asked a strange question in print: what does it cost to keep a man alive? Not comfortably; alive, by the standard of the day. The National Research Council had published its 1943 allowances, and for a moderately active man weighing 154 pounds they came to nine numbers a day. Three thousand calories, 70 grams of protein, 0.8 grams of calcium, 12 milligrams of iron, and five vitamins: A, thiamine and riboflavin (B1 and B2), niacin, and ascorbic acid, which is vitamin C.[1] Nine floors, none of them negotiable, and every one of them will matter later.</p>
+
+    <p>Stigler had 77 commodities to choose from and the August 1939 retail price of each, averaged by the Bureau of Labor Statistics across 51 American cities. Which combination met all nine minimums for the least money?</p>
+
+    <p>What makes that question answerable is the shape of the table behind it. For each of the 77 commodities Stigler recorded a full nutritional breakdown alongside the price: how much of each of the nine you get for one dollar spent on it. Seventy-seven rows, nine columns, 693 numbers, only 123 of them zero.[19] A dollar of wheat flour buys 44,700 calories and 33 milligrams of riboflavin. A dollar of beef liver buys 2,200 calories and 51 milligrams. Whether liver is worth buying is not a question about liver; it is a question about what else is in the basket.</p>
+
+    <p>The paper is "The Cost of Subsistence," twelve pages in the <em>Journal of Farm Economics</em>, written by a man who would collect a Nobel for something else entirely thirty-seven years later.[1][13] He could not answer his own question, and he says so, in a sentence that deserves a second reading. It is a working economist describing the absence of a tool that now arrives with one line in a terminal:</p>
+
+    <blockquote>Thereafter the procedure is experimental because there does not appear to be any direct method of finding the minimum of a linear function subject to linear conditions.[1]</blockquote>
+
+    <p>So he did it by hand. He struck out everything dominated by something cheaper, which removed all meats except liver (stop making that face: the British have built an <a href="https://www.greatbritishchefs.com/collections/chicken-liver-recipes">entire genre</a> out of chicken livers, so evidently anything is possible), all sugars, all beverages and the patented cereals, and searched what was left. His answer was $39.93 a year.</p>
+
+    <p>That is 1939 money. The Minneapolis Fed's consumer price index sits at 41.8 for 1939 and 1004.8 for 2026 on the same 1967 base, a factor of about 24.[14] So Stigler's subsistence diet costs roughly $960 a year in today's terms, or $2.63 a day. Hold on to that number for a moment.</p>
+
+    <p>Two years later the tool existed. In the autumn of 1947 Jack Laderman, at the National Bureau of Standards, took the full problem, all 77 commodities rather than Stigler's shortlist, and put it through the simplex method, which George Dantzig had invented that summer: a procedure that walks from one candidate plan to a better one and stops when no better neighbour exists. It works on anything you can write as a linear objective under linear conditions, which is what a <em>linear program</em> is. Stigler's diet is one. Dantzig described the operation much later: nine clerks, each handed eight or nine of the 77 columns, working hand-cranked desk calculators, about 120 man-days between them.[2] They got $39.69.</p>
+
+    <table>
+<thead>
+<tr><th></th><th>Stigler, by hand, 1945</th><th>The optimum, 1947</th></tr>
+</thead>
+<tbody>
+<tr><td>Wheat flour</td><td>370 lb · $13.33</td><td>299 lb · $10.78</td></tr>
+<tr><td>Evaporated milk</td><td>57 cans · $3.84</td><td>not in it</td></tr>
+<tr><td>Cabbage</td><td>111 lb · $4.11</td><td>111 lb · $4.10</td></tr>
+<tr><td>Spinach</td><td>23 lb · $1.85</td><td>23 lb · $1.83</td></tr>
+<tr><td>Dried navy beans</td><td>285 lb · $16.80</td><td>378 lb · $22.29</td></tr>
+<tr><td>Beef liver</td><td>not in it</td><td>2.57 lb · $0.69</td></tr>
+<tr><td><strong>Annual cost</strong></td><td><strong>$39.93</strong></td><td><strong>$39.69</strong></td></tr>
+</tbody>
+</table>
+
+    <p>Stigler was wrong by twenty-four cents a year. Six tenths of one per cent.[1][8]</p>
+
+    <p>Now convert that too. Twenty-four cents of 1939 is $5.77 today. Nine clerks, four months of collective arithmetic, to close a gap of under six dollars a year.</p>
+
+    <p>Written like that it sounds like the most poorly allocated labour in the history of the Bureau of Standards, and it is exactly the point. They were not buying the six dollars. The story is usually told as the machine beating the man, and it is not that either. The man was essentially right: four of his five commodities survive into the optimal basket at nearly the same quantities, and the optimiser mostly swaps his evaporated milk for two and a half pounds of beef liver. What the 120 man-days bought was the knowledge that no better diet existed, plus a short object that demonstrates it. That object is the subject of this piece, and it arrives two sections down.</p>
+
+    <p>Run the same 77 columns today, on a laptop, with an open-source solver, and it comes back in a few milliseconds with the same five commodities.[3] Nine orders of magnitude have gone,[18] and none of them came off the answer. They came off the price of being sure of it.</p>
+
+    <h2 id="three-parts-and-no-others">Three parts and no others</h2>
+
+    <p>Before the object, the anatomy of the thing that produces it, because the guarantee only exists for problems of a certain shape. A model of this kind has three parts and no others: variables you get to choose, one quantity you are pushing up or down, and conditions any choice has to respect. Stephen Boyd and Lieven Vandenberghe, whose textbook is where most engineers meet this material and which the authors give away as a PDF, write it as minimise <em>f</em><sub>0</sub>(<em>x</em>) subject to <em>f</em><sub>i</sub>(<em>x</em>) ≤ <em>b</em><sub>i</sub>, and name the pieces: <em>x</em> is the optimization variable, <em>f</em><sub>0</sub> the objective function, the <em>f</em><sub>i</sub> the constraint functions.[4] Stigler's variables were dollars per day spent on each commodity, his objective their sum, his constraints the nine nutritional floors.</p>
+
+    <p>Shrink it to two variables and the whole thing fits on a page. A feed producer blends soybean meal at fifty cents a pound with corn meal at eighteen. The batch has to reach a hundred pounds, carry at least thirty pounds of protein, stay under seven pounds of fibre, and use no more corn meal than the silo holds.</p>
+
+    <figure class="fig">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 360" width="100%" role="img" aria-label="The feasible blends, and the cheapest one">
+<title>The feasible blends, and the cheapest one</title><desc>A two-variable linear program drawn as a polygon. Every blend satisfying the batch, protein, fibre and silo constraints lies inside the shaded region. The cheapest blend sits on a corner.</desc>
+<style>text{font:11px/1.2 "IBM Plex Mono",ui-monospace,monospace;fill:var(--ink, #0a0a0a)} .lbl{font-size:10px;fill:var(--muted, #6b6b6b)} .tag{font-size:10px;fill:var(--d4, #2b2b28)}</style>
+<line x1="52" x2="714" y1="320.0" y2="320.0" stroke="var(--rule, #dcdcda)" stroke-width=".5"/>
+<text class="lbl" x="46" y="323.0" text-anchor="end">0</text>
+<line x1="52" x2="714" y1="242.6" y2="242.6" stroke="var(--rule, #dcdcda)" stroke-width=".5"/>
+<text class="lbl" x="46" y="245.6" text-anchor="end">20</text>
+<line x1="52" x2="714" y1="165.3" y2="165.3" stroke="var(--rule, #dcdcda)" stroke-width=".5"/>
+<text class="lbl" x="46" y="168.3" text-anchor="end">40</text>
+<line x1="52" x2="714" y1="87.9" y2="87.9" stroke="var(--rule, #dcdcda)" stroke-width=".5"/>
+<text class="lbl" x="46" y="90.9" text-anchor="end">60</text>
+<text class="lbl" x="52.0" y="335" text-anchor="middle">0</text>
+<text class="lbl" x="157.9" y="335" text-anchor="middle">20</text>
+<text class="lbl" x="263.8" y="335" text-anchor="middle">40</text>
+<text class="lbl" x="369.8" y="335" text-anchor="middle">60</text>
+<text class="lbl" x="475.7" y="335" text-anchor="middle">80</text>
+<text class="lbl" x="581.6" y="335" text-anchor="middle">100</text>
+<text class="lbl" x="687.5" y="335" text-anchor="middle">120</text>
+<polygon points="581.6,320.0 669.9,320.0 563.9,87.9 348.1,87.9 369.8,165.3" fill="var(--d1, #b4b4ae)" opacity=".28"/>
+<line x1="52.0" y1="87.9" x2="714.0" y2="87.9" stroke="var(--d3, #5c5c56)" stroke-width="1"/>
+<text class="tag" x="99.7" y="82.9" text-anchor="start">silo &#8804; 60 lb corn</text>
+<line x1="179.1" y1="26.0" x2="581.6" y2="320.0" stroke="var(--d3, #5c5c56)" stroke-width="1"/>
+<text class="tag" x="420.7" y="203.3" text-anchor="end">batch &#8805; 100 lb</text>
+<line x1="330.8" y1="26.0" x2="413.1" y2="320.0" stroke="var(--d3, #5c5c56)" stroke-width="1"/>
+<text class="tag" x="382.0" y="232.7" text-anchor="end">protein &#8805; 30 lb</text>
+<line x1="535.7" y1="26.0" x2="669.9" y2="320.0" stroke="var(--d3, #5c5c56)" stroke-width="1"/>
+<text class="tag" x="617.5" y="182.7" text-anchor="start">fibre &#8804; 7 lb</text>
+<line x1="301.1" y1="26.0" x2="446.0" y2="320.0" stroke="var(--d3, #5c5c56)" stroke-width="1" stroke-dasharray="4 3"/>
+<text class="tag" x="374.3" y="185.6" text-anchor="end">every blend on this line costs $37.20</text>
+<circle cx="581.6" cy="320.0" r="3" fill="var(--paper, #ffffff)" stroke="var(--d4, #2b2b28)" stroke-width="1"/>
+<text class="lbl" x="603.6" y="309.0" text-anchor="middle">$50.00</text>
+<circle cx="669.9" cy="320.0" r="3" fill="var(--paper, #ffffff)" stroke="var(--d4, #2b2b28)" stroke-width="1"/>
+<text class="lbl" x="691.9" y="309.0" text-anchor="middle">$58.33</text>
+<circle cx="563.9" cy="87.9" r="3" fill="var(--paper, #ffffff)" stroke="var(--d4, #2b2b28)" stroke-width="1"/>
+<text class="lbl" x="577.0" y="67.9" text-anchor="middle">$59.13</text>
+<circle cx="348.1" cy="87.9" r="3" fill="var(--paper, #ffffff)" stroke="var(--d4, #2b2b28)" stroke-width="1"/>
+<text class="lbl" x="325.0" y="76.2" text-anchor="middle">$38.75</text>
+<circle cx="369.8" cy="165.3" r="4.5" fill="var(--signal, #d6001c)" stroke="var(--d4, #2b2b28)" stroke-width="1"/>
+<text x="380.8" y="169.3" fill="var(--signal, #d6001c)" style="font-size:11px">60 lb soybean, 40 lb corn &#8212; $37.20</text>
+<line x1="52" y1="320.0" x2="714" y2="320.0" stroke="var(--d4, #2b2b28)" stroke-width="1"/>
+<line x1="52" y1="26" x2="52" y2="320.0" stroke="var(--d4, #2b2b28)" stroke-width="1"/>
+<text class="lbl" x="383" y="356" text-anchor="middle">soybean meal, lb</text>
+<text class="lbl" x="14" y="173" transform="rotate(-90 14 173)" text-anchor="middle">corn meal, lb</text>
+</svg>
+<figcaption>Every blend that satisfies all four conditions lies in the shaded region. The dashed line is a price. Slide it down until it is about to leave the region and it stops on a corner.</figcaption>
+</figure>
+
+    <p>Every blend meeting all four conditions lies in the shaded region. The region has a name, the <em>feasible set</em>, and what lies outside it is not a worse plan but no plan at all. The dashed line is a price: every blend along it costs the same. Push that line down and to the left until it is about to leave the region, and it comes to rest touching a single corner. Sixty pounds of soybean meal, forty of corn, $37.20.</p>
+
+    <p>The corner is not an accident of these numbers. When the objective is linear and the feasible set is a polygon, an optimum always sits at a corner, which is why the simplex method never looks anywhere else. With two variables you can list all five corners and compare them by hand. With seventy-seven you cannot, because the number of corners grows combinatorially with the constraints. That gap is the whole reason there is an algorithm.</p>
+
+    <h2 id="what-the-corner-comes-with">What the corner comes with</h2>
+
+    <p>When the solver returns the diet, it returns nine other numbers with it, one for each of the nine floors from the top of this piece: the amount the daily bill would rise if that minimum went up by one unit. These are the <em>shadow prices</em>, one per condition, and what they price is not a food but a requirement. Multiply each of the nine by its requirement and add them together, and you get the cost of the diet. The sum is exact.</p>
+
+    <figure class="fig">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 172" width="100%" role="img" aria-label="What each of the nine nutritional minimums costs per day">
+<title>What each of the nine nutritional minimums costs per day</title><desc>A single horizontal bar, the daily cost of the cheapest diet, split into the contribution of each binding constraint. Four of the nine minimums contribute nothing.</desc>
+<style>text{font:11px/1.2 "IBM Plex Mono",ui-monospace,monospace;fill:var(--ink, #0a0a0a)} .lbl{font-size:10px;fill:var(--muted, #6b6b6b)} .tag{font-size:10px;fill:var(--d4, #2b2b28)}</style>
+<rect x="20.0" y="46" width="279.6" height="70" fill="var(--d4, #2b2b28)" stroke="var(--paper, #ffffff)" stroke-width="1"/>
+<text x="159.8" y="85" text-anchor="middle" fill="var(--paper, #ffffff)">riboflavin</text>
+<text class="lbl" x="159.8" y="38" text-anchor="middle">4.42&#162;</text>
+<rect x="299.6" y="46" width="166.5" height="70" fill="var(--d3, #5c5c56)" stroke="var(--paper, #ffffff)" stroke-width="1"/>
+<text x="382.9" y="85" text-anchor="middle" fill="var(--paper, #ffffff)">calories</text>
+<text class="lbl" x="382.9" y="38" text-anchor="middle">2.63&#162;</text>
+<rect x="466.1" y="46" width="160.8" height="70" fill="var(--d2, #8a8a83)" stroke="var(--paper, #ffffff)" stroke-width="1"/>
+<text x="546.5" y="85" text-anchor="middle" fill="var(--ink, #0a0a0a)">calcium</text>
+<text class="lbl" x="546.5" y="38" text-anchor="middle">2.54&#162;</text>
+<rect x="626.9" y="46" width="68.4" height="70" fill="var(--d1, #b4b4ae)" stroke="var(--paper, #ffffff)" stroke-width="1"/>
+<text x="661.1" y="85" text-anchor="middle" fill="var(--ink, #0a0a0a)">vitamin C</text>
+<text class="lbl" x="661.1" y="38" text-anchor="middle">1.08&#162;</text>
+<rect x="695.3" y="46" width="12.7" height="70" fill="var(--rule, #dcdcda)" stroke="var(--paper, #ffffff)" stroke-width="1"/>
+<text class="lbl" x="701.7" y="130" text-anchor="middle">vitamin A</text>
+<text class="lbl" x="701.7" y="38" text-anchor="middle">0.20&#162;</text>
+<text x="20" y="20">the whole bar is 10.87&#162; a day, which is the price of the diet</text>
+<text class="lbl" x="708" y="164" text-anchor="end">costing nothing at the margin: protein, iron, thiamine, niacin</text>
+</svg>
+<figcaption>The daily cost of the cheapest 1939 diet, split into what each nutritional minimum is responsible for. Shadow price times requirement, summed over the nine constraints, is the price of the diet. That equality is the proof.</figcaption>
+</figure>
+
+    <p>Riboflavin, vitamin B2, turns out to be the most expensive single thing about staying alive at 1939 prices, and calories are not even second.</p>
+
+    <p>That is a fact about the table, not a taste of the model's. Buying a nutrient from its single cheapest source puts a ceiling on what it can cost per unit, and comparing that ceiling to the shadow price says how much the rest of the basket helps. Calories come from wheat flour and the diet pays 38 per cent of the ceiling, because calories arrive as a by-product of everything else. Riboflavin comes from beef liver and the diet pays 83 per cent: there is almost nowhere to hide from it.[19] That is why two and a half pounds of liver are in the answer at all, and why riboflavin ends up the widest slice above. Four of the nine minimums cost nothing at the margin: the protein, the iron, the thiamine and the niacin arrive free, as a by-product of buying enough of everything else. And the bar sums to 10.87 cents a day, which is the price of the diet, and the $2.63 you were asked to hold on to earlier.</p>
+
+    <p>That identity is the proof. The solver hands back two objects, a diet and a set of prices, and each one certifies the other. The diet shows the prices cannot be higher; the prices show the diet cannot be cheaper. No one has to trust the solver, rerun it, or audit the path it took. Those nine prices, taken together, are what the field calls the <em>dual solution</em>. Boyd and Vandenberghe call it "a certificate that proves <em>x</em> is optimal," and the word is meant literally.[4]</p>
+
+    <p>This is what convexity buys, and it is the only thing convexity buys. A set is convex when the straight line between any two of its points stays inside it: no dents, no holes, no separate pieces. A function is convex when it curves like a bowl, with one bottom rather than several. In a convex problem, meaning a convex objective over a convex feasible set, every local minimum is also the global one,[4] which is what licenses an algorithm that only ever improves locally to stop and be believed. R. Tyrrell Rockafellar, whose <em>Convex Analysis</em> is the book the field reaches for when it wants to be rigorous, put the boundary in one sentence:</p>
+
+    <blockquote>In fact the great watershed in optimization isn't between linearity and nonlinearity, but convexity and nonconvexity.[5]</blockquote>
+
+    <p>He wrote it immediately after observing that in convex problems every locally optimal solution is global. The line circulates stripped of that setup, which makes it sound like a matter of taste. It is a claim about which problems can produce a certificate at all.</p>
+
+    <h2 id="the-other-side-of-the-line">The other side of the line</h2>
+
+    <p>Cross it and the certificate goes.</p>
+
+    <p>The usual test at a candidate point is the Karush-Kuhn-Tucker conditions, which ask about slopes and nothing about curvature: is there any direction you could step that improves the objective without breaking a constraint? If there is none, the point passes.[15] In a convex problem, passing is enough, and the point is optimal. Outside convexity, passing drops back to necessary but not sufficient. A point can pass the test and be a saddle.</p>
+
+    <figure class="fig">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 250" width="100%" role="img" aria-label="A saddle point, in two slices">
+<title>A saddle point, in two slices</title><desc>Two small plots of the surface z = x squared minus y squared through the same point. Along one direction the point is the bottom of a curve; along the other it is the top.</desc>
+<style>text{font:11px/1.2 "IBM Plex Mono",ui-monospace,monospace;fill:var(--ink, #0a0a0a)} .lbl{font-size:10px;fill:var(--muted, #6b6b6b)} .tag{font-size:10px;fill:var(--d4, #2b2b28)}</style>
+<text x="60" y="38">slice along x:  z = x&#178;</text>
+<line x1="60" y1="132" x2="345" y2="132" stroke="var(--rule, #dcdcda)" stroke-width=".5"/>
+<polyline points="60.0,97.0 64.8,101.6 69.5,106.0 74.2,110.3 79.0,114.4 83.8,118.4 88.5,122.2 93.2,125.9 98.0,129.4 102.8,132.7 107.5,135.9 112.2,138.9 117.0,141.8 121.8,144.5 126.5,147.1 131.2,149.5 136.0,151.8 140.8,153.9 145.5,155.8 150.2,157.6 155.0,159.2 159.8,160.7 164.5,162.0 169.2,163.2 174.0,164.2 178.8,165.1 183.5,165.8 188.2,166.3 193.0,166.7 197.8,166.9 202.5,167.0 207.3,166.9 212.0,166.7 216.8,166.3 221.5,165.8 226.2,165.1 231.0,164.2 235.8,163.2 240.5,162.0 245.2,160.7 250.0,159.2 254.8,157.6 259.5,155.8 264.2,153.9 269.0,151.8 273.8,149.5 278.5,147.1 283.2,144.5 288.0,141.8 292.8,138.9 297.5,135.9 302.2,132.7 307.0,129.4 311.8,125.9 316.5,122.2 321.2,118.4 326.0,114.4 330.8,110.3 335.5,106.0 340.2,101.6 345.0,97.0" fill="none" stroke="var(--d4, #2b2b28)" stroke-width="1.6"/>
+<circle cx="202.5" cy="167.0" r="4.5" fill="var(--signal, #d6001c)"/>
+<line x1="156.5" y1="167.0" x2="248.5" y2="167.0" stroke="var(--signal, #d6001c)" stroke-width="1" stroke-dasharray="3 3"/>
+<text class="tag" x="202.5" y="191.0" text-anchor="middle">a minimum</text>
+<text x="415" y="38">slice along y:  z = &#8722;y&#178;</text>
+<line x1="415" y1="132" x2="700" y2="132" stroke="var(--rule, #dcdcda)" stroke-width=".5"/>
+<polyline points="415.0,167.0 419.8,162.4 424.5,158.0 429.2,153.7 434.0,149.6 438.8,145.6 443.5,141.8 448.2,138.1 453.0,134.6 457.8,131.3 462.5,128.1 467.2,125.1 472.0,122.2 476.8,119.5 481.5,116.9 486.2,114.5 491.0,112.2 495.8,110.1 500.5,108.2 505.2,106.4 510.0,104.8 514.8,103.3 519.5,102.0 524.2,100.8 529.0,99.8 533.8,98.9 538.5,98.2 543.2,97.7 548.0,97.3 552.8,97.1 557.5,97.0 562.2,97.1 567.0,97.3 571.8,97.7 576.5,98.2 581.2,98.9 586.0,99.8 590.8,100.8 595.5,102.0 600.2,103.3 605.0,104.8 609.8,106.4 614.5,108.2 619.2,110.1 624.0,112.2 628.8,114.5 633.5,116.9 638.2,119.5 643.0,122.2 647.8,125.1 652.5,128.1 657.2,131.3 662.0,134.6 666.8,138.1 671.5,141.8 676.2,145.6 681.0,149.6 685.8,153.7 690.5,158.0 695.2,162.4 700.0,167.0" fill="none" stroke="var(--d4, #2b2b28)" stroke-width="1.6"/>
+<circle cx="557.5" cy="97.0" r="4.5" fill="var(--signal, #d6001c)"/>
+<line x1="511.5" y1="97.0" x2="603.5" y2="97.0" stroke="var(--signal, #d6001c)" stroke-width="1" stroke-dasharray="3 3"/>
+<text class="tag" x="557.5" y="83.0" text-anchor="middle">a maximum</text>
+<text class="lbl" x="380" y="236" text-anchor="middle">the same point, and a flat tangent in both cases, which is why a first-order condition cannot separate them</text>
+</svg>
+<figcaption>The surface z = x&#178; &#8722; y&#178;, cut two ways through the same point.</figcaption>
+</figure>
+
+    <p>A saddle is a point that is a minimum if you walk in one direction and a maximum if you walk in another. The tangent is flat either way, which is exactly why a test that only looks at first derivatives cannot separate the two panels above. So what comes back from a non-convex solver is a local answer, and if you are fortunate a bound: a proof that nothing beats that answer by more than some stated amount. When the amount refuses to shrink to zero you own an interval rather than a point, and the width of the interval is the part of the guarantee you did not get.</p>
+
+    <p>How thin is the line? Take a quadratic objective, the mildest curvature there is, and bend it the wrong way along a single direction. One negative eigenvalue in the matrix of second derivatives is enough: minimising it becomes NP-hard, meaning no known method handles every instance without the work exploding as the problem grows.[6] And there is a result that does more for the intuition. Hand someone a point in such a problem and ask them to decide whether it <em>fails</em> to be a local minimum. That question is NP-complete too.[7] Not finding the answer. Checking someone else's.</p>
+
+    <h2 id="two-men-one-object-no-contact">Two men, one object, no contact</h2>
+
+    <p>One more thing before we leave the certificate, and it is a historical one, because the object at the centre of this piece was built twice.</p>
+
+    <p>The simplex method has two origin stories and they never met.</p>
+
+    <p>In 1938 the laboratory of the Soviet Plywood Trust asked a young Leningrad mathematician how to distribute work across veneer-cutting machines of differing productivity. Leonid Kantorovich tells it himself in his Nobel autobiography: "In 1938, as professor of the university, I acted as a consultant for the Laboratory of the Plywood Trust in a very special extreme problem."[9] The booklet he published the following year is linear programming. It was received badly. Mathematical methods in economics were a Western and therefore anti-Marxist school; a colleague warned him as much in the spring of 1939, and his 1943 paper on value was rejected in 1945 and appeared only years later in abridged form.[10]</p>
+
+    <p>In 1946 the United States Air Force Comptroller's office challenged its mathematical adviser to mechanise the planning process. The adviser was Dantzig. He invented the simplex method the following summer, and on 3 October 1947 took the problem to von Neumann, who cut him off after a minute with "Oh that!" and then spent ninety minutes teaching him the duality behind those nine shadow prices, which he had not known existed.[11]</p>
+
+    <figure class="fig">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 236" width="100%" role="img" aria-label="Two origins, no contact">
+<title>Two origins, no contact</title><desc>A timeline with two parallel tracks, Leningrad from 1938 and Washington from 1946, converging on the same mathematics and meeting the Nobel committee in 1975 without ever meeting each other.</desc>
+<style>text{font:11px/1.2 "IBM Plex Mono",ui-monospace,monospace;fill:var(--ink, #0a0a0a)} .lbl{font-size:10px;fill:var(--muted, #6b6b6b)} .tag{font-size:10px;fill:var(--d4, #2b2b28)}</style>
+<line x1="96" y1="76" x2="734" y2="76" stroke="var(--d3, #5c5c56)" stroke-width="1"/>
+<text class="tag" x="86" y="80" text-anchor="end">Leningrad</text>
+<line x1="96" y1="168" x2="734" y2="168" stroke="var(--d3, #5c5c56)" stroke-width="1"/>
+<text class="tag" x="86" y="172" text-anchor="end">Washington</text>
+<circle cx="120.5" cy="76" r="4" fill="var(--paper, #ffffff)" stroke="var(--d4, #2b2b28)" stroke-width="1.2"/>
+<text class="tag" x="126.5" y="62" text-anchor="start">1938&#8211;39</text>
+<text class="lbl" x="126.5" y="48" text-anchor="start">the Plywood Trust asks, and the booklet follows</text>
+<circle cx="717.6" cy="76" r="4" fill="var(--paper, #ffffff)" stroke="var(--d4, #2b2b28)" stroke-width="1.2"/>
+<text class="tag" x="711.6" y="62" text-anchor="end">1975</text>
+<text class="lbl" x="711.6" y="48" text-anchor="end">Nobel, shared with Koopmans</text>
+<circle cx="251.4" cy="168" r="4" fill="var(--paper, #ffffff)" stroke="var(--d4, #2b2b28)" stroke-width="1.2"/>
+<text class="tag" x="257.4" y="188" text-anchor="start">1946&#8211;47</text>
+<text class="lbl" x="257.4" y="202" text-anchor="start">the Air Force asks, then von Neumann answers</text>
+<circle cx="717.6" cy="168" r="4" fill="var(--paper, #ffffff)" stroke="var(--d4, #2b2b28)" stroke-width="1.2"/>
+<text class="tag" x="711.6" y="188" text-anchor="end">1975</text>
+<text class="lbl" x="711.6" y="202" text-anchor="end">National Medal of Science</text>
+<text x="96" y="26">The same mathematics, invented twice, eight years and one iron curtain apart.</text>
+<text class="lbl" x="734" y="226" text-anchor="end">no rung between the two rails</text>
+</svg>
+<figcaption>Eight years and one iron curtain apart, with no rung between the rails. Both tracks reach a prize in 1975, and only one of them is the Nobel.</figcaption>
+</figure>
+
+    <p>Two men, one object, no contact, and the whole thing arriving at the same committee in 1975. Kantorovich shared that year's Nobel with Tjalling Koopmans for the theory of optimum allocation of resources. Dantzig received the National Medal of Science the same year, and a reviewer in the <em>Bulletin of the AMS</em> later called the omission from the prize "inexplicable, disappointing and outrageous."[12]</p>
+
+    <p>This pattern is common enough that sociology named it. Robert Merton called such episodes multiples, and argued that independent simultaneous discovery is the normal case in science rather than the curiosity.[16] The Cold War produced a run of them, and the closest parallel to this one is the 1964 physics Nobel: half to Charles Townes in the United States, a quarter each to Nikolay Basov and Aleksandr Prokhorov in the Soviet Union, for quantum-electronics work done twice over without contact.[17]</p>
+
+    <p>One correction while we are here, because the story is everywhere and it is wrong in a specific way. Dantzig did once mistake two famous unsolved problems for a homework assignment and solve them. They were problems in mathematical statistics, in Neyman's class at Berkeley, around 1939, and they have nothing to do with linear programming, which he invented eight years later. He says so plainly in the same memoir that people quote for the anecdote.[11] The story is better without the embellishment anyway: he did not stumble into linear programming, he was hired to build it. Which is still how it happens.</p>
+
+    <h2 id="what-this-is-for">What this is for</h2>
+
+    <p>A friend forwarded me a job advertisement last week. A Zurich running-shoe company is looking for someone to build optimisation and scenario models across its supply chain, to let planners see the constraints they are actually working under and quantify what a given trade-off costs. Strip the nouns and it is Stigler's question with a larger table: which combination, under which floors and ceilings, for the least money.</p>
+
+    <p>It is also Markowitz's question from 1952, with variance in place of cost. And it is, without metaphor, how a biologist predicts whether a bacterium will grow: flux balance analysis is a linear program whose conditions are the cell's own chemistry, every reaction balanced so that nothing piles up inside (the stoichiometric matrix), and the cell is treated as though it were solving it for growth.</p>
+
+    <p>The warehouse, the pension fund and the cell run the same machinery. They also share its failure point. The certificate starts coming apart as soon as the decisions stop being divisible, and it keeps coming apart from there. Nobody buys 2.57 lorries or opens a third of a warehouse, and the moment you write that down the feasible set is full of holes and the corner need not be a legal answer at all.</p>
+
+    <p>Which raises the questions I would want answered next, roughly in that order. What comes back when the answer has to be a whole number, and what has become of the corner? If the certificate is gone, what does a solver hand you instead, and how would you know whether it is worth anything? And what happens when the numbers you are optimising against were guesses to begin with, which in finance they always are?</p>
+
+    <p>Do not worry though. Nothing above becomes false past that line. It stops being provable, which is a different problem, and a more expensive one.</p>
+
+    <aside class="callout">
+<div class="callout-h">Next in this series</div>
+<p>Before any of those, one piece on the machinery itself: what the 9 by 77 table costs to solve, why an answer with seventy-seven foods available uses five, and what changes as you climb from linear to quadratic to conic. It is the technical one, and it is written for readers who wanted more equations than this piece had.</p>
+<p>Then the questions above, in order. Indivisibility and what branch and bound hands you in place of a certificate. Estimates, and what to do when the numbers going in are guesses. And last, where the proof runs out altogether, which I write while learning it.</p>
+</aside>
+
+    <h2 id="references">References</h2>
+
+    <ol>
+      <li>George J. Stigler, "The Cost of Subsistence," <em>Journal of Farm Economics</em> 27, no. 2 (May 1945): 303–314. The prices are his Table 1, from Bureau of Labor Statistics retail averages for August 1939 across 51 large cities; the quoted sentence is on p. 310; the $39.93 diet is Table 2, p. 311.</li>
+      <li>George B. Dantzig, "The Diet Problem," <em>Interfaces</em> 20, no. 4 (1990): 43–47. The nine clerks, the desk calculators and the 120 man-days come from this recollection, written forty-three years after the fact. No contemporary report from the National Bureau of Standards appears to survive, and the figures should be read as Dantzig's memory rather than as an archival record.</li>
+      <li><code>stigler.py</code> in the repository linked below. Across the machines this has run on the solve lands between two and nine milliseconds, and the committed transcript <code>out/stigler.txt</code> carries whatever the last run produced rather than a number typed in by hand. The order of magnitude is the claim; the millisecond is not.</li>
+      <li>Stephen Boyd and Lieven Vandenberghe, <em>Convex Optimization</em> (Cambridge: Cambridge University Press, 2004), available in full at <a href="https://web.stanford.edu/~boyd/cvxbook/">web.stanford.edu/~boyd/cvxbook</a>. The anatomy is §1.1, p. 1; local optimality implying global optimality is §4.2.2, pp. 138–139; the certificate language is §5.5.1, pp. 241–242.</li>
+      <li>R. Tyrrell Rockafellar, "Lagrange Multipliers and Optimality," <em>SIAM Review</em> 35, no. 2 (June 1993): 183–238, at p. 185.</li>
+      <li>Panos M. Pardalos and Stephen A. Vavasis, "Quadratic Programming with One Negative Eigenvalue Is NP-Hard," <em>Journal of Global Optimization</em> 1, no. 1 (1991): 15–22.</li>
+      <li>Katta G. Murty and Santosh N. Kabadi, "Some NP-Complete Problems in Quadratic and Nonlinear Programming," <em>Mathematical Programming</em> 39, no. 2 (1987): 117–129.</li>
+      <li>S. Garille and Saul I. Gass, "Stigler's Diet Problem Revisited," <em>Operations Research</em> 49, no. 1 (2001): 1–13. The 1947 optimal basket, including the beef liver, is their Table 3.</li>
+      <li>Leonid Kantorovich, autobiography, in <em>Les Prix Nobel 1975</em> (Stockholm: Nobel Foundation, 1976). His 1975 Nobel lecture does not mention the Plywood Trust; the story comes from this note and from his own 1939 booklet, translated as "Mathematical Methods of Organizing and Planning Production," <em>Management Science</em> 6, no. 4 (1960): 366–422.</li>
+      <li>Ivan Boldyrev and Till Düppe, "Programming the USSR: Leonid V. Kantorovich in Context," <em>British Journal for the History of Science</em> 53, no. 2 (June 2020): 255–278.</li>
+      <li>George B. Dantzig, "Reminiscences about the Origins of Linear Programming," Technical Report SOL 81-5, Systems Optimization Laboratory, Stanford University, April 1981.</li>
+      <li>Richard W. Cottle, review of <em>The Basic George B. Dantzig</em>, <em>Bulletin (New Series) of the American Mathematical Society</em> 48, no. 1 (2011): 123–129.</li>
+      <li>Stigler received the Sveriges Riksbank Prize in Economic Sciences in Memory of Alfred Nobel in 1982, for work on industrial structures, markets and regulation. Nothing to do with diets.</li>
+      <li>Federal Reserve Bank of Minneapolis, "Consumer Price Index, 1800–": annual average index 41.8 for 1939 and 1004.8 for 2026, on a 1967 = 100 base, giving a factor of 24.04. An independent CPI calculator gives 24.03 for the same pair of years, which is close enough that the third digit is not worth arguing about.</li>
+      <li>Named for William Karush, whose 1939 master's thesis contains them, and for Harold Kuhn and Albert Tucker, who published them independently in 1951. Boyd and Vandenberghe treat sufficiency under convexity in §5.5.3.</li>
+      <li>Robert K. Merton, "Singletons and Multiples in Scientific Discovery: A Chapter in the Sociology of Science," <em>Proceedings of the American Philosophical Society</em> 105, no. 5 (1961): 470–486.</li>
+      <li>The Nobel Prize in Physics 1964, awarded "for fundamental work in the field of quantum electronics, which has led to the construction of oscillators and amplifiers based on the maser-laser principle": one half to Charles Hard Townes, one quarter each to Nicolay Gennadiyevich Basov and Aleksandr Mikhailovich Prokhorov.</li>
+      <li>One hundred and twenty man-days at eight hours is 3.5 million seconds of human arithmetic, against something near five thousandths of a second now. That is a ratio around 7 × 10&#8308;, which rounds to nine orders of magnitude. Ten would mean a factor of ten billion, so ten was too generous.</li>
+      <li>Both figures come from <code>stigler.py</code>, which prints the whole table. The 77 by 9 matrix is 82 per cent dense, which is unusual: real supply-chain models of this shape are almost entirely zeros, and that sparsity is most of why they are tractable at all.</li>
+    </ol>
+
+    <h2 id="data-and-code">Data and code</h2>
+
+    <p>Everything computed here is reproducible: <a href="https://github.com/Denis-Joly/what-optimal-means">github.com/Denis-Joly/what-optimal-means</a></p>
+
+    <p><code>stigler.py</code> solves the 1947 problem on all 77 commodities and prints both the diet and the nine shadow prices, along with the check that the two objective values agree to machine precision. <code>blend.py</code> is the two-variable feed problem, and enumerates every corner of the polygon by brute force so you can see the corners the simplex method is choosing between. <code>make_figures.py</code> writes all four figures as SVG.</p>
+
+    <p>If you have never pulled someone else's code before, the repository's README is written for exactly that, at length: what to install, what each command actually does, what the output looks like when it works, and what to try when it does not. The short version is five lines.</p>
+
+    <pre><code>git clone https://github.com/Denis-Joly/what-optimal-means
+cd what-optimal-means
+python3 -m venv .venv &amp;&amp; source .venv/bin/activate
+python3 -m pip install -r requirements.txt
+make</code></pre>
+
+    <p>The third line is not optional politeness. A Homebrew or system Python will refuse to install anything at all and answer <code>error: externally-managed-environment</code>, which is the interpreter your operating system depends on protecting itself. A virtual environment is a private Python belonging to that folder, so the two packages this needs cannot collide with anything else you have. <code>python3 -m pip</code> rather than plain <code>pip</code> for the same reason: it installs into the interpreter that is about to run the code, instead of whichever one happens to be first on your path.</p>
+
+    <p>Reading the code in a browser needs nothing at all, not even an account, and the output of every script is committed alongside it. <code>make</code> reruns everything and rewrites every figure in this post from scratch, so a number in a sentence above cannot drift away from the number the code produces.</p>
+
+    <p>The commodity table is Stigler's own Table 1: 77 commodities, August 1939 prices, and the amount of each of nine nutrients obtainable for one dollar. It is committed to the repository as a plain CSV, in the transcription distributed with Google OR-Tools, so the numbers being solved are visible rather than buried in a library. The solver is HiGHS, driven through PuLP; both are open source, and the same models would go to a commercial solver by changing one argument.</p>
+
+    <p>One honest gap. The rerun returns $39.66 a year against the $39.69 Dantzig reports, on the same five commodities and within a pound or two on every quantity. The difference is rounding in the transcribed nutrient table and the convention of multiplying a daily cost by 365. It is not a different answer, and I would rather print it than round it away.</p>
+  </article>
+
+  <p class="backlink"><a href="/">← Back to writing</a></p>
+</div></main>
+
+<footer class="site-foot"><div class="bar">
+  <div>© 2026 Spatium Novum · Denis Joly</div>
+  <div><a href="/">Writing</a> · <a href="mailto:denis.a.joly@proton.me">Contact</a> · <a href="/feed.xml">RSS</a></div>
+</div></footer>
+
+<!-- Cloudflare Web Analytics — replace c4f2d3476eec4a9fab59a0c8590c2b4a with your token (see index.html for steps). -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "c4f2d3476eec4a9fab59a0c8590c2b4a"}'></script>
+
+</body>
+</html>
