@@ -43,11 +43,12 @@
     <span class="tag">Optimization</span>
     <span>Denis Joly</span>
     <span>August 2026</span>
-    <span>~17 min read</span>
+    <span>~19 min read</span>
   </div>
   <nav class="toc">
     <div class="toc-h">Contents</div>
     <ul>
+      <li><a href="#tl-dr">TL;DR</a></li>
       <li><a href="#four-objects-make-one-model">Four objects make one model</a></li>
       <li><a href="#ninety-eight-models-on-the-same-shelf">Ninety-eight models on the same shelf</a></li>
       <li><a href="#from-inequalities-to-a-basis">From inequalities to a basis</a></li>
@@ -65,6 +66,15 @@
 <div class="callout-h">What Optimal Means · 2 of 5</div>
 <p>The technical piece: the numbers that describe an optimisation model, the structure behind them, and what a solver must do before it can make a guarantee.</p>
 </aside>
+
+    <h2 id="tl-dr">TL;DR</h2>
+
+    <ul>
+      <li>There is no universal formula that reliably converts a new LP into wall-clock seconds. Worst-case bounds, condition measures and empirical estimates exist, but they depend on the algorithm, tolerance, implementation, machine and problem family.</li>
+      <li>Rows, columns and non-zero coefficients all matter, but none is a difficulty score. Dimensions help determine the sizes of the linear systems; non-zeros measure stored direct coupling. Percentage density can fall while both the model and the work grow.</li>
+      <li>Where the non-zeros sit—and the values they contain—can matter more than their count. Fill-in, scaling, conditioning, degeneracy, presolve and algorithm choice can dominate memory and time.</li>
+      <li><em>Polynomial-time</em> describes worst-case scaling with the problem description and requested accuracy. It is not a stopwatch prediction, nor a guarantee enjoyed by familiar simplex pivot rules.</li>
+    </ul>
 
     <p>The <a href="/posts/the-last-place-optimal-means-anything">first piece</a> followed George Stigler's diet problem from a hand-built answer to a proof. In 1945 Stigler asked for the cheapest combination of foods that would meet nine minimum nutritional requirements. He had 77 foods to choose from, no general method for finding the minimum, and enough economic instinct to get remarkably close by inspection.</p>
 
@@ -635,6 +645,8 @@ text{font-family:"Plex Mono",ui-monospace,monospace;fill:#0a0a0a;font-size:12px}
 
     <p>So the first useful inspection of a slow model is not “how many variables?” It is the distribution of non-zeros by row and column, the block or network structure, the numerical scaling, and what presolve removes. None of these alone predicts runtime. Together they are closer to the object the solver actually sees than <em>m</em> × <em>n</em>.</p>
 
+    <p>This does not mean that theory or forecasting is silent. Complexity bounds exist for specified algorithms. Condition measures quantify how close an LP is to becoming ill-posed and enter finer bounds.[13] Solver developers can also build empirical predictors for a fixed code and a familiar model family. What does not exist is a universal, solver-independent conversion from rows, columns, non-zeros or density to elapsed seconds.</p>
+
     <h2 id="polynomial-and-fast-are-different-claims">Polynomial and fast are different claims</h2>
 
     <p>Linear programming owns one of the better misunderstandings in applied mathematics.</p>
@@ -644,7 +656,9 @@ text{font-family:"Plex Mono",ui-monospace,monospace;fill:#0a0a0a;font-size:12px}
       <li>Linear programming is polynomial-time.</li>
     </ol>
 
-    <p>The two sentences refer to different algorithms. The familiar speed of simplex is an empirical fact; simplex has no known polynomial worst-case bound. The first polynomial guarantee came from the ellipsoid method, and Karmarkar later opened the modern interior-point route.</p>
+    <p>The two sentences refer to different algorithms and different units. Kuhn's slides use an approximate-arithmetic model. For a fixed method <em>M</em> and tolerance ε, <strong>arithmetic complexity</strong> counts the operations needed to return an ε-suboptimal solution. In that model, a method is efficient when this count has a worst-case bound polynomial in the number of parameters describing the problem and the number of accuracy digits required—roughly log(1/ε).[14] For rational LP, the classical polynomial-time statement discussed below instead measures the full binary encoding length, including coefficient bit-length. Both are scalability guarantees, not stopwatches for this matrix: elapsed time also sees constants, sparse linear algebra, software and hardware. The familiar speed of simplex is empirical; familiar pivot rules have no known polynomial worst-case bound. The first polynomial guarantee came from the ellipsoid method, and Karmarkar later opened the modern interior-point route.</p>
+
+    <p>Kuhn's next comparison explains why the distinction matters. Hold the solution time and all other inputs fixed, then double the available computing performance. If work behaves like <em>S</em><sup><em>k</em></sup>, the largest manageable size <em>S</em> is multiplied by 2<sup>1/<em>k</em></sup>; if work behaves like <em>a</em><sup><em>S</em></sup>, only log<sub><em>a</em></sub>2 is added to <em>S</em>. This is an asymptotic comparison, not a promise that doubling a computer lets a real LP double every dimension.</p>
 
     <p>Klee and Minty constructed a distorted cube in 1972 on which Dantzig's original pivot rule visits every one of its 2<sup><em>n</em></sup> vertices.[6] Related lower bounds exist for several other pivot rules. In three dimensions the path has eight vertices; add one dimension and the count doubles. This is a worst-case construction about a particular route through a polytope, not a prediction for Stigler's diet or a modern solver.</p>
 
@@ -760,6 +774,8 @@ text{font-family:"Plex Mono",ui-monospace,monospace;fill:#0a0a0a;font-size:12px}
       <li>Thorsten Koch, Timo Berthold, Jaap Pedersen and Charlie Vanaret, <a href="https://doi.org/10.1016/j.ejco.2022.100031">“Progress in Mathematical Programming Solvers from 2001 to 2020”</a>, <em>EURO Journal on Computational Optimization</em> 10 (2022): 100031; <a href="https://arxiv.org/pdf/2206.09787">author preprint</a>. Hardware isolation is §2.1, the shared-instance comparison is §3.2 and the LP conclusion is §4.1.</li>
       <li>Boyd and Vandenberghe, <em>Convex Optimization</em>, examples 11.5–11.7, pp. 597–598; Aharon Ben-Tal and Arkadi Nemirovski, <em>Lectures on Modern Convex Optimization</em> (SIAM, 2001), lecture 4.</li>
       <li>Donald Goldfarb and Garud Iyengar, <a href="https://doi.org/10.1287/moor.28.1.1.14260">“Robust Portfolio Selection Problems”</a>, <em>Mathematics of Operations Research</em> 28, no. 1 (2003): 1–38.</li>
+      <li>James Renegar, <a href="https://doi.org/10.1137/0805026">“Incorporating Condition Measures into the Complexity Theory of Linear Programming”</a>, <em>SIAM Journal on Optimization</em> 5, no. 3 (1995): 506–524. Renegar replaces a size-only view with condition measures related to the data accuracy needed for the computational goal.</li>
+      <li>Daniel Kuhn, “Convex Optimization: Introduction and Sets,” MGT-418, introductory lecture slides 16–18, EPFL; <a href="https://graphsearch.epfl.ch/en/lecture/0_eeim3o0x">public lecture record</a> and <a href="https://edu.epfl.ch/coursebook/en/convex-optimization-MGT-418">official course description</a>. The public course description similarly stresses that formulation can separate seconds from days and ten variables from a million.</li>
     </ol>
 
     <nav class="series-nav" aria-label="What Optimal Means series">
