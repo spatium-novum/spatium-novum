@@ -16,7 +16,10 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://spatium-novum.com/posts/the-last-place-optimal-means-anything">
 <meta property="og:image" content="https://spatium-novum.com/assets/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://spatium-novum.com/assets/og-default.png">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/favicon-180.png">
 <link rel="alternate" type="application/rss+xml" title="Spatium Novum" href="/feed.xml">
@@ -57,9 +60,9 @@
 
   <article>
     <aside class="callout">
-<div class="callout-h">Before we start</div>
-<p>I want to write about Markowitz, the CAPM and portfolio optimisation, and every time I begin I find I cannot do it honestly without first saying what optimisation is. So: a short detour, four pieces, and then the finance.</p>
-<p>Markowitz has waited seventy-four years. He can wait four more posts.</p>
+<div class="callout-h">What Optimal Means · 1 of 5</div>
+<p>I want to write about Markowitz, the CAPM and portfolio optimisation, and every time I begin I find I cannot do it honestly without first saying what optimisation is. So: a short detour in five pieces, and then the finance.</p>
+<p>Markowitz has waited seventy-four years. He can wait for four more after this one.</p>
 </aside>
 
     <p>"OPTIMIZE" is the motto of our age. Everyone is an optimiser now. Sleep, morning routines, tax, protein intake, the loading order of a web page. The word has been worn down until it means roughly <em>better than what I was doing last month</em>, which is something you feel rather than something you check.</p>
@@ -72,7 +75,7 @@
 
     <p>Stigler had 77 commodities to choose from and the August 1939 retail price of each, averaged by the Bureau of Labor Statistics across 51 American cities. Which combination met all nine minimums for the least money?</p>
 
-    <p>What makes that question answerable is the shape of the table behind it. For each of the 77 commodities Stigler recorded a full nutritional breakdown alongside the price: how much of each of the nine you get for one dollar spent on it. Seventy-seven rows, nine columns, 693 numbers, only 123 of them zero.[19] A dollar of wheat flour buys 44,700 calories and 33 milligrams of riboflavin. A dollar of beef liver buys 2,200 calories and 51 milligrams. Whether liver is worth buying is not a question about liver; it is a question about what else is in the basket.</p>
+    <p>What makes that question answerable is the shape of the table behind it. For each of the 77 commodities Stigler recorded a full nutritional breakdown alongside the price: how much of each of the nine you get for one dollar spent on it. Seventy-seven foods against nine nutrient floors: 693 entries, 570 of them non-zero.[19] A dollar of wheat flour buys 44,700 calories and 33 milligrams of riboflavin. A dollar of beef liver buys 2,200 calories and 51 milligrams. Whether liver is worth buying is not a question about liver; it is a question about what else is in the basket.</p>
 
     <p>The paper is "The Cost of Subsistence," twelve pages in the <em>Journal of Farm Economics</em>, written by a man who would collect a Nobel for something else entirely thirty-seven years later.[1][13] He could not answer his own question, and he says so, in a sentence that deserves a second reading. It is a working economist describing the absence of a tool that now arrives with one line in a terminal:</p>
 
@@ -287,7 +290,7 @@
 
     <aside class="callout">
 <div class="callout-h">Next in this series</div>
-<p>Before any of those, one piece on the machinery itself: what the 9 by 77 table costs to solve, why an answer with seventy-seven foods available uses five, and what changes as you climb from linear to quadratic to conic. It is the technical one, and it is written for readers who wanted more equations than this piece had.</p>
+<p>Before any of those, <a href="/posts/rows-columns-and-what-they-cost">one piece on the machinery itself</a>: what the 9 by 77 table costs to solve, why an answer with seventy-seven foods available uses five, and what changes as you climb from linear to quadratic to conic. It is the technical one, and it is written for readers who wanted more equations than this piece had.</p>
 <p>Then the questions above, in order. Indivisibility and what branch and bound hands you in place of a certificate. Estimates, and what to do when the numbers going in are guesses. And last, where the proof runs out altogether, which I write while learning it.</p>
 </aside>
 
@@ -312,7 +315,7 @@
       <li>Robert K. Merton, "Singletons and Multiples in Scientific Discovery: A Chapter in the Sociology of Science," <em>Proceedings of the American Philosophical Society</em> 105, no. 5 (1961): 470–486.</li>
       <li>The Nobel Prize in Physics 1964, awarded "for fundamental work in the field of quantum electronics, which has led to the construction of oscillators and amplifiers based on the maser-laser principle": one half to Charles Hard Townes, one quarter each to Nicolay Gennadiyevich Basov and Aleksandr Mikhailovich Prokhorov.</li>
       <li>One hundred and twenty man-days at eight hours is 3.5 million seconds of human arithmetic, against something near five thousandths of a second now. That is a ratio around 7 × 10&#8308;, which rounds to nine orders of magnitude. Ten would mean a factor of ten billion, so ten was too generous.</li>
-      <li>Both figures come from <code>stigler.py</code>, which prints the whole table. The 77 by 9 matrix is 82 per cent dense, which is unusual: real supply-chain models of this shape are almost entirely zeros, and that sparsity is most of why they are tractable at all.</li>
+      <li>Both figures come from <code>stigler.py</code>, which prints the whole table. The 9 by 77 constraint matrix has 570 non-zero entries in 693 cells, or 82.3 per cent. That percentage depends mechanically on the matrix's small row count and is not a measure of solve difficulty. <a href="/posts/rows-columns-and-what-they-cost">The second piece</a> makes the comparison explicit and reproducible.</li>
     </ol>
 
     <h2 id="data-and-code">Data and code</h2>

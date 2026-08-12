@@ -7,6 +7,14 @@
     <language>en</language>
     <atom:link href="https://spatium-novum.com/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
+      <title>Rows, Columns, and What They Cost</title>
+      <link>https://spatium-novum.com/posts/rows-columns-and-what-they-cost</link>
+      <guid isPermaLink="true">https://spatium-novum.com/posts/rows-columns-and-what-they-cost</guid>
+      <description>Stigler's diet has 77 choices and nearly half a trillion candidate column sets. It still solves in milliseconds.</description>
+      <category>Optimization</category>
+      <pubDate>Wed, 12 Aug 2026 09:00:00 +0000</pubDate>
+    </item>
+    <item>
       <title>The Last Place &quot;Optimal&quot; Means Anything</title>
       <link>https://spatium-novum.com/posts/the-last-place-optimal-means-anything</link>
       <guid isPermaLink="true">https://spatium-novum.com/posts/the-last-place-optimal-means-anything</guid>

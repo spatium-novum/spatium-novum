@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Rows, Columns, and What They Cost</title>
+  <desc id="desc">Social card for the second What Optimal Means article on Spatium Novum.</desc>
+  <rect width="1200" height="630" fill="#fff"/>
+  <line x1="0" y1="86" x2="1200" y2="86" stroke="#111110" stroke-width="4"/>
+  <line x1="211" y1="86" x2="211" y2="630" stroke="#dcdcda" stroke-width="2"/>
+  <line x1="0" y1="502" x2="1200" y2="502" stroke="#dcdcda" stroke-width="2"/>
+
+  <text x="64" y="58" fill="#111110" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" letter-spacing="8">SPATIUM NOVUM</text>
+  <text x="1076" y="58" fill="#686864" font-family="Courier New, monospace" font-size="18" text-anchor="end">WHAT OPTIMAL MEANS / 02</text>
+
+  <g fill="#686864" font-family="Courier New, monospace" font-size="18">
+    <text x="64" y="164">02</text>
+    <text x="64" y="198">2026</text>
+    <text x="64" y="234" fill="#d6001c">OPTIMIZATION</text>
+    <text x="64" y="270">ROWS</text>
+    <text x="64" y="304">COLUMNS</text>
+    <text x="64" y="338">COST</text>
+  </g>
+
+  <g fill="#111110" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="700">
+    <text x="266" y="190">Rows, Columns,</text>
+    <text x="266" y="278">and What They Cost</text>
+  </g>
+
+  <rect x="266" y="328" width="54" height="7" fill="#d6001c"/>
+  <g fill="#20201f" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="600">
+    <text x="266" y="388">77 choices. 459,856,441,980 candidate column sets.</text>
+    <text x="266" y="430">Milliseconds to solve.</text>
+  </g>
+
+  <g fill="#686864" font-family="Courier New, monospace" font-size="18">
+    <text x="266" y="556">DENIS JOLY</text>
+    <text x="424" y="556">/</text>
+    <text x="468" y="556">SPATIUM-NOVUM.COM</text>
+  </g>
+</svg>
