@@ -169,6 +169,9 @@ a{color:inherit}
   font-variant-numeric:tabular-nums;color:var(--ink)
 }
 .post article .display-math-strong{font-family:var(--mono);font-size:17px}
+/* l'enonce central d'un article : meme boite, filet rouge et chiffres plus grands */
+.post article .display-math-signal{border-left-color:var(--signal);
+  background:var(--panel);font-size:22px;padding:22px 20px}
 .post article table{width:100%;border-collapse:collapse;margin:1.6em 0;font-size:14.5px}
 .post article th,.post article td{text-align:left;padding:9px 12px 9px 0;
   border-bottom:1px solid var(--rule);vertical-align:top}
