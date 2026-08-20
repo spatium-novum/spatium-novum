@@ -86,7 +86,7 @@
 
     <p>It has therefore selected two things at once: a project and an unusually favourable error. Re-estimate the chosen project with fresh information and the number will tend to fall. Nothing had to be wrong with any estimator taken on its own. The bias appeared when an optimisation rule selected one estimate from the set.</p>
 
-    <p>James Smith and Robert Winkler named this the <strong>optimizer's curse</strong> in 2006. Suppose the estimates are conditionally unbiased: for every fixed set of true values, each estimate is right on average. If the largest estimate is then taken at face value, they prove that the winning estimate is at least as large as the selected alternative's true value on average. The inequality is strict whenever the noisy ranking can select a truly inferior alternative; it is also strict in the equal-value experiment above because the maximum of non-degenerate estimates is biased upward.[1] The disappointment comes from the selection rule, not from bias in any estimator considered alone.</p>
+    <p>James Smith and Robert Winkler named this the <strong>optimizer's curse</strong> in 2006. Suppose the estimates are conditionally unbiased: for every fixed set of true values, each estimate is right on average. Their Proposition 1 shows that, on average, the winning estimate is at least as large as the true value of the alternative it selected.[1] A positive probability of selecting a truly inferior alternative is sufficient to make the inequality strict. That condition does not apply to the equal-value experiment, where no alternative is inferior. Strictness there follows separately because the expected maximum of ten independent standard-normal estimates is positive. The disappointment comes from the selection rule, not from bias in any estimator considered alone.</p>
 
     <p>The equal-value example strips the mechanism bare. Real projects do not all have the same value, and a selected decision need not disappoint every time. A genuinely better project can win for the right reason. The claim is about the average comparison between the winning estimate and what it estimated. In the equal-value experiment with independent noise, adding more alternatives creates more opportunities for a favourable error to look like information.</p>
 
@@ -786,7 +786,7 @@
 
     <p>The optimiser is behaving exactly as designed. Expected return is the direction in which the objective asks it to lean, so tiny differences there can decide which constraints bind and which assets receive weight. A mathematically exact answer can therefore be operationally unstable. Re-running the same model after a routine data update may produce a different portfolio without producing a meaningfully different point in risk–return space.</p>
 
-    <p>This is the bridge to <em>Beyond Markowitz</em>, but not yet its answer. First comes a more basic question. If a point estimate is exactly what an optimiser is most able to exploit, what should replace it?</p>
+    <p>This is the bridge to <em>Beyond Markowitz</em>, the next series on this site, but not yet its answer. First comes a more basic question. If a point estimate is exactly what an optimiser is most able to exploit, what should replace it?</p>
 
     <h2 id="if-you-trust-a-distribution">If you trust a distribution</h2>
 
@@ -994,7 +994,7 @@
 
     <p>Peyman Mohajerin Esfahani and Daniel Kuhn showed that, under convexity and regularity assumptions on the support and loss, these apparently infinite-dimensional problems can be reformulated as finite convex programs and, in many important cases, as tractable linear programs. Their statistical guarantees have a more specific scope. With i.i.d. observations from a light-tailed distribution and a radius calibrated from a concentration bound, the DRO value upper-bounds out-of-sample expected cost at a chosen confidence level. If the radii then shrink to zero appropriately and the loss and feasible set satisfy their semicontinuity, growth and closedness conditions, optimal values and limiting optimisers are asymptotically consistent.[10] The result is not that every DRO problem becomes an LP. It is that distributional doubt need not destroy tractability.</p>
 
-    <p>There is a precise connection to regularisation. For linear regression on the unrestricted input–output space ℝ<sup><em>n</em>+1</sup>, with a convex Lipschitz residual loss and a first-order Wasserstein ball whose transport cost is induced by a norm, worst-case expected loss equals empirical loss plus ρ · Lip(<em>L</em>) · ‖(<em>w</em>, −1)‖<sub>*</sub>.[11] Change the support, loss or transport cost and the equality need not survive. Saying that all DRO is regularisation would turn a theorem into a slogan and lose the boundary that makes it true.</p>
+    <p>There is a precise connection to regularisation. For linear regression on the unrestricted input–output space ℝ<sup><em>n</em>+1</sup>, with a convex Lipschitz residual loss and a first-order Wasserstein ball whose transport cost is induced by a norm, worst-case expected loss equals empirical loss plus ρ · Lip(<em>L</em>) · ‖(<em>w</em>, −1)‖<sub>&#42;</sub>.[11] Here ‖·‖<sub>&#42;</sub> denotes the dual norm induced by the transport-cost norm. Change the support, loss or transport cost and the equality need not survive. Saying that all DRO is regularisation would turn a theorem into a slogan and lose the boundary that makes it true.</p>
 
     <h2 id="the-guess-behind-every-cure">The guess behind every cure</h2>
 
@@ -1040,7 +1040,7 @@
   <div><a href="/">Writing</a> · <a href="mailto:denis.a.joly@proton.me">Contact</a> · <a href="/feed.xml">RSS</a></div>
 </div></footer>
 
-<!-- Cloudflare Web Analytics. -->
+<!-- Cloudflare Web Analytics -->
 <script defer src="/assets/article-viz.js"></script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "c4f2d3476eec4a9fab59a0c8590c2b4a"}'></script>
 

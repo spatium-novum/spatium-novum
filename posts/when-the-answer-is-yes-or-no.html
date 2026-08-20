@@ -270,7 +270,7 @@ text{font-family:"Plex Mono",ui-monospace,monospace;fill:var(--viz-ink,#0a0a0a);
 
     <p>At the root of our example, <em>x</em><sub>2</sub> = 3.75. Every integer solution must satisfy either <em>x</em><sub>2</sub> ≤ 3 or <em>x</em><sub>2</sub> ≥ 4, so those two children cover every admissible answer while excluding the fractional root point.</p>
 
-    <p>Solve both root children. The case <em>x</em><sub>2</sub> ≤ 3 reaches the integer point (3, 3), worth 39. It becomes the first incumbent. The case <em>x</em><sub>2</sub> ≥ 4 gives (1.8, 4) and the larger upper bound, 41, so pursue that branch. Split it on <em>x</em><sub>1</sub>. The case <em>x</em><sub>1</sub> ≥ 2 is infeasible. The case <em>x</em><sub>1</sub> ≤ 1 gives another fractional point, (1, 40/9), worth 365/9 ≈ 40.56, and is split once more. One child produces (1, 4), worth 37; it is feasible but cannot improve the incumbent.</p>
+    <p>Solve both root children. The case <em>x</em><sub>2</sub> ≤ 3 reaches the integer point (3, 3), worth 39. It becomes the first incumbent. The case <em>x</em><sub>2</sub> ≥ 4 gives (1.8, 4) and the larger upper bound, 41, so pursue that branch. Split it on <em>x</em><sub>1</sub>. The case <em>x</em><sub>1</sub> ≥ 2 is infeasible. The case <em>x</em><sub>1</sub> ≤ 1 gives another fractional point, (1, 40/9), worth 365/9 ≈ 40.56. Branch on <em>x</em><sub>2</sub> once more: <em>x</em><sub>2</sub> ≤ 4 or <em>x</em><sub>2</sub> ≥ 5. The first child produces (1, 4), worth 37; it is feasible but cannot improve the incumbent.</p>
 
     <p>An <strong>incumbent</strong> is the best integer-feasible point encountered so far. For a maximisation problem its objective value is a lower bound <em>L</em> on the unknown optimum <em>z</em><sup>*</sup>. The largest valid raw LP bound attached to an unresolved node supplies an upper bound <em>U</em>. A newly created node may initially inherit its parent's bound; solving its own relaxation can tighten it. Once an incumbent exists, the algorithm has a certified interval:</p>
 
@@ -278,7 +278,7 @@ text{font-family:"Plex Mono",ui-monospace,monospace;fill:var(--viz-ink,#0a0a0a);
   <span><i>L</i> ≤ <i>z</i><sup>*</sup> ≤ <i>U</i></span>
 </div>
 
-    <p>After the two root children are solved, the certificate reads 39 ≤ <em>z</em><sup>*</sup> ≤ 41. Solving the next pair lowers the raw LP upper bound to 365/9, so the displayed interval becomes 39 ≤ <em>z</em><sup>*</sup> ≤ 365/9. Because every integer-feasible objective value here is integral, flooring that bound gives the stronger valid statement 39 ≤ <em>z</em><sup>*</sup> ≤ 40; the figure retains the raw fraction to show what the LP relaxation itself supplied. The last unresolved child produces (0, 5), worth 40, and nothing else is still open: one sibling was infeasible, the other two returned integer answers the tree could not improve on. With no region left to supply a higher bound, the interval closes at 40 = <em>z</em><sup>*</sup> = 40. The point (0, 5) is proven optimal without testing the other feasible integer points one by one.</p>
+    <p>After the two root children are solved, the certificate reads 39 ≤ <em>z</em><sup>*</sup> ≤ 41. Solving the next pair lowers the raw LP upper bound to 365/9, so the displayed interval becomes 39 ≤ <em>z</em><sup>*</sup> ≤ 365/9. Because every integer-feasible objective value here is integral, flooring that bound gives the stronger valid statement 39 ≤ <em>z</em><sup>*</sup> ≤ 40; the figure retains the raw fraction to show what the LP relaxation itself supplied. The last unresolved child, <em>x</em><sub>2</sub> ≥ 5, produces (0, 5), worth 40, and nothing else is still open: one node was infeasible, and the other two had integer LP optima, so nothing better exists inside them. With no region left to supply a higher bound, the interval closes: 40 ≤ <em>z</em><sup>*</sup> ≤ 40. The point (0, 5) is proven optimal without testing the other feasible integer points one by one.</p>
 
     <figure class="fig fig-wide">
 <div class="viz-bnb" data-viz="branch-bound" aria-labelledby="bnb-heading">
@@ -287,7 +287,7 @@ text{font-family:"Plex Mono",ui-monospace,monospace;fill:var(--viz-ink,#0a0a0a);
     <h3 id="bnb-heading">Branch-and-bound narrows a certified interval</h3>
     <p>For this <strong>maximisation</strong>, the best integer solution found is the incumbent <i>L</i>, a lower bound. Open-node LP relaxations supply a valid raw upper bound <i>U</i>. At every step with an incumbent: <strong><i>L</i> ≤ <i>z</i>* ≤ <i>U</i></strong>.</p>
   </header>
-  <div class="bnb-fallback"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 748 650" width="100%" role="img" aria-labelledby="fig2-bnb-title fig2-bnb-desc">
+  <div class="bnb-fallback" tabindex="0" role="region" aria-label="Complete branch-and-bound tree; scroll horizontally on small screens"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 748 650" width="100%" role="img" aria-labelledby="fig2-bnb-title fig2-bnb-desc">
 <title id="fig2-bnb-title">Branch-and-bound turns the proof into a narrowing interval</title>
 <desc id="fig2-bnb-desc">For this maximization problem, the incumbent L is a certified lower bound and the open-node relaxations give an upper bound U. The root LP bound is 165/4. L2 gives incumbent 39; L4 lowers the raw LP upper bound to 365/9, which can be floored to 40 because the integer objective is integral; L5 does not improve; L6 closes the interval at 40.</desc>
 <style>
@@ -370,6 +370,7 @@ text{font-family:"Plex Mono",ui-monospace,monospace;fill:var(--viz-ink,#0a0a0a);
 <text class="source" x="24" y="630">Raw-LP-bound trace on the Bradley–Hax–Magnanti tree. Not a HiGHS internal solver log.</text>
 </svg>
 </div>
+  <p class="bnb-mobile-hint">Swipe horizontally to inspect the full tree →</p>
   <div class="bnb-enhanced" hidden>
     <h4 class="bnb-live-heading">Step through the certificate</h4>
     <div class="bnb-layout">
@@ -403,7 +404,7 @@ text{font-family:"Plex Mono",ui-monospace,monospace;fill:var(--viz-ink,#0a0a0a);
 
     <p>The hand-built tree isolates one idea. A modern MILP solver also simplifies the formulation in <strong>presolve</strong>, searches for feasible incumbents with <strong>heuristics</strong>, exploits symmetry and special constraint structure, and adds valid inequalities called <strong>cuts</strong>. Combining those cuts with branch-and-bound gives <strong>branch-and-cut</strong>.[3]</p>
 
-    <p>A cut removes fractional territory without removing any integer-feasible point. Our tiny example supplies one in two lines of arithmetic. Add three quarters of the first constraint to one quarter of the second:</p>
+    <p>A cut removes fractional territory without removing any integer-feasible point. Our tiny example supplies a <strong>Chvátal–Gomory cut</strong> in two lines of arithmetic. Add three quarters of the first constraint to one quarter of the second:</p>
 
     <div class="display-math" role="img" aria-label="Two x one plus three x two is at most fifteen point seven five, and therefore at most fifteen for integer variables">
   <span>2<i>x</i><sub>1</sub> + 3<i>x</i><sub>2</sub> ≤ 15.75</span>
@@ -426,7 +427,7 @@ text{font-family:"Plex Mono",ui-monospace,monospace;fill:var(--viz-ink,#0a0a0a);
 
     <p>allows shipments only from an open site. In the objective, <em>f</em><sub>i</sub><em>y</em><sub>i</sub> charges its fixed operating cost. Relaxing <em>y</em><sub>i</sub> to 0.4 creates a useful bound by paying forty per cent of the fixed cost and receiving forty per cent of the capacity. It does not describe a facility the company can build.</p>
 
-    <p>There is an instructive exception nearby. With integral supplies and demands, every vertex of the classical transportation polytope is integral, so an LP optimum already hands back whole shipments and no branching is needed.[5] The presence of discrete quantities is therefore not by itself what makes a model expensive. How the constraints are written, and what structure that gives the matrix, decides it.</p>
+    <p>There is an instructive exception nearby. With integral supplies and demands, every vertex of the classical transportation polytope is integral, so an LP optimum already hands back whole shipments and no branching is needed.[5] The presence of discrete quantities is therefore not by itself what makes a model expensive. What matters is how the constraints are written and what structure they give the matrix.</p>
 
     <h3 id="a-portfolio-may-hold-at-most-k-names">A portfolio may hold at most <em>K</em> names</h3>
 
@@ -488,7 +489,7 @@ text{font-family:"Plex Mono",ui-monospace,monospace;fill:var(--viz-ink,#0a0a0a);
   <div><a href="/">Writing</a> · <a href="mailto:denis.a.joly@proton.me">Contact</a> · <a href="/feed.xml">RSS</a></div>
 </div></footer>
 
-<!-- Cloudflare Web Analytics. -->
+<!-- Cloudflare Web Analytics -->
 <script defer src="/assets/article-viz.js"></script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "c4f2d3476eec4a9fab59a0c8590c2b4a"}'></script>
 
