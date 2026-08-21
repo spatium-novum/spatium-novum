@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://spatium-novum.com/</loc><lastmod>2026-08-20</lastmod><priority>1.0</priority></url>
-  <url><loc>https://spatium-novum.com/about</loc><lastmod>2026-08-20</lastmod><priority>0.5</priority></url>
+  <url><loc>https://spatium-novum.com/</loc><lastmod>2026-08-21</lastmod><priority>1.0</priority></url>
+  <url><loc>https://spatium-novum.com/about</loc><lastmod>2026-08-21</lastmod><priority>0.5</priority></url>
+  <url><loc>https://spatium-novum.com/posts/where-the-proof-runs-out</loc><lastmod>2026-08-21</lastmod><priority>0.8</priority></url>
   <url><loc>https://spatium-novum.com/posts/optimising-against-a-guess</loc><lastmod>2026-08-20</lastmod><priority>0.8</priority></url>
   <url><loc>https://spatium-novum.com/posts/when-the-answer-is-yes-or-no</loc><lastmod>2026-08-20</lastmod><priority>0.8</priority></url>
   <url><loc>https://spatium-novum.com/posts/rows-columns-and-what-they-cost</loc><lastmod>2026-08-12</lastmod><priority>0.8</priority></url>

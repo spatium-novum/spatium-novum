@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where the Proof Runs Out — Spatium Novum</title>
+<meta name="description" content="The same local solver can report success at $0, $100 and $400 on one small continuous problem. Only a valid bound can say which answer is global.">
+<meta name="author" content="Denis Joly">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111110" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://spatium-novum.com/posts/where-the-proof-runs-out">
+<meta property="og:site_name" content="Spatium Novum">
+<meta property="og:title" content="Where the Proof Runs Out">
+<meta property="og:description" content="The same local solver can report success at $0, $100 and $400 on one small continuous problem. Only a valid bound can say which answer is global.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://spatium-novum.com/posts/where-the-proof-runs-out">
+<meta property="og:image" content="https://spatium-novum.com/assets/og-where-the-proof-runs-out.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://spatium-novum.com/assets/og-where-the-proof-runs-out.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/favicon-180.png">
+<link rel="alternate" type="application/rss+xml" title="Spatium Novum" href="/feed.xml">
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/visuals.css">
+</head>
+<body>
+
+<header class="site-head"><div class="bar">
+  <a class="brand" href="/">Spatium<span class="dot">·</span>Novum</a>
+  <nav class="nav">
+    <a href="/">Writing</a>
+    <a href="/about">About</a>
+  </nav>
+</div></header>
+
+<main class="post"><div class="wrap">
+  <!-- La rubrique s'affiche dans la colonne de gauche (.meta .tag), pas au-dessus du titre. -->
+  <h1>Where the Proof Runs Out</h1>
+  <div class="meta">
+    <span class="tag">Optimization</span>
+    <span>Denis Joly</span>
+    <span>August 2026</span>
+    <span>~8 min read</span>
+  </div>
+  <nav class="toc">
+    <div class="toc-h">Contents</div>
+    <ul>
+      <li><a href="#tl-dr">TL;DR</a></li>
+      <li><a href="#no-integers-required">No integers required</a></li>
+      <li><a href="#what-success-meant">What success meant</a></li>
+      <li><a href="#a-bound-that-survives-the-starting-point">A bound that survives the starting point</a></li>
+      <li><a href="#hard-is-not-one-word">Hard is not one word</a></li>
+      <li><a href="#the-edge-of-my-map">The edge of my map</a></li>
+      <li><a href="#where-the-word-stops">Where the word stops</a></li>
+      <li><a href="#data-and-code">Data and code</a></li>
+      <li><a href="#references">References</a></li>
+    </ul>
+  </nav>
+
+  <article>
+    <aside class="callout">
+<div class="callout-h">What Optimal Means · 5 of 5</div>
+<p>A local success message says where one search stopped. This final piece asks what it takes to prove that nothing better exists anywhere.</p>
+</aside>
+
+    <h2 id="tl-dr">TL;DR</h2>
+
+    <ul>
+      <li>A model can be continuous and still be non-convex. Haverly's pooling problem has no integer variables; products of flow and concentration are enough to break convexity.</li>
+      <li>On the same seven-variable pooling model, the same local SLSQP configuration returns feasible plans worth $0, $100 and $400 from three fixed starting points, reporting <code>success</code> each time. Its status reports satisfaction of local stopping tests, not global optimality.</li>
+      <li>A global method needs a valid bound that covers territory it has not visited. For bilinear terms, McCormick inequalities provide convex relaxations over bounded boxes; spatial branch-and-bound tightens them by subdividing those boxes.</li>
+      <li>The four McCormick inequalities describe the exact convex hull of one bounded bilinear graph. That hull is still a relaxation of the equality, so wide variable bounds can leave a weak proof.</li>
+      <li>“Hard” ranges from expensive to undecidable. Jeroslow's impossibility result concerns a general class with unbounded integer variables and mixed-sign quadratic constraints. Explicitly bounded pure-integer models remain finite and decidable.</li>
+    </ul>
+
+    <p>I can make the same local algorithm report success three times on the same small problem. One run earns nothing. Another earns $100. A third earns $400. Nothing crashed. Every variable is continuous. The only input I changed was the point from which the search began.</p>
+
+    <p>This is the fifth and final article in the series, and the one closest to the edge of my own practice. The calculation below uses fixed, recorded inputs and is checked against an independent global benchmark. The wider subject, non-convex global optimisation, is one I am learning rather than claiming as home ground. That distinction matters in an article about the limits of claims.</p>
+
+    <h2 id="no-integers-required">No integers required</h2>
+
+    <p>In 1978, C. A. Haverly published a tiny refinery-planning example that became the canonical <strong>pooling problem</strong>.[1] Two feeds, A and B, enter a common pool. A third feed, C, can go directly to either of two products. The pool destroys the identity of its inputs: once A and B are mixed, every unit leaving has the same sulphur concentration.</p>
+
+    <p>The data fit in a paragraph. A contains 3 per cent sulphur and costs $6 per unit. B contains 1 per cent and costs $16. C contains 2 per cent and costs $10. Product X sells for $9, accepts at most 2.5 per cent sulphur and has demand capped at 100 units. Product Y sells for $15, accepts at most 1.5 per cent and has demand capped at 200.</p>
+
+    <p>Let <em>a</em> and <em>b</em> be the flows into the pool, <em>p</em><sub>X</sub> and <em>p</em><sub>Y</sub> its outputs, <em>c</em><sub>X</sub> and <em>c</em><sub>Y</sub> the direct flows from C, and <em>q</em> the pool's sulphur concentration. The model's constraints include:</p>
+
+    <div class="display-math" role="img" aria-label="Pool flow balance a plus b equals p X plus p Y. Pool sulphur balance q times a plus b equals three a plus b. Product quality inequalities q p X plus two c X is at most two point five times p X plus c X, and q p Y plus two c Y is at most one point five times p Y plus c Y">
+  <span><i>a</i> + <i>b</i> = <i>p</i><sub>X</sub> + <i>p</i><sub>Y</sub></span>
+  <span><i>q</i>(<i>a</i> + <i>b</i>) = 3<i>a</i> + <i>b</i></span>
+  <span><i>q p</i><sub>X</sub> + 2<i>c</i><sub>X</sub> ≤ 2.5(<i>p</i><sub>X</sub> + <i>c</i><sub>X</sub>)</span>
+  <span><i>q p</i><sub>Y</sub> + 2<i>c</i><sub>Y</sub> ≤ 1.5(<i>p</i><sub>Y</sub> + <i>c</i><sub>Y</sub>)</span>
+</div>
+
+    <p>The objective is revenue from X and Y minus the three feed costs. Every decision variable can take fractional values. The difficulty comes from the products <em>q</em>(<em>a</em> + <em>b</em>), <em>qp</em><sub>X</sub> and <em>qp</em><sub>Y</sub>. They multiply one decision by another.</p>
+
+    <p>A bilinear equality need not preserve feasibility under averaging: two feasible points can have an infeasible midpoint. The resulting feasible region is non-convex, so a stopping test at one point does not bound the rest.</p>
+
+    <p>This is also why <strong>convex MINLP</strong> is easy to misread. Its integer coordinates remain discrete; <em>convex</em> describes the nonlinear structure after those restrictions are relaxed. Haverly's original example goes the other way: it is a completely continuous, non-convex nonlinear program, or NLP. Integrality is absent and the global proof is already difficult.</p>
+
+    <h2 id="what-success-meant">What success meant</h2>
+
+    <p>I solved that model with SciPy's SLSQP method from three fixed initial guesses selected from a nine-point sequence generated with seed 20260820. The three runs illustrate possible terminations; they do not estimate the relative sizes of attraction basins. The solver settings, equations and tolerances were otherwise identical, and each run returned a feasible plan with status <code>success</code>.</p>
+
+    <figure class="fig fig-wide post5-local-successes">
+  <style>
+    .post5-local-successes .post5-mobile-hint { display: none; }
+    .post5-local-successes .post5-chart-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .post5-local-successes svg { display: block; width: 100%; height: auto; }
+    @media (max-width: 680px) {
+      .post5-local-successes .post5-mobile-hint { display: block; margin: 0 0 .5rem; color: var(--muted, #65737e); font-size: .82rem; }
+      .post5-local-successes svg { min-width: 680px; }
+    }
+  </style>
+  <p class="post5-mobile-hint" aria-hidden="true">Scroll horizontally to inspect all three solver outcomes →</p>
+  <div class="post5-chart-scroll" tabindex="0" role="region" aria-label="Scrollable comparison of three local-solver outcomes">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" role="img" aria-labelledby="post5-fig1-title post5-fig1-desc">
+  <title id="post5-fig1-title">Three successful local-solver terminations on the Haverly pooling problem</title>
+  <desc id="post5-fig1-desc">Horizontal comparison of three SLSQP runs. Fixed start 7 returns zero dollars, fixed start 8 returns one hundred dollars, and fixed start 0 returns four hundred dollars. Every run has solver status success. Only the four-hundred-dollar result is independently documented as globally optimal.</desc>
+  <style>
+    text { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #23313d; }
+    .eyebrow { font-size: 13px; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; fill: #5a6975; }
+    .headline { font-family: Georgia, "Times New Roman", serif; font-size: 29px; font-weight: 700; }
+    .subhead { font-size: 15px; fill: #5a6975; }
+    .grid { stroke: #dce3e8; stroke-width: 1; }
+    .track { stroke: #dce3e8; stroke-width: 24; stroke-linecap: round; }
+    .tick { font-size: 12px; fill: #65737e; }
+    .row-label { font-size: 15px; font-weight: 720; }
+    .row-sub { font-size: 12px; fill: #65737e; }
+    .value { font-size: 15px; font-weight: 780; }
+    .status-pill { fill: #e3f3ed; stroke: #84b9a7; }
+    .status { font-size: 12px; font-weight: 750; fill: #176c5a; }
+    .global-note { font-size: 13px; font-weight: 720; fill: #176c5a; }
+    .global-line { stroke: #168579; stroke-width: 1.5; stroke-dasharray: 4 4; }
+    @media (prefers-color-scheme: dark) {
+      text { fill: #e9eef2; }
+      .eyebrow, .subhead, .tick, .row-sub { fill: #a9b4bd; }
+      .grid { stroke: #394750; }
+      .track { stroke: #394750; }
+      .status-pill { fill: #153f37; stroke: #3f8877; }
+      .status, .global-note { fill: #77d1bc; }
+      .global-line { stroke: #77d1bc; }
+    }
+  </style>
+  <rect width="920" height="520" rx="18" fill="transparent"/>
+  <text class="eyebrow" x="36" y="38">same model · same method · different starts</text>
+  <text class="headline" x="36" y="76">A success message is not a global bound</text>
+  <text class="subhead" x="36" y="103">Haverly pooling data · SciPy SLSQP · fixed seed 20260820</text>
+  <line class="grid" x1="246.00" y1="138" x2="246.00" y2="420"/><text class="tick" x="246.00" y="124" text-anchor="middle">$0</text><line class="grid" x1="371.00" y1="138" x2="371.00" y2="420"/><text class="tick" x="371.00" y="124" text-anchor="middle">$100</text><line class="grid" x1="496.00" y1="138" x2="496.00" y2="420"/><text class="tick" x="496.00" y="124" text-anchor="middle">$200</text><line class="grid" x1="621.00" y1="138" x2="621.00" y2="420"/><text class="tick" x="621.00" y="124" text-anchor="middle">$300</text><line class="grid" x1="746.00" y1="138" x2="746.00" y2="420"/><text class="tick" x="746.00" y="124" text-anchor="middle">$400</text>
+  <text class="row-label" x="36" y="192">zero-flow result</text><text class="row-sub" x="36" y="215">fixed start #7</text><line class="track" x1="246" y1="190" x2="746" y2="190"/><circle cx="246" cy="190" r="7" fill="#7b8794" aria-hidden="true"/><text class="value" x="274.00" y="195">$0</text><rect class="status-pill" x="795" y="175" width="88" height="30" rx="15"/><text class="status" x="839" y="195" text-anchor="middle">success</text><text class="row-label" x="36" y="297">X-only result</text><text class="row-sub" x="36" y="320">fixed start #8</text><line class="track" x1="246" y1="295" x2="746" y2="295"/><rect x="246" y="283" width="125.00" height="24" rx="12" fill="#d08b32"/><text class="value" x="383.00" y="300">$100</text><rect class="status-pill" x="795" y="280" width="88" height="30" rx="15"/><text class="status" x="839" y="300" text-anchor="middle">success</text><text class="row-label" x="36" y="402">global result</text><text class="row-sub" x="36" y="425">fixed start #0</text><line class="track" x1="246" y1="400" x2="746" y2="400"/><rect x="246" y="388" width="500.00" height="24" rx="12" fill="#168579"/><text class="value" x="700.00" y="405">$400</text><rect class="status-pill" x="795" y="385" width="88" height="30" rx="15"/><text class="status" x="839" y="405" text-anchor="middle">success</text>
+  <line class="global-line" x1="746" y1="138" x2="746" y2="449"/>
+  <text class="global-note" x="746" y="474" text-anchor="end">independently documented global optimum</text>
+  <text class="subhead" x="36" y="505">“success” records the local solver's stopping test, not a proof over the full feasible region.</text>
+</svg>
+  </div>
+  <figcaption><strong>Figure 1 — Three successful terminations are not one global certificate.</strong> Using Haverly's data, the same SLSQP configuration returns feasible plans worth $0, $100 and $400 from three fixed starting points. All three runs report <code>success</code>. The $400 label comes from an independent global benchmark, not from SLSQP's local status. SciPy 1.18.0; fixed seed 20260820.</figcaption>
+</figure>
+
+    <p>At $0, every flow is zero. The returned value <em>q</em> = 2.11234 is mathematically admissible but has no physical meaning because the pool is empty; this empty-pool degeneracy helps explain why the algebraic formulation admits a zero-profit termination. At $100, 50 units of A pass through the pool and meet 50 direct units of C in product X. At $400, 100 units of B pass through the pool and meet 100 direct units of C in product Y. That last blend contains exactly 1.5 per cent sulphur, fills Y's demand and earns 3,000 − 1,600 − 1,000 = $400.</p>
+
+    <p>The $400 result is independently documented as the global solution; the GAMS Model Library records the same value as −400 under its minimisation sign convention.[2] That global label does not come from SLSQP's status.</p>
+
+    <p><code>success</code> has a narrower meaning than the chart's shared green badges suggest. It says only that SLSQP met its termination tests from that start.[3] It does not establish even strict local optimality, let alone a valid objective bound over the rest of the feasible region.[4] Finding the $400 plan once, or finding it in ninety-nine restarts, would be evidence. The bound is what makes it a certificate.</p>
+
+    <h2 id="a-bound-that-survives-the-starting-point">A bound that survives the starting point</h2>
+
+    <p>Suppose a model contains <em>w</em> = <em>xy</em>, with finite bounds <em>x</em> ∈ [ℓ<sub>x</sub>, <em>u</em><sub>x</sub>] and <em>y</em> ∈ [ℓ<sub>y</sub>, <em>u</em><sub>y</sub>]. Garth P. McCormick showed how four linear inequalities can surround that product:[5]</p>
+
+    <div class="display-math" role="img" aria-label="The four McCormick inequalities for w equals x y on bounded intervals">
+  <span><i>w</i> ≥ ℓ<sub>x</sub><i>y</i> + ℓ<sub>y</sub><i>x</i> − ℓ<sub>x</sub>ℓ<sub>y</sub></span>
+  <span><i>w</i> ≥ <i>u</i><sub>x</sub><i>y</i> + <i>u</i><sub>y</sub><i>x</i> − <i>u</i><sub>x</sub><i>u</i><sub>y</sub></span>
+  <span><i>w</i> ≤ <i>u</i><sub>x</sub><i>y</i> + ℓ<sub>y</sub><i>x</i> − <i>u</i><sub>x</sub>ℓ<sub>y</sub></span>
+  <span><i>w</i> ≤ ℓ<sub>x</sub><i>y</i> + <i>u</i><sub>y</sub><i>x</i> − ℓ<sub>x</sub><i>u</i><sub>y</sub></span>
+</div>
+
+    <p>For this isolated bilinear graph on that box, the resulting polytope is its exact convex hull. “Exact convex hull” does not mean that every point in the polytope satisfies <em>w</em> = <em>xy</em>. It is the tightest convex relaxation of the graph, and therefore still contains points the original equality forbids.</p>
+
+    <p>The quality of the bound depends on the box. If <em>x</em> and <em>y</em> range widely, the hull leaves ample room between the bilinear graph and its relaxation. Split either interval into smaller pieces and rebuild the four inequalities; the room contracts.</p>
+
+    <p>That is the central move in <strong>spatial branch-and-bound</strong>, a common framework for deterministic global optimisation. The algorithm builds valid convex relaxations over bounded subdomains, uses them to bound what the unexplored region could contain, and subdivides domains where the bound remains loose. Feasible points provide incumbents. Relaxations provide global bounds. Bound tightening, cuts and better convex underestimators make the same outline substantially more powerful in practice.[4][6]</p>
+
+    <p>The tree resembles the one in <a href="/posts/when-the-answer-is-yes-or-no">the MILP article</a>. For this continuous Haverly model, its branches divide variable domains; a non-convex MINLP may branch on both integer choices and continuous domains. Global optimality is established when the incumbent and the valid bound meet within declared tolerances. If the run ends with a non-zero gap, the incumbent may be excellent. The proof remains incomplete.</p>
+
+    <h2 id="hard-is-not-one-word">Hard is not one word</h2>
+
+    <p>The pooling problem is NP-hard. Haugland showed that this remains true with only one quality constraint at each terminal and, under a separate restriction, with at most two sources and two terminals.[7] This is a statement about how computational work can scale. It leaves open algorithms that solve every finite instance, sometimes at forbidding cost.</p>
+
+    <p>Robert Jeroslow proved something logically stronger in 1973: there is no algorithm that computes the optimum for every integer program in a class with a linear objective and quadratic constraints.[8] The scope belongs beside the headline. His construction uses integer domains without finite bounds and diagonal quadratic forms with coefficients of mixed signs. It does not make every quadratic integer model undecidable. If all variables in a pure-integer model have finite explicit bounds, only finitely many assignments exist; enumeration restores decidability, though not practicality.</p>
+
+    <p>Local, global, NP-hard and undecidable therefore answer different questions. A local optimiser may find the best point without proving it. A deterministic global optimiser can certify a supported, adequately bounded non-convex model when its valid relaxation bound closes to the incumbent within the chosen tolerances. A time limit with a remaining gap cannot. And in Jeroslow's general class, no universal algorithm exists to wait for.</p>
+
+    <p>When a solver reports a result, its brand name is less informative than two details: which algorithmic mode ran, and why it terminated.</p>
+
+    <h2 id="the-edge-of-my-map">The edge of my map</h2>
+
+    <p>The thermodynamic metabolic formulations I have worked with stay on the MILP side of this boundary: continuous fluxes sit beside binary reaction-use and direction variables, but relaxing those binaries leaves a linear model. Nonlinear kinetic relationships would cross into the territory described here.</p>
+
+    <p>The boundary is relevant rather than hypothetical. k-OptForce, for example, incorporates nonlinear kinetic descriptions into strain-design optimisation and reformulates the resulting bilevel construction as a single-level MINLP.[9] Similar products, ratios and nonlinear balances appear in process networks, energy systems and engineering design.</p>
+
+    <p>The surveys do not offer one general trick that makes these structures easy.[4][10] They point instead to continuing work on tighter convex relaxations, structure-specific cuts, bound tightening and heuristics whose outputs make no global-optimality claim. The modelling question comes first: which nonlinear relationship is essential enough to justify the harder claim?</p>
+
+    <h2 id="where-the-word-stops">Where the word stops</h2>
+
+    <p>Non-convexity does not erase global optimality. It changes what must be built before the word is earned. A local termination describes one search. A global certificate must also account for the rest of the feasible region.</p>
+
+    <p>The word <em>optimal</em> remains precise only for the stated model and assumptions, and only as far as its last valid bound. Beyond either boundary, a solution may still be useful or impressive. The run has not established the larger claim.</p>
+
+    <p>The detour is over. Markowitz has waited long enough.</p>
+
+    <h2 id="data-and-code">Data and code</h2>
+
+    <p>The <a href="https://github.com/Denis-Joly/what-optimal-means/tree/main/post-05-where-the-proof-runs-out">Post 5 companion folder</a> contains the complete Haverly data, fixed starting points, pinned library versions, recorded runtime, generated results, static figure and verification checks. It records SLSQP's local statuses separately from the independently documented global benchmark.</p>
+
+    <h2 id="references">References</h2>
+
+    <ol>
+      <li>C. A. Haverly, <a href="https://doi.org/10.1145/1111237.1111238">“Studies of the Behavior of Recursion for the Pooling Problem”</a>, <em>ACM SIGMAP Bulletin</em> 25 (1978): 19–28.</li>
+      <li>GAMS Development Corporation, <a href="https://www.gams.com/latest/gamslib_ml/libhtml/gamslib_pool.html">“A Pooling Problem (POOL)”</a>, <em>GAMS Model Library</em>, instance <code>haverly1</code>, accessed 20 August 2026.</li>
+      <li>SciPy Developers, <a href="https://docs.scipy.org/doc/scipy-1.18.0/reference/optimize.minimize-slsqp.html">“minimize(method='SLSQP')”</a>, <em>SciPy v1.18.0 Manual</em>, accessed 20 August 2026.</li>
+      <li>Pietro Belotti, Christian Kirches, Sven Leyffer, Jeff Linderoth, James Luedtke and Ashutosh Mahajan, <a href="https://doi.org/10.1017/S0962492913000032">“Mixed-Integer Nonlinear Optimization”</a>, <em>Acta Numerica</em> 22 (2013): 1–131.</li>
+      <li>Garth P. McCormick, <a href="https://doi.org/10.1007/BF01580665">“Computability of Global Solutions to Factorable Nonconvex Programs: Part I—Convex Underestimating Problems”</a>, <em>Mathematical Programming</em> 10, no. 1 (1976): 147–175.</li>
+      <li>E. M. B. Smith and C. C. Pantelides, <a href="https://doi.org/10.1016/S0098-1354(98)00286-5">“A Symbolic Reformulation/Spatial Branch-and-Bound Algorithm for the Global Optimisation of Nonconvex MINLPs”</a>, <em>Computers &amp; Chemical Engineering</em> 23, nos. 4–5 (1999): 457–478.</li>
+      <li>Dag Haugland, <a href="https://doi.org/10.1007/s10898-015-0335-y">“The Computational Complexity of the Pooling Problem”</a>, <em>Journal of Global Optimization</em> 64, no. 2 (2016): 199–215.</li>
+      <li>Robert G. Jeroslow, <a href="https://doi.org/10.1287/opre.21.1.221">“There Cannot Be Any Algorithm for Integer Programming with Quadratic Constraints”</a>, <em>Operations Research</em> 21, no. 1 (1973): 221–224.</li>
+      <li>Anupam Chowdhury, Ali R. Zomorrodi and Costas D. Maranas, <a href="https://doi.org/10.1371/journal.pcbi.1003487">“k-OptForce: Integrating Kinetics with Flux Balance Analysis for Strain Design”</a>, <em>PLOS Computational Biology</em> 10, no. 2 (2014): e1003487.</li>
+      <li>Samuel Burer and Adam N. Letchford, <a href="https://doi.org/10.1016/j.sorms.2012.08.001">“Non-Convex Mixed-Integer Nonlinear Programming: A Survey”</a>, <em>Surveys in Operations Research and Management Science</em> 17, no. 2 (2012): 97–106.</li>
+    </ol>
+
+    <nav class="series-nav" aria-label="What Optimal Means series">
+  <a href="/posts/optimising-against-a-guess"><small>Previous</small>Optimising Against a Guess</a>
+  <span><small>Next</small>Beyond Markowitz</span>
+</nav>
+  </article>
+
+  <p class="backlink"><a href="/">← Back to writing</a></p>
+</div></main>
+
+<footer class="site-foot"><div class="bar">
+  <div>© 2026 Spatium Novum · Denis Joly</div>
+  <div><a href="/">Writing</a> · <a href="mailto:denis.a.joly@proton.me">Contact</a> · <a href="/feed.xml">RSS</a></div>
+</div></footer>
+
+<!-- Cloudflare Web Analytics — replace c4f2d3476eec4a9fab59a0c8590c2b4a with your token (see index.html for steps). -->
+<script defer src="/assets/article-viz.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "c4f2d3476eec4a9fab59a0c8590c2b4a"}'></script>
+
+</body>
+</html>
