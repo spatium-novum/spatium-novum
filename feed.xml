@@ -7,6 +7,14 @@
     <language>en</language>
     <atom:link href="https://spatium-novum.com/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
+      <title>Five Hundred Years of Data</title>
+      <link>https://spatium-novum.com/posts/five-hundred-years-of-data</link>
+      <guid isPermaLink="true">https://spatium-novum.com/posts/five-hundred-years-of-data</guid>
+      <description>Harry Markowitz formalised the second stage of portfolio choice in 1952. The first stage was deciding what to believe about the future.</description>
+      <category>Finance</category>
+      <pubDate>Fri, 21 Aug 2026 09:00:00 +0000</pubDate>
+    </item>
+    <item>
       <title>Where the Proof Runs Out</title>
       <link>https://spatium-novum.com/posts/where-the-proof-runs-out</link>
       <guid isPermaLink="true">https://spatium-novum.com/posts/where-the-proof-runs-out</guid>
