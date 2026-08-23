@@ -481,7 +481,37 @@
 
 <section class="cta"><div class="wrap">
   <p class="cta-main">This is the first piece in a series. New essays go up roughly every two weeks, with shorter reading notes in between, on markets, machines, molecules and minds. The next one takes apart the capital asset pricing model, which is taught to everyone and believed by almost nobody who trades for a living.</p>
-  <p class="cta-links"><a href="/feed.xml">Follow by RSS</a> &nbsp;&middot;&nbsp; <a href="/">Read the rest</a> &nbsp;&middot;&nbsp; <a href="mailto:denis.a.joly@proton.me">Tell me which cell is wrong</a></p>
+  <!-- NEWSLETTER_SIGNUP:START -->
+<div class="newsletter-signup newsletter-signup--wide" aria-labelledby="newsletter-commodity-trading-world-title" data-newsletter-placement="web:article:commodity-trading-world:end:v1">
+<div class="newsletter-box">
+  <div class="newsletter-kicker">Email essays</div>
+  <h2 id="newsletter-commodity-trading-world-title">Get the next Spatium Novum essay</h2>
+  <p class="newsletter-dek">New essays and occasional research notes on optimisation, commodity systems, and reproducible modelling—about one or two emails per month.</p>
+  <form id="newsletter-commodity-trading-world-form" class="newsletter-form" data-newsletter-form data-mailerlite-form-id="45098227" action="https://assets.mailerlite.com/jsonp/2590338/forms/196508497383262041/subscribe" method="post" target="_blank" rel="noopener" accept-charset="UTF-8">
+    <div class="newsletter-fields">
+      <label class="visually-hidden" for="newsletter-commodity-trading-world-form-email">Email address</label>
+      <input class="newsletter-email" id="newsletter-commodity-trading-world-form-email" type="email" name="fields[email]" autocomplete="email" inputmode="email" placeholder="Your email address" aria-describedby="newsletter-commodity-trading-world-consent newsletter-commodity-trading-world-status" required>
+      <button class="newsletter-submit" type="submit" data-newsletter-submit>Send me the next essay</button>
+    </div>
+    <label class="newsletter-consent" id="newsletter-commodity-trading-world-consent">
+      <input type="checkbox" data-newsletter-consent required>
+      <span>I agree to receive Spatium Novum essays and occasional research notes by email. I can unsubscribe at any time. <a href="/privacy#email">Privacy details</a>.</span>
+    </label>
+    <input type="hidden" name="fields[signup_source]" value="web:article:commodity-trading-world:end:v1">
+    <input type="hidden" name="ml-submit" value="1">
+    <input type="hidden" name="anticsrf" value="true">
+    <p class="newsletter-status" id="newsletter-commodity-trading-world-status" role="status" aria-live="polite" data-newsletter-status></p>
+    <p hidden data-newsletter-fallback><a class="newsletter-fallback" href="https://preview.mailerlite.io/forms/2590338/196508497383262041/share" target="_blank" rel="noopener noreferrer">Open the MailerLite signup page</a>.</p>
+  </form>
+  <div class="newsletter-success" data-newsletter-success tabindex="-1" hidden>
+    <h3>Check your inbox</h3>
+    <p>We sent you a confirmation email. Click the link in it to complete your subscription. If it is not there in a few minutes, check spam.</p>
+  </div>
+</div>
+</div>
+<!-- NEWSLETTER_SIGNUP:END -->
+
+<p class="cta-links"><a href="/feed.xml">Follow by RSS</a> &nbsp;&middot;&nbsp; <a href="/">Read the rest</a> &nbsp;&middot;&nbsp; <a href="mailto:notes@spatium-novum.com">Tell me which cell is wrong</a></p>
 </div></section>
 
 <div class="wrap" style="padding-top:34px"><p class="backlink"><a href="/">&larr; Back to writing</a></p></div>
@@ -807,6 +837,8 @@ select("trafigura");
   draw(document.getElementById("bars-support"),u,mx);
 })();
 </script>
+
+<script defer src="/assets/newsletter-form.js"></script>
 
 <!-- Cloudflare Web Analytics — cookieless traffic and performance measurement; see /privacy. -->
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "c4f2d3476eec4a9fab59a0c8590c2b4a"}'></script>

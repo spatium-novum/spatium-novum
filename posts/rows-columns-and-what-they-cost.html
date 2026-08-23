@@ -848,13 +848,45 @@ text{font-family:"Plex Mono",ui-monospace,monospace;fill:#0a0a0a;font-size:12px}
 </nav>
   </article>
 
-  <p class="backlink"><a href="/">← Back to writing</a></p>
+  <!-- NEWSLETTER_SIGNUP:START -->
+<section class="newsletter-signup newsletter-signup--article" aria-labelledby="newsletter-rows-columns-and-what-they-cost-title" data-newsletter-placement="web:article:rows-columns-and-what-they-cost:end:v1">
+<div class="newsletter-box">
+  <div class="newsletter-kicker">Email essays</div>
+  <h2 id="newsletter-rows-columns-and-what-they-cost-title">Get the next Spatium Novum essay</h2>
+  <p class="newsletter-dek">New essays and occasional research notes on optimisation, commodity systems, and reproducible modelling—about one or two emails per month.</p>
+  <form id="newsletter-rows-columns-and-what-they-cost-form" class="newsletter-form" data-newsletter-form data-mailerlite-form-id="45098227" action="https://assets.mailerlite.com/jsonp/2590338/forms/196508497383262041/subscribe" method="post" target="_blank" rel="noopener" accept-charset="UTF-8">
+    <div class="newsletter-fields">
+      <label class="visually-hidden" for="newsletter-rows-columns-and-what-they-cost-form-email">Email address</label>
+      <input class="newsletter-email" id="newsletter-rows-columns-and-what-they-cost-form-email" type="email" name="fields[email]" autocomplete="email" inputmode="email" placeholder="Your email address" aria-describedby="newsletter-rows-columns-and-what-they-cost-consent newsletter-rows-columns-and-what-they-cost-status" required>
+      <button class="newsletter-submit" type="submit" data-newsletter-submit>Send me the next essay</button>
+    </div>
+    <label class="newsletter-consent" id="newsletter-rows-columns-and-what-they-cost-consent">
+      <input type="checkbox" data-newsletter-consent required>
+      <span>I agree to receive Spatium Novum essays and occasional research notes by email. I can unsubscribe at any time. <a href="/privacy#email">Privacy details</a>.</span>
+    </label>
+    <input type="hidden" name="fields[signup_source]" value="web:article:rows-columns-and-what-they-cost:end:v1">
+    <input type="hidden" name="ml-submit" value="1">
+    <input type="hidden" name="anticsrf" value="true">
+    <p class="newsletter-status" id="newsletter-rows-columns-and-what-they-cost-status" role="status" aria-live="polite" data-newsletter-status></p>
+    <p hidden data-newsletter-fallback><a class="newsletter-fallback" href="https://preview.mailerlite.io/forms/2590338/196508497383262041/share" target="_blank" rel="noopener noreferrer">Open the MailerLite signup page</a>.</p>
+  </form>
+  <div class="newsletter-success" data-newsletter-success tabindex="-1" hidden>
+    <h3>Check your inbox</h3>
+    <p>We sent you a confirmation email. Click the link in it to complete your subscription. If it is not there in a few minutes, check spam.</p>
+  </div>
+</div>
+</section>
+<!-- NEWSLETTER_SIGNUP:END -->
+
+<p class="backlink"><a href="/">← Back to writing</a></p>
 </div></main>
 
 <footer class="site-foot"><div class="bar">
   <div>© 2026 Spatium Novum · Denis Joly</div>
-  <div><a href="/">Writing</a> · <a href="mailto:denis.a.joly@proton.me">Contact</a> · <a href="/feed.xml">RSS</a> · <a href="/privacy">Privacy</a></div>
+  <div><a href="/">Writing</a> · <a href="mailto:notes@spatium-novum.com">Contact</a> · <a href="/feed.xml">RSS</a> · <a href="/privacy">Privacy</a></div>
 </div></footer>
+
+<script defer src="/assets/newsletter-form.js"></script>
 
 <!-- Cloudflare Web Analytics — cookieless traffic and performance measurement; see /privacy. -->
 <script defer src="/assets/article-viz.js"></script>
