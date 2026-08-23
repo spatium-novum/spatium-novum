@@ -6,6 +6,26 @@
     return;
   }
 
+  document.querySelectorAll("[data-newsletter-jump]").forEach(function (jump) {
+    jump.addEventListener("click", function () {
+      var targetId = jump.getAttribute("href").slice(1);
+      var form = document.getElementById(targetId);
+      if (!form || !form.matches("[data-newsletter-form]")) {
+        return;
+      }
+      var attribution = form.querySelector("[data-newsletter-attribution]");
+      var email = form.querySelector('input[name="fields[email]"]');
+      if (attribution) {
+        attribution.value = jump.getAttribute("data-newsletter-jump-source");
+      }
+      if (email) {
+        window.setTimeout(function () {
+          email.focus();
+        }, 0);
+      }
+    });
+  });
+
   forms.forEach(function (form) {
     form.addEventListener("submit", function (event) {
       if (!form.checkValidity()) {

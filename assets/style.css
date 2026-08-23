@@ -80,7 +80,7 @@ a{color:inherit}
 .hero .kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;
   text-transform:uppercase;color:var(--signal)}
 .hero h1{font-size:clamp(34px,5.6vw,54px);line-height:1;letter-spacing:-.04em;
-  font-weight:700;margin:.28em 0 .3em;color:var(--ink);max-width:16ch}
+  font-weight:700;margin:0 0 .42em;color:var(--ink);max-width:18ch}
 .hero .lede{font-size:18.5px;line-height:1.5;color:var(--body);max-width:36rem;margin:0 0 1em}
 .hero .lede:last-of-type{margin-bottom:0}
 
@@ -91,9 +91,9 @@ a{color:inherit}
   text-transform:uppercase;color:var(--muted);line-height:1.5;padding-top:13px;
   display:flex;flex-direction:column;align-items:flex-start;gap:5px}
 .hero .qsrc .nm{color:var(--signal)}
-.hero blockquote.q{margin:0 0 26px;padding:0;border:0;
-  font-size:clamp(28px,4.6vw,48px);line-height:1.06;letter-spacing:-.038em;
-  font-weight:700;color:var(--ink);max-width:19ch}
+.hero blockquote.q{margin:0 0 24px;padding:0;border:0;
+  font-size:clamp(21px,3.2vw,31px);line-height:1.18;letter-spacing:-.025em;
+  font-weight:600;color:var(--ink);max-width:31ch}
 .hero .qrub{font-family:var(--mono);font-size:11px;letter-spacing:.1em;
   text-transform:uppercase;color:var(--signal);margin-top:30px}
 
@@ -226,6 +226,19 @@ mark{background:var(--signal);color:var(--on-signal);padding:0 3px}
   text-transform:uppercase;color:var(--muted)
 }
 
+/* liens thematiques, distincts de la chronologie stricte d'une serie */
+.related-writing{border-top:1px solid var(--rule);padding:18px 0 2px;margin-top:34px}
+.related-writing h2{font-family:var(--mono);font-size:10.5px;line-height:1.4;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.related-writing ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.related-writing li{display:grid;grid-template-columns:minmax(0,1fr) auto;
+  align-items:baseline;gap:14px;margin:0}
+.related-writing a{color:var(--ink);font-size:15.5px;line-height:1.35;
+  text-decoration:none;text-underline-offset:2px}
+.related-writing a:hover{color:var(--signal);text-decoration:underline}
+.related-writing small{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted);white-space:nowrap}
+
 /* sommaire */
 .toc{background:var(--panel);padding:16px 20px;margin:6px 0 30px;
   font-family:var(--mono);font-size:12.5px;line-height:1.7}
@@ -239,6 +252,16 @@ mark{background:var(--signal);color:var(--on-signal);padding:0 3px}
 /* ---------- inscription aux essais ----------
    Le formulaire est rendu par le site et n'appelle MailerLite qu'apres envoi.
    Il reprend donc exactement la grille et les fontes locales du site. */
+.newsletter-nudge{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;
+  align-items:baseline;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  padding:15px 0;margin:34px 0;color:var(--body)}
+.newsletter-nudge-kicker{font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--signal);white-space:nowrap}
+.newsletter-nudge p{font-size:15.5px;line-height:1.45;margin:0}
+.newsletter-nudge strong{color:var(--ink);font-weight:600}
+.newsletter-nudge a{color:var(--signal);font-weight:600;text-decoration:none;
+  text-underline-offset:3px;white-space:nowrap}
+.newsletter-nudge a:hover{text-decoration:underline}
 .newsletter-signup{color:var(--body)}
 .newsletter-signup--home{border-bottom:1px solid var(--rule);padding:30px 0 32px}
 .newsletter-signup--home .newsletter-box{
@@ -335,6 +358,9 @@ mark{background:var(--signal);color:var(--on-signal);padding:0 3px}
   body{font-size:16.5px}
   .hero{padding:38px 0 24px}
   .post article .series-nav{grid-template-columns:1fr}
+  .related-writing li{grid-template-columns:1fr;gap:1px}
+  .newsletter-nudge{grid-template-columns:1fr;gap:6px;margin:28px 0}
+  .newsletter-nudge a{white-space:normal}
   .newsletter-signup--home .newsletter-box{margin-left:0}
 }
 

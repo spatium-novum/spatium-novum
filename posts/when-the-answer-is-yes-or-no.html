@@ -4,8 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>When the Answer Is Yes or No — Spatium Novum</title>
-<meta name="description" content="Half a warehouse is not a warehouse. That innocent fact changes both the answer and the proof.">
+<title>MILP and Branch-and-Bound: When Answers Must Be Discrete — Spatium Novum</title>
+<meta name="description" content="Why binary decisions turn linear programmes into mixed-integer models, how branch-and-bound proves optimality, and where the computational cost appears.">
 <meta name="author" content="Denis Joly">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#111110" media="(prefers-color-scheme: dark)">
@@ -313,7 +313,16 @@ text{font-family:"Plex Mono",ui-monospace,monospace;fill:var(--viz-ink,#0a0a0a);
 
     <p>The size of the root gap matters because a tight relaxation lets the solver throw away branches early, while a loose one leaves more territory to disprove. It describes the formulation the modeller wrote, not the speed of the solver that reads it.</p>
 
-    <h2 id="a-tree-made-of-valid-promises">A tree made of valid promises</h2>
+<!-- NEWSLETTER_CTA:START -->
+<aside class="newsletter-nudge" aria-label="Email essays">
+  <div class="newsletter-nudge-kicker">Email essays</div>
+  <p><strong>Want the next model rebuilt like this?</strong>
+    <a href="#newsletter-when-the-answer-is-yes-or-no-form" data-newsletter-jump data-newsletter-jump-source="web:article:when-the-answer-is-yes-or-no:early:v1">Get the next essay by email&nbsp;↓</a>
+  </p>
+</aside>
+<!-- NEWSLETTER_CTA:END -->
+
+<h2 id="a-tree-made-of-valid-promises">A tree made of valid promises</h2>
 
     <p>Branch-and-bound turns the fractional answer into a search without surrendering the proof. Ailsa Land and Alison Doig published the LP-based enumeration method now recognised as branch-and-bound in 1960.[2] Its logic is four verbs.</p>
 
@@ -530,14 +539,23 @@ text{font-family:"Plex Mono",ui-monospace,monospace;fill:var(--viz-ink,#0a0a0a);
       <li>Anthony P. Burgard, Priti Pharkya and Costas D. Maranas, <a href="https://doi.org/10.1002/bit.10803">“OptKnock: A Bilevel Programming Framework for Identifying Gene Knockout Strategies for Microbial Strain Optimization”</a>, <em>Biotechnology and Bioengineering</em> 84, no. 6 (2003): 647–657.</li>
       <li>Harry Yim et al., <a href="https://doi.org/10.1038/nchembio.580">“Metabolic Engineering of <em>Escherichia coli</em> for Direct Production of 1,4-Butanediol”</a>, <em>Nature Chemical Biology</em> 7 (2011): 445–452.</li>
     </ol>
-
     <nav class="series-nav" aria-label="What Optimal Means series">
   <a href="/posts/rows-columns-and-what-they-cost"><small>Previous</small>Rows, Columns, and What They Cost</a>
   <a href="/posts/optimising-against-a-guess"><small>Next</small>Optimising Against a Guess</a>
 </nav>
   </article>
 
-  <!-- NEWSLETTER_SIGNUP:START -->
+  <!-- RELATED_WRITING:START -->
+<nav class="related-writing" aria-labelledby="related-when-the-answer-is-yes-or-no-title">
+  <h2 id="related-when-the-answer-is-yes-or-no-title">Related writing</h2>
+  <ul>
+    <li><a href="/posts/five-hundred-years-of-data">Five Hundred Years of Data</a><small>Finance</small></li>
+    <li><a href="/posts/commodity-trading-world">The Swiss Commodity Trading World, on Two Axes</a><small>Commodities</small></li>
+  </ul>
+</nav>
+<!-- RELATED_WRITING:END -->
+
+<!-- NEWSLETTER_SIGNUP:START -->
 <section class="newsletter-signup newsletter-signup--article" aria-labelledby="newsletter-when-the-answer-is-yes-or-no-title" data-newsletter-placement="web:article:when-the-answer-is-yes-or-no:end:v1">
 <div class="newsletter-box">
   <div class="newsletter-kicker">Email essays</div>
@@ -553,7 +571,7 @@ text{font-family:"Plex Mono",ui-monospace,monospace;fill:var(--viz-ink,#0a0a0a);
       <input type="checkbox" data-newsletter-consent required>
       <span>I agree to receive Spatium Novum essays and occasional research notes by email. I can unsubscribe at any time. <a href="/privacy#email">Privacy details</a>.</span>
     </label>
-    <input type="hidden" name="fields[signup_source]" value="web:article:when-the-answer-is-yes-or-no:end:v1">
+    <input type="hidden" data-newsletter-attribution name="fields[signup_source]" value="web:article:when-the-answer-is-yes-or-no:end:v1">
     <input type="hidden" name="ml-submit" value="1">
     <input type="hidden" name="anticsrf" value="true">
     <p class="newsletter-status" id="newsletter-when-the-answer-is-yes-or-no-status" role="status" aria-live="polite" data-newsletter-status></p>
@@ -575,7 +593,7 @@ text{font-family:"Plex Mono",ui-monospace,monospace;fill:var(--viz-ink,#0a0a0a);
   <div><a href="/">Writing</a> · <a href="mailto:notes@spatium-novum.com">Contact</a> · <a href="/feed.xml">RSS</a> · <a href="/privacy">Privacy</a></div>
 </div></footer>
 
-<script defer src="/assets/newsletter-form.js"></script>
+<script defer src="/assets/newsletter-form.js?v=20260823-cta"></script>
 
 <!-- Cloudflare Web Analytics — cookieless traffic and performance measurement; see /privacy. -->
 <script defer src="/assets/article-viz.js"></script>

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Swiss Commodity Trading World, on Two Axes — Spatium Novum</title>
-<meta name="description" content="One of the oldest industries there is, and one of the least documented. An interactive map that puts every kind of actor on a grid of what they do against what they move, so you can see where a firm like Trafigura actually sits.">
+<title>Swiss Commodity Traders: Trafigura, Vitol and Glencore — Spatium Novum</title>
+<meta name="description" content="An interactive map classifying 107 Swiss commodity firms by what they do and what they move, from Trafigura and Vitol to banks, insurers and inspectors.">
 <meta name="author" content="Denis Joly">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#111110" media="(prefers-color-scheme: dark)">
@@ -366,7 +366,17 @@
 </div></section>
 
 <section><div class="wrap">
-  <h2><span class="num">03</span>The shape a company makes</h2>
+
+<!-- NEWSLETTER_CTA:START -->
+<aside class="newsletter-nudge" aria-label="Email essays">
+  <div class="newsletter-nudge-kicker">Email essays</div>
+  <p><strong>Want the next model rebuilt like this?</strong>
+    <a href="#newsletter-commodity-trading-world-form" data-newsletter-jump data-newsletter-jump-source="web:article:commodity-trading-world:early:v1">Get the next essay by email&nbsp;↓</a>
+  </p>
+</aside>
+<!-- NEWSLETTER_CTA:END -->
+
+<h2 id="the-shape-a-company-makes"><span class="num">03</span>The shape a company makes</h2>
 
   <p class="sub">Once there are two axes there is a grid, and on a grid a company stops being a label and becomes a shape.</p>
 
@@ -480,8 +490,18 @@
 </div></section>
 
 <section class="cta"><div class="wrap">
-  <p class="cta-main">This is the first piece in a series. New essays go up roughly every two weeks, with shorter reading notes in between, on markets, machines, molecules and minds. The next one takes apart the capital asset pricing model, which is taught to everyone and believed by almost nobody who trades for a living.</p>
-  <!-- NEWSLETTER_SIGNUP:START -->
+  <p class="cta-main">Continue with <a href="/posts/five-hundred-years-of-data"><em>Five Hundred Years of Data</em></a>, the first essay in a series on Markowitz, estimation error, and what portfolio optimisation can really know.</p>
+  <!-- RELATED_WRITING:START -->
+<nav class="related-writing" aria-labelledby="related-commodity-trading-world-title">
+  <h2 id="related-commodity-trading-world-title">Related writing</h2>
+  <ul>
+    <li><a href="/posts/optimising-against-a-guess">Optimising Against a Guess</a><small>Optimization</small></li>
+    <li><a href="/posts/the-last-place-optimal-means-anything">The Last Place &quot;Optimal&quot; Means Anything</a><small>Optimization</small></li>
+  </ul>
+</nav>
+<!-- RELATED_WRITING:END -->
+
+<!-- NEWSLETTER_SIGNUP:START -->
 <div class="newsletter-signup newsletter-signup--wide" aria-labelledby="newsletter-commodity-trading-world-title" data-newsletter-placement="web:article:commodity-trading-world:end:v1">
 <div class="newsletter-box">
   <div class="newsletter-kicker">Email essays</div>
@@ -497,7 +517,7 @@
       <input type="checkbox" data-newsletter-consent required>
       <span>I agree to receive Spatium Novum essays and occasional research notes by email. I can unsubscribe at any time. <a href="/privacy#email">Privacy details</a>.</span>
     </label>
-    <input type="hidden" name="fields[signup_source]" value="web:article:commodity-trading-world:end:v1">
+    <input type="hidden" data-newsletter-attribution name="fields[signup_source]" value="web:article:commodity-trading-world:end:v1">
     <input type="hidden" name="ml-submit" value="1">
     <input type="hidden" name="anticsrf" value="true">
     <p class="newsletter-status" id="newsletter-commodity-trading-world-status" role="status" aria-live="polite" data-newsletter-status></p>
@@ -519,7 +539,7 @@
 
 <footer class="site-foot"><div class="bar">
   <div>&copy; 2026 Spatium Novum &middot; Denis Joly</div>
-  <div><a href="/">Writing</a> &middot; <a href="/about">About</a> &middot; <a href="/feed.xml">RSS</a> · <a href="/privacy">Privacy</a></div>
+  <div><a href="/">Writing</a> &middot; <a href="/about">About</a> &middot; <a href="mailto:notes@spatium-novum.com">Contact</a> &middot; <a href="/feed.xml">RSS</a> · <a href="/privacy">Privacy</a></div>
 </div></footer>
 
 <script>
@@ -838,7 +858,7 @@ select("trafigura");
 })();
 </script>
 
-<script defer src="/assets/newsletter-form.js"></script>
+<script defer src="/assets/newsletter-form.js?v=20260823-cta"></script>
 
 <!-- Cloudflare Web Analytics — cookieless traffic and performance measurement; see /privacy. -->
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "c4f2d3476eec4a9fab59a0c8590c2b4a"}'></script>

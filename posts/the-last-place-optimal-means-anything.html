@@ -4,8 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Last Place &quot;Optimal&quot; Means Anything — Spatium Novum</title>
-<meta name="description" content="OPTIMIZE is the motto of the age. In one discipline the word still means something you can prove, and in 1947 that proof cost 120 man-days.">
+<title>Linear Programming: What “Optimal” Actually Means — Spatium Novum</title>
+<meta name="description" content="From Stigler’s diet problem to Dantzig’s simplex method: a reproducible account of the rare setting where “optimal” still comes with a mathematical proof.">
 <meta name="author" content="Denis Joly">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#111110" media="(prefers-color-scheme: dark)">
@@ -216,7 +216,16 @@
 
     <p>The corner is not an accident of these numbers. When the objective is linear and the feasible set is a polygon, an optimum always sits at a corner, which is why the simplex method never looks anywhere else. With two variables you can list all five corners and compare them by hand. With seventy-seven you cannot, because the number of corners grows combinatorially with the constraints. That gap is the whole reason there is an algorithm.</p>
 
-    <h2 id="what-the-corner-comes-with">What the corner comes with</h2>
+<!-- NEWSLETTER_CTA:START -->
+<aside class="newsletter-nudge" aria-label="Email essays">
+  <div class="newsletter-nudge-kicker">Email essays</div>
+  <p><strong>Want the next model rebuilt like this?</strong>
+    <a href="#newsletter-the-last-place-optimal-means-anything-form" data-newsletter-jump data-newsletter-jump-source="web:article:the-last-place-optimal-means-anything:early:v1">Get the next essay by email&nbsp;↓</a>
+  </p>
+</aside>
+<!-- NEWSLETTER_CTA:END -->
+
+<h2 id="what-the-corner-comes-with">What the corner comes with</h2>
 
     <p>When the solver returns the diet, it returns nine other numbers with it, one for each of the nine floors from the top of this piece: the amount the daily bill would rise if that minimum went up by one unit. These are the <em>shadow prices</em>, one per condition, and what they price is not a food but a requirement. Multiply each of the nine by its requirement and add them together, and you get the cost of the diet. The sum is exact.</p>
 
@@ -400,7 +409,17 @@ make</code></pre>
 </nav>
   </article>
 
-  <!-- NEWSLETTER_SIGNUP:START -->
+  <!-- RELATED_WRITING:START -->
+<nav class="related-writing" aria-labelledby="related-the-last-place-optimal-means-anything-title">
+  <h2 id="related-the-last-place-optimal-means-anything-title">Related writing</h2>
+  <ul>
+    <li><a href="/posts/five-hundred-years-of-data">Five Hundred Years of Data</a><small>Finance</small></li>
+    <li><a href="/posts/commodity-trading-world">The Swiss Commodity Trading World, on Two Axes</a><small>Commodities</small></li>
+  </ul>
+</nav>
+<!-- RELATED_WRITING:END -->
+
+<!-- NEWSLETTER_SIGNUP:START -->
 <section class="newsletter-signup newsletter-signup--article" aria-labelledby="newsletter-the-last-place-optimal-means-anything-title" data-newsletter-placement="web:article:the-last-place-optimal-means-anything:end:v1">
 <div class="newsletter-box">
   <div class="newsletter-kicker">Email essays</div>
@@ -416,7 +435,7 @@ make</code></pre>
       <input type="checkbox" data-newsletter-consent required>
       <span>I agree to receive Spatium Novum essays and occasional research notes by email. I can unsubscribe at any time. <a href="/privacy#email">Privacy details</a>.</span>
     </label>
-    <input type="hidden" name="fields[signup_source]" value="web:article:the-last-place-optimal-means-anything:end:v1">
+    <input type="hidden" data-newsletter-attribution name="fields[signup_source]" value="web:article:the-last-place-optimal-means-anything:end:v1">
     <input type="hidden" name="ml-submit" value="1">
     <input type="hidden" name="anticsrf" value="true">
     <p class="newsletter-status" id="newsletter-the-last-place-optimal-means-anything-status" role="status" aria-live="polite" data-newsletter-status></p>
@@ -438,7 +457,7 @@ make</code></pre>
   <div><a href="/">Writing</a> · <a href="mailto:notes@spatium-novum.com">Contact</a> · <a href="/feed.xml">RSS</a> · <a href="/privacy">Privacy</a></div>
 </div></footer>
 
-<script defer src="/assets/newsletter-form.js"></script>
+<script defer src="/assets/newsletter-form.js?v=20260823-cta"></script>
 
 <!-- Cloudflare Web Analytics — cookieless traffic and performance measurement; see /privacy. -->
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "c4f2d3476eec4a9fab59a0c8590c2b4a"}'></script>

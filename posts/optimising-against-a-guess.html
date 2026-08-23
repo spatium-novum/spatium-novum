@@ -4,8 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Optimising Against a Guess — Spatium Novum</title>
-<meta name="description" content="The optimum of a model is the optimum of your estimates. Those are not the same thing.">
+<title>The Optimizer’s Curse: Optimising Estimated Inputs — Spatium Novum</title>
+<meta name="description" content="Why an optimiser exploits estimation error, how uncertainty budgets change its answer, and what robust optimisation can—and cannot—guarantee.">
 <meta name="author" content="Denis Joly">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#111110" media="(prefers-color-scheme: dark)">
@@ -834,7 +834,16 @@
 
     <p>Smith and Winkler's response is Bayesian: model the uncertainty in the value estimates, combine the analysis with prior information, and rank alternatives by posterior means.[1] In their normal models, that update appears as shrinkage, pulling extreme forecasts towards a prior mean and correcting the selection effect. But the curse is broader than any one correction. It changes what the word <em>optimal</em> can honestly modify. The chosen project is optimal for the table. The table is not the company.</p>
 
-    <h2 id="an-estimation-error-maximiser">An estimation-error maximiser</h2>
+<!-- NEWSLETTER_CTA:START -->
+<aside class="newsletter-nudge" aria-label="Email essays">
+  <div class="newsletter-nudge-kicker">Email essays</div>
+  <p><strong>Want the next model rebuilt like this?</strong>
+    <a href="#newsletter-optimising-against-a-guess-form" data-newsletter-jump data-newsletter-jump-source="web:article:optimising-against-a-guess:early:v1">Get the next essay by email&nbsp;↓</a>
+  </p>
+</aside>
+<!-- NEWSLETTER_CTA:END -->
+
+<h2 id="an-estimation-error-maximiser">An estimation-error maximiser</h2>
 
     <p>Portfolio optimisation makes the problem unusually visible because a small input table produces a large vector of weights. Markowitz asks for expected returns and a covariance matrix. Neither is observed directly. Both must be estimated, often from a finite and changing history rather than read from the market as facts.</p>
 
@@ -1081,14 +1090,23 @@
       <li>Peyman Mohajerin Esfahani and Daniel Kuhn, <a href="https://doi.org/10.1007/s10107-017-1172-1">“Data-Driven Distributionally Robust Optimization Using the Wasserstein Metric: Performance Guarantees and Tractable Reformulations”</a>, <em>Mathematical Programming</em> 171, nos. 1–2 (2018): 115–166.</li>
       <li>Soroosh Shafieezadeh-Abadeh, Daniel Kuhn and Peyman Mohajerin Esfahani, <a href="https://www.jmlr.org/papers/v20/17-633.html">“Regularization via Mass Transportation”</a>, <em>Journal of Machine Learning Research</em> 20, no. 103 (2019): 1–68.</li>
     </ol>
-
     <nav class="series-nav" aria-label="What Optimal Means series">
   <a href="/posts/when-the-answer-is-yes-or-no"><small>Previous</small>When the Answer Is Yes or No</a>
   <a href="/posts/where-the-proof-runs-out"><small>Next</small>Where the Proof Runs Out</a>
 </nav>
   </article>
 
-  <!-- NEWSLETTER_SIGNUP:START -->
+  <!-- RELATED_WRITING:START -->
+<nav class="related-writing" aria-labelledby="related-optimising-against-a-guess-title">
+  <h2 id="related-optimising-against-a-guess-title">Related writing</h2>
+  <ul>
+    <li><a href="/posts/five-hundred-years-of-data">Five Hundred Years of Data</a><small>Finance</small></li>
+    <li><a href="/posts/commodity-trading-world">The Swiss Commodity Trading World, on Two Axes</a><small>Commodities</small></li>
+  </ul>
+</nav>
+<!-- RELATED_WRITING:END -->
+
+<!-- NEWSLETTER_SIGNUP:START -->
 <section class="newsletter-signup newsletter-signup--article" aria-labelledby="newsletter-optimising-against-a-guess-title" data-newsletter-placement="web:article:optimising-against-a-guess:end:v1">
 <div class="newsletter-box">
   <div class="newsletter-kicker">Email essays</div>
@@ -1104,7 +1122,7 @@
       <input type="checkbox" data-newsletter-consent required>
       <span>I agree to receive Spatium Novum essays and occasional research notes by email. I can unsubscribe at any time. <a href="/privacy#email">Privacy details</a>.</span>
     </label>
-    <input type="hidden" name="fields[signup_source]" value="web:article:optimising-against-a-guess:end:v1">
+    <input type="hidden" data-newsletter-attribution name="fields[signup_source]" value="web:article:optimising-against-a-guess:end:v1">
     <input type="hidden" name="ml-submit" value="1">
     <input type="hidden" name="anticsrf" value="true">
     <p class="newsletter-status" id="newsletter-optimising-against-a-guess-status" role="status" aria-live="polite" data-newsletter-status></p>
@@ -1126,7 +1144,7 @@
   <div><a href="/">Writing</a> · <a href="mailto:notes@spatium-novum.com">Contact</a> · <a href="/feed.xml">RSS</a> · <a href="/privacy">Privacy</a></div>
 </div></footer>
 
-<script defer src="/assets/newsletter-form.js"></script>
+<script defer src="/assets/newsletter-form.js?v=20260823-cta"></script>
 
 <!-- Cloudflare Web Analytics — cookieless traffic and performance measurement; see /privacy. -->
 <script defer src="/assets/article-viz.js"></script>

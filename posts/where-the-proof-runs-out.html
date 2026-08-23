@@ -4,8 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Where the Proof Runs Out — Spatium Novum</title>
-<meta name="description" content="The same local solver can report success at $0, $100 and $400 on one small continuous problem. Only a valid bound can say which answer is global.">
+<title>Global Optimisation: Where Local Solver Proofs Run Out — Spatium Novum</title>
+<meta name="description" content="A reproducible nonlinear optimisation experiment shows why local solver success is not a global proof, and why valid bounds change what optimal means.">
 <meta name="author" content="Denis Joly">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#111110" media="(prefers-color-scheme: dark)">
@@ -221,7 +221,16 @@
 
     <p><code>success</code> has a narrower meaning than the chart's shared green badges suggest. It says only that SLSQP met its termination tests from that start.[3] It does not establish even strict local optimality, let alone a valid objective bound over the rest of the feasible region.[4] Finding the $400 plan once, or finding it in ninety-nine restarts, would be evidence. The bound is what makes it a certificate.</p>
 
-    <h2 id="a-bound-that-survives-the-starting-point">A bound that survives the starting point</h2>
+<!-- NEWSLETTER_CTA:START -->
+<aside class="newsletter-nudge" aria-label="Email essays">
+  <div class="newsletter-nudge-kicker">Email essays</div>
+  <p><strong>Want the next model rebuilt like this?</strong>
+    <a href="#newsletter-where-the-proof-runs-out-form" data-newsletter-jump data-newsletter-jump-source="web:article:where-the-proof-runs-out:early:v1">Get the next essay by email&nbsp;↓</a>
+  </p>
+</aside>
+<!-- NEWSLETTER_CTA:END -->
+
+<h2 id="a-bound-that-survives-the-starting-point">A bound that survives the starting point</h2>
 
     <p>Suppose a model contains <em>w</em> = <em>xy</em>, with finite bounds <em>x</em> ∈ [ℓ<sub>x</sub>, <em>u</em><sub>x</sub>] and <em>y</em> ∈ [ℓ<sub>y</sub>, <em>u</em><sub>y</sub>]. Garth P. McCormick showed how four linear inequalities can surround that product:[5]</p>
 
@@ -284,14 +293,22 @@
       <li>Anupam Chowdhury, Ali R. Zomorrodi and Costas D. Maranas, <a href="https://doi.org/10.1371/journal.pcbi.1003487">“k-OptForce: Integrating Kinetics with Flux Balance Analysis for Strain Design”</a>, <em>PLOS Computational Biology</em> 10, no. 2 (2014): e1003487.</li>
       <li>Samuel Burer and Adam N. Letchford, <a href="https://doi.org/10.1016/j.sorms.2012.08.001">“Non-Convex Mixed-Integer Nonlinear Programming: A Survey”</a>, <em>Surveys in Operations Research and Management Science</em> 17, no. 2 (2012): 97–106.</li>
     </ol>
-
     <nav class="series-nav" aria-label="What Optimal Means series">
   <a href="/posts/optimising-against-a-guess"><small>Previous</small>Optimising Against a Guess</a>
-  <a href="/posts/five-hundred-years-of-data"><small>Next</small>Five Hundred Years of Data</a>
 </nav>
   </article>
 
-  <!-- NEWSLETTER_SIGNUP:START -->
+  <!-- RELATED_WRITING:START -->
+<nav class="related-writing" aria-labelledby="related-where-the-proof-runs-out-title">
+  <h2 id="related-where-the-proof-runs-out-title">Related writing</h2>
+  <ul>
+    <li><a href="/posts/five-hundred-years-of-data">Five Hundred Years of Data</a><small>Finance</small></li>
+    <li><a href="/posts/rows-columns-and-what-they-cost">Rows, Columns, and What They Cost</a><small>Optimization</small></li>
+  </ul>
+</nav>
+<!-- RELATED_WRITING:END -->
+
+<!-- NEWSLETTER_SIGNUP:START -->
 <section class="newsletter-signup newsletter-signup--article" aria-labelledby="newsletter-where-the-proof-runs-out-title" data-newsletter-placement="web:article:where-the-proof-runs-out:end:v1">
 <div class="newsletter-box">
   <div class="newsletter-kicker">Email essays</div>
@@ -307,7 +324,7 @@
       <input type="checkbox" data-newsletter-consent required>
       <span>I agree to receive Spatium Novum essays and occasional research notes by email. I can unsubscribe at any time. <a href="/privacy#email">Privacy details</a>.</span>
     </label>
-    <input type="hidden" name="fields[signup_source]" value="web:article:where-the-proof-runs-out:end:v1">
+    <input type="hidden" data-newsletter-attribution name="fields[signup_source]" value="web:article:where-the-proof-runs-out:end:v1">
     <input type="hidden" name="ml-submit" value="1">
     <input type="hidden" name="anticsrf" value="true">
     <p class="newsletter-status" id="newsletter-where-the-proof-runs-out-status" role="status" aria-live="polite" data-newsletter-status></p>
@@ -329,7 +346,7 @@
   <div><a href="/">Writing</a> · <a href="mailto:notes@spatium-novum.com">Contact</a> · <a href="/feed.xml">RSS</a> · <a href="/privacy">Privacy</a></div>
 </div></footer>
 
-<script defer src="/assets/newsletter-form.js"></script>
+<script defer src="/assets/newsletter-form.js?v=20260823-cta"></script>
 
 <!-- Cloudflare Web Analytics — cookieless traffic and performance measurement; see /privacy. -->
 <script defer src="/assets/article-viz.js"></script>

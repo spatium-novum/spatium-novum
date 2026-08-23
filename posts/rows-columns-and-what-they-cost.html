@@ -4,8 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rows, Columns, and What They Cost — Spatium Novum</title>
-<meta name="description" content="Stigler's diet has 77 choices and nearly half a trillion candidate column sets. It still solves in milliseconds.">
+<title>Simplex and Stigler’s Diet Problem: Why Structure Beats Size — Spatium Novum</title>
+<meta name="description" content="Stigler’s 77-food diet problem has nearly half a trillion candidate column sets. Simplex solves it quickly because structure matters more than raw combinations.">
 <meta name="author" content="Denis Joly">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#111110" media="(prefers-color-scheme: dark)">
@@ -493,7 +493,16 @@ text{font-family:"Plex Mono",ui-monospace,monospace;fill:#0a0a0a;font-size:12px}
 
     <p>The zeros are not empty storage waiting to be filled. They say that a decision made over here has no direct effect on a promise made over there. A large network model can be manageable because locality keeps most of those relationships absent. A much smaller matrix can be painful because almost everything talks to everything else.</p>
 
-    <h2 id="from-inequalities-to-a-basis">From inequalities to a basis</h2>
+<!-- NEWSLETTER_CTA:START -->
+<aside class="newsletter-nudge" aria-label="Email essays">
+  <div class="newsletter-nudge-kicker">Email essays</div>
+  <p><strong>Want the next model rebuilt like this?</strong>
+    <a href="#newsletter-rows-columns-and-what-they-cost-form" data-newsletter-jump data-newsletter-jump-source="web:article:rows-columns-and-what-they-cost:early:v1">Get the next essay by email&nbsp;↓</a>
+  </p>
+</aside>
+<!-- NEWSLETTER_CTA:END -->
+
+<h2 id="from-inequalities-to-a-basis">From inequalities to a basis</h2>
 
     <p>To explain what the simplex method manipulates, rewrite the model in <strong>standard form</strong>: equality constraints and non-negative variables. This is mathematical bookkeeping; modern software can do it internally. Begin with the nine-requirement system <em>Ax</em> ≥ <em>b</em>. Define the <strong>surplus vector</strong> <em>s</em> = <em>Ax</em> − <em>b</em>: its nine entries record the amount supplied above each floor. If a diet supplies 1.1 grams of calcium against a 0.8-gram minimum, the calcium entry of <em>s</em> is 0.3; if it supplies exactly 0.8, that entry is zero.</p>
 
@@ -841,14 +850,23 @@ text{font-family:"Plex Mono",ui-monospace,monospace;fill:#0a0a0a;font-size:12px}
       <li>James Renegar, <a href="https://doi.org/10.1137/0805026">“Incorporating Condition Measures into the Complexity Theory of Linear Programming”</a>, <em>SIAM Journal on Optimization</em> 5, no. 3 (1995): 506–524. Renegar replaces a size-only view with condition measures related to the data accuracy needed for the computational goal.</li>
       <li>Daniel Kuhn, <em>Convex Optimization</em> (MGT-418), introductory lecture on efficient numerical methods, EPFL; <a href="https://edu.epfl.ch/coursebook/en/convex-optimization-MGT-418">official course description</a> and <a href="https://graphsearch.epfl.ch/en/lecture/0_eeim3o0x">public lecture record</a>. I took this course; the arithmetic-complexity black-box framing above is my paraphrase of Professor Kuhn's introductory lecture. The official course description separately notes that formulation can separate seconds from days.</li>
     </ol>
-
     <nav class="series-nav" aria-label="What Optimal Means series">
   <a href="/posts/the-last-place-optimal-means-anything"><small>Previous</small>The Last Place &quot;Optimal&quot; Means Anything</a>
   <a href="/posts/when-the-answer-is-yes-or-no"><small>Next</small>When the Answer Is Yes or No</a>
 </nav>
   </article>
 
-  <!-- NEWSLETTER_SIGNUP:START -->
+  <!-- RELATED_WRITING:START -->
+<nav class="related-writing" aria-labelledby="related-rows-columns-and-what-they-cost-title">
+  <h2 id="related-rows-columns-and-what-they-cost-title">Related writing</h2>
+  <ul>
+    <li><a href="/posts/five-hundred-years-of-data">Five Hundred Years of Data</a><small>Finance</small></li>
+    <li><a href="/posts/commodity-trading-world">The Swiss Commodity Trading World, on Two Axes</a><small>Commodities</small></li>
+  </ul>
+</nav>
+<!-- RELATED_WRITING:END -->
+
+<!-- NEWSLETTER_SIGNUP:START -->
 <section class="newsletter-signup newsletter-signup--article" aria-labelledby="newsletter-rows-columns-and-what-they-cost-title" data-newsletter-placement="web:article:rows-columns-and-what-they-cost:end:v1">
 <div class="newsletter-box">
   <div class="newsletter-kicker">Email essays</div>
@@ -864,7 +882,7 @@ text{font-family:"Plex Mono",ui-monospace,monospace;fill:#0a0a0a;font-size:12px}
       <input type="checkbox" data-newsletter-consent required>
       <span>I agree to receive Spatium Novum essays and occasional research notes by email. I can unsubscribe at any time. <a href="/privacy#email">Privacy details</a>.</span>
     </label>
-    <input type="hidden" name="fields[signup_source]" value="web:article:rows-columns-and-what-they-cost:end:v1">
+    <input type="hidden" data-newsletter-attribution name="fields[signup_source]" value="web:article:rows-columns-and-what-they-cost:end:v1">
     <input type="hidden" name="ml-submit" value="1">
     <input type="hidden" name="anticsrf" value="true">
     <p class="newsletter-status" id="newsletter-rows-columns-and-what-they-cost-status" role="status" aria-live="polite" data-newsletter-status></p>
@@ -886,7 +904,7 @@ text{font-family:"Plex Mono",ui-monospace,monospace;fill:#0a0a0a;font-size:12px}
   <div><a href="/">Writing</a> · <a href="mailto:notes@spatium-novum.com">Contact</a> · <a href="/feed.xml">RSS</a> · <a href="/privacy">Privacy</a></div>
 </div></footer>
 
-<script defer src="/assets/newsletter-form.js"></script>
+<script defer src="/assets/newsletter-form.js?v=20260823-cta"></script>
 
 <!-- Cloudflare Web Analytics — cookieless traffic and performance measurement; see /privacy. -->
 <script defer src="/assets/article-viz.js"></script>
