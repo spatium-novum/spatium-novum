@@ -7,6 +7,14 @@
     <language>en</language>
     <atom:link href="https://spatium-novum.com/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
+      <title>From the Frontier to the Market</title>
+      <link>https://spatium-novum.com/posts/from-the-frontier-to-the-market</link>
+      <guid isPermaLink="true">https://spatium-novum.com/posts/from-the-frontier-to-the-market</guid>
+      <description>Markowitz asked how one investor should choose given a set of beliefs. CAPM asked which expected returns could survive when everyone's holdings had to add up to the market.</description>
+      <category>Finance</category>
+      <pubDate>Thu, 03 Sep 2026 09:00:00 +0000</pubDate>
+    </item>
+    <item>
       <title>Five Hundred Years of Data</title>
       <link>https://spatium-novum.com/posts/five-hundred-years-of-data</link>
       <guid isPermaLink="true">https://spatium-novum.com/posts/five-hundred-years-of-data</guid>

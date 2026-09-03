@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CAPM after Markowitz: Portfolio Choice Meets the Market — Spatium Novum</title>
+<meta name="description" content="How CAPM turns Markowitz’s individual portfolio problem into a market equilibrium—and what happens when its assumptions meet historical returns.">
+<meta name="author" content="Denis Joly">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111110" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://spatium-novum.com/posts/from-the-frontier-to-the-market">
+<meta property="og:site_name" content="Spatium Novum">
+<meta property="og:title" content="From the Frontier to the Market">
+<meta property="og:description" content="Markowitz asked how one investor should choose given a set of beliefs. CAPM asked which expected returns could survive when everyone's holdings had to add up to the market.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://spatium-novum.com/posts/from-the-frontier-to-the-market">
+<meta property="og:image" content="https://spatium-novum.com/assets/og-from-the-frontier-to-the-market.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Spatium Novum social card for From the Frontier to the Market.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://spatium-novum.com/assets/og-from-the-frontier-to-the-market.png">
+<meta name="twitter:image:alt" content="Spatium Novum social card for From the Frontier to the Market.">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/favicon-180.png">
+<link rel="alternate" type="application/rss+xml" title="Spatium Novum" href="/feed.xml">
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/visuals.css">
+<!-- STRUCTURED_DATA:START -->
+<meta property="article:published_time" content="2026-09-03">
+<meta property="article:modified_time" content="2026-09-03">
+<meta property="article:section" content="Finance">
+<meta property="article:author" content="Denis Joly">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": "https://spatium-novum.com/posts/from-the-frontier-to-the-market#article",
+  "url": "https://spatium-novum.com/posts/from-the-frontier-to-the-market",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://spatium-novum.com/posts/from-the-frontier-to-the-market"
+  },
+  "headline": "From the Frontier to the Market",
+  "description": "Markowitz asked how one investor should choose given a set of beliefs. CAPM asked which expected returns could survive when everyone's holdings had to add up to the market.",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://spatium-novum.com/assets/og-from-the-frontier-to-the-market.png",
+    "width": 1200,
+    "height": 630
+  },
+  "datePublished": "2026-09-03",
+  "dateModified": "2026-09-03",
+  "articleSection": "Finance",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "@id": "https://spatium-novum.com/about#denis-joly",
+    "name": "Denis Joly",
+    "url": "https://spatium-novum.com/about",
+    "sameAs": [
+      "https://www.linkedin.com/in/denis-a-joly/",
+      "https://github.com/Denis-Joly"
+    ]
+  },
+  "publisher": {
+    "@type": "Person",
+    "@id": "https://spatium-novum.com/about#denis-joly",
+    "name": "Denis Joly",
+    "url": "https://spatium-novum.com/about",
+    "sameAs": [
+      "https://www.linkedin.com/in/denis-a-joly/",
+      "https://github.com/Denis-Joly"
+    ]
+  },
+  "isPartOf": {
+    "@id": "https://spatium-novum.com/#website"
+  }
+}
+</script>
+<!-- STRUCTURED_DATA:END -->
+</head>
+<body>
+
+<header class="site-head"><div class="bar">
+  <a class="brand" href="/">Spatium<span class="dot">·</span>Novum</a>
+  <nav class="nav">
+    <a href="/">Writing</a>
+    <a href="/about">About</a>
+  </nav>
+</div></header>
+
+<main class="post"><div class="wrap">
+  <!-- La rubrique s'affiche dans la colonne de gauche (.meta .tag), pas au-dessus du titre. -->
+  <h1>From the Frontier to the Market</h1>
+  <div class="meta">
+    <span class="tag">Finance</span>
+    <span>Denis Joly</span>
+    <time data-sn-published datetime="2026-09-03">September 3, 2026</time>
+    <span>~13 min read</span>
+  </div>
+  <nav class="toc">
+    <div class="toc-h">Contents</div>
+    <ul>
+      <li><a href="#tl-dr">TL;DR</a></li>
+      <li><a href="#the-equality-markowitz-did-not-need">The equality Markowitz did not need</a></li>
+      <li><a href="#the-portfolio-everyone-owns">The portfolio everyone owns</a></li>
+      <li><a href="#two-lines-two-questions">Two lines, two questions</a></li>
+      <li><a href="#what-each-assumption-carries">What each assumption carries</a></li>
+      <li><a href="#the-market-no-one-observes">The market no one observes</a></li>
+      <li><a href="#what-capm-changed">What CAPM changed</a></li>
+      <li><a href="#data-and-code">Data and code</a></li>
+      <li><a href="#references">References</a></li>
+    </ul>
+  </nav>
+
+  <article>
+    <aside class="callout">
+<div class="callout-h">Beyond Markowitz · 2</div>
+<p>The <a href="/posts/five-hundred-years-of-data">first essay</a> asked where expected returns and covariances come from. This one asks what changes when individual choices must clear an entire market.</p>
+</aside>
+
+    <h2 id="tl-dr">TL;DR</h2>
+
+    <ul>
+      <li>Beta began as a way to compress a covariance matrix. The CAPM turned it into the equilibrium measure of exposure to aggregate market risk, priced by the market premium.</li>
+      <li>Markowitz maps beliefs to portfolios. With common beliefs, a risk-free asset and market clearing, the CAPM adds one decisive identity: the common tangency portfolio must be the value-weighted market portfolio.</li>
+      <li>The Capital Market Line prices total volatility only for efficient combinations of cash and the market. The Security Market Line prices beta for every asset and portfolio. They are not interchangeable pictures.</li>
+      <li>In a controlled population, replacing the true market with a 90.30%-correlated public-assets proxy creates apparent alphas as large as 3.36% a year even though the underlying expected returns do not change.</li>
+      <li>The true market in the theory includes aggregate risky wealth, not merely listed US equities. Any empirical CAPM result is therefore joint with the chosen proxy: the centre of Richard Roll's critique.</li>
+    </ul>
+
+    <p>Beta did not begin as a theory of expected returns. It began as a way to avoid calculating every covariance.</p>
+
+    <p>In 1963, William Sharpe was trying to make Markowitz practical. Two thousand securities implied 1,999,000 distinct pairwise covariances. A conventional quadratic programme had to carry the entire web. Sharpe instead described each security through its relationship with one common index and a security-specific residual. The index model reduced the web to a loading for each security, the variance of the index and residual variances. In his experiment, the resulting portfolio analysis could cost as little as two per cent of the full calculation.[1]</p>
+
+    <p>The loading became beta. At that point it was a compression device: a claim about how returns moved together, useful because computers and estimates were scarce.</p>
+
+    <p>One year later, Sharpe gave the same object a different job. The index stopped being only a computational convenience. It became the portfolio investors collectively had to own, and beta became the quantity connecting one asset's expected return to that market.[2]</p>
+
+    <p>That change, from shortcut to equilibrium, is the CAPM.</p>
+
+    <h2 id="the-equality-markowitz-did-not-need">The equality Markowitz did not need</h2>
+
+    <p>Markowitz's frontier is conditional. Supply a mean vector and a covariance matrix, and it returns portfolios that are efficient for those inputs. The model does not require another investor to share them. It does not require the chosen holdings to resemble the assets available in the economy. One person's optimum can be another person's short position.</p>
+
+    <p>The CAPM reverses the direction of the question. Instead of asking which portfolio follows from a set of expected returns, it asks which expected returns could be consistent with investors choosing portfolios whose holdings, once added together, equal the assets in supply. It is not a better estimator. It is an equilibrium restriction.</p>
+
+    <p>James Tobin had already supplied an essential geometric step in 1958. Investors who agree about risky returns and can combine risky assets with money choose the same efficient risky fund; their tolerance for risk changes how much money they place beside it.[3] But Tobin's common fund was not yet the market portfolio. To identify the two requires common beliefs across investors and a market-clearing argument.</p>
+
+    <p>Sharpe made that move in print in 1964. John Lintner derived a closely related model in 1965, and Jan Mossin closed it with particularly explicit equilibrium conditions in 1966.[4] Jack Treynor had reached much of the structure in an unpublished 1961 draft. The idea arrived by several routes because the missing step was in plain sight: if everyone solves the same portfolio problem, what portfolio can everyone collectively hold?</p>
+
+    <p>Sharpe's paper was initially rejected. The referee's main objection was precisely the assumption that investors agreed on the probability distribution of future returns. After correspondence and a change of editor, the paper was accepted. Sharpe later corrected the historical account himself, but not that substantive fact.[5] The assumption that made the result elegant was controversial before the result was famous.</p>
+
+    <h2 id="the-portfolio-everyone-owns">The portfolio everyone owns</h2>
+
+    <p>The CAPM first inherits Markowitz's decision rule: investors rank portfolios by mean and variance over the same set of risky assets. Now suppose every investor sees the same expected returns, variances and covariances, and give everyone access to the same risk-free rate. The efficient frontier is then the same for all of them, and the line drawn from the risk-free asset touches that frontier at the same risky portfolio.</p>
+
+    <p>Risk tolerance still matters. A cautious investor holds more of the risk-free asset; an aggressive investor holds more of the tangency portfolio and, in the textbook version, may borrow to lever it. What risk tolerance does not change is the composition of the risky fund. Everyone wants the same one.</p>
+
+    <p>Now aggregate their positions. Investors can disagree about how much risk to take, but the shares they own must add up to the shares that exist. The common risky portfolio must therefore coincide with aggregate risky wealth, with each asset weighted by its market value. The CAPM's decisive move is an identity:</p>
+
+    <div class="display-math display-math-signal" role="img" aria-label="The tangency portfolio T equals the aggregate market portfolio M">
+  <span><i>T</i> = <i>M</i></span>
+</div>
+
+    <p>Once that identity holds, expected returns cannot be chosen freely. For any asset <em>i</em>,</p>
+
+    <div class="display-math" role="img" aria-label="Expected return on asset i minus the risk free rate equals beta i times expected market return minus the risk free rate; beta i equals covariance of asset i with the market divided by market variance">
+  <span>E[<i>R</i><sub>i</sub>] − <i>R</i><sub>f</sub> = β<sub>i</sub>(E[<i>R</i><sub>M</sub>] − <i>R</i><sub>f</sub>)</span>
+  <span>β<sub>i</sub> = Cov(<i>R</i><sub>i</sub>, <i>R</i><sub>M</sub>) / Var(<i>R</i><sub>M</sub>)</span>
+</div>
+
+    <p>The first essay's estimation problem has not disappeared. The CAPM has placed structure around it. Instead of <em>N</em> unrelated expected returns, it gives one risk-free rate, one market premium and <em>N</em> covariances relative to the market.</p>
+
+    <p>The companion study makes that structure literal. I choose an eight-asset positive-definite covariance matrix, the quantities of those assets in aggregate supply, a 2% risk-free rate and a 6% market premium. I then construct the expected returns implied by the CAPM. This is a population compatible with its equilibrium identities, not a simulation of investors trading their way to prices.</p>
+
+    <p>The resulting market portfolio earns 8% at 11.39% volatility. Solving the unconstrained tangency problem returns its supply weights exactly, to numerical precision. The point marked <em>T = M</em> is where portfolio choice becomes asset pricing.</p>
+
+    <figure class="fig fig-wide bm-static-figure">
+<style>
+.bm-static-figure .bm-figure-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.bm-static-figure .bm-figure-scroll svg{display:block;min-width:680px;}
+.bm-static-figure .bm-mobile-hint{display:none;color:var(--muted,#686862);font:10px/1.4 "IBM Plex Mono",ui-monospace,monospace;margin:.4rem 0 0;}
+@media(max-width:680px){.bm-static-figure .bm-mobile-hint{display:block;}}
+</style>
+<div class="bm-figure-scroll" tabindex="0" role="region" aria-label="Scrollable chart of the efficient frontier and Capital Market Line">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 430" width="100%" role="img" aria-labelledby="bm2-frontier-title bm2-frontier-desc">
+<title id="bm2-frontier-title">The synthetic market portfolio is the tangency portfolio</title>
+<desc id="bm2-frontier-desc">Expected return against volatility for an eight-asset controlled economy. The Capital Market Line touches the efficient frontier exactly at the value-weighted market portfolio.</desc>
+<style>text{font:11px/1.2 "IBM Plex Mono",ui-monospace,monospace;fill:var(--ink, #181817)}.muted{fill:var(--muted, #686862);font-size:10px}.rule{stroke:var(--rule, #d9d7d1);stroke-width:.75}</style>
+<line class="rule" x1="66.0" x2="66.0" y1="42" y2="375"/>
+<text class="muted" x="66.0" y="395" text-anchor="middle">0%</text>
+<line class="rule" x1="209.3" x2="209.3" y1="42" y2="375"/>
+<text class="muted" x="209.3" y="395" text-anchor="middle">5%</text>
+<line class="rule" x1="352.5" x2="352.5" y1="42" y2="375"/>
+<text class="muted" x="352.5" y="395" text-anchor="middle">10%</text>
+<line class="rule" x1="495.8" x2="495.8" y1="42" y2="375"/>
+<text class="muted" x="495.8" y="395" text-anchor="middle">15%</text>
+<line class="rule" x1="639.1" x2="639.1" y1="42" y2="375"/>
+<text class="muted" x="639.1" y="395" text-anchor="middle">20%</text>
+<line class="rule" x1="66" x2="768" y1="359.4" y2="359.4"/>
+<text class="muted" x="57" y="362.4" text-anchor="end">2%</text>
+<line class="rule" x1="66" x2="768" y1="297.2" y2="297.2"/>
+<text class="muted" x="57" y="300.2" text-anchor="end">4%</text>
+<line class="rule" x1="66" x2="768" y1="235.0" y2="235.0"/>
+<text class="muted" x="57" y="238.0" text-anchor="end">6%</text>
+<line class="rule" x1="66" x2="768" y1="172.7" y2="172.7"/>
+<text class="muted" x="57" y="175.7" text-anchor="end">8%</text>
+<line class="rule" x1="66" x2="768" y1="110.5" y2="110.5"/>
+<text class="muted" x="57" y="113.5" text-anchor="end">10%</text>
+<line class="rule" x1="66" x2="768" y1="48.2" y2="48.2"/>
+<text class="muted" x="57" y="51.2" text-anchor="end">12%</text>
+<path d="M 322.0 244.7 L 322.0 243.2 L 322.1 241.6 L 322.3 240.1 L 322.5 238.6 L 322.8 237.1 L 323.2 235.5 L 323.7 234.0 L 324.2 232.5 L 324.8 231.0 L 325.5 229.4 L 326.3 227.9 L 327.1 226.4 L 328.0 224.9 L 328.9 223.3 L 329.9 221.8 L 331.0 220.3 L 332.1 218.8 L 333.4 217.2 L 334.6 215.7 L 336.0 214.2 L 337.4 212.7 L 338.8 211.2 L 340.3 209.6 L 341.9 208.1 L 343.5 206.6 L 345.2 205.1 L 347.0 203.5 L 348.8 202.0 L 350.6 200.5 L 352.5 199.0 L 354.5 197.4 L 356.5 195.9 L 358.5 194.4 L 360.6 192.9 L 362.8 191.3 L 365.0 189.8 L 367.2 188.3 L 369.5 186.8 L 371.8 185.3 L 374.2 183.7 L 376.6 182.2 L 379.0 180.7 L 381.5 179.2 L 384.1 177.6 L 386.6 176.1 L 389.2 174.6 L 391.9 173.1 L 394.5 171.5 L 397.2 170.0 L 400.0 168.5 L 402.8 167.0 L 405.6 165.4 L 408.4 163.9 L 411.3 162.4 L 414.2 160.9 L 417.1 159.3 L 420.0 157.8 L 423.0 156.3 L 426.0 154.8 L 429.0 153.3 L 432.1 151.7 L 435.2 150.2 L 438.3 148.7 L 441.4 147.2 L 444.6 145.6 L 447.7 144.1 L 450.9 142.6 L 454.2 141.1 L 457.4 139.5 L 460.6 138.0 L 463.9 136.5 L 467.2 135.0 L 470.5 133.4 L 473.9 131.9 L 477.2 130.4 L 480.6 128.9 L 484.0 127.4 L 487.4 125.8 L 490.8 124.3 L 494.2 122.8 L 497.7 121.3 L 501.1 119.7 L 504.6 118.2 L 508.1 116.7 L 511.6 115.2 L 515.1 113.6 L 518.7 112.1 L 522.2 110.6 L 525.8 109.1 L 529.3 107.5 L 532.9 106.0 L 536.5 104.5 L 540.1 103.0 L 543.7 101.5 L 547.4 99.9 L 551.0 98.4 L 554.6 96.9 L 558.3 95.4 L 562.0 93.8 L 565.7 92.3 L 569.4 90.8 L 573.1 89.3 L 576.8 87.7 L 580.5 86.2 L 584.2 84.7 L 587.9 83.2 L 591.7 81.6 L 595.4 80.1 L 599.2 78.6 L 603.0 77.1 L 606.7 75.5 L 610.5 74.0 L 614.3 72.5 L 618.1 71.0 L 621.9 69.5 L 625.7 67.9 L 629.6 66.4 L 633.4 64.9 L 637.2 63.4 L 641.1 61.8" fill="none" stroke="var(--ink, #181817)" stroke-width="2"/>
+<line x1="66.0" y1="359.4" x2="768.0" y2="-42.1" stroke="var(--signal, #d5222a)" stroke-width="2"/>
+<circle cx="658.8" cy="82.2" r="3.2" fill="var(--muted, #686862)"/>
+<circle cx="617.9" cy="110.4" r="3.2" fill="var(--muted, #686862)"/>
+<circle cx="603.6" cy="140.1" r="3.2" fill="var(--muted, #686862)"/>
+<circle cx="557.3" cy="225.2" r="3.2" fill="var(--muted, #686862)"/>
+<circle cx="609.7" cy="191.9" r="3.2" fill="var(--muted, #686862)"/>
+<circle cx="582.6" cy="298.6" r="3.2" fill="var(--muted, #686862)"/>
+<circle cx="685.9" cy="158.0" r="3.2" fill="var(--muted, #686862)"/>
+<circle cx="725.0" cy="302.9" r="3.2" fill="var(--muted, #686862)"/>
+<circle cx="392.5" cy="172.7" r="6" fill="var(--signal, #d5222a)" stroke="var(--paper, #ffffff)" stroke-width="2"/>
+<text x="402.5" y="164.7">T = M</text>
+<text class="muted" x="402.5" y="180.7">11.4% vol · 8.0% return</text>
+<text x="610.4" y="39.1" fill="var(--signal, #d5222a)">Capital Market Line</text>
+<text x="573.2" y="101.1">efficient frontier</text>
+<text class="muted" x="417.0" y="415" text-anchor="middle">annual volatility</text>
+<text class="muted" transform="translate(16 208.5) rotate(-90)" text-anchor="middle">expected return</text>
+</svg>
+</div>
+<p class="bm-mobile-hint" aria-hidden="true">Swipe horizontally to inspect the full figure →</p>
+<figcaption><strong>Figure 1 — The equality that creates CAPM.</strong> In this controlled eight-asset economy, expected returns are constructed from the covariance matrix and aggregate supply. The value-weighted market earns 8.0% at 11.4% volatility and is exactly the unconstrained tangency portfolio; the maximum weight discrepancy is 0.0e+00. Individual assets need not lie on the Capital Market Line.</figcaption>
+</figure>
+
+    <p>The grey dots in the figure are individual assets. Most sit below the red line. The model predicts exactly that, and the reason is the distinction between the two lines that carry it.</p>
+
+<!-- NEWSLETTER_CTA:START -->
+<aside class="newsletter-nudge" aria-label="Email essays">
+  <div class="newsletter-nudge-kicker">Email essays</div>
+  <p><strong>Want the next model rebuilt like this?</strong>
+    <a href="#newsletter-from-the-frontier-to-the-market-form" data-newsletter-jump data-newsletter-jump-source="web:article:from-the-frontier-to-the-market:early:v1">Get the next essay by email&nbsp;↓</a>
+  </p>
+</aside>
+<!-- NEWSLETTER_CTA:END -->
+
+<h2 id="two-lines-two-questions">Two lines, two questions</h2>
+
+    <p>The <strong>Capital Market Line</strong> lives in total-risk space. Its horizontal axis is portfolio volatility. It contains only efficient combinations of the risk-free asset and the market portfolio:</p>
+
+    <div class="display-math" role="img" aria-label="Expected return on an efficient complete portfolio C equals the risk free rate plus portfolio C volatility divided by market volatility times the market risk premium">
+  <span>E[<i>R</i><sub>C</sub>] = <i>R</i><sub>f</sub> + (σ<sub>C</sub> / σ<sub>M</sub>)(E[<i>R</i><sub>M</sub>] − <i>R</i><sub>f</sub>)</span>
+</div>
+
+    <p>Its slope is the market's Sharpe ratio. Move along it and the composition of the risky fund stays fixed; only the balance between that fund and the risk-free asset changes. The line answers a portfolio question: among efficient complete portfolios, how much expected return accompanies another unit of total volatility?</p>
+
+    <p>The <strong>Security Market Line</strong> lives in beta space. It applies, in the model, to every asset and every portfolio. Its slope is the market risk premium. It answers a pricing question: how much expected return accompanies another unit of covariance exposure to the market?</p>
+
+    <p>An individual stock can therefore sit below the Capital Market Line and exactly on the Security Market Line. Its standalone volatility contains firm-specific risk that a diversified investor can remove. The CAPM does not promise compensation for a risk the market can discard by combining assets. It prices the part that travels with aggregate wealth.</p>
+
+    <p>This also says what beta is not. It is not total risk, a forecast of return or a causal effect of the market on a company. It is a covariance ratio relative to a specified portfolio. Change that portfolio and beta changes before any asset return does.</p>
+
+    <p>That dependence is a detail in the equation and the centre of the empirical problem.</p>
+
+    <p>In the controlled population, every asset lies exactly on the Security Market Line when beta is measured against aggregate wealth. I then create a public-assets proxy by removing private firms and property and renormalising the six remaining weights. No expected return or covariance changes. Only the portfolio labelled “market” does.</p>
+
+    <p>The proxy's return is still 90.30% correlated with the true market. It nevertheless assigns different betas and produces population pricing errors of up to 3.36% a year. A milder step only one fifth of the way from the true market to the incomplete proxy remains 99.44% correlated and already produces an apparent alpha of 0.66%. Alpha here is a vertical population pricing error against the proxy's Security Market Line; in the historical exercise below, alpha will instead be an estimated regression intercept.</p>
+
+    <figure class="fig fig-wide bm-static-figure">
+<style>
+.bm-static-figure .bm-figure-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.bm-static-figure .bm-figure-scroll svg{display:block;min-width:680px;}
+.bm-static-figure .bm-mobile-hint{display:none;color:var(--muted,#686862);font:10px/1.4 "IBM Plex Mono",ui-monospace,monospace;margin:.4rem 0 0;}
+@media(max-width:680px){.bm-static-figure .bm-mobile-hint{display:block;}}
+</style>
+<div class="bm-figure-scroll" tabindex="0" role="region" aria-label="Scrollable comparison of true-market and proxy Security Market Lines">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="100%" role="img" aria-labelledby="bm2-sml-title bm2-sml-desc">
+<title id="bm2-sml-title">True-market and incomplete-proxy Security Market Lines</title>
+<desc id="bm2-sml-desc">Two panels show the same eight synthetic assets. With true-market beta every asset lies on the Security Market Line. Omitting private firms and property changes beta and creates population alpha despite 90.3 percent return correlation.</desc>
+<style>text{font:11px/1.2 "IBM Plex Mono",ui-monospace,monospace;fill:var(--ink, #181817)}.muted{fill:var(--muted, #686862);font-size:10px}.rule{stroke:var(--rule, #d9d7d1);stroke-width:.75}</style>
+<line class="rule" x1="62" x2="382" y1="348.8" y2="348.8"/>
+<line class="rule" x1="447" x2="767" y1="348.8" y2="348.8"/>
+<text class="muted" x="54" y="351.8" text-anchor="end">2%</text>
+<line class="rule" x1="62" x2="382" y1="287.1" y2="287.1"/>
+<line class="rule" x1="447" x2="767" y1="287.1" y2="287.1"/>
+<text class="muted" x="54" y="290.1" text-anchor="end">4%</text>
+<line class="rule" x1="62" x2="382" y1="225.5" y2="225.5"/>
+<line class="rule" x1="447" x2="767" y1="225.5" y2="225.5"/>
+<text class="muted" x="54" y="228.5" text-anchor="end">6%</text>
+<line class="rule" x1="62" x2="382" y1="163.8" y2="163.8"/>
+<line class="rule" x1="447" x2="767" y1="163.8" y2="163.8"/>
+<text class="muted" x="54" y="166.8" text-anchor="end">8%</text>
+<line class="rule" x1="62" x2="382" y1="102.1" y2="102.1"/>
+<line class="rule" x1="447" x2="767" y1="102.1" y2="102.1"/>
+<text class="muted" x="54" y="105.1" text-anchor="end">10%</text>
+<text class="muted" x="62.0" y="375" text-anchor="middle">0.0</text>
+<text class="muted" x="447.0" y="375" text-anchor="middle">0.0</text>
+<text class="muted" x="165.2" y="375" text-anchor="middle">0.5</text>
+<text class="muted" x="550.2" y="375" text-anchor="middle">0.5</text>
+<text class="muted" x="268.5" y="375" text-anchor="middle">1.0</text>
+<text class="muted" x="653.5" y="375" text-anchor="middle">1.0</text>
+<text class="muted" x="371.7" y="375" text-anchor="middle">1.5</text>
+<text class="muted" x="756.7" y="375" text-anchor="middle">1.5</text>
+<text x="222.0" y="28" text-anchor="middle">true aggregate market</text>
+<text class="muted" x="222.0" y="44" text-anchor="middle">all assets lie on the SML</text>
+<text x="607.0" y="28" text-anchor="middle">public-assets proxy</text>
+<text class="muted" x="607.0" y="44" text-anchor="middle">private firms and property omitted</text>
+<line x1="62.0" y1="348.8" x2="382.0" y2="62.0" stroke="var(--ink, #181817)" stroke-width="1.7"/>
+<line x1="447.0" y1="348.8" x2="767.0" y2="17.7" stroke="var(--ink, #181817)" stroke-width="1.7"/>
+<circle cx="368.5" cy="74.1" r="4" fill="var(--muted, #686862)"/>
+<line x1="713.9" x2="713.9" y1="72.7" y2="74.1" stroke="var(--muted, #686862)" stroke-width="2"/>
+<circle cx="713.9" cy="74.1" r="4" fill="var(--muted, #686862)"/>
+<circle cx="337.3" cy="102.0" r="4" fill="var(--muted, #686862)"/>
+<line x1="683.6" x2="683.6" y1="104.0" y2="102.0" stroke="var(--muted, #686862)" stroke-width="2"/>
+<circle cx="683.6" cy="102.0" r="4" fill="var(--muted, #686862)"/>
+<circle cx="304.5" cy="131.5" r="4" fill="var(--muted, #686862)"/>
+<line x1="651.7" x2="651.7" y1="137.0" y2="131.5" stroke="var(--muted, #686862)" stroke-width="2"/>
+<circle cx="651.7" cy="131.5" r="4" fill="var(--muted, #686862)"/>
+<circle cx="210.4" cy="215.8" r="4" fill="var(--muted, #686862)"/>
+<line x1="584.1" x2="584.1" y1="207.0" y2="215.8" stroke="var(--muted, #686862)" stroke-width="2"/>
+<circle cx="584.1" cy="215.8" r="4" fill="var(--muted, #686862)"/>
+<circle cx="247.2" cy="182.8" r="4" fill="var(--muted, #686862)"/>
+<line x1="599.0" x2="599.0" y1="191.5" y2="182.8" stroke="var(--muted, #686862)" stroke-width="2"/>
+<circle cx="599.0" cy="182.8" r="4" fill="var(--muted, #686862)"/>
+<circle cx="129.2" cy="288.6" r="4" fill="var(--muted, #686862)"/>
+<line x1="516.1" x2="516.1" y1="277.4" y2="288.6" stroke="var(--muted, #686862)" stroke-width="2"/>
+<circle cx="516.1" cy="288.6" r="4" fill="var(--muted, #686862)"/>
+<circle cx="284.7" cy="149.2" r="4" fill="var(--muted, #686862)"/>
+<line x1="539.8" x2="539.8" y1="252.9" y2="149.2" stroke="var(--signal, #d5222a)" stroke-width="2"/>
+<circle cx="539.8" cy="149.2" r="4" fill="var(--signal, #d5222a)"/>
+<text x="546.8" y="143.2" fill="var(--signal, #d5222a)">private · alpha +3.36%</text>
+<circle cx="124.5" cy="292.8" r="4" fill="var(--muted, #686862)"/>
+<line x1="445.1" x2="445.1" y1="350.8" y2="292.8" stroke="var(--signal, #d5222a)" stroke-width="2"/>
+<circle cx="445.1" cy="292.8" r="4" fill="var(--signal, #d5222a)"/>
+<text x="452.1" y="286.8" fill="var(--signal, #d5222a)">property · alpha +1.88%</text>
+<text class="muted" x="222.0" y="402" text-anchor="middle">beta to true market</text>
+<text class="muted" x="607.0" y="402" text-anchor="middle">beta to stated proxy</text>
+<text class="muted" transform="translate(15 208.5) rotate(-90)" text-anchor="middle">expected return</text>
+</svg>
+</div>
+<p class="bm-mobile-hint" aria-hidden="true">Swipe horizontally to inspect the full figure →</p>
+<figcaption><strong>Figure 2 — The line depends on the market.</strong> The left panel uses the known aggregate-wealth portfolio, so the population Security Market Line is exact by construction. The right panel drops private firms and property and renormalises the remaining weights. The proxy is 90.30% correlated with the true market, yet its largest population pricing error is 3.36% per year. These are analytical values, not a simulation.</figcaption>
+</figure>
+
+    <p>Nothing stochastic has been estimated in that figure. The errors are analytical. They appear because the wrong right-hand side was inserted into an exact population relation.</p>
+
+    <h2 id="what-each-assumption-carries">What each assumption carries</h2>
+
+    <p>Long lists of CAPM assumptions are easy to memorise and hard to interpret. The model first inherits Markowitz's one-period mean–variance setup; four further assumptions do most of the visible work.</p>
+
+    <p><strong>Common beliefs</strong> make investors see the same tangency portfolio. Remove that assumption and different investors can rationally demand different risky funds. Market clearing may still produce an equilibrium, but the one-fund identity no longer follows in the same way.</p>
+
+    <p><strong>Common borrowing and lending at the risk-free rate</strong> makes separation clean. Everyone combines the same risky fund with the same safe asset. In reality, households, banks and funds face different borrowing rates, leverage limits and short-sale rules. Fischer Black's zero-beta model would later show that a linear beta relation can survive without unrestricted risk-free borrowing, but with a different intercept.[6]</p>
+
+    <p><strong>Frictionless, divisible trading</strong> lets portfolios move along the lines without taxes, transaction costs or indivisibilities changing the choice. Those frictions matter especially when the model is turned from an equilibrium statement into an investment instruction.</p>
+
+    <p><strong>All risky assets and market clearing</strong> identify the tangency portfolio with the market. This is the assumption that gives beta its economic object. It is also the one an empirical researcher cannot simply download.</p>
+
+    <p>Each assumption is load-bearing at a different point. Relaxing one does not make every conclusion vanish, but it changes which line, intercept or portfolio the proof can carry. “The CAPM assumptions are unrealistic” is therefore less informative than asking which equality breaks.</p>
+
+    <h2 id="the-market-no-one-observes">The market no one observes</h2>
+
+    <p>The market portfolio in the theory is not automatically the S&amp;P 500, or even the CRSP value-weighted US equity portfolio. It is aggregate risky wealth: listed equities and risky debt worldwide, private businesses, property and other claims, with difficult questions around human capital and assets that are not traded at all.</p>
+
+    <p>An equity index is observable enough to calculate. The theoretical market is comprehensive enough to make the equilibrium argument work. Those are different virtues, attached to different objects.</p>
+
+    <p>Practitioners know this and use an equity index anyway, and the reason is not laziness. The proxy is the thing that exists as a file: a value-weighted return series with a start date, a licence and a maintainer, which a regression will accept without complaint. Aggregate risky wealth has no directly observed, comprehensive return series. The number is also usually wanted by a particular Thursday, for a valuation model whose other rows are already filled in; the discount rate is the last empty cell, and declining to fill it is not among the options. So we reach for the index, and the beta that comes back is a covariance with the portfolio we could download rather than the one the model names. Keeping the index is defensible; forgetting which portfolio the beta was measured against is what turns a covariance into a claim.</p>
+
+    <p>Early empirical studies substituted stock-market proxies and asked whether average returns rose linearly with estimated beta. Fama and MacBeth's influential 1973 study is often summarised as support for the CAPM. Their actual result was narrower. They rejected the Sharpe–Lintner restriction that the intercept equal the risk-free rate, while finding evidence compatible with Black's two-parameter version, conditional on their market proxy being at least approximately efficient.[7]</p>
+
+    <p>Richard Roll made the condition the subject of the paper in 1977. His argument was sharper than “proxies are imperfect.” For a candidate market portfolio, mean–variance efficiency and the linear expected-return relation with beta are mathematically linked. The model's familiar implications are not separate empirical hurdles. They follow from the efficiency of the portfolio called the market.[8]</p>
+
+    <p>That produces a joint test. Reject the beta relation and the theory may be wrong, the proxy may be wrong, or both may be wrong. Fail to reject it and the chosen proxy may simply happen to be efficient for the assets in the test. The true market remains offstage in either case.</p>
+
+    <p>Roll showed how much this could matter with the data used by Black, Jensen and Scholes. He exhibited an alternative proxy correlated 0.895 with theirs that supported perfectly the model their proxy rejected.[8][9] A correlation that looks reassuring can conceal a different geometric verdict. The synthetic result above recreates the mechanism without claiming to recreate their sample.</p>
+
+    <p>For a real-data diagnostic, the companion study uses Kenneth French's pinned July 2025 archive. Six value-weighted portfolios formed on size and book-to-market are regressed on French's US equity market excess return from July 1963 to July 2025. Individual alphas use Newey–West uncertainty. I also report the Gibbons–Ross–Shanken statistic, which tests the six intercepts jointly.[10][11]</p>
+
+    <p>The result is 7.67 on an <em>F</em>(6, 738) reference distribution, with a p-value of 5.21 × 10<sup>−8</sup>. Under the test's classical independent multivariate-normal assumptions, that rejects the mean–variance efficiency of this equity proxy relative to these six test portfolios.</p>
+
+    <p>The sentence needs every qualifier. The exact <em>F</em> law is not heteroskedasticity- or autocorrelation-robust. The test assets are selected portfolios, not every claim in the economy. Most importantly, French's factor is a US equity proxy, not aggregate wealth. Calling the result “CAPM rejected” would remove the very identification problem the calculation is meant to expose.</p>
+
+    <figure class="fig fig-wide bm-static-figure">
+<style>
+.bm-static-figure .bm-figure-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.bm-static-figure .bm-figure-scroll svg{display:block;min-width:680px;}
+.bm-static-figure .bm-mobile-hint{display:none;color:var(--muted,#686862);font:10px/1.4 "IBM Plex Mono",ui-monospace,monospace;margin:.4rem 0 0;}
+@media(max-width:680px){.bm-static-figure .bm-mobile-hint{display:block;}}
+</style>
+<div class="bm-figure-scroll" tabindex="0" role="region" aria-label="Scrollable chart of CAPM alpha estimates for six test portfolios">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="100%" role="img" aria-labelledby="bm2-real-proxy-title bm2-real-proxy-desc">
+<title id="bm2-real-proxy-title">Six portfolio CAPM alphas relative to the French US equity proxy</title>
+<desc id="bm2-real-proxy-desc">Annualized alpha estimates and individual 95 percent Newey-West intervals for six size and book-to-market portfolios from July 1963 to July 2025. The classical GRS test jointly rejects zero alpha for this stated proxy.</desc>
+<style>text{font:11px/1.2 "IBM Plex Mono",ui-monospace,monospace;fill:var(--ink, #181817)}.muted{fill:var(--muted, #686862);font-size:10px}.rule{stroke:var(--rule, #d9d7d1);stroke-width:.75}</style>
+<line class="rule" x1="191.7" x2="191.7" y1="90" y2="378"/>
+<text class="muted" x="191.7" y="403" text-anchor="middle">-5%</text>
+<line class="rule" x1="414.1" x2="414.1" y1="90" y2="378"/>
+<text class="muted" x="414.1" y="403" text-anchor="middle">+0%</text>
+<line class="rule" x1="636.6" x2="636.6" y1="90" y2="378"/>
+<text class="muted" x="636.6" y="403" text-anchor="middle">+5%</text>
+<text x="125" y="26">French Mkt-RF as the stated market proxy</text>
+<text class="muted" x="125" y="45">dots: annual alpha · bars: individual 95% HAC intervals</text>
+<rect x="125" y="61" width="645" height="31" rx="4" fill="var(--rule, #d9d7d1)" opacity=".45"/>
+<text x="135" y="81">GRS F(6, 738) = 7.67 · p = 5.21e-08</text>
+<text x="115" y="113.0" text-anchor="end">SMALL LoBM</text>
+<line x1="156.1" x2="427.4" y1="110.0" y2="110.0" stroke="var(--ink, #181817)" stroke-width="1.4"/>
+<circle cx="291.7" cy="110.0" r="4" fill="var(--ink, #181817)"/>
+<text x="115" y="164.6" text-anchor="end">ME1 BM2</text>
+<line x1="404.6" x2="640.6" y1="161.6" y2="161.6" stroke="var(--ink, #181817)" stroke-width="1.4"/>
+<circle cx="522.6" cy="161.6" r="4" fill="var(--ink, #181817)"/>
+<text x="115" y="216.2" text-anchor="end">SMALL HiBM</text>
+<line x1="436.7" x2="734.8" y1="213.2" y2="213.2" stroke="var(--signal, #d5222a)" stroke-width="1.4"/>
+<circle cx="585.7" cy="213.2" r="4" fill="var(--signal, #d5222a)"/>
+<text x="115" y="267.8" text-anchor="end">BIG LoBM</text>
+<line x1="367.9" x2="470.1" y1="264.8" y2="264.8" stroke="var(--ink, #181817)" stroke-width="1.4"/>
+<circle cx="419.0" cy="264.8" r="4" fill="var(--ink, #181817)"/>
+<text x="115" y="319.4" text-anchor="end">ME2 BM2</text>
+<line x1="351.6" x2="504.4" y1="316.4" y2="316.4" stroke="var(--ink, #181817)" stroke-width="1.4"/>
+<circle cx="428.0" cy="316.4" r="4" fill="var(--ink, #181817)"/>
+<text x="115" y="371.0" text-anchor="end">BIG HiBM</text>
+<line x1="389.5" x2="630.8" y1="368.0" y2="368.0" stroke="var(--ink, #181817)" stroke-width="1.4"/>
+<circle cx="510.2" cy="368.0" r="4" fill="var(--ink, #181817)"/>
+<text class="muted" x="447.5" y="418" text-anchor="middle">annualised regression alpha</text>
+</svg>
+</div>
+<p class="bm-mobile-hint" aria-hidden="true">Swipe horizontally to inspect the full figure →</p>
+<figcaption><strong>Figure 3 — A rejection with an asterisk.</strong> Monthly excess returns for six value-weighted US size-book-to-market portfolios are regressed on the French Mkt-RF equity proxy, 1963-07 to 2025-07. Bars are individual 95% normal intervals using Newey-West standard errors with 6 lags. The classical GRS statistic is 7.67, F(6, 738), p = 5.21e-08. Under its i.i.d.-normal reference assumptions, that rejects this proxy's mean-variance efficiency relative to these test assets. It does not isolate the CAPM from the proxy, assets or statistical assumptions.</figcaption>
+</figure>
+
+    <p>Fama and French gave the balanced verdict in 2004. The Sharpe–Lintner model's empirical record is poor enough to undermine common applications. Yet some of that record may reflect invalid tests, especially poor market proxies. The sting is that the escape route runs both ways: if a proxy is too poor to test the CAPM, it is also too poor to justify using the CAPM with that proxy to estimate a firm's cost of capital.[12]</p>
+
+    <p>Roll did not make the model useless. He made its empirical claim harder to isolate.</p>
+
+    <h2 id="what-capm-changed">What CAPM changed</h2>
+
+    <p>Markowitz conditionalised choice on beliefs. The CAPM used equilibrium to restrict those beliefs. It explained why covariance with collective wealth, rather than standalone variance, should carry a price. It supplied a benchmark for performance evaluation and a language for the cost of equity that remains embedded in finance.</p>
+
+    <p>The estimation problem exposed in the first essay remains. The CAPM traded a free expected-return vector for a disciplined relation whose central portfolio is not directly observable. That trade was intellectually powerful: fewer degrees of freedom, more economic structure, a prediction simple enough to test. It was also the source of the test's ambiguity.</p>
+
+    <p>The next repairs attack different parts of the chain. Black changes the risk-free assumption. Bayesian and shrinkage methods change the inputs. Black–Litterman uses equilibrium as a prior rather than a verdict. Those methods should not be called newer CAPMs merely because they arrived later; they answer different questions.</p>
+
+    <p>The frontier became the market. The market became a proxy.</p>
+
+    <h2 id="data-and-code">Data and code</h2>
+
+    <p>The <a href="https://github.com/Denis-Joly/beyond-markowitz/tree/main/experiments/02_from_frontier_to_market">Study 02 companion folder</a> contains the controlled population, pinned data manifest, numerical results, three generated figures and 77 experiment-level checks. The reusable package adds population beta and proxy-error calculations plus a classical GRS implementation with explicit rank and covariance checks.</p>
+
+    <p>The empirical inputs are the official Kenneth French July 2025 archives for the US research factors and six size–book-to-market portfolios. The fetch step verifies their recorded SHA-256 digests before any result is generated. Raw third-party files are not redistributed. Holding that recorded vintage and manifest fixed, a full verification run regenerates every JSON, CSV, SVG and HTML fragment in a temporary directory and requires byte-identical outputs.</p>
+
+    <h2 id="references">References</h2>
+
+    <ol>
+      <li>William F. Sharpe, <a href="https://doi.org/10.1287/mnsc.9.2.277">“A Simplified Model for Portfolio Analysis”</a>, <em>Management Science</em> 9, no. 2 (1963): 277–293.</li>
+      <li>William F. Sharpe, <a href="https://doi.org/10.1111/j.1540-6261.1964.tb02865.x">“Capital Asset Prices: A Theory of Market Equilibrium under Conditions of Risk”</a>, <em>Journal of Finance</em> 19, no. 3 (1964): 425–442; Sharpe, <a href="https://www.nobelprize.org/uploads/2018/06/sharpe-lecture.pdf">“Capital Asset Prices with and without Negative Holdings”</a>, Nobel lecture, 7 December 1990.</li>
+      <li>James Tobin, <a href="https://doi.org/10.2307/2296205">“Liquidity Preference as Behavior Towards Risk”</a>, <em>Review of Economic Studies</em> 25, no. 2 (1958): 65–86.</li>
+      <li>Jack L. Treynor, <a href="https://doi.org/10.2139/ssrn.2600356">“Market Value, Time, and Risk”</a>, rough draft dated 8 August 1961, released publicly in 2015; John Lintner, <a href="https://doi.org/10.2307/1924119">“The Valuation of Risk Assets and the Selection of Risky Investments in Stock Portfolios and Capital Budgets”</a>, <em>Review of Economics and Statistics</em> 47, no. 1 (1965): 13–37; Jan Mossin, <a href="https://doi.org/10.2307/1910098">“Equilibrium in a Capital Asset Market”</a>, <em>Econometrica</em> 34, no. 4 (1966): 768–783.</li>
+      <li>William F. Sharpe, <a href="https://web.stanford.edu/~wfsharpe/art/errors.html">“Errors and Corrections”</a>, 25 September 2007.</li>
+      <li>Fischer Black, <a href="https://doi.org/10.1086/295472">“Capital Market Equilibrium with Restricted Borrowing”</a>, <em>Journal of Business</em> 45, no. 3 (1972): 444–455.</li>
+      <li>Eugene F. Fama and James D. MacBeth, <a href="https://doi.org/10.1086/260061">“Risk, Return, and Equilibrium: Empirical Tests”</a>, <em>Journal of Political Economy</em> 81, no. 3 (1973): 607–636.</li>
+      <li>Richard Roll, <a href="https://doi.org/10.1016/0304-405X(77)90009-5">“A Critique of the Asset Pricing Theory's Tests. Part I: On Past and Potential Testability of the Theory”</a>, <em>Journal of Financial Economics</em> 4, no. 2 (1977): 129–176.</li>
+      <li>Fischer Black, Michael C. Jensen and Myron Scholes, <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=908569">“The Capital Asset Pricing Model: Some Empirical Tests”</a>, in Michael C. Jensen, ed., <em>Studies in the Theory of Capital Markets</em> (Praeger, 1972): 79–121.</li>
+      <li>Michael R. Gibbons, Stephen A. Ross and Jay Shanken, <a href="https://doi.org/10.2307/1913625">“A Test of the Efficiency of a Given Portfolio”</a>, <em>Econometrica</em> 57, no. 5 (1989): 1121–1152.</li>
+      <li>Kenneth R. French, <a href="https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/Data_Library.html">“Data Library: Historical Archives”</a>, July 2025 cuts for the US research factors and six portfolios formed on size and book-to-market, released August 2025.</li>
+      <li>Eugene F. Fama and Kenneth R. French, <a href="https://doi.org/10.1257/0895330042162430">“The Capital Asset Pricing Model: Theory and Evidence”</a>, <em>Journal of Economic Perspectives</em> 18, no. 3 (2004): 25–46.</li>
+    </ol>
+
+    <!-- AI_NOTE:START -->
+    <section class="ai-disclosure" aria-labelledby="ai-use-note">
+      <h2 id="ai-use-note">A note on AI</h2>
+      <p>I choose each article's topic and develop its first questions and ideas from books, lectures, conferences and research. I then use AI extensively for deeper research, sources and citations, argument development, prose, code and figures. I reread, revise and work to understand the result, and I take responsibility for what is published. <a href="/ai-use">Read my full AI-use statement</a>.</p>
+    </section>
+    <!-- AI_NOTE:END -->
+    <nav class="series-nav" aria-label="Beyond Markowitz series">
+  <a href="/posts/five-hundred-years-of-data"><small>Previous</small>Five Hundred Years of Data</a>
+  <span><small>Next</small>Everything We Built to Save Markowitz</span>
+</nav>
+  </article>
+
+  <!-- RELATED_WRITING:START -->
+<nav class="related-writing" aria-labelledby="related-from-the-frontier-to-the-market-title">
+  <h2 id="related-from-the-frontier-to-the-market-title">Related writing</h2>
+  <ul>
+    <li><a href="/posts/optimising-against-a-guess">Optimising Against a Guess</a><small>Optimization</small></li>
+    <li><a href="/posts/commodity-trading-world">The Swiss Commodity Trading World, on Two Axes</a><small>Commodities</small></li>
+  </ul>
+</nav>
+<!-- RELATED_WRITING:END -->
+
+  <!-- NEWSLETTER_SIGNUP:START -->
+<section class="newsletter-signup newsletter-signup--article" aria-labelledby="newsletter-from-the-frontier-to-the-market-title" data-newsletter-placement="web:article:from-the-frontier-to-the-market:end:v1">
+<div class="newsletter-box">
+  <div class="newsletter-kicker">Email essays</div>
+  <h2 id="newsletter-from-the-frontier-to-the-market-title">Get the next Spatium Novum essay</h2>
+  <p class="newsletter-dek">New essays and occasional research notes on optimisation, commodity systems, and reproducible modelling—about one or two emails per month.</p>
+  <form id="newsletter-from-the-frontier-to-the-market-form" class="newsletter-form" data-newsletter-form data-mailerlite-form-id="45098227" action="https://assets.mailerlite.com/jsonp/2590338/forms/196508497383262041/subscribe" method="post" target="_blank" rel="noopener" accept-charset="UTF-8">
+    <div class="newsletter-fields">
+      <label class="visually-hidden" for="newsletter-from-the-frontier-to-the-market-form-email">Email address</label>
+      <input class="newsletter-email" id="newsletter-from-the-frontier-to-the-market-form-email" type="email" name="fields[email]" autocomplete="email" inputmode="email" placeholder="Your email address" aria-describedby="newsletter-from-the-frontier-to-the-market-consent newsletter-from-the-frontier-to-the-market-status" required>
+      <button class="newsletter-submit" type="submit" data-newsletter-submit>Send me the next essay</button>
+    </div>
+    <label class="newsletter-consent" id="newsletter-from-the-frontier-to-the-market-consent">
+      <input type="checkbox" data-newsletter-consent required>
+      <span>I agree to receive Spatium Novum essays and occasional research notes by email. I can unsubscribe at any time. <a href="/privacy#email">Privacy details</a>.</span>
+    </label>
+    <input type="hidden" data-newsletter-attribution name="fields[signup_source]" value="web:article:from-the-frontier-to-the-market:end:v1">
+    <input type="hidden" name="ml-submit" value="1">
+    <input type="hidden" name="anticsrf" value="true">
+    <p class="newsletter-status" id="newsletter-from-the-frontier-to-the-market-status" role="status" aria-live="polite" data-newsletter-status></p>
+    <p hidden data-newsletter-fallback><a class="newsletter-fallback" href="https://preview.mailerlite.io/forms/2590338/196508497383262041/share" target="_blank" rel="noopener noreferrer">Open the MailerLite signup page</a>.</p>
+  </form>
+  <div class="newsletter-success" data-newsletter-success tabindex="-1" hidden>
+    <h3>Check your inbox</h3>
+    <p>We sent you a confirmation email. Click the link in it to complete your subscription. If it is not there in a few minutes, check spam.</p>
+  </div>
+</div>
+</section>
+<!-- NEWSLETTER_SIGNUP:END -->
+
+  <p class="backlink"><a href="/">← Back to writing</a></p>
+</div></main>
+
+<footer class="site-foot"><div class="bar">
+  <div>© 2026 Spatium Novum · Denis Joly</div>
+  <div><a href="/">Writing</a> · <a href="mailto:notes@spatium-novum.com">Contact</a> · <a href="/feed.xml">RSS</a> · <a href="/privacy">Privacy</a> · <a href="/ai-use">AI use</a></div>
+</div></footer>
+
+<script defer src="/assets/newsletter-form.js?v=20260823-cta"></script>
+
+<!-- Cloudflare Web Analytics — cookieless traffic and performance measurement; see /privacy. -->
+<script defer src="/assets/article-viz.js"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "c4f2d3476eec4a9fab59a0c8590c2b4a"}'></script>
+
+</body>
+</html>
