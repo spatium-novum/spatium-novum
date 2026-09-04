@@ -4,15 +4,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CAPM after Markowitz: Portfolio Choice Meets the Market — Spatium Novum</title>
-<meta name="description" content="How CAPM turns Markowitz’s individual portfolio problem into a market equilibrium—and what happens when its assumptions meet historical returns.">
+<title>Capital Asset Pricing Model after Markowitz — Spatium Novum</title>
+<meta name="description" content="How the Capital Asset Pricing Model (CAPM) turns Markowitz’s portfolio problem into market equilibrium—and what happens when historical returns test it.">
 <meta name="author" content="Denis Joly">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#111110" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://spatium-novum.com/posts/from-the-frontier-to-the-market">
 <meta property="og:site_name" content="Spatium Novum">
 <meta property="og:title" content="From the Frontier to the Market">
-<meta property="og:description" content="Markowitz asked how one investor should choose given a set of beliefs. CAPM asked which expected returns could survive when everyone's holdings had to add up to the market.">
+<meta property="og:description" content="Markowitz asked how one investor should choose given a set of beliefs. The Capital Asset Pricing Model (CAPM) asked which expected returns could survive when everyone's holdings had to add up to the market.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://spatium-novum.com/posts/from-the-frontier-to-the-market">
 <meta property="og:image" content="https://spatium-novum.com/assets/og-from-the-frontier-to-the-market.png">
@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="/assets/visuals.css">
 <!-- STRUCTURED_DATA:START -->
 <meta property="article:published_time" content="2026-09-03">
-<meta property="article:modified_time" content="2026-09-03">
+<meta property="article:modified_time" content="2026-09-05">
 <meta property="article:section" content="Finance">
 <meta property="article:author" content="Denis Joly">
 <script type="application/ld+json">
@@ -44,7 +44,7 @@
     "@id": "https://spatium-novum.com/posts/from-the-frontier-to-the-market"
   },
   "headline": "From the Frontier to the Market",
-  "description": "Markowitz asked how one investor should choose given a set of beliefs. CAPM asked which expected returns could survive when everyone's holdings had to add up to the market.",
+  "description": "Markowitz asked how one investor should choose given a set of beliefs. The Capital Asset Pricing Model (CAPM) asked which expected returns could survive when everyone's holdings had to add up to the market.",
   "image": {
     "@type": "ImageObject",
     "url": "https://spatium-novum.com/assets/og-from-the-frontier-to-the-market.png",
@@ -52,7 +52,7 @@
     "height": 630
   },
   "datePublished": "2026-09-03",
-  "dateModified": "2026-09-03",
+  "dateModified": "2026-09-05",
   "articleSection": "Finance",
   "inLanguage": "en",
   "author": {
@@ -107,12 +107,12 @@
     <span class="tag">Finance</span>
     <span>Denis Joly</span>
     <time data-sn-published datetime="2026-09-03">September 3, 2026</time>
-    <span>~13 min read</span>
+    <span>~17 min read</span>
   </div>
   <nav class="toc">
     <div class="toc-h">Contents</div>
     <ul>
-      <li><a href="#tl-dr">TL;DR</a></li>
+      <li><a href="#in-brief">In brief</a></li>
       <li><a href="#the-equality-markowitz-did-not-need">The equality Markowitz did not need</a></li>
       <li><a href="#the-portfolio-everyone-owns">The portfolio everyone owns</a></li>
       <li><a href="#two-lines-two-questions">Two lines, two questions</a></li>
@@ -128,16 +128,17 @@
     <aside class="callout">
 <div class="callout-h">Beyond Markowitz · 2</div>
 <p>The <a href="/posts/five-hundred-years-of-data">first essay</a> asked where expected returns and covariances come from. This one asks what changes when individual choices must clear an entire market.</p>
+<p>For precise definitions of the models, notation and statistical terms used below, see the <a href="/glossary">Beyond Markowitz glossary</a>.</p>
 </aside>
 
-    <h2 id="tl-dr">TL;DR</h2>
+    <h2 id="in-brief">In brief</h2>
 
     <ul>
-      <li>Beta began as a way to compress a covariance matrix. The CAPM turned it into the equilibrium measure of exposure to aggregate market risk, priced by the market premium.</li>
+      <li>Beta began as a way to compress a covariance matrix. The Capital Asset Pricing Model (CAPM) turned it into the equilibrium measure of exposure to aggregate market risk, priced by the market premium.</li>
       <li>Markowitz maps beliefs to portfolios. With common beliefs, a risk-free asset and market clearing, the CAPM adds one decisive identity: the common tangency portfolio must be the value-weighted market portfolio.</li>
       <li>The Capital Market Line prices total volatility only for efficient combinations of cash and the market. The Security Market Line prices beta for every asset and portfolio. They are not interchangeable pictures.</li>
       <li>In a controlled population, replacing the true market with a 90.30%-correlated public-assets proxy creates apparent alphas as large as 3.36% a year even though the underlying expected returns do not change.</li>
-      <li>The true market in the theory includes aggregate risky wealth, not merely listed US equities. Any empirical CAPM result is therefore joint with the chosen proxy: the centre of Richard Roll's critique.</li>
+      <li>The true market in the theory includes aggregate risky wealth, not merely listed United States equities. Any empirical CAPM result is therefore joint with the chosen proxy: the centre of Richard Roll's critique.</li>
     </ul>
 
     <p>Beta did not begin as a theory of expected returns. It began as a way to avoid calculating every covariance.</p>
@@ -164,29 +165,33 @@
 
     <h2 id="the-portfolio-everyone-owns">The portfolio everyone owns</h2>
 
-    <p>The CAPM first inherits Markowitz's decision rule: investors rank portfolios by mean and variance over the same set of risky assets. Now suppose every investor sees the same expected returns, variances and covariances, and give everyone access to the same risk-free rate. The efficient frontier is then the same for all of them, and the line drawn from the risk-free asset touches that frontier at the same risky portfolio.</p>
+    <p>The CAPM first inherits Markowitz's decision rule: investors rank portfolios by mean and variance over the same set of risky assets. Now suppose every investor sees the same expected returns, variances and covariances, and has access to the same risk-free rate. The efficient frontier is then the same for all of them, and the line drawn from the risk-free asset touches that frontier at the same risky portfolio.</p>
 
     <p>Risk tolerance still matters. A cautious investor holds more of the risk-free asset; an aggressive investor holds more of the tangency portfolio and, in the textbook version, may borrow to lever it. What risk tolerance does not change is the composition of the risky fund. Everyone wants the same one.</p>
 
-    <p>Now aggregate their positions. Investors can disagree about how much risk to take, but the shares they own must add up to the shares that exist. The common risky portfolio must therefore coincide with aggregate risky wealth, with each asset weighted by its market value. The CAPM's decisive move is an identity:</p>
+    <p>Now aggregate their positions. Investors can disagree about how much risk to take, but the shares they own must add up to the shares that exist. The common risky portfolio must therefore coincide with aggregate risky wealth, with each asset weighted by its market value.</p>
+
+    <p>Write <span class="inline-math" data-tex="T"><code class="math-fallback">T</code></span> for the tangency portfolio: the risky portfolio with the highest expected return above the risk-free rate per unit of volatility. Write <span class="inline-math" data-tex="M"><code class="math-fallback">M</code></span> for the market portfolio: all risky assets in the economy, weighted by market value. Market clearing gives the CAPM's decisive identity:</p>
 
     <div class="display-math display-math-signal" data-tex="T = M"><code class="math-fallback">T = M</code></div>
 
-    <p>Once that identity holds, expected returns cannot be chosen freely. For any asset <em>i</em>,</p>
+    <p>Read <span class="inline-math" data-tex="T=M"><code class="math-fallback">T=M</code></span> literally. The risky portfolio investors all want to hold must have the same asset weights as the risky portfolio they collectively own. Once that identity holds, expected returns cannot be chosen freely. For any asset <span class="inline-math" data-tex="i"><code class="math-fallback">i</code></span>, let <span class="inline-math" data-tex="R_i"><code class="math-fallback">R_i</code></span> denote its return, <span class="inline-math" data-tex="R_f"><code class="math-fallback">R_f</code></span> the risk-free return, <span class="inline-math" data-tex="R_M"><code class="math-fallback">R_M</code></span> the return on the market portfolio and <span class="inline-math" data-tex="\beta_i"><code class="math-fallback">\beta_i</code></span> the asset's beta, or market exposure. The symbol <span class="inline-math" data-tex="\mathbb{E}"><code class="math-fallback">\mathbb{E}</code></span> means “expected value.” Then</p>
 
-    <div class="display-math" data-tex="\begin{aligned}
-\mathbb{E}[R_i] - R_f
-  &amp;= \beta_i\bigl(\mathbb{E}[R_M] - R_f\bigr) \\
-\beta_i
-  &amp;= \frac{\operatorname{Cov}(R_i,R_M)}{\operatorname{Var}(R_M)}
-\end{aligned}"><code class="math-fallback">\begin{aligned}
-\mathbb{E}[R_i] - R_f
-  &amp;= \beta_i\bigl(\mathbb{E}[R_M] - R_f\bigr) \\
-\beta_i
-  &amp;= \frac{\operatorname{Cov}(R_i,R_M)}{\operatorname{Var}(R_M)}
-\end{aligned}</code></div>
+    <div class="display-math" data-tex="\mathbb{E}[R_i] - R_f
+= \beta_i\bigl(\mathbb{E}[R_M] - R_f\bigr)"><code class="math-fallback">\mathbb{E}[R_i] - R_f
+= \beta_i\bigl(\mathbb{E}[R_M] - R_f\bigr)</code></div>
 
-    <p>The first essay's estimation problem has not disappeared. The CAPM has placed structure around it. Instead of <em>N</em> unrelated expected returns, it gives one risk-free rate, one market premium and <em>N</em> covariances relative to the market.</p>
+    <p>where beta is defined by</p>
+
+    <div class="display-math" data-tex="\beta_i
+= \frac{\operatorname{Cov}(R_i,R_M)}{\operatorname{Var}(R_M)}."><code class="math-fallback">\beta_i
+= \frac{\operatorname{Cov}(R_i,R_M)}{\operatorname{Var}(R_M)}.</code></div>
+
+    <p>In that definition, <span class="inline-math" data-tex="\operatorname{Cov}"><code class="math-fallback">\operatorname{Cov}</code></span> is covariance, a measure of how the asset and the market move together, while <span class="inline-math" data-tex="\operatorname{Var}"><code class="math-fallback">\operatorname{Var}</code></span> is variance, a measure of how widely the market return varies.</p>
+
+    <p>Read the first line from left to right: the asset's expected return above the risk-free return must equal its beta multiplied by the market's expected return above the risk-free return. A beta of 1 carries the market premium; a beta of 0.5 carries half of it. This is a restriction on expected returns, not a promise about the return realised in any particular month or year.</p>
+
+    <p>The first essay's estimation problem has not disappeared. The CAPM has placed structure around it. Instead of leaving <span class="inline-math" data-tex="N"><code class="math-fallback">N</code></span> expected returns unrelated, where <span class="inline-math" data-tex="N"><code class="math-fallback">N</code></span> is the number of risky assets, it relates them through one risk-free return, one market premium and <span class="inline-math" data-tex="N"><code class="math-fallback">N</code></span> betas measured against the same market portfolio.</p>
 
     <p>The companion study makes that structure literal. I choose an eight-asset positive-definite covariance matrix, the quantities of those assets in aggregate supply, a 2% risk-free rate and a 6% market premium. I then construct the expected returns implied by the CAPM. This is a population compatible with its equilibrium identities, not a simulation of investors trading their way to prices.</p>
 
@@ -238,7 +243,7 @@
 <circle cx="725.0" cy="302.9" r="3.2" fill="var(--muted, #686862)"/>
 <circle cx="392.5" cy="172.7" r="6" fill="var(--signal, #d5222a)" stroke="var(--paper, #ffffff)" stroke-width="2"/>
 <text x="402.5" y="164.7">T = M</text>
-<text class="muted" x="402.5" y="180.7">11.4% vol · 8.0% return</text>
+<text class="muted" x="402.5" y="180.7">11.4% volatility · 8.0% return</text>
 <text x="610.4" y="39.1" fill="var(--signal, #d5222a)">Capital Market Line</text>
 <text x="573.2" y="101.1">efficient frontier</text>
 <text class="muted" x="417.0" y="415" text-anchor="middle">annual volatility</text>
@@ -246,7 +251,7 @@
 </svg>
 </div>
 <p class="bm-mobile-hint" aria-hidden="true">Swipe horizontally to inspect the full figure →</p>
-<figcaption><strong>Figure 1 — The equality that creates CAPM.</strong> In this controlled eight-asset economy, expected returns are constructed from the covariance matrix and aggregate supply. The value-weighted market earns 8.0% at 11.4% volatility and is exactly the unconstrained tangency portfolio; the maximum weight discrepancy is 0.0e+00. Individual assets need not lie on the Capital Market Line.</figcaption>
+<figcaption><strong>Figure 1 — The equality that creates the Capital Asset Pricing Model.</strong> In this controlled eight-asset economy, expected returns are constructed from the covariance matrix and aggregate supply. The value-weighted market earns 8.0% at 11.4% volatility and is exactly the unconstrained tangency portfolio: their asset weights match to the displayed precision. Individual assets need not lie on the Capital Market Line.</figcaption>
 </figure>
 
     <p>The grey dots in the figure are individual assets. Most sit below the red line. The model predicts exactly that, and the reason is the distinction between the two lines that carry it.</p>
@@ -262,7 +267,7 @@
 
 <h2 id="two-lines-two-questions">Two lines, two questions</h2>
 
-    <p>The <strong>Capital Market Line</strong> lives in total-risk space. Its horizontal axis is portfolio volatility. It contains only efficient combinations of the risk-free asset and the market portfolio:</p>
+    <p>The <strong>Capital Market Line</strong> lives in total-risk space. Its horizontal axis is portfolio volatility. It contains only efficient combinations of the risk-free asset and the market portfolio. Let <span class="inline-math" data-tex="C"><code class="math-fallback">C</code></span> denote any complete portfolio on the line, <span class="inline-math" data-tex="R_C"><code class="math-fallback">R_C</code></span> its return, <span class="inline-math" data-tex="\sigma_C"><code class="math-fallback">\sigma_C</code></span> its volatility and <span class="inline-math" data-tex="\sigma_M"><code class="math-fallback">\sigma_M</code></span> the market portfolio's volatility. Then</p>
 
     <div class="display-math" data-tex="\mathbb{E}[R_C]
 = R_f + \frac{\sigma_C}{\sigma_M}
@@ -270,7 +275,7 @@
 = R_f + \frac{\sigma_C}{\sigma_M}
   \bigl(\mathbb{E}[R_M] - R_f\bigr)</code></div>
 
-    <p>Its slope is the market's Sharpe ratio. Move along it and the composition of the risky fund stays fixed; only the balance between that fund and the risk-free asset changes. The line answers a portfolio question: among efficient complete portfolios, how much expected return accompanies another unit of total volatility?</p>
+    <p>The ratio <span class="inline-math" data-tex="\sigma_C/\sigma_M"><code class="math-fallback">\sigma_C/\sigma_M</code></span> records how much market risk the investor has chosen. The line's slope is the market's Sharpe ratio. Move along it and the composition of the risky fund stays fixed; only the balance between that fund and the risk-free asset changes. The line answers a portfolio question: among efficient complete portfolios, how much expected return accompanies another unit of total volatility?</p>
 
     <p>The <strong>Security Market Line</strong> lives in beta space. It applies, in the model, to every asset and every portfolio. Its slope is the market risk premium. It answers a pricing question: how much expected return accompanies another unit of covariance exposure to the market?</p>
 
@@ -320,7 +325,7 @@
 <text class="muted" x="371.7" y="375" text-anchor="middle">1.5</text>
 <text class="muted" x="756.7" y="375" text-anchor="middle">1.5</text>
 <text x="222.0" y="28" text-anchor="middle">true aggregate market</text>
-<text class="muted" x="222.0" y="44" text-anchor="middle">all assets lie on the SML</text>
+<text class="muted" x="222.0" y="44" text-anchor="middle">all assets lie on the Security Market Line</text>
 <text x="607.0" y="28" text-anchor="middle">public-assets proxy</text>
 <text class="muted" x="607.0" y="44" text-anchor="middle">private firms and property omitted</text>
 <line x1="62.0" y1="348.8" x2="382.0" y2="62.0" stroke="var(--ink, #181817)" stroke-width="1.7"/>
@@ -378,7 +383,7 @@
 
     <h2 id="the-market-no-one-observes">The market no one observes</h2>
 
-    <p>The market portfolio in the theory is not automatically the S&amp;P 500, or even the CRSP value-weighted US equity portfolio. It is aggregate risky wealth: listed equities and risky debt worldwide, private businesses, property and other claims, with difficult questions around human capital and assets that are not traded at all.</p>
+    <p>The market portfolio in the theory is not automatically the Standard &amp; Poor's 500 Index (S&amp;P 500), or even the value-weighted United States equity portfolio maintained by the Center for Research in Security Prices (CRSP). It is aggregate risky wealth: listed equities and risky debt worldwide, private businesses, property and other claims, with difficult questions around human capital and assets that are not traded at all.</p>
 
     <p>An equity index is observable enough to calculate. The theoretical market is comprehensive enough to make the equilibrium argument work. Those are different virtues, attached to different objects.</p>
 
@@ -392,11 +397,13 @@
 
     <p>Roll showed how much this could matter with the data used by Black, Jensen and Scholes. He exhibited an alternative proxy correlated 0.895 with theirs that supported perfectly the model their proxy rejected.[8][9] A correlation that looks reassuring can conceal a different geometric verdict. The synthetic result above recreates the mechanism without claiming to recreate their sample.</p>
 
-    <p>For a real-data diagnostic, the companion study uses Kenneth French's pinned July 2025 archive. Six value-weighted portfolios formed on size and book-to-market are regressed on French's US equity market excess return from July 1963 to July 2025. Individual alphas use Newey–West uncertainty. I also report the Gibbons–Ross–Shanken statistic, which tests the six intercepts jointly.[10][11]</p>
+    <p>For a real-data diagnostic, the companion study fixes Kenneth French's July 2025 archive and uses monthly returns from July 1963 through July 2025. Its six test portfolios cross two company-size groups with three book-to-market groups. Size is market equity (ME), another name for stock-market capitalisation. Book-to-market (B/M) is accounting book equity divided by market equity. French classifies eligible United States stocks as “Small” or “Big” using the median market equity of New York Stock Exchange (NYSE) firms as the breakpoint. “Growth,” “Neutral” and “Value” are the low, middle and high B/M groups, separated at the 30th and 70th NYSE percentiles. The six portfolios are value weighted, so companies with greater market value receive greater weight.[11]</p>
 
-    <p>The result is 7.67 on an <em>F</em>(6, 738) reference distribution, with a p-value of 5.21 × 10<sup>−8</sup>. Under the test's classical independent multivariate-normal assumptions, that rejects the mean–variance efficiency of this equity proxy relative to these six test portfolios.</p>
+    <p>Each portfolio's monthly excess return is then regressed on Mkt−RF, French's shorthand for the United States equity-market return minus the risk-free return. The regression estimates beta, the portfolio's exposure to that proxy, and alpha, the average return left unexplained after allowing for that exposure. If this proxy is mean–variance efficient relative to the six portfolios, meaning that no combination of them improves its expected-return/variance trade-off, all six true alphas should be zero.</p>
 
-    <p>The sentence needs every qualifier. The exact <em>F</em> law is not heteroskedasticity- or autocorrelation-robust. The test assets are selected portfolios, not every claim in the economy. Most importantly, French's factor is a US equity proxy, not aggregate wealth. Calling the result “CAPM rejected” would remove the very identification problem the calculation is meant to expose.</p>
+    <p>The horizontal bars around the individual alpha estimates use Newey–West standard errors with six monthly lags. This adjustment lets the uncertainty calculation accommodate changing volatility and includes estimated relationships between unexplained returns separated by as many as six months. Six is the calculation's chosen cut-off, not a finding that dependence vanishes after six months. The Gibbons–Ross–Shanken (GRS) test asks the joint question: are all six alphas zero at once?[10]</p>
+
+    <p>Read Figure 3 from the vertical zero line, the proxy model's prediction. Each dot is an estimated annualised alpha, calculated as twelve times the monthly regression intercept. A dot to the right indicates return above the proxy's prediction; a dot to the left indicates return below it. Each horizontal bar is an approximate 95% uncertainty interval. When a bar crosses zero, that portfolio's alpha is not individually distinguishable from zero at the conventional 5% level. Five bars cross zero. Small Value is the exception: its estimated alpha is +3.86% a year, with an interval from +0.51% to +7.21%.</p>
 
     <figure class="fig fig-wide bm-static-figure">
 <style>
@@ -405,45 +412,51 @@
 .bm-static-figure .bm-mobile-hint{display:none;color:var(--muted,#686862);font:10px/1.4 "IBM Plex Mono",ui-monospace,monospace;margin:.4rem 0 0;}
 @media(max-width:680px){.bm-static-figure .bm-mobile-hint{display:block;}}
 </style>
-<div class="bm-figure-scroll" tabindex="0" role="region" aria-label="Scrollable chart of CAPM alpha estimates for six test portfolios">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="100%" role="img" aria-labelledby="bm2-real-proxy-title bm2-real-proxy-desc">
-<title id="bm2-real-proxy-title">Six portfolio CAPM alphas relative to the French US equity proxy</title>
-<desc id="bm2-real-proxy-desc">Annualized alpha estimates and individual 95 percent Newey-West intervals for six size and book-to-market portfolios from July 1963 to July 2025. The classical GRS test jointly rejects zero alpha for this stated proxy.</desc>
+<div class="bm-figure-scroll" tabindex="0" role="region" aria-label="Scrollable dot-and-interval chart of alpha estimates for six test portfolios">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" width="100%" role="img" aria-labelledby="bm2-real-proxy-title bm2-real-proxy-desc">
+<title id="bm2-real-proxy-title">Six portfolio alphas relative to the French United States equity proxy</title>
+<desc id="bm2-real-proxy-desc">Horizontal dot-and-interval chart of annualised alpha estimates for six size and book-to-market portfolios from July 1963 to July 2025. Zero is the proxy model&#x27;s prediction. Only the Small Value interval excludes zero. The Gibbons–Ross–Shanken test rejects the joint null that all six alphas are zero.</desc>
 <style>text{font:11px/1.2 "IBM Plex Mono",ui-monospace,monospace;fill:var(--ink, #181817)}.muted{fill:var(--muted, #686862);font-size:10px}.rule{stroke:var(--rule, #d9d7d1);stroke-width:.75}</style>
-<line class="rule" x1="191.7" x2="191.7" y1="90" y2="378"/>
-<text class="muted" x="191.7" y="403" text-anchor="middle">-5%</text>
-<line class="rule" x1="414.1" x2="414.1" y1="90" y2="378"/>
-<text class="muted" x="414.1" y="403" text-anchor="middle">+0%</text>
-<line class="rule" x1="636.6" x2="636.6" y1="90" y2="378"/>
-<text class="muted" x="636.6" y="403" text-anchor="middle">+5%</text>
-<text x="125" y="26">French Mkt-RF as the stated market proxy</text>
-<text class="muted" x="125" y="45">dots: annual alpha · bars: individual 95% HAC intervals</text>
-<rect x="125" y="61" width="645" height="31" rx="4" fill="var(--rule, #d9d7d1)" opacity=".45"/>
-<text x="135" y="81">GRS F(6, 738) = 7.67 · p = 5.21e-08</text>
-<text x="115" y="113.0" text-anchor="end">SMALL LoBM</text>
-<line x1="156.1" x2="427.4" y1="110.0" y2="110.0" stroke="var(--ink, #181817)" stroke-width="1.4"/>
-<circle cx="291.7" cy="110.0" r="4" fill="var(--ink, #181817)"/>
-<text x="115" y="164.6" text-anchor="end">ME1 BM2</text>
-<line x1="404.6" x2="640.6" y1="161.6" y2="161.6" stroke="var(--ink, #181817)" stroke-width="1.4"/>
-<circle cx="522.6" cy="161.6" r="4" fill="var(--ink, #181817)"/>
-<text x="115" y="216.2" text-anchor="end">SMALL HiBM</text>
-<line x1="436.7" x2="734.8" y1="213.2" y2="213.2" stroke="var(--signal, #d5222a)" stroke-width="1.4"/>
-<circle cx="585.7" cy="213.2" r="4" fill="var(--signal, #d5222a)"/>
-<text x="115" y="267.8" text-anchor="end">BIG LoBM</text>
-<line x1="367.9" x2="470.1" y1="264.8" y2="264.8" stroke="var(--ink, #181817)" stroke-width="1.4"/>
-<circle cx="419.0" cy="264.8" r="4" fill="var(--ink, #181817)"/>
-<text x="115" y="319.4" text-anchor="end">ME2 BM2</text>
-<line x1="351.6" x2="504.4" y1="316.4" y2="316.4" stroke="var(--ink, #181817)" stroke-width="1.4"/>
-<circle cx="428.0" cy="316.4" r="4" fill="var(--ink, #181817)"/>
-<text x="115" y="371.0" text-anchor="end">BIG HiBM</text>
-<line x1="389.5" x2="630.8" y1="368.0" y2="368.0" stroke="var(--ink, #181817)" stroke-width="1.4"/>
-<circle cx="510.2" cy="368.0" r="4" fill="var(--ink, #181817)"/>
-<text class="muted" x="447.5" y="418" text-anchor="middle">annualised regression alpha</text>
+<line class="rule" x1="200.7" x2="200.7" y1="105" y2="408"/>
+<text class="muted" x="200.7" y="431" text-anchor="middle">-5%</text>
+<line x1="419.7" x2="419.7" y1="105" y2="408" stroke="var(--ink, #181817)" stroke-width="1.4"/>
+<text class="muted" x="419.7" y="431" text-anchor="middle">+0%</text>
+<line class="rule" x1="638.6" x2="638.6" y1="105" y2="408"/>
+<text class="muted" x="638.6" y="431" text-anchor="middle">+5%</text>
+<text x="135" y="25">French Mkt−RF (“market minus risk-free”) proxy</text>
+<text class="muted" x="135" y="44">dot = annualised alpha · bar = individual 95% Newey–West interval · red = excludes zero</text>
+<rect x="135" y="57" width="635" height="42" rx="4" fill="var(--rule, #d9d7d1)" opacity=".45"/>
+<text x="145" y="75">Gibbons–Ross–Shanken test: are all six alphas zero?</text>
+<text class="muted" x="145" y="91">statistic = 7.67 · reference F(6, 738) · p-value = 0.0000000521</text>
+<text class="muted" x="427.7" y="118" text-anchor="start">proxy prediction: alpha = 0</text>
+<text x="125" y="135.0" text-anchor="end">Small Growth</text>
+<line x1="165.6" x2="432.7" y1="132.0" y2="132.0" stroke="var(--ink, #181817)" stroke-width="1.4"/>
+<circle cx="299.2" cy="132.0" r="4" fill="var(--ink, #181817)"/>
+<text x="125" y="187.8" text-anchor="end">Small Neutral</text>
+<line x1="410.3" x2="642.6" y1="184.8" y2="184.8" stroke="var(--ink, #181817)" stroke-width="1.4"/>
+<circle cx="526.4" cy="184.8" r="4" fill="var(--ink, #181817)"/>
+<text x="125" y="240.6" text-anchor="end">Small Value</text>
+<line x1="441.8" x2="735.4" y1="237.6" y2="237.6" stroke="var(--signal, #d5222a)" stroke-width="1.4"/>
+<circle cx="588.6" cy="237.6" r="4" fill="var(--signal, #d5222a)"/>
+<text x="125" y="293.4" text-anchor="end">Big Growth</text>
+<line x1="374.1" x2="474.7" y1="290.4" y2="290.4" stroke="var(--ink, #181817)" stroke-width="1.4"/>
+<circle cx="424.4" cy="290.4" r="4" fill="var(--ink, #181817)"/>
+<text x="125" y="346.2" text-anchor="end">Big Neutral</text>
+<line x1="358.1" x2="508.6" y1="343.2" y2="343.2" stroke="var(--ink, #181817)" stroke-width="1.4"/>
+<circle cx="433.3" cy="343.2" r="4" fill="var(--ink, #181817)"/>
+<text x="125" y="399.0" text-anchor="end">Big Value</text>
+<line x1="395.4" x2="633.0" y1="396.0" y2="396.0" stroke="var(--ink, #181817)" stroke-width="1.4"/>
+<circle cx="514.2" cy="396.0" r="4" fill="var(--ink, #181817)"/>
+<text class="muted" x="452.5" y="456" text-anchor="middle">annualised alpha (percentage points per year)</text>
 </svg>
 </div>
 <p class="bm-mobile-hint" aria-hidden="true">Swipe horizontally to inspect the full figure →</p>
-<figcaption><strong>Figure 3 — A rejection with an asterisk.</strong> Monthly excess returns for six value-weighted US size-book-to-market portfolios are regressed on the French Mkt-RF equity proxy, 1963-07 to 2025-07. Bars are individual 95% normal intervals using Newey-West standard errors with 6 lags. The classical GRS statistic is 7.67, F(6, 738), p = 5.21e-08. Under its i.i.d.-normal reference assumptions, that rejects this proxy's mean-variance efficiency relative to these test assets. It does not isolate the CAPM from the proxy, assets or statistical assumptions.</figcaption>
+<figcaption><strong>Figure 3 — One individual signal, one joint rejection.</strong> Each dot and bar show one portfolio's annualised alpha estimate and approximate 95% Newey–West interval. Small and Big denote company size; Growth, Neutral and Value denote low, middle and high book-to-market groups. Five bars cross the dark zero line. Only Small Value excludes zero and is shown in red. The joint test uses all six alphas; its classical assumptions and proxy-dependent interpretation are explained in the text.</figcaption>
 </figure>
+
+    <p>The joint test asks a different question from the six individual intervals. The GRS test combines all six alpha estimates and accounts for how their unexplained returns move together. Its statistic is 7.67; larger values mean that the alphas collectively sit farther from zero relative to the unexplained variation in returns. Under the null hypothesis that all six true alphas are zero, the statistic is compared with an <span class="inline-math" data-tex="F(6,738)"><code class="math-fallback">F(6,738)</code></span> distribution, the benchmark used to judge how unusual 7.67 would be. The numbers in parentheses are the test's degrees of freedom: 6 corresponds to the six alpha restrictions, while 738 represents the remaining sample information in the reference distribution. The p-value is 5.21 × 10<sup>−8</sup>. In repeated samples satisfying the classical assumptions, a result at least this large would occur about five times in 100 million if all six alphas were truly zero.</p>
+
+    <p>The qualifiers remain part of the result. The individual bars use the Newey–West adjustment, but the exact <span class="inline-math" data-tex="F"><code class="math-fallback">F</code></span> distribution behind the GRS p-value assumes independent, identically distributed multivariate-normal residuals and is not robust to changing volatility or serial correlation. The test assets are six selected portfolios, not every risky claim in the economy. Most importantly, Mkt−RF is a United States equity proxy, not aggregate wealth. The calculation therefore rejects this proxy's mean–variance efficiency relative to these test assets under the classical GRS assumptions. Calling that “CAPM rejected” would remove the identification problem the calculation is meant to expose.</p>
 
     <p>Fama and French gave the balanced verdict in 2004. The Sharpe–Lintner model's empirical record is poor enough to undermine common applications. Yet some of that record may reflect invalid tests, especially poor market proxies. The sting is that the escape route runs both ways: if a proxy is too poor to test the CAPM, it is also too poor to justify using the CAPM with that proxy to estimate a firm's cost of capital.[12]</p>
 
@@ -461,9 +474,9 @@
 
     <h2 id="data-and-code">Data and code</h2>
 
-    <p>The <a href="https://github.com/Denis-Joly/beyond-markowitz/tree/main/experiments/02_from_frontier_to_market">Study 02 companion folder</a> contains the controlled population, pinned data manifest, numerical results, three generated figures and 77 experiment-level checks. The reusable package adds population beta and proxy-error calculations plus a classical GRS implementation with explicit rank and covariance checks.</p>
+    <p>The <a href="https://github.com/Denis-Joly/beyond-markowitz/tree/main/experiments/02_from_frontier_to_market">Study 02 companion folder</a> contains the controlled population, pinned data manifest, numerical results, three generated figures and 77 experiment-level checks. The reusable package adds population beta and proxy-error calculations plus a classical GRS implementation with checks that the required covariance matrices contain enough independent information for the calculation.</p>
 
-    <p>The empirical inputs are the official Kenneth French July 2025 archives for the US research factors and six size–book-to-market portfolios. The fetch step verifies their recorded SHA-256 digests before any result is generated. Raw third-party files are not redistributed. Holding that recorded vintage and manifest fixed, a full verification run regenerates every JSON, CSV, SVG and HTML fragment in a temporary directory and requires byte-identical outputs.</p>
+    <p>The empirical inputs are the official Kenneth French July 2025 archives for the United States research factors and six size–book-to-market portfolios. The fetch step verifies a recorded 256-bit Secure Hash Algorithm (SHA-256) digest for each archive before any result is generated. Raw third-party files are not redistributed. Holding that recorded vintage and manifest fixed, a full verification run regenerates every machine-readable result, table, figure and article fragment in a temporary directory and requires byte-identical outputs.</p>
 
     <h2 id="references">References</h2>
 
@@ -478,7 +491,7 @@
       <li>Richard Roll, <a href="https://doi.org/10.1016/0304-405X(77)90009-5">“A Critique of the Asset Pricing Theory's Tests. Part I: On Past and Potential Testability of the Theory”</a>, <em>Journal of Financial Economics</em> 4, no. 2 (1977): 129–176.</li>
       <li>Fischer Black, Michael C. Jensen and Myron Scholes, <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=908569">“The Capital Asset Pricing Model: Some Empirical Tests”</a>, in Michael C. Jensen, ed., <em>Studies in the Theory of Capital Markets</em> (Praeger, 1972): 79–121.</li>
       <li>Michael R. Gibbons, Stephen A. Ross and Jay Shanken, <a href="https://doi.org/10.2307/1913625">“A Test of the Efficiency of a Given Portfolio”</a>, <em>Econometrica</em> 57, no. 5 (1989): 1121–1152.</li>
-      <li>Kenneth R. French, <a href="https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/Data_Library.html">“Data Library: Historical Archives”</a>, July 2025 cuts for the US research factors and six portfolios formed on size and book-to-market, released August 2025.</li>
+      <li>Kenneth R. French, <a href="https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/Data_Library.html">“Data Library: Historical Archives”</a>, July 2025 cuts for the United States research factors and six portfolios formed on size and book-to-market, released August 2025; <a href="https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/Data_Library/six_portfolios.html">“Detail for 6 Portfolios Formed on Size and Book-to-Market”</a>, portfolio construction and breakpoints.</li>
       <li>Eugene F. Fama and Kenneth R. French, <a href="https://doi.org/10.1257/0895330042162430">“The Capital Asset Pricing Model: Theory and Evidence”</a>, <em>Journal of Economic Perspectives</em> 18, no. 3 (2004): 25–46.</li>
     </ol>
 
@@ -538,7 +551,7 @@
 
 <footer class="site-foot"><div class="bar">
   <div>© 2026 Spatium Novum · Denis Joly</div>
-  <div><a href="/">Writing</a> · <a href="/about">About</a> · <a href="/ai-use">AI use</a> · <a href="/contact/">Contact</a> · <a href="/feed.xml">RSS</a> · <a href="/privacy">Privacy</a></div>
+  <div><a href="/">Writing</a> · <a href="/glossary">Glossary</a> · <a href="/about">About</a> · <a href="/ai-use">AI use</a> · <a href="/contact/">Contact</a> · <a href="/feed.xml">RSS</a> · <a href="/privacy">Privacy</a></div>
 </div></footer>
 
 <script defer src="/assets/newsletter-form.js?v=20260823-cta"></script>

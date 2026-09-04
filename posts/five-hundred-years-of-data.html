@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="/assets/visuals.css">
 <!-- STRUCTURED_DATA:START -->
 <meta property="article:published_time" content="2026-08-21">
-<meta property="article:modified_time" content="2026-09-03">
+<meta property="article:modified_time" content="2026-09-05">
 <meta property="article:section" content="Finance">
 <meta property="article:author" content="Denis Joly">
 <script type="application/ld+json">
@@ -52,7 +52,7 @@
     "height": 630
   },
   "datePublished": "2026-08-21",
-  "dateModified": "2026-09-03",
+  "dateModified": "2026-09-05",
   "articleSection": "Finance",
   "inLanguage": "en",
   "author": {
@@ -112,7 +112,7 @@
   <nav class="toc">
     <div class="toc-h">Contents</div>
     <ul>
-      <li><a href="#tl-dr">TL;DR</a></li>
+      <li><a href="#in-brief">In brief</a></li>
       <li><a href="#the-lecture-and-what-happens-after-it-ends">The lecture, and what happens after it ends</a></li>
       <li><a href="#one-afternoon-in-1950">One afternoon in 1950</a></li>
       <li><a href="#the-first-stage">The first stage</a></li>
@@ -129,13 +129,14 @@
     <aside class="callout">
 <div class="callout-h">Beyond Markowitz · 1</div>
 <p>The efficient frontier begins with expected returns and covariances. This first essay asks where those numbers come from, and what happens when they refuse to stay still.</p>
+<p>For precise definitions of the models, notation and statistical terms used below, see the <a href="/glossary">Beyond Markowitz glossary</a>.</p>
 </aside>
 
-    <h2 id="tl-dr">TL;DR</h2>
+    <h2 id="in-brief">In brief</h2>
 
     <ul>
       <li>Markowitz's 1952 paper deliberately begins <em>after</em> investors have formed beliefs about future returns. Portfolio choice is the second stage; estimating its inputs is the first.</li>
-      <li>Rebuilding Robert Shiller's three-asset classroom example with two defensible US equity series moves the recommended equity weight from 38% to 26%, while estimated portfolio risk and return barely move.</li>
+      <li>Rebuilding Robert Shiller's three-asset classroom example with two defensible United States equity series moves the recommended equity weight from 38% to 26%, while estimated portfolio risk and return barely move.</li>
       <li>Repeating the same long-only calculation through time produces equity weights anywhere from 0% to 100%. A precise optimisation rule does not make its estimated inputs stable.</li>
       <li>DeMiguel, Garlappi and Uppal found that fourteen portfolio rules did not consistently beat equal weighting out of sample. Their famous “500 years” is a specific calibration, not a universal law.</li>
       <li>Equal weighting is a model too. Its advantage is low estimation variance; its weakness is the symmetry it imposes. The interesting question is which assumptions survive the environment in which a portfolio will actually be used.</li>
@@ -149,13 +150,13 @@
 
     <h2 id="the-lecture-and-what-happens-after-it-ends">The lecture, and what happens after it ends</h2>
 
-    <p>Robert Shiller's freely available Open Yale lecture on diversification makes the geometry unusually tangible.[2] He takes US equities, ten-year Treasuries and oil, estimates their historical means and covariances, draws an efficient frontier and finds the long-only portfolio with the largest estimated Sharpe ratio. Two slides in recordings of the course give nearby but different allocations: roughly 27% or 36% in equities, 64% or 52% in bonds, and the balance in oil.</p>
+    <p>Robert Shiller's freely available Open Yale lecture on diversification makes the geometry unusually tangible.[2] He takes United States equities, ten-year Treasuries and oil, estimates their historical means and covariances, draws an efficient frontier and finds the long-only portfolio with the largest estimated Sharpe ratio, or excess return per unit of volatility. Two slides in recordings of the course give nearby but different allocations: roughly 27% or 36% in equities, 64% or 52% in bonds, and the balance in oil.</p>
 
-    <p>I rebuilt the exercise on the January 1983 to December 2006 window used in the 2011 lecture. The Treasury leg is a constant-maturity par-bond approximation constructed from the Federal Reserve's ten-year yield. Oil is WTI spot. For equities, I ran the same calculation twice.</p>
+    <p>I rebuilt the exercise on the January 1983 to December 2006 window used in the 2011 lecture. The Treasury leg is a constant-maturity par-bond approximation constructed from the Federal Reserve's ten-year yield. Oil is West Texas Intermediate (WTI) spot. For equities, I ran the same calculation twice.</p>
 
-    <p>Shiller's published S&amp;P series produces 37.6% equities, 55.8% bonds and 6.6% oil. The value-weighted US market from Kenneth French's data library produces 26.1%, 67.3% and 6.6%. These are close reproductions of the two classroom allocations, not exact reconstructions of every unpublished convention behind the slides.[2][3]</p>
+    <p>Shiller's published Standard &amp; Poor's (S&amp;P) series produces 37.6% equities, 55.8% bonds and 6.6% oil. The value-weighted United States market from Kenneth French's data library produces 26.1%, 67.3% and 6.6%. These are close reproductions of the two classroom allocations, not exact reconstructions of every unpublished convention behind the slides.[2][3]</p>
 
-    <p>The equity series differ for defensible reasons. Shiller uses a broad historical S&amp;P series whose monthly price is an average of daily closes. French reports a value-weighted portfolio return for a broader US universe and includes distributions. Those choices alter estimated means and covariances as well as volatility. With the optimiser held fixed, the recommended equity weight moves by 11.5 percentage points.</p>
+    <p>The equity series differ for defensible reasons. Shiller uses a broad historical S&amp;P series whose monthly price is an average of daily closes. French reports a value-weighted portfolio return for a broader United States universe and includes distributions. Those choices alter estimated means and covariances as well as volatility. With the optimiser held fixed, the recommended equity weight moves by 11.5 percentage points.</p>
 
     <figure class="fig fig-wide bm-static-figure">
 <style>
@@ -170,56 +171,58 @@
 <desc id="bm-frontier-desc">Risk-return frontiers over 1983 to 2006. Bonds and oil are unchanged; only the equity series differs. Tangency weights move more than the portfolio&#x27;s estimated risk-return position.</desc>
 <style>text{font:11px/1.2 "IBM Plex Mono",ui-monospace,monospace;fill:var(--ink, #181817)}.muted{fill:var(--muted, #686862);font-size:10px}.rule{stroke:var(--rule, #d9d7d1);stroke-width:.75}</style>
 <text class="muted" x="62.0" y="399" text-anchor="middle">0%</text>
-<text class="muted" x="149.5" y="399" text-anchor="middle">5%</text>
-<text class="muted" x="237.0" y="399" text-anchor="middle">10%</text>
-<text class="muted" x="324.5" y="399" text-anchor="middle">15%</text>
-<text class="muted" x="412.0" y="399" text-anchor="middle">20%</text>
-<text class="muted" x="499.5" y="399" text-anchor="middle">25%</text>
-<text class="muted" x="587.0" y="399" text-anchor="middle">30%</text>
-<line class="rule" x1="62" x2="622" y1="380.0" y2="380.0"/>
+<text class="muted" x="141.4" y="399" text-anchor="middle">5%</text>
+<text class="muted" x="220.8" y="399" text-anchor="middle">10%</text>
+<text class="muted" x="300.1" y="399" text-anchor="middle">15%</text>
+<text class="muted" x="379.5" y="399" text-anchor="middle">20%</text>
+<text class="muted" x="458.9" y="399" text-anchor="middle">25%</text>
+<text class="muted" x="538.2" y="399" text-anchor="middle">30%</text>
+<line class="rule" x1="62" x2="570" y1="380.0" y2="380.0"/>
 <text class="muted" x="54" y="383.0" text-anchor="end">0%</text>
-<line class="rule" x1="62" x2="622" y1="336.8" y2="336.8"/>
+<line class="rule" x1="62" x2="570" y1="336.8" y2="336.8"/>
 <text class="muted" x="54" y="339.8" text-anchor="end">2%</text>
-<line class="rule" x1="62" x2="622" y1="293.5" y2="293.5"/>
+<line class="rule" x1="62" x2="570" y1="293.5" y2="293.5"/>
 <text class="muted" x="54" y="296.5" text-anchor="end">4%</text>
-<line class="rule" x1="62" x2="622" y1="250.2" y2="250.2"/>
+<line class="rule" x1="62" x2="570" y1="250.2" y2="250.2"/>
 <text class="muted" x="54" y="253.2" text-anchor="end">6%</text>
-<line class="rule" x1="62" x2="622" y1="207.0" y2="207.0"/>
+<line class="rule" x1="62" x2="570" y1="207.0" y2="207.0"/>
 <text class="muted" x="54" y="210.0" text-anchor="end">8%</text>
-<line class="rule" x1="62" x2="622" y1="163.8" y2="163.8"/>
+<line class="rule" x1="62" x2="570" y1="163.8" y2="163.8"/>
 <text class="muted" x="54" y="166.8" text-anchor="end">10%</text>
-<line class="rule" x1="62" x2="622" y1="120.5" y2="120.5"/>
+<line class="rule" x1="62" x2="570" y1="120.5" y2="120.5"/>
 <text class="muted" x="54" y="123.5" text-anchor="end">12%</text>
-<line class="rule" x1="62" x2="622" y1="77.2" y2="77.2"/>
+<line class="rule" x1="62" x2="570" y1="77.2" y2="77.2"/>
 <text class="muted" x="54" y="80.2" text-anchor="end">14%</text>
-<line class="rule" x1="62" x2="622" y1="34.0" y2="34.0"/>
+<line class="rule" x1="62" x2="570" y1="34.0" y2="34.0"/>
 <text class="muted" x="54" y="37.0" text-anchor="end">16%</text>
-<text class="muted" x="342.0" y="419" text-anchor="middle">annualised volatility</text>
+<text class="muted" x="316.0" y="419" text-anchor="middle">annualised volatility</text>
 <text class="muted" x="54" y="22" text-anchor="end">return</text>
-<polyline points="552.3,236.4 535.0,234.8 517.6,233.3 500.3,231.8 483.0,230.2 465.7,228.7 448.6,227.2 431.4,225.6 414.4,224.1 397.4,222.6 380.5,221.0 363.7,219.5 347.0,217.9 330.5,216.4 314.1,214.9 298.0,213.3 282.1,211.8 266.6,210.3 251.4,208.7 236.7,207.2 222.7,205.7 209.5,204.1 197.3,202.6 186.5,201.1 177.5,199.5 170.6,198.0 166.4,196.5 164.6,194.9 163.2,193.4 161.9,191.9 160.8,190.3 159.7,188.8 158.8,187.3 158.0,185.7 157.3,184.2 156.8,182.6 156.4,181.1 156.1,179.6 156.0,178.0 155.9,176.5 156.1,175.0 156.3,173.4 156.7,171.9 157.2,170.4 157.9,168.8 158.6,167.3 159.5,165.8 160.6,164.2 161.7,162.7 162.9,161.2 164.3,159.6 165.8,158.1 167.3,156.6 169.0,155.0 170.7,153.5 172.5,152.0 174.5,150.4 176.5,148.9 178.5,147.4 180.7,145.8 182.9,144.3 185.1,142.7 187.5,141.2 189.9,139.7 192.3,138.1 194.8,136.6 197.3,135.1 199.9,133.5 202.5,132.0 205.2,130.5 207.9,128.9 210.6,127.4 213.4,125.9 216.2,124.3 219.0,122.8 221.9,121.3 224.8,119.7 227.7,118.2 230.7,116.7 233.6,115.1 236.6,113.6 239.6,112.1 242.6,110.5 245.7,109.0 248.8,107.4 251.8,105.9 254.9,104.4 258.1,102.8 261.2,101.3 264.3,99.8" fill="none" stroke="var(--chart-2, #77746d)" stroke-width="2"/>
-<line x1="62.0" y1="271.8" x2="220.4" y2="98.1" stroke="var(--chart-2, #77746d)" stroke-width=".8" stroke-dasharray="4 3"/>
-<circle cx="164.2" cy="159.8" r="5" fill="var(--signal, #d5222a)" stroke="var(--paper, #ffffff)" stroke-width="2"/>
-<line x1="632" x2="654" y1="38" y2="38" stroke="var(--chart-2, #77746d)" stroke-width="2"/>
-<text class="muted" x="660" y="41">Shiller S&P 500</text>
-<text class="muted" x="632" y="57">38% eq · 56% bd · 7% oil</text>
-<polyline points="552.3,236.4 534.3,234.8 516.4,233.2 498.4,231.6 480.5,230.0 462.7,228.4 444.9,226.8 427.2,225.2 409.5,223.6 392.0,222.1 374.5,220.5 357.1,218.9 339.9,217.3 322.9,215.7 306.1,214.1 289.5,212.5 273.2,210.9 257.3,209.3 241.9,207.8 227.2,206.2 213.2,204.6 200.3,203.0 188.7,201.4 179.0,199.8 171.4,198.2 166.7,196.6 164.8,195.0 163.5,193.5 162.5,191.9 161.6,190.3 160.8,188.7 160.3,187.1 160.0,185.5 159.9,183.9 159.9,182.3 160.1,180.7 160.6,179.2 161.2,177.6 162.0,176.0 163.0,174.4 164.2,172.8 165.5,171.2 167.0,169.6 168.6,168.0 170.4,166.4 172.4,164.8 174.5,163.3 176.7,161.7 179.0,160.1 181.4,158.5 184.0,156.9 186.6,155.3 189.3,153.7 192.2,152.1 195.1,150.5 198.0,149.0 201.1,147.4 204.2,145.8 207.4,144.2 210.6,142.6 213.9,141.0 217.3,139.4 220.7,137.8 224.1,136.2 227.6,134.7 231.1,133.1 234.7,131.5 238.3,129.9 241.9,128.3 245.6,126.7 249.3,125.1 253.0,123.5 256.7,121.9 260.5,120.3 264.3,118.8 268.1,117.2 271.9,115.6 275.8,114.0 279.7,112.4 283.6,110.8 287.6,109.2 291.5,107.6 295.5,106.0 299.5,104.5 303.5,102.9 307.6,101.3 311.6,99.7 315.7,98.1 319.8,96.5 323.8,94.9" fill="none" stroke="var(--chart-3, #292826)" stroke-width="2"/>
-<line x1="62.0" y1="271.8" x2="225.7" y2="112.5" stroke="var(--chart-3, #292826)" stroke-width=".8" stroke-dasharray="4 3"/>
-<circle cx="167.6" cy="169.0" r="5" fill="var(--signal, #d5222a)" stroke="var(--paper, #ffffff)" stroke-width="2"/>
-<line x1="632" x2="654" y1="90" y2="90" stroke="var(--chart-3, #292826)" stroke-width="2"/>
-<text class="muted" x="660" y="93">US total market</text>
-<text class="muted" x="632" y="109">26% eq · 67% bd · 7% oil</text>
-<circle cx="174.7" cy="191.1" r="3.5" fill="var(--muted, #686862)"/>
-<text class="muted" x="181.7" y="194.1">bonds</text>
-<circle cx="552.3" cy="236.4" r="3.5" fill="var(--muted, #686862)"/>
-<text class="muted" x="559.3" y="239.4">oil</text>
-<circle cx="264.3" cy="99.8" r="3.5" fill="var(--muted, #686862)"/>
-<text class="muted" x="271.3" y="102.8">S&amp;P 500</text>
-<circle cx="323.8" cy="94.9" r="3.5" fill="var(--muted, #686862)"/>
-<text class="muted" x="330.8" y="97.9">total market</text>
+<polyline points="506.8,236.4 491.0,234.8 475.3,233.3 459.6,231.8 443.9,230.2 428.3,228.7 412.7,227.2 397.1,225.6 381.6,224.1 366.2,222.6 350.9,221.0 335.7,219.5 320.5,217.9 305.6,216.4 290.7,214.9 276.1,213.3 261.7,211.8 247.6,210.3 233.8,208.7 220.5,207.2 207.8,205.7 195.8,204.1 184.7,202.6 174.9,201.1 166.7,199.5 160.5,198.0 156.7,196.5 155.1,194.9 153.8,193.4 152.7,191.9 151.6,190.3 150.7,188.8 149.8,187.3 149.1,185.7 148.5,184.2 148.0,182.6 147.6,181.1 147.4,179.6 147.2,178.0 147.2,176.5 147.3,175.0 147.6,173.4 147.9,171.9 148.4,170.4 149.0,168.8 149.7,167.3 150.5,165.8 151.4,164.2 152.4,162.7 153.6,161.2 154.8,159.6 156.1,158.1 157.5,156.6 159.0,155.0 160.6,153.5 162.3,152.0 164.0,150.4 165.8,148.9 167.7,147.4 169.6,145.8 171.6,144.3 173.7,142.7 175.8,141.2 178.0,139.7 180.2,138.1 182.5,136.6 184.8,135.1 187.1,133.5 189.5,132.0 191.9,130.5 194.3,128.9 196.8,127.4 199.3,125.9 201.9,124.3 204.5,122.8 207.1,121.3 209.7,119.7 212.3,118.2 215.0,116.7 217.7,115.1 220.4,113.6 223.1,112.1 225.9,110.5 228.6,109.0 231.4,107.4 234.2,105.9 237.0,104.4 239.8,102.8 242.7,101.3 245.5,99.8" fill="none" stroke="var(--chart-2, #77746d)" stroke-width="2"/>
+<line x1="62.0" y1="271.8" x2="205.7" y2="98.1" stroke="var(--chart-2, #77746d)" stroke-width=".8" stroke-dasharray="4 3"/>
+<circle cx="154.7" cy="159.8" r="5" fill="var(--signal, #d5222a)" stroke="var(--paper, #ffffff)" stroke-width="2"/>
+<line x1="580" x2="602" y1="38" y2="38" stroke="var(--chart-2, #77746d)" stroke-width="2"/>
+<text class="muted" x="608" y="41">Shiller S&amp;P 500</text>
+<text class="muted" x="580" y="57">equities 38% · bonds 56%</text>
+<text class="muted" x="580" y="71">oil 7%</text>
+<polyline points="506.8,236.4 490.5,234.8 474.2,233.2 457.9,231.6 441.7,230.0 425.5,228.4 409.3,226.8 393.3,225.2 377.3,223.6 361.3,222.1 345.5,220.5 329.7,218.9 314.1,217.3 298.7,215.7 283.4,214.1 268.4,212.5 253.6,210.9 239.2,209.3 225.2,207.8 211.8,206.2 199.1,204.6 187.4,203.0 177.0,201.4 168.1,199.8 161.3,198.2 157.0,196.6 155.2,195.0 154.1,193.5 153.1,191.9 152.3,190.3 151.7,188.7 151.2,187.1 150.9,185.5 150.8,183.9 150.8,182.3 151.0,180.7 151.4,179.2 152.0,177.6 152.7,176.0 153.6,174.4 154.7,172.8 155.9,171.2 157.2,169.6 158.7,168.0 160.4,166.4 162.1,164.8 164.0,163.3 166.0,161.7 168.1,160.1 170.3,158.5 172.6,156.9 175.0,155.3 177.5,153.7 180.1,152.1 182.7,150.5 185.4,149.0 188.2,147.4 191.0,145.8 193.9,144.2 196.8,142.6 199.8,141.0 202.9,139.4 205.9,137.8 209.1,136.2 212.2,134.7 215.4,133.1 218.7,131.5 221.9,129.9 225.2,128.3 228.5,126.7 231.9,125.1 235.2,123.5 238.6,121.9 242.1,120.3 245.5,118.8 249.0,117.2 252.4,115.6 256.0,114.0 259.5,112.4 263.1,110.8 266.6,109.2 270.2,107.6 273.8,106.0 277.5,104.5 281.1,102.9 284.8,101.3 288.4,99.7 292.1,98.1 295.8,96.5 299.5,94.9" fill="none" stroke="var(--chart-3, #292826)" stroke-width="2"/>
+<line x1="62.0" y1="271.8" x2="210.5" y2="112.5" stroke="var(--chart-3, #292826)" stroke-width=".8" stroke-dasharray="4 3"/>
+<circle cx="157.8" cy="169.0" r="5" fill="var(--signal, #d5222a)" stroke="var(--paper, #ffffff)" stroke-width="2"/>
+<line x1="580" x2="602" y1="108" y2="108" stroke="var(--chart-3, #292826)" stroke-width="2"/>
+<text class="muted" x="608" y="111">United States total market</text>
+<text class="muted" x="580" y="127">equities 26% · bonds 67%</text>
+<text class="muted" x="580" y="141">oil 7%</text>
+<circle cx="164.3" cy="191.1" r="3.5" fill="var(--muted, #686862)"/>
+<text class="muted" x="171.3" y="194.1">bonds</text>
+<circle cx="506.8" cy="236.4" r="3.5" fill="var(--muted, #686862)"/>
+<text class="muted" x="513.8" y="239.4">oil</text>
+<circle cx="245.5" cy="99.8" r="3.5" fill="var(--muted, #686862)"/>
+<text class="muted" x="252.5" y="102.8">S&amp;P 500</text>
+<circle cx="299.5" cy="94.9" r="3.5" fill="var(--muted, #686862)"/>
+<text class="muted" x="306.5" y="97.9">total market</text>
 </svg>
 </div>
 <p class="bm-mobile-hint" aria-hidden="true">Swipe horizontally to inspect the full figure →</p>
-<figcaption><strong>Figure 1 — Same window, different equity series.</strong> Long-only tangency portfolios estimated on monthly data from 1983 to 2006. Only the equity series changes: Shiller's S&amp;P 500 produces 38% equities, 56% bonds and 7% oil; the value-weighted US market produces 26%, 67% and 7%. The two portfolios occupy almost the same estimated risk-return region despite different weights.</figcaption>
+<figcaption><strong>Figure 1 — Same window, different equity series.</strong> Long-only tangency portfolios estimated on monthly data from 1983 to 2006. Only the equity series changes: Shiller's Standard &amp; Poor's 500 (S&amp;P 500) produces 38% equities, 56% bonds and 7% oil; the value-weighted United States market produces 26%, 67% and 7%. The two portfolios occupy almost the same estimated risk-return region despite different weights.</figcaption>
 </figure>
 
     <p>The weights make that change look consequential. In estimated risk–return space it is much smaller: both tangency portfolios are near 6% annualised volatility and 10% return. The optimiser has found two portfolios that look nearly interchangeable in objective space while differing visibly in composition. A shallow objective near the optimum can turn a defensible input change into a large change in the answer we notice.</p>
@@ -236,7 +239,7 @@
 <div class="bm-figure-scroll" tabindex="0" role="region" aria-label="Scrollable chart of rolling portfolio weights">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350" width="100%" role="img" aria-labelledby="bm-rolling-title bm-rolling-desc">
 <title id="bm-rolling-title">Rolling ten-year long-only tangency weights, 1963-04 to 2026-06</title>
-<desc id="bm-rolling-desc">Stacked area chart of equity, bond and oil weights. Each portfolio uses only the previous 120 months. The recommended allocation ranges across most of the feasible simplex.</desc>
+<desc id="bm-rolling-desc">Stacked area chart of equity, bond and oil weights. Each portfolio uses only the previous 120 months. The recommended allocation ranges across most of the possible long-only allocations.</desc>
 <style>text{font:11px/1.2 "IBM Plex Mono",ui-monospace,monospace;fill:var(--ink, #181817)}.muted{fill:var(--muted, #686862);font-size:10px}.rule{stroke:var(--rule, #d9d7d1);stroke-width:.75}</style>
 <line class="rule" x1="58" x2="782" y1="304.0" y2="304.0"/>
 <text class="muted" x="50" y="307.0" text-anchor="end">0%</text>
@@ -262,7 +265,7 @@
 </svg>
 </div>
 <p class="bm-mobile-hint" aria-hidden="true">Swipe horizontally to inspect the full figure →</p>
-<figcaption><strong>Figure 2 — An answer that never settles.</strong> Each dated estimate uses the preceding 120 months to compute a long-only maximum-Sharpe portfolio of US equities, constructed ten-year Treasury returns and WTI spot returns. Estimate dates run from April 1963 to June 2026; the first estimation window begins in May 1953. Equity ranges from 0% to 100%, and bonds from 0% to 90%.</figcaption>
+<figcaption><strong>Figure 2 — An answer that never settles.</strong> Each dated estimate uses the preceding 120 months to compute a long-only maximum-Sharpe portfolio of United States equities, constructed ten-year Treasury returns and West Texas Intermediate (WTI) spot returns. Estimate dates run from April 1963 to June 2026; the first estimation window begins in May 1953. Equity ranges from 0% to 100%, and bonds from 0% to 90%.</figcaption>
 </figure>
 
     <p>Shiller states the modelling move plainly: take the historical moments as given.[2] That is an appropriate way to teach the frontier. It is also the precise point at which the problem solved on the board stops being the problem faced by an investor.</p>
@@ -304,13 +307,13 @@
 
     <h2 id="five-hundred-years">Five hundred years</h2>
 
-    <p>Gerd Gigerenzer supplied the line that became the title of this article. Reporting DeMiguel, Garlappi and Uppal's analysis, he wrote that an optimiser allocating among fifty assets could require a 500-year window before outperforming <span class="inline-math" data-tex="1/N"><code class="math-fallback">1/N</code></span>.[13]</p>
+    <p>Gerd Gigerenzer supplied the line that became the title of this article. Reporting DeMiguel, Garlappi and Uppal's analysis, he wrote that an optimiser allocating among fifty assets could require a 500-year window before outperforming equal weighting, written <span class="inline-math" data-tex="1/N"><code class="math-fallback">1/N</code></span> because each of the <span class="inline-math" data-tex="N"><code class="math-fallback">N</code></span> assets receives one Nth of the capital.[13]</p>
 
     <p>The underlying study compared fourteen allocation rules with equal weighting over seven datasets. Portfolios were estimated on rolling 120-month windows and judged out of sample by Sharpe ratio, certainty-equivalent return and turnover. None of the fourteen rules beat <span class="inline-math" data-tex="1/N"><code class="math-fallback">1/N</code></span> consistently across those criteria and datasets.[12]</p>
 
     <p>Their analytical question was narrower than “How many years does Markowitz need?” Given a number of assets, an assumed Sharpe advantage for the population tangency portfolio over <span class="inline-math" data-tex="1/N"><code class="math-fallback">1/N</code></span>, and a risk-aversion calibration, how long must an estimation window be before the expected utility cost of estimating parameters falls below the cost of imposing equal weights? In one fifty-asset calibration, the answer exceeded 6,000 months, or 500 years. Another fifty-asset calibration gave 530 months, about 44 years. The headline is real; it is also conditional.</p>
 
-    <p>The paper's industry dataset is public, so I reproduced the <span class="inline-math" data-tex="1/N"><code class="math-fallback">1/N</code></span> leg using the current Kenneth French vintage. Ten industry portfolios plus the US market, a 120-month window, and the paper's July 1963 to November 2004 sample span produce 377 evaluated monthly returns after the first 120 months are reserved as the common estimation window. The resulting monthly Sharpe ratio is 0.13533, against 0.1353 in the published table.</p>
+    <p>The paper's industry dataset is public, so I reproduced the <span class="inline-math" data-tex="1/N"><code class="math-fallback">1/N</code></span> leg using the current Kenneth French vintage. Ten industry portfolios plus the United States market, a 120-month window, and the paper's July 1963 to November 2004 sample span produce 377 evaluated monthly returns after the first 120 months are reserved as the common estimation window. The resulting monthly Sharpe ratio is 0.13533, against 0.1353 in the published table.</p>
 
     <p>I also ran four portfolio rules on the same current-vintage panel. These runs are a sensitivity study, not an exact reproduction of every published rule: the public pipeline uses French's one-month risk-free series, whereas the original study used a 90-day Treasury-bill rate. The unconstrained sample mean–variance rule has a monthly Sharpe ratio of −0.0166 and annualised volatility of 88.4%. Its mean month-to-month sum of absolute changes in target weights is 41.3; because the calculation compares targets directly, this is an instability diagnostic rather than a transaction-cost turnover measure. At the most extreme dates, one target weight reaches −2,134 times capital (−213,445%) and another +519 times (+51,883%). The long-only rule produces much smaller swings. The unconstrained minimum-variance rule has a slightly higher Sharpe than <span class="inline-math" data-tex="1/N"><code class="math-fallback">1/N</code></span> on this period, but it too permits short positions and leverage. No single row supports the slogan that optimisation always loses.</p>
 
@@ -407,7 +410,7 @@
 
     <p>Markowitz later reported surprise when Michaud's resampled-frontier method outperformed the approach he and Nilufer Usmen tested: “Much to our surprise, the Michaud methodology did better than ours.”[22] That reaction is a better bridge to modern portfolio research than either reverence or dismissal. The frontier solved a durable second-stage problem. The first stage kept moving.</p>
 
-    <p>Those responses do not form a single family. Some repair estimates; some change the objective; some change the economic question altogether. CAPM, in particular, is not simply a newer optimiser: it adds market equilibrium and asks why assets should have particular expected returns.</p>
+    <p>Those responses do not form a single family. Some repair estimates; some change the objective; some change the economic question altogether. The Capital Asset Pricing Model (CAPM), in particular, is not simply a newer optimiser: it adds market equilibrium and asks why assets should have particular expected returns.</p>
 
     <p>That distinction gives this series its route. The next article moves from the efficient frontier to the market portfolio and asks what one beta can explain when the market itself is only observed through a proxy. Later pieces will compare estimation repairs, conditional and asymmetric CAPM extensions, factor-model alternatives and recent predictive methods without pretending that there is one official “latest CAPM.”</p>
 
@@ -415,16 +418,16 @@
 
     <h2 id="data-and-code">Data and code</h2>
 
-    <p>The <a href="https://github.com/Denis-Joly/beyond-markowitz/tree/main/experiments/01_five_hundred_years">Beyond Markowitz foundation study</a> contains the data manifest, tested portfolio and CAPM foundations, numerical outputs and the three generated figures. It records source URLs, retrieval time and SHA-256 digests for the Kenneth French, Shiller and FRED inputs; third-party raw files are downloaded rather than redistributed. One command rebuilds the results, and an independent verification pass reproduces every committed artifact in a temporary directory.</p>
+    <p>The <a href="https://github.com/Denis-Joly/beyond-markowitz/tree/main/experiments/01_five_hundred_years">Beyond Markowitz foundation study</a> contains the data manifest, tested portfolio and CAPM foundations, numerical outputs and the three generated figures. It records source URLs, retrieval time and 256-bit Secure Hash Algorithm (SHA-256) digests for the Kenneth French, Shiller and Federal Reserve Economic Data (FRED) inputs; third-party raw files are downloaded rather than redistributed. One command rebuilds the results, and an independent verification pass reproduces every committed artifact in a temporary directory.</p>
 
-    <p>The replication is intentionally explicit about approximation. The bond leg is reconstructed from a constant-maturity yield rather than a held Treasury security, and WTI spot omits futures roll and collateral returns. Current French data use CRSP's CIZ format; older published results may use the previous FIZ construction.[3] A data refresh is therefore a new vintage, not a promise that mutable upstream files will remain byte-identical forever.</p>
+    <p>The replication is intentionally explicit about approximation. The bond leg is reconstructed from a constant-maturity yield rather than a held Treasury security, and WTI spot omits futures roll and collateral returns. Current French data use the Center for Research in Security Prices (CRSP) CIZ return-construction convention; older published results may use the legacy FIZ convention.[3] A data refresh is therefore a new vintage, not a promise that mutable upstream files will remain byte-identical forever.</p>
 
     <h2 id="references">References</h2>
 
     <ol>
       <li>Harry Markowitz, quoted in Jason Zweig, <a href="https://jasonzweig.com/what-harry-markowitz-meant/">“What Harry Markowitz Meant”</a>, 2 October 2017; includes Markowitz's 2009 clarification.</li>
       <li>Robert J. Shiller, <a href="https://oyc.yale.edu/economics/econ-252-11/lecture-4">“Portfolio Diversification and Supporting Financial Institutions”</a>, ECON 252, Lecture 4, Open Yale Courses, 2011, with the corresponding 2008 course recording.</li>
-      <li>Robert J. Shiller, <a href="https://www.econ.yale.edu/~shiller/data.htm">“Online Data”</a>; Kenneth R. French, <a href="https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html">“Data Library”</a>; Federal Reserve Bank of St. Louis, <a href="https://fred.stlouisfed.org/series/GS10">GS10</a> and <a href="https://fred.stlouisfed.org/series/WTISPLC">WTISPLC</a>, data retrieved 21 August 2026.</li>
+      <li>Robert J. Shiller, <a href="https://www.econ.yale.edu/~shiller/data.htm">“Online Data”</a>; Kenneth R. French, <a href="https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html">“Data Library”</a>; Federal Reserve Bank of St. Louis, <a href="https://fred.stlouisfed.org/series/GS10">ten-year Treasury yield (GS10)</a> and <a href="https://fred.stlouisfed.org/series/WTISPLC">West Texas Intermediate spot price (WTISPLC)</a>, data retrieved 21 August 2026.</li>
       <li>Jeffrey R. Yost, <a href="https://hdl.handle.net/11299/107467">“An Interview with Harry M. Markowitz”</a>, Charles Babbage Institute oral history OH 333, 18 March 2002.</li>
       <li>Harry Markowitz, <a href="https://doi.org/10.1111/j.1540-6261.1952.tb01525.x">“Portfolio Selection”</a>, <em>Journal of Finance</em> 7, no. 1 (1952): 77–91.</li>
       <li>Harry Markowitz, <a href="https://doi.org/10.1002/nav.3800030110">“The Optimization of a Quadratic Function Subject to Linear Constraints”</a>, <em>Naval Research Logistics Quarterly</em> 3, nos. 1–2 (1956): 111–133.</li>
@@ -501,7 +504,7 @@
 
 <footer class="site-foot"><div class="bar">
   <div>© 2026 Spatium Novum · Denis Joly</div>
-  <div><a href="/">Writing</a> · <a href="/about">About</a> · <a href="/ai-use">AI use</a> · <a href="/contact/">Contact</a> · <a href="/feed.xml">RSS</a> · <a href="/privacy">Privacy</a></div>
+  <div><a href="/">Writing</a> · <a href="/glossary">Glossary</a> · <a href="/about">About</a> · <a href="/ai-use">AI use</a> · <a href="/contact/">Contact</a> · <a href="/feed.xml">RSS</a> · <a href="/privacy">Privacy</a></div>
 </div></footer>
 
 <script defer src="/assets/newsletter-form.js?v=20260823-cta"></script>

@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio Theory and CAPM Glossary — Spatium Novum</title>
+<meta name="description" content="A detailed glossary of Markowitz portfolio theory, the Capital Asset Pricing Model, beta, alpha, risk, optimisation and the statistical tests used in the Beyond Markowitz series.">
+<meta name="author" content="Denis Joly">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111110" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://spatium-novum.com/glossary">
+<meta property="og:site_name" content="Spatium Novum">
+<meta property="og:title" content="Beyond Markowitz glossary">
+<meta property="og:description" content="Precise definitions of the notation, models, portfolio rules and statistical tests used throughout the Beyond Markowitz series.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://spatium-novum.com/glossary">
+<meta property="og:image" content="https://spatium-novum.com/assets/og-default.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Spatium Novum — Models, and where they break.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://spatium-novum.com/assets/og-default.png">
+<meta name="twitter:image:alt" content="Spatium Novum — Models, and where they break.">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/favicon-180.png">
+<link rel="alternate" type="application/rss+xml" title="Spatium Novum" href="/feed.xml">
+<link rel="stylesheet" href="/assets/style.css">
+<!-- STRUCTURED_DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  "@id": "https://spatium-novum.com/glossary#terms",
+  "url": "https://spatium-novum.com/glossary",
+  "name": "Beyond Markowitz glossary",
+  "description": "Precise definitions of the notation, models, portfolio rules and statistical tests used throughout the Beyond Markowitz series.",
+  "dateModified": "2026-09-05",
+  "inLanguage": "en",
+  "author": {
+    "@id": "https://spatium-novum.com/about#denis-joly"
+  },
+  "isPartOf": {
+    "@id": "https://spatium-novum.com/#website"
+  }
+}
+</script>
+<!-- STRUCTURED_DATA:END -->
+<!-- MATH_ASSETS:START -->
+<link rel="stylesheet" href="/assets/katex/katex-swap.min.css">
+<script defer src="/assets/katex/katex.min.js"></script>
+<script defer src="/assets/math-render.js"></script>
+<!-- MATH_ASSETS:END -->
+</head>
+<body>
+
+<header class="site-head"><div class="bar">
+  <a class="brand" href="/">Spatium<span class="dot">·</span>Novum</a>
+  <nav class="nav" aria-label="Primary">
+    <a href="/">Writing</a>
+    <a href="/about">About</a>
+    <a href="/ai-use">AI use</a>
+    <a href="/contact/">Contact</a>
+    <a href="/privacy">Privacy</a>
+  </nav>
+</div></header>
+
+<main class="post glossary-page"><div class="wrap">
+  <div class="kicker" data-sn-glossary-kicker>Reference · Beyond Markowitz</div>
+  <h1 data-sn-glossary-title>Beyond Markowitz glossary</h1>
+  <p class="glossary-dek" data-sn-glossary-dek>Precise definitions of the notation, models, portfolio rules and statistical tests used throughout the Beyond Markowitz series.</p>
+  <p class="glossary-updated"><time data-sn-glossary-modified datetime="2026-09-05">Last updated September 5, 2026</time></p>
+  <article class="glossary" id="terms">
+    <!-- GLOSSARY_CONTENT:START -->
+<p>This is the technical back matter for the <em>Beyond Markowitz</em> series. It is designed to be consulted, not read in order. Each definition states what a term means in the essays, the conditions under which that meaning is valid, and the nearby ideas with which it is most easily confused.</p>
+
+    <p>The glossary supplements rather than replaces definitions in the articles. An acronym should still be expanded on first use, and a symbol should still be defined beside the equation in which it appears. This page provides the longer version: assumptions, units, interpretation and limits.</p>
+
+    <aside class="callout glossary-scope">
+<div class="callout-h">Scope and convention</div>
+<p>Unless an entry says otherwise, returns are measured over one common period and in one currency. A historical estimate is not silently treated as the unknown population quantity it estimates. In this glossary, “risk” means the particular risk measure named in the definition; it does not mean that variance captures every economically important danger.</p>
+</aside>
+
+    <nav class="glossary-jump" aria-label="Glossary sections">
+  <a href="#find-a-concept">Concept map</a>
+  <a href="#notation-at-a-glance">Notation</a>
+  <a href="#a-c">A–C</a>
+  <a href="#d-h">D–H</a>
+  <a href="#i-m">I–M</a>
+  <a href="#n-r">N–R</a>
+  <a href="#s-z">S–Z</a>
+  <a href="#data-labels-and-conventions">Data labels</a>
+</nav>
+
+    <h2 id="find-a-concept">Find a concept</h2>
+
+    <ul>
+      <li><strong>Returns and risk:</strong> <a href="#expected-return">expected, realised and excess return</a>; <a href="#return-conventions">return conventions</a>; <a href="#variance-and-volatility">variance and volatility</a>; <a href="#covariance">covariance</a>; <a href="#correlation">correlation</a>; <a href="#systematic-and-idiosyncratic-risk">systematic and idiosyncratic risk</a>; <a href="#heavy-tails">heavy tails</a>.</li>
+      <li><strong>Portfolio choice:</strong> <a href="#mean-variance-model">mean–variance optimisation</a>; <a href="#efficient-frontier">efficient frontier</a>; <a href="#tangency-portfolio">tangency portfolio</a>; <a href="#one-over-n">equal weighting</a>; <a href="#expected-utility">expected utility</a>; <a href="#calibration-and-sensitivity">calibration and sensitivity</a>; <a href="#long-only-and-short-selling">constraints</a>; <a href="#regularisation">regularisation</a>.</li>
+      <li><strong>Equilibrium and pricing:</strong> <a href="#capital-asset-pricing-model">Capital Asset Pricing Model</a>; <a href="#market-portfolio">market portfolio</a>; <a href="#beta">beta</a>; <a href="#alpha">alpha</a>; <a href="#capital-market-line">Capital Market Line</a>; <a href="#security-market-line">Security Market Line</a>; <a href="#market-proxy-and-roll-critique">Roll critique</a>.</li>
+      <li><strong>Estimation and testing:</strong> <a href="#population-and-sample">population and sample</a>; <a href="#regression">regression</a>; <a href="#standard-error">standard error</a>; <a href="#confidence-interval">confidence interval</a>; <a href="#null-hypothesis-and-p-value">p-value</a>; <a href="#newey-west">Newey–West</a>; <a href="#grs-test">GRS test</a>.</li>
+      <li><strong>Empirical labels:</strong> <a href="#french-six-portfolios">French's six portfolios</a>; <a href="#mkt-rf">Mkt−RF</a>; <a href="#factor-labels">factor abbreviations</a>; <a href="#crsp">CRSP</a>; <a href="#fred">FRED</a>; <a href="#ciz-fiz">CIZ and FIZ</a>; <a href="#data-vintage">data vintage</a>.</li>
+    </ul>
+
+    <h2 id="notation-at-a-glance">Notation at a glance</h2>
+
+    <p>Notation is local to this series. Other books and papers may use the same symbol differently.</p>
+
+    <table>
+<thead>
+<tr><th>Symbol</th><th>Meaning in this series</th><th>How to read it</th></tr>
+</thead>
+<tbody>
+<tr><td><span class="inline-math" data-tex="i"><code class="math-fallback">i</code></span></td><td>Asset or test-portfolio index</td><td>“For asset <span class="inline-math" data-tex="i"><code class="math-fallback">i</code></span>” selects one member of the asset universe.</td></tr>
+<tr><td><span class="inline-math" data-tex="t"><code class="math-fallback">t</code></span></td><td>Time index</td><td>Identifies the period of a return or regression observation.</td></tr>
+<tr><td><span class="inline-math" data-tex="N"><code class="math-fallback">N</code></span></td><td>Number of risky assets</td><td>In <span class="inline-math" data-tex="1/N"><code class="math-fallback">1/N</code></span>, each of the <span class="inline-math" data-tex="N"><code class="math-fallback">N</code></span> selected assets receives the same weight.</td></tr>
+<tr><td><span class="inline-math" data-tex="n_{\text{obs}}"><code class="math-fallback">n_{\text{obs}}</code></span></td><td>Number of time observations</td><td>Used where a test's sample size must not be confused with tangency portfolio <span class="inline-math" data-tex="T"><code class="math-fallback">T</code></span>.</td></tr>
+<tr><td><span class="inline-math" data-tex="K"><code class="math-fallback">K</code></span></td><td>Number of explanatory factors</td><td>Equals one in the second essay's market-proxy regressions.</td></tr>
+<tr><td><span class="inline-math" data-tex="w_i"><code class="math-fallback">w_i</code></span></td><td>Weight of asset <span class="inline-math" data-tex="i"><code class="math-fallback">i</code></span></td><td>The fraction of portfolio capital assigned to asset <span class="inline-math" data-tex="i"><code class="math-fallback">i</code></span>; weights normally sum to one.</td></tr>
+<tr><td><span class="inline-math" data-tex="w"><code class="math-fallback">w</code></span></td><td>Vector of portfolio weights</td><td>All <span class="inline-math" data-tex="N"><code class="math-fallback">N</code></span> asset weights written as one column.</td></tr>
+<tr><td><span class="inline-math" data-tex="x&#x27;"><code class="math-fallback">x&#x27;</code></span></td><td>Transpose of vector <span class="inline-math" data-tex="x"><code class="math-fallback">x</code></span></td><td>Turns a column into a row; <span class="inline-math" data-tex="w&#x27;\mu"><code class="math-fallback">w&#x27;\mu</code></span> is the weighted sum of expected returns.</td></tr>
+<tr><td><span class="inline-math" data-tex="R_i"><code class="math-fallback">R_i</code></span></td><td>Return on asset <span class="inline-math" data-tex="i"><code class="math-fallback">i</code></span></td><td>A random future return before it is realised, or an observed return once a date is attached.</td></tr>
+<tr><td><span class="inline-math" data-tex="R_f"><code class="math-fallback">R_f</code></span></td><td>Risk-free return</td><td>Return known at the decision date for the stated horizon and currency in the textbook model.</td></tr>
+<tr><td><span class="inline-math" data-tex="R_M"><code class="math-fallback">R_M</code></span></td><td>Return on the market portfolio</td><td>Return on aggregate risky wealth in the theory, not automatically an equity index return.</td></tr>
+<tr><td><span class="inline-math" data-tex="R_P"><code class="math-fallback">R_P</code></span></td><td>Return on an empirical market proxy <span class="inline-math" data-tex="P"><code class="math-fallback">P</code></span></td><td>Observable benchmark return substituted for the unobservable theoretical market return.</td></tr>
+<tr><td><span class="inline-math" data-tex="R_C"><code class="math-fallback">R_C</code></span></td><td>Return on a complete portfolio <span class="inline-math" data-tex="C"><code class="math-fallback">C</code></span></td><td>Return after combining a risky fund with the risk-free asset.</td></tr>
+<tr><td><span class="inline-math" data-tex="R_p"><code class="math-fallback">R_p</code></span></td><td>Return on portfolio <span class="inline-math" data-tex="p"><code class="math-fallback">p</code></span></td><td>Weighted sum of the component asset returns under the stated convention.</td></tr>
+<tr><td><span class="inline-math" data-tex="W_t"><code class="math-fallback">W_t</code></span></td><td>Wealth at time <span class="inline-math" data-tex="t"><code class="math-fallback">t</code></span></td><td>Capital carried from one period into the next in a compounding process.</td></tr>
+<tr><td><span class="inline-math" data-tex="\mathbb{E}[X]"><code class="math-fallback">\mathbb{E}[X]</code></span></td><td>Expected value of <span class="inline-math" data-tex="X"><code class="math-fallback">X</code></span></td><td>The probability-weighted population mean under the stated model or beliefs.</td></tr>
+<tr><td><span class="inline-math" data-tex="\mu"><code class="math-fallback">\mu</code></span></td><td>Vector of expected asset returns</td><td>One expected return for every risky asset in the chosen universe.</td></tr>
+<tr><td><span class="inline-math" data-tex="\mu_m"><code class="math-fallback">\mu_m</code></span></td><td>Expected monthly simple return</td><td>Used only in the annualisation example.</td></tr>
+<tr><td><span class="inline-math" data-tex="\Sigma"><code class="math-fallback">\Sigma</code></span></td><td>Covariance matrix</td><td>Variances on the diagonal and pairwise covariances off the diagonal.</td></tr>
+<tr><td><span class="inline-math" data-tex="\operatorname{Var}(X)"><code class="math-fallback">\operatorname{Var}(X)</code></span></td><td>Variance of <span class="inline-math" data-tex="X"><code class="math-fallback">X</code></span></td><td>Expected squared deviation of <span class="inline-math" data-tex="X"><code class="math-fallback">X</code></span> from its mean.</td></tr>
+<tr><td><span class="inline-math" data-tex="\operatorname{Cov}(X,Y)"><code class="math-fallback">\operatorname{Cov}(X,Y)</code></span></td><td>Covariance of <span class="inline-math" data-tex="X"><code class="math-fallback">X</code></span> and <span class="inline-math" data-tex="Y"><code class="math-fallback">Y</code></span></td><td>Joint movement in the units of <span class="inline-math" data-tex="X"><code class="math-fallback">X</code></span> multiplied by the units of <span class="inline-math" data-tex="Y"><code class="math-fallback">Y</code></span>.</td></tr>
+<tr><td><span class="inline-math" data-tex="\operatorname{Corr}(X,Y)"><code class="math-fallback">\operatorname{Corr}(X,Y)</code></span></td><td>Correlation of <span class="inline-math" data-tex="X"><code class="math-fallback">X</code></span> and <span class="inline-math" data-tex="Y"><code class="math-fallback">Y</code></span></td><td>Covariance divided by both standard deviations; bounded between −1 and +1.</td></tr>
+<tr><td><span class="inline-math" data-tex="\sigma_i,\sigma_C,\sigma_M"><code class="math-fallback">\sigma_i,\sigma_C,\sigma_M</code></span></td><td>Volatility of an asset, complete portfolio or market</td><td>Standard deviation of the corresponding return over the stated horizon.</td></tr>
+<tr><td><span class="inline-math" data-tex="\beta_i"><code class="math-fallback">\beta_i</code></span></td><td>Beta of asset <span class="inline-math" data-tex="i"><code class="math-fallback">i</code></span></td><td>Covariance exposure to a specified market or factor portfolio.</td></tr>
+<tr><td><span class="inline-math" data-tex="\beta_{i\mid P}"><code class="math-fallback">\beta_{i\mid P}</code></span></td><td>Beta of asset <span class="inline-math" data-tex="i"><code class="math-fallback">i</code></span> relative to proxy <span class="inline-math" data-tex="P"><code class="math-fallback">P</code></span></td><td>Slope when both the asset and proxy returns are measured above the matched risk-free proxy.</td></tr>
+<tr><td><span class="inline-math" data-tex="\alpha_i"><code class="math-fallback">\alpha_i</code></span></td><td>Alpha of asset or portfolio <span class="inline-math" data-tex="i"><code class="math-fallback">i</code></span></td><td>Model-relative pricing error or estimated regression intercept, depending on context.</td></tr>
+<tr><td><span class="inline-math" data-tex="\varepsilon_{i,t}"><code class="math-fallback">\varepsilon_{i,t}</code></span></td><td>Regression residual</td><td>Return on asset <span class="inline-math" data-tex="i"><code class="math-fallback">i</code></span> in period <span class="inline-math" data-tex="t"><code class="math-fallback">t</code></span> left unexplained by the fitted regression.</td></tr>
+<tr><td><span class="inline-math" data-tex="\gamma"><code class="math-fallback">\gamma</code></span></td><td>Risk-aversion parameter</td><td>Scales the variance penalty in the stated mean–variance objective.</td></tr>
+<tr><td><span class="inline-math" data-tex="S"><code class="math-fallback">S</code></span></td><td>Sharpe ratio</td><td>Expected excess return divided by excess-return volatility.</td></tr>
+<tr><td><span class="inline-math" data-tex="CE"><code class="math-fallback">CE</code></span></td><td>Certainty-equivalent return</td><td>Sure return assigned the same modelled utility as a risky prospect.</td></tr>
+<tr><td><span class="inline-math" data-tex="d"><code class="math-fallback">d</code></span></td><td>Disaster threshold</td><td>Minimum acceptable return in Roy's safety-first rule.</td></tr>
+<tr><td><span class="inline-math" data-tex="\kappa"><code class="math-fallback">\kappa</code></span></td><td>Survival-tail exponent</td><td>Rate at which a stylised power-law tail probability declines.</td></tr>
+<tr><td><span class="inline-math" data-tex="H_0"><code class="math-fallback">H_0</code></span></td><td>Null hypothesis</td><td>Reference claim against which a statistical test calibrates its statistic.</td></tr>
+<tr><td><span class="inline-math" data-tex="1/N"><code class="math-fallback">1/N</code></span></td><td>Equal-weight rule</td><td>One Nth of capital in each of the <span class="inline-math" data-tex="N"><code class="math-fallback">N</code></span> selected assets.</td></tr>
+<tr><td><span class="inline-math" data-tex="T"><code class="math-fallback">T</code></span></td><td>Tangency portfolio</td><td>The risky portfolio at which the line from the risk-free asset touches the efficient frontier.</td></tr>
+<tr><td><span class="inline-math" data-tex="M"><code class="math-fallback">M</code></span></td><td>Market portfolio</td><td>All risky assets in the economy, weighted by market value.</td></tr>
+<tr><td><span class="inline-math" data-tex="P"><code class="math-fallback">P</code></span></td><td>Empirical market proxy</td><td>Observable portfolio used in place of the theoretical market <span class="inline-math" data-tex="M"><code class="math-fallback">M</code></span>.</td></tr>
+<tr><td><span class="inline-math" data-tex="C"><code class="math-fallback">C</code></span></td><td>Complete portfolio</td><td>A chosen combination of the risk-free asset and a risky portfolio.</td></tr>
+</tbody>
+</table>
+
+    <h2 id="a-c">A–C</h2>
+
+    <h3 id="one-over-n">1/N portfolio (equal weighting)</h3>
+
+    <p>For a preselected universe of <span class="inline-math" data-tex="N"><code class="math-fallback">N</code></span> assets, the <span class="inline-math" data-tex="1/N"><code class="math-fallback">1/N</code></span> rule assigns <span class="inline-math" data-tex="w_i=1/N"><code class="math-fallback">w_i=1/N</code></span> to every asset. It estimates no expected returns, variances or covariances, so its target weights have no sampling variation from those quantities. That does not make it assumption-free: the asset universe, rebalancing schedule and rule that treats every selected asset symmetrically are substantive choices. Adding, removing or subdividing an asset category changes the portfolio. Relative to population-optimal weights or a stated utility criterion, that symmetry restriction can create approximation error; its advantage is that it does not turn noisy moment estimates into unstable weights. In the first essay, <span class="inline-math" data-tex="1/N"><code class="math-fallback">1/N</code></span> is a benchmark whose low estimation burden can outweigh that misspecification when samples are short and signals weak.</p>
+
+    <h3 id="alpha">Alpha (α)</h3>
+
+    <p>Alpha is the intercept in a specified expected-return regression: the average excess return not accounted for by the model's factor exposures. If <span class="inline-math" data-tex="P"><code class="math-fallback">P</code></span> denotes the observable market proxy, a one-factor time-series regression is</p>
+
+    <div class="display-math" data-tex="R_{i,t}-R_{f,t}=\alpha_i+\beta_{i\mid P}\bigl(R_{P,t}-R_{f,t}\bigr)+\varepsilon_{i,t},"><code class="math-fallback">R_{i,t}-R_{f,t}=\alpha_i+\beta_{i\mid P}\bigl(R_{P,t}-R_{f,t}\bigr)+\varepsilon_{i,t},</code></div>
+
+    <p><span class="inline-math" data-tex="\alpha_i"><code class="math-fallback">\alpha_i</code></span> is the intercept, <span class="inline-math" data-tex="\beta_{i\mid P}"><code class="math-fallback">\beta_{i\mid P}</code></span> is the slope and <span class="inline-math" data-tex="\varepsilon_{i,t}"><code class="math-fallback">\varepsilon_{i,t}</code></span> is the period-specific unexplained component, or residual. Alpha is therefore not model-free: change the benchmark, factors, sample, frequency or return convention and the estimate can change. In the second essay, “population alpha” means an analytical pricing error created by substituting a proxy for the true market; “estimated alpha” means a regression intercept computed from historical data. The chart annualises a monthly intercept as <span class="inline-math" data-tex="12\alpha_{monthly}"><code class="math-fallback">12\alpha_{monthly}</code></span>, a reporting convention rather than a compounded investment return.</p>
+
+    <h3 id="annualisation">Annualisation</h3>
+
+    <p>Annualisation expresses a statistic measured at a shorter frequency in yearly units. Multiplying a monthly arithmetic mean by 12 is an annualised, non-compounded reporting convention; it is not the expected compounded one-year holding-period return. Multiplying monthly volatility by <span class="inline-math" data-tex="\sqrt{12}"><code class="math-fallback">\sqrt{12}</code></span> is conventional only when the dependence structure makes variance scale approximately with time. A realised compounded annual return instead multiplies monthly gross returns: <span class="inline-math" data-tex="\prod_{m=1}^{12}(1+R_m)-1"><code class="math-fallback">\prod_{m=1}^{12}(1+R_m)-1</code></span>, where <span class="inline-math" data-tex="R_m"><code class="math-fallback">R_m</code></span> is month <span class="inline-math" data-tex="m"><code class="math-fallback">m</code></span>'s simple return and <span class="inline-math" data-tex="\prod"><code class="math-fallback">\prod</code></span> instructs the reader to multiply the twelve terms. Under identical independent monthly distributions, the corresponding expected compounded return is <span class="inline-math" data-tex="(1+\mu_m)^{12}-1"><code class="math-fallback">(1+\mu_m)^{12}-1</code></span>, where <span class="inline-math" data-tex="\mu_m"><code class="math-fallback">\mu_m</code></span> is expected monthly simple return. These operations answer different questions. The annualised alphas in the second essay are twelve times monthly regression intercepts. Their uncertainty intervals are transformed by the same linear factor; they are not claims that an investor could compound alpha independently each month.</p>
+
+    <h3 id="asset-and-security">Asset, security and risky asset</h3>
+
+    <p>An asset is a claim or resource with future economic payoffs. A security is a financial asset represented by a tradable contract, such as a share or bond. A risky asset has an uncertain return over the model's horizon; “risky” does not imply that loss is certain or that variance captures every relevant danger. Property and private businesses can belong to aggregate risky wealth even though they are not exchange-traded securities. This distinction matters because the CAPM market portfolio is theoretically broader than the set of securities available in a convenient database.</p>
+
+    <h3 id="asset-universe">Asset universe</h3>
+
+    <p>The asset universe is the set of claims a model permits the investor to hold. Every frontier, covariance matrix, tangency portfolio and <span class="inline-math" data-tex="1/N"><code class="math-fallback">1/N</code></span> rule is conditional on that set. A universe of listed United States equities is not the universe of all risky wealth; a universe of six test portfolios is not every claim in the economy. Results can change when assets are added, removed or represented at a different level of aggregation. The universe is therefore part of a model's specification, not neutral background.</p>
+
+    <h3 id="autocorrelation">Autocorrelation (serial correlation)</h3>
+
+    <p>Autocorrelation is correlation between observations from the same series at different dates, such as a regression residual this month and the residual one month earlier. It violates the simplest assumption that observations are independent through time and can make conventional standard errors misleading. Positive autocorrelation often means that a sample contains less independent information than its raw observation count suggests. The Newey–West uncertainty estimates in the second essay include estimated residual autocovariances through lag six in the long-run covariance calculation. Six is the estimator's chosen truncation, not evidence that dependence ends there. That adjustment changes estimated uncertainty, not the fitted alpha or beta coefficients.</p>
+
+    <h3 id="beta">Beta (β)</h3>
+
+    <p>In the theoretical one-period CAPM, beta measures covariance exposure to the market portfolio:</p>
+
+    <div class="display-math" data-tex="\beta_i=\frac{\operatorname{Cov}(R_i,R_M)}{\operatorname{Var}(R_M)}."><code class="math-fallback">\beta_i=\frac{\operatorname{Cov}(R_i,R_M)}{\operatorname{Var}(R_M)}.</code></div>
+
+    <p>Here the one-period <span class="inline-math" data-tex="R_f"><code class="math-fallback">R_f</code></span> is known at the decision date and therefore non-random. In the second essay's empirical regression, <span class="inline-math" data-tex="P"><code class="math-fallback">P</code></span> is an observable market proxy and the monthly risk-free proxy varies over time, so the fitted slope instead corresponds to</p>
+
+    <div class="display-math" data-tex="\beta_{i\mid P}=
+\frac{\operatorname{Cov}(R_i-R_f,\,R_P-R_f)}
+{\operatorname{Var}(R_P-R_f)}."><code class="math-fallback">\beta_{i\mid P}=
+\frac{\operatorname{Cov}(R_i-R_f,\,R_P-R_f)}
+{\operatorname{Var}(R_P-R_f)}.</code></div>
+
+    <p>For the same benchmark <span class="inline-math" data-tex="P"><code class="math-fallback">P</code></span>, the excess-return formula reduces to the raw-return covariance formula when <span class="inline-math" data-tex="R_f"><code class="math-fallback">R_f</code></span> is constant or otherwise non-random. It equals the theoretical market beta only if the proxy <span class="inline-math" data-tex="P"><code class="math-fallback">P</code></span> is the true market <span class="inline-math" data-tex="M"><code class="math-fallback">M</code></span>. Beta is dimensionless. A beta of 1 does not imply correlation of 1: beta also reflects the ratio of the asset's volatility to the benchmark's volatility. Nor is beta a causal effect or a forecast of realised return. It depends on the benchmark, return convention, horizon, sampling frequency and estimation window. In the Capital Asset Pricing Model, beta becomes the equilibrium measure of exposure to market risk only when <span class="inline-math" data-tex="M"><code class="math-fallback">M</code></span> is the model's market portfolio and the model's assumptions hold.</p>
+
+    <h3 id="bias-variance-trade-off">Bias–variance trade-off</h3>
+
+    <p>An estimator is biased when its average value across repeated samples differs from the quantity it targets. It has estimation variance when its value changes from sample to sample. Flexible rules can reduce approximation bias by fitting more distinctions, but they often estimate more parameters and therefore vary more with the data. Simple rules can impose a symmetry restriction or approximation error relative to population-optimal weights while reducing sampling variation. The first essay uses equal weighting to make this trade-off concrete: treating assets symmetrically can miss genuine differences in their opportunities, yet it avoids feeding noisy estimated means and covariances directly into extreme portfolio weights. Calling a weight rule “biased” without first naming the statistical or decision target would be imprecise.</p>
+
+    <h3 id="book-to-market">Book-to-market ratio (B/M)</h3>
+
+    <p>Book-to-market is accounting book equity divided by market equity. A higher ratio means recorded book equity is large relative to the stock market value of the company; a lower ratio means market value is high relative to book equity. In Kenneth French's six portfolios, “Growth,” “Neutral” and “Value” label the low, middle and high B/M groups. They are sorting labels, not forecasts that a firm's business will grow or a declaration that a security is mispriced. See also <a href="#market-equity">market equity</a> and <a href="#french-six-portfolios">the six French portfolios</a>.</p>
+
+    <h3 id="capital-asset-pricing-model">Capital Asset Pricing Model (CAPM)</h3>
+
+    <p>The standard Sharpe–Lintner–Mossin Capital Asset Pricing Model is a one-period equilibrium model: investors choose at one decision date and evaluate all payoffs at one common future horizon, with no intermediate rebalancing inside the model period. Investors evaluate portfolios by expected return and variance, share beliefs about asset returns, can borrow or lend at a common risk-free rate, face frictionless divisible trading, and collectively must hold the assets in supply. Those conditions identify the common tangency portfolio <span class="inline-math" data-tex="T"><code class="math-fallback">T</code></span> with the value-weighted market portfolio <span class="inline-math" data-tex="M"><code class="math-fallback">M</code></span>: <span class="inline-math" data-tex="T=M"><code class="math-fallback">T=M</code></span>.</p>
+
+    <p>The expected-return restriction is</p>
+
+    <div class="display-math" data-tex="\mathbb{E}[R_i]-R_f
+=\beta_i\bigl(\mathbb{E}[R_M]-R_f\bigr)."><code class="math-fallback">\mathbb{E}[R_i]-R_f
+=\beta_i\bigl(\mathbb{E}[R_M]-R_f\bigr).</code></div>
+
+    <p>The left side is asset <span class="inline-math" data-tex="i"><code class="math-fallback">i</code></span>'s expected excess return, <span class="inline-math" data-tex="\beta_i"><code class="math-fallback">\beta_i</code></span> is its covariance exposure to the market and the term in parentheses is the expected market risk premium. The Sharpe–Lintner restriction says that the Security Market Line's intercept is <span class="inline-math" data-tex="R_f"><code class="math-fallback">R_f</code></span>; equivalently, the standard excess-return regression has zero alpha when it uses the true market. This is an equilibrium restriction on expected returns, not an estimator, a guarantee about realised returns or a claim that total volatility is rewarded. Empirical work must substitute an observable market proxy for aggregate risky wealth, making any test joint with that proxy choice. The Black zero-beta model changes the intercept when unrestricted risk-free borrowing and lending is removed.</p>
+
+    <h3 id="calibration-and-sensitivity">Calibration and sensitivity study</h3>
+
+    <p>A calibration is the chosen numerical specification of a model's assumptions: for example, the number of assets, risk-aversion parameter, population Sharpe advantage and estimation-window length. It is an input scenario, not a universal fact discovered by the model. A sensitivity study recomputes the result under defensible alternative calibrations, data choices or conventions to show which conclusions persist and which depend on a particular choice. Sensitivity is informative but does not turn a finite set of alternatives into proof that every possible specification gives the same result.</p>
+
+    <h3 id="capital-market-line">Capital Market Line (CML)</h3>
+
+    <p>The Capital Market Line describes efficient complete portfolios formed by combining the risk-free asset with the market portfolio:</p>
+
+    <div class="display-math" data-tex="\mathbb{E}[R_C]
+=R_f+\frac{\sigma_C}{\sigma_M}\bigl(\mathbb{E}[R_M]-R_f\bigr)."><code class="math-fallback">\mathbb{E}[R_C]
+=R_f+\frac{\sigma_C}{\sigma_M}\bigl(\mathbb{E}[R_M]-R_f\bigr).</code></div>
+
+    <p>Its horizontal coordinate is total volatility <span class="inline-math" data-tex="\sigma_C"><code class="math-fallback">\sigma_C</code></span>, and its slope is the market portfolio's Sharpe ratio. Only efficient combinations of cash and the market lie on this line; an individual stock generally does not. Do not confuse it with the Security Market Line, whose horizontal coordinate is beta and which applies, within the CAPM, to every asset and portfolio.</p>
+
+    <h3 id="certainty-equivalent-return">Certainty-equivalent return</h3>
+
+    <p>A certainty-equivalent return is the sure return that gives an investor the same modelled utility as a risky portfolio. Under the common quadratic or mean–variance approximation it is often written <span class="inline-math" data-tex="CE=\mathbb{E}[R]-\frac{\gamma}{2}\operatorname{Var}(R)"><code class="math-fallback">CE=\mathbb{E}[R]-\frac{\gamma}{2}\operatorname{Var}(R)</code></span>, where <span class="inline-math" data-tex="\gamma"><code class="math-fallback">\gamma</code></span> measures risk aversion under the chosen convention. The statistic converts a risk–return trade-off into one utility-scaled number, but its value depends on the utility approximation, horizon, units and risk-aversion calibration. It is not a universal measure of investor welfare.</p>
+
+    <h3 id="common-beliefs">Common beliefs (homogeneous expectations)</h3>
+
+    <p>Common beliefs means that investors use the same expected returns, variances and covariances for the available risky assets. With the same risk-free opportunity, they therefore identify the same tangency portfolio even if they choose different total amounts of risk. This assumption carries the CAPM from many individual optimisation problems to one common risky fund. It does not say that investors have equal wealth or equal risk tolerance. If beliefs differ, market clearing may still produce an equilibrium, but the simple one-fund argument and the identity <span class="inline-math" data-tex="T=M"><code class="math-fallback">T=M</code></span> no longer follow in the same way.</p>
+
+    <h3 id="complete-portfolio">Complete portfolio</h3>
+
+    <p>A complete portfolio combines a position in a risky portfolio with a position in the risk-free asset. In the textbook separation result, investors agree on the composition of the risky fund and differ only in the fraction placed in that fund versus the risk-free asset. A cautious investor can hold less than 100% in the risky fund; an aggressive investor can hold more than 100% by borrowing at the risk-free rate. “Complete” here means the investor's total allocation, not a claim that it contains every asset in the economy.</p>
+
+    <h3 id="confidence-interval">Confidence interval</h3>
+
+    <p>A frequentist 95% confidence interval is produced by a method that would cover the true parameter in 95% of repeated samples if its assumptions and approximations were valid. Once an interval has been calculated, it is not literally a 95% posterior probability that the fixed parameter lies inside it. In Figure 3 of the second essay, a horizontal bar crossing zero means the corresponding alpha is not individually distinguishable from zero at the conventional 5% level under that Newey–West approximation. Six separate intervals and one joint GRS test answer different questions.</p>
+
+    <h3 id="correlation">Correlation</h3>
+
+    <p>Correlation standardises covariance:</p>
+
+    <div class="display-math" data-tex="\operatorname{Corr}(X,Y)=
+\frac{\operatorname{Cov}(X,Y)}{\sigma_X\sigma_Y}."><code class="math-fallback">\operatorname{Corr}(X,Y)=
+\frac{\operatorname{Cov}(X,Y)}{\sigma_X\sigma_Y}.</code></div>
+
+    <p>It lies between −1 and +1 when both standard deviations are positive. Correlation describes the strength and direction of linear co-movement, not equality, causation or agreement about portfolio efficiency. Two market proxies can be highly correlated yet have different volatilities, covariances with test assets, betas and alphas. That is why a reassuring proxy correlation does not resolve Roll's market-proxy problem.</p>
+
+    <h3 id="continuous-time-diffusion">Continuous-time diffusion and drift</h3>
+
+    <p>A continuous-time diffusion models a quantity as changing at every instant through two components. Its drift is the conditional expected rate of change; its volatility scales the continuously arriving random shock. Brownian motion is the standard continuous random process used to represent those accumulated shocks. The first essay invokes Merton's fixed-span result: observing more frequently over the same calendar interval can sharpen inference about variance without creating comparable information about expected return. That conclusion belongs to the stated diffusion setting; it is not a theorem about every possible return process.</p>
+
+    <h3 id="cost-of-equity">Cost of equity and discount rate</h3>
+
+    <p>The cost of equity is the expected return required on an equity claim, viewed from the company as the opportunity cost of financing and from the investor as compensation for bearing the claim's risk. A discount rate converts future cash flows into present value and should reflect the timing, currency and risk of those cash flows. A CAPM application estimates an equity discount rate as <span class="inline-math" data-tex="R_f+\beta_i(\mathbb{E}[R_M]-R_f)"><code class="math-fallback">R_f+\beta_i(\mathbb{E}[R_M]-R_f)</code></span>. Each input is conditional: the risk-free rate must match the horizon and currency, beta depends on the chosen proxy and sample, and the market premium is expected rather than automatically equal to its historical average. The result is a model-based estimate, not an observed property of the company or one rate suitable for every cash flow.</p>
+
+    <h3 id="covariance">Covariance</h3>
+
+    <p>Covariance measures joint deviation from two means:</p>
+
+    <div class="display-math" data-tex="\operatorname{Cov}(X,Y)=
+\mathbb{E}\!\left[(X-\mathbb{E}[X])(Y-\mathbb{E}[Y])\right]."><code class="math-fallback">\operatorname{Cov}(X,Y)=
+\mathbb{E}\!\left[(X-\mathbb{E}[X])(Y-\mathbb{E}[Y])\right].</code></div>
+
+    <p>A positive value means above-average observations of one variable tend to accompany above-average observations of the other; a negative value means they tend to move in opposite directions. Its magnitude depends on measurement units, so covariance is not bounded like correlation. In portfolio variance, covariances determine how asset risks combine. In the CAPM, covariance with the market—scaled by market variance—determines beta.</p>
+
+    <h3 id="covariance-matrix">Covariance matrix (Σ)</h3>
+
+    <p>A covariance matrix contains the variance of each asset on its diagonal and every pairwise covariance in the off-diagonal cells. It is symmetric. For <span class="inline-math" data-tex="N"><code class="math-fallback">N</code></span> assets it contains <span class="inline-math" data-tex="N(N+1)/2"><code class="math-fallback">N(N+1)/2</code></span> distinct variance and covariance entries, which is why the estimation burden grows quickly. Sample covariance matrices can be singular when the number of assets is large relative to the history or when assets are exact linear combinations of one another. See <a href="#positive-semidefinite-and-positive-definite">positive semidefinite and positive definite</a> for the matrix conditions.</p>
+
+    <h2 id="d-h">D–H</h2>
+
+    <h3 id="degrees-of-freedom">Degrees of freedom</h3>
+
+    <p>Degrees of freedom count independent pieces of information remaining after restrictions or estimated parameters are taken into account. Their exact interpretation depends on the statistic. In the second essay's <span class="inline-math" data-tex="F(6,738)"><code class="math-fallback">F(6,738)</code></span> reference distribution, 6 is the number of jointly tested alpha restrictions and 738 is the denominator degree of freedom <span class="inline-math" data-tex="n_{\text{obs}}-N-K=745-6-1"><code class="math-fallback">n_{\text{obs}}-N-K=745-6-1</code></span>, where <span class="inline-math" data-tex="n_{\text{obs}}=745"><code class="math-fallback">n_{\text{obs}}=745</code></span> is the number of monthly observations, <span class="inline-math" data-tex="N=6"><code class="math-fallback">N=6</code></span> the number of test assets and <span class="inline-math" data-tex="K=1"><code class="math-fallback">K=1</code></span> the number of factors. The denominator is not the residual degree of freedom from any one of the six regressions. Degrees of freedom help determine the reference distribution; they are not an effect size or a measure of economic importance.</p>
+
+    <h3 id="diversification">Diversification</h3>
+
+    <p>Diversification combines assets whose returns do not move perfectly together so that some asset-specific fluctuations offset one another. Portfolio variance depends on both individual variances and pairwise covariances; owning more names does not guarantee meaningful diversification if their exposures are nearly identical. Diversification can reduce idiosyncratic risk, but it cannot eliminate a common component shared by the whole portfolio. The CAPM's pricing argument rests on that distinction: in the model, investors are not rewarded for firm-specific risk that a diversified portfolio can remove.</p>
+
+    <h3 id="ecological-rationality">Ecological rationality</h3>
+
+    <p>Ecological rationality evaluates a decision rule relative to the structure of the environment in which it is used. A simple heuristic can outperform a more flexible optimiser when data are scarce, relationships unstable and estimation error costly; the same heuristic can perform poorly when persistent differences are strong and measurable. The idea does not declare simple rules universally superior or secretly optimal. In the first essay it explains why the relevant comparison is between explicit rules under common information and trading conditions, not between “mathematics” and “common sense.”</p>
+
+    <h3 id="efficient-frontier">Efficient portfolio and efficient frontier</h3>
+
+    <p>A portfolio is mean–variance efficient if no feasible alternative has a higher expected return for the same or lower variance, and none has lower variance for the same or higher expected return. The efficient frontier is the boundary formed by all such portfolios for a specified expected-return vector, covariance matrix, asset universe and set of constraints. “Efficient” is therefore conditional, not a synonym for good, diversified, informationally efficient or certain to outperform. Change the risky-asset moments, constraints or universe and the frontier can move. Changing the risk-free rate changes the capital-allocation line and its tangency portfolio, not the risky-asset frontier itself. Markowitz's result maps stated beliefs to this set; it does not supply the beliefs.</p>
+
+    <h3 id="ensemble-and-time-average">Ensemble average and time average</h3>
+
+    <p>An ensemble average averages outcomes across many hypothetical parallel realisations at a fixed horizon. A time average describes growth along one realised path through time. A process is ergodic for a statistic when its long-run time average converges appropriately to the corresponding ensemble value. In additive settings the two can coincide; with multiplicative wealth, path dependence or absorbing ruin they may not. The first essay mentions this distinction as a deeper objection to evaluating every investment problem only through expected values across hypothetical states. The debate does not by itself invalidate expected-utility theory; it identifies a choice about what object the decision criterion is meant to represent.</p>
+
+    <h3 id="estimation-error">Estimation error</h3>
+
+    <p>Estimation error is the difference between an estimate computed from a finite sample and the unknown population quantity it targets. Sample means, variances and covariances all contain it, but expected returns are often especially difficult to estimate because a fixed calendar span contains limited information about drift. An optimiser can amplify small input errors into large weight changes because it deliberately selects the combination that looks best in the estimated table. A precise numerical optimum can therefore be the exact answer to an inaccurately estimated problem.</p>
+
+    <h3 id="expected-return">Expected, realised and excess return</h3>
+
+    <p>A realised return is the gain or loss that actually occurred over a stated interval. An expected return is the probability-weighted population mean under a model or an investor's beliefs before that outcome is known. A historical average is an estimator of an expected return, not the expectation itself. An excess return subtracts a benchmark, usually the matched-period risk-free return: <span class="inline-math" data-tex="R_i-R_f"><code class="math-fallback">R_i-R_f</code></span>. Expected excess return is <span class="inline-math" data-tex="\mathbb{E}[R_i]-R_f"><code class="math-fallback">\mathbb{E}[R_i]-R_f</code></span> when <span class="inline-math" data-tex="R_f"><code class="math-fallback">R_f</code></span> is known at the decision date. Returns must be aligned in horizon, currency and <a href="#return-conventions">simple-versus-log convention</a> before they are compared.</p>
+
+    <h3 id="expected-utility">Expected utility</h3>
+
+    <p>Expected utility is the probability-weighted average of the utility assigned to each possible outcome. Utility represents the decision maker's ranking of consequences; its curvature describes how that ranking responds to risk. Expected utility is generally not the utility of the expected outcome, because averaging and applying a curved utility function do not commute. In the first essay's “500 years” calculation, a portfolio rule is evaluated by its expected utility under a stated return model and risk-aversion calibration, then translated into a certainty-equivalent cost. The conclusion is therefore conditional on both the model and the preference specification.</p>
+
+    <h3 id="f-distribution">F distribution</h3>
+
+    <p>The <span class="inline-math" data-tex="F"><code class="math-fallback">F</code></span> distribution is a family of right-skewed reference distributions indexed by two degrees-of-freedom values. It commonly appears when a statistic compares explained or restricted variation with residual variation. The GRS statistic in the second essay is compared with <span class="inline-math" data-tex="F(6,738)"><code class="math-fallback">F(6,738)</code></span> under its classical assumptions. Saying that 7.67 is “large” means large relative to that reference distribution, not large on an absolute universal scale. If heteroskedasticity, serial correlation or non-normality invalidates the exact reference law, the printed p-value no longer has its exact textbook interpretation.</p>
+
+    <h3 id="factor-loading-and-residual">Factor, loading and residual</h3>
+
+    <p>A factor is a common return or variable used to describe co-movement across assets. A loading is the coefficient that measures an asset's exposure to that factor; beta is the loading on the market factor. A residual is what remains after the fitted factor contribution and intercept are removed. Residual risk is asset-specific only relative to the chosen model: omitted common influences can remain in the residuals, and residuals across assets can still be correlated. A statistical factor model describes return co-movement; it becomes an asset-pricing model only when additional economic restrictions connect loadings to expected returns.</p>
+
+    <h3 id="frictionless-and-divisible-trading">Frictionless and divisible trading</h3>
+
+    <p>Frictionless trading means that the model abstracts from taxes, bid–ask spreads, commissions, market impact and other trading costs. Divisibility means positions can be chosen in arbitrarily fine quantities rather than whole indivisible units. These assumptions let investors move continuously among portfolio weights and, in the textbook CAPM, support the clean separation and market-clearing argument. They are approximations, not claims that implementation costs are zero in practice; once costs or indivisibilities matter, the feasible decision can depend on wealth, trade size and the starting portfolio.</p>
+
+    <h3 id="grs-test">Gibbons–Ross–Shanken test (GRS test)</h3>
+
+    <p>The GRS test asks whether the intercepts from several time-series asset-pricing regressions are jointly zero. Its null hypothesis is <span class="inline-math" data-tex="H_0:\alpha_1=\cdots=\alpha_N=0"><code class="math-fallback">H_0:\alpha_1=\cdots=\alpha_N=0</code></span> for the specified <span class="inline-math" data-tex="N"><code class="math-fallback">N</code></span> test assets and factors. The statistic combines the alpha vector with the covariance of residual returns and adjusts for the factor's sample mean and covariance, so it is not simply the largest individual t-statistic. In the companion study, <span class="inline-math" data-tex="N=6"><code class="math-fallback">N=6</code></span>, one market-excess-return factor is used and 745 monthly observations produce the <span class="inline-math" data-tex="F(6,738)"><code class="math-fallback">F(6,738)</code></span> reference distribution.</p>
+
+    <p>The exact finite-sample <span class="inline-math" data-tex="F"><code class="math-fallback">F</code></span> law assumes regression residuals are independent through time, identically distributed and multivariate normal, with the other classical model conditions satisfied. The Newey–West bars shown for individual alphas do not make the GRS statistic robust. Rejecting the joint null says that the selected proxy is not mean–variance efficient relative to the selected test assets under those assumptions. It does not isolate whether the CAPM, the market proxy or both are responsible. Failure to reject would likewise not prove the CAPM.</p>
+
+    <h3 id="heavy-tails">Heavy tails, tail exponent and fourth moment</h3>
+
+    <p>A distribution has heavy tails when extreme observations occur more often than under a thin-tailed benchmark such as the normal distribution. Under the survival-tail convention <span class="inline-math" data-tex="\Pr(|R|&gt;x)\propto x^{-\kappa}"><code class="math-fallback">\Pr(|R|&gt;x)\propto x^{-\kappa}</code></span> for large <span class="inline-math" data-tex="x"><code class="math-fallback">x</code></span>, <span class="inline-math" data-tex="\Pr"><code class="math-fallback">\Pr</code></span> means probability, <span class="inline-math" data-tex="|R|"><code class="math-fallback">|R|</code></span> is the absolute size of return, <span class="inline-math" data-tex="x"><code class="math-fallback">x</code></span> is a large threshold and <span class="inline-math" data-tex="\propto"><code class="math-fallback">\propto</code></span> means “declines in proportion to” at large values. The tail exponent <span class="inline-math" data-tex="\kappa"><code class="math-fallback">\kappa</code></span> describes how quickly extreme-event probabilities decline. An exponent near three permits a finite variance but not a finite fourth moment, making conventional variance and covariance estimates much less stable than a Gaussian intuition suggests. Some sources define an exponent for the density instead, so the convention must be stated because the moment thresholds then differ. The exact consequences also depend on the return definition, horizon, dependence structure and estimator. “Heavy-tailed” is not a single universal distribution and does not mean that variance must be infinite.</p>
+
+    <h3 id="heteroskedasticity">Heteroskedasticity</h3>
+
+    <p>Heteroskedasticity means that the conditional variance of a regression's residuals changes across observations or through time. Financial return volatility commonly clusters, so a constant residual variance can be a poor approximation. Ordinary least-squares coefficient estimates may remain centred under suitable conditions, while their conventional standard errors become unreliable. Heteroskedasticity-robust and Newey–West procedures adjust estimated uncertainty; they do not repair a misspecified expected-return model or change the fitted coefficients.</p>
+
+    <h3 id="heuristic">Heuristic</h3>
+
+    <p>A heuristic is a deliberately simplified decision rule that ignores some available distinctions or calculations. Equal weighting is a heuristic because it assigns the same weight without estimating return moments. “Heuristic” does not mean irrational, informal or necessarily inferior. Its performance depends on what information it ignores, how noisy that information is, and the environment in which the rule is applied. A fair comparison specifies the same asset universe, information set, rebalancing dates and costs for both the heuristic and the optimiser.</p>
+
+    <h2 id="i-m">I–M</h2>
+
+    <h3 id="iid">Independent and identically distributed (i.i.d.)</h3>
+
+    <p>Observations are independent and identically distributed when one observation supplies no information about another and every observation is drawn from the same probability distribution. In return data this rules out serial dependence, changing volatility and structural change. It is a useful reference assumption, not a harmless abbreviation. The classical exact GRS distribution uses an i.i.d. multivariate-normal residual assumption. Newey–West uncertainty is designed precisely for settings in which heteroskedasticity or limited autocorrelation makes the simplest standard-error formula inappropriate.</p>
+
+    <h3 id="in-sample-and-out-of-sample">In-sample and out-of-sample</h3>
+
+    <p>In-sample performance is measured on observations that were available when a rule was estimated or selected. Out-of-sample performance is measured on observations not used for that fit. The fixed-December-2006 evaluation and the DeMiguel comparison in the first essay are pseudo-out-of-sample: a portfolio is estimated from earlier observations and evaluated on later observations in an already completed dataset. The rolling-weight chart is only a sequence of historical estimates and is not itself an out-of-sample performance test. Pseudo-out-of-sample analysis is more demanding than reusing the fitting sample but is not the same as live investment performance whose research design was specified before the later outcomes occurred; choices made after seeing the full history can still leak information.</p>
+
+    <h3 id="kantorovich-distance">Kantorovich distance, convex risk and ambiguity</h3>
+
+    <p>Kantorovich distance, also called a Wasserstein transportation distance in common modern usage, measures how much probability mass must be moved, and how far, to transform one probability distribution into another. Distributionally robust optimisation can place an ambiguity set of distributions within a chosen distance of an empirical reference distribution; its ambiguity radius determines how far candidate distributions may lie from that reference. A convex risk functional maps a random return or loss to a risk number while satisfying a convexity condition that, roughly, does not penalise diversification beyond the weighted average of its components. Conclusions depend on the rule used to measure distance between outcomes, the radius and the risk functional. The first essay cites an asymptotic result—a limiting statement as ambiguity grows without bound—in which uniform weights emerge for a specified class. It is not proof that <span class="inline-math" data-tex="1/N"><code class="math-fallback">1/N</code></span> is optimal at every finite radius or under every uncertainty model.</p>
+
+    <h3 id="leverage">Leverage and gross exposure</h3>
+
+    <p>Leverage means controlling risky positions whose magnitude exceeds the investor's net capital, usually through borrowing or offsetting long and short positions. If weights sum to one, gross exposure is commonly <span class="inline-math" data-tex="\sum_i|w_i|"><code class="math-fallback">\sum_i|w_i|</code></span>. A portfolio with +200% in one asset and −100% in another has net exposure of 100% but gross exposure of 300%. Unconstrained mean–variance optimisation can generate enormous offsetting positions when estimated opportunities are close or the covariance matrix is ill-conditioned, meaning that small input changes can produce very large changes in the solution. Such weights are mathematically feasible only if the model permits the required borrowing and short selling; they need not be operationally investable.</p>
+
+    <h3 id="long-only-and-short-selling">Long-only constraint, short position and short selling</h3>
+
+    <p>A long-only portfolio requires every risky-asset weight to satisfy <span class="inline-math" data-tex="w_i\geq0"><code class="math-fallback">w_i\geq0</code></span>. A short position has a negative weight: the investor benefits if the asset falls and loses if it rises, normally after borrowing the asset or using a derivative. Short-sale constraints change the feasible set and can turn an unstable unconstrained optimum into a boundary solution. “Unconstrained” in these essays means that negative weights are permitted subject to the portfolio's budget equation; it does not mean that every real-world financing, margin or liquidity constraint has disappeared.</p>
+
+    <h3 id="market-clearing">Market clearing</h3>
+
+    <p>Market clearing means that investors' holdings, added across all investors, equal the quantities of assets outstanding. It is the bridge from individual choice to equilibrium pricing. If every investor demands the same composition for the risky fund, aggregate demand can equal aggregate supply only when that common fund has the market-value weights of the assets in supply. In the CAPM this gives <span class="inline-math" data-tex="T=M"><code class="math-fallback">T=M</code></span>. The equality is conditional on the model's common-belief, opportunity-set and trading assumptions; it is not a free-standing accounting identity about any portfolio labelled “market.”</p>
+
+    <h3 id="market-equilibrium">Market equilibrium and equilibrium restriction</h3>
+
+    <p>A market equilibrium is a set of prices or expected returns at which investors' optimal demands are mutually compatible with the assets in supply. An equilibrium restriction runs from that consistency condition back to the returns that can support it. This reverses the direction of a portfolio-choice calculation: Markowitz asks which portfolio follows from supplied beliefs, while the CAPM asks which expected returns can coexist with individual choices that clear the market. An equilibrium relation does not by itself estimate its inputs or describe the trading process by which prices reach equilibrium.</p>
+
+    <h3 id="market-equity">Market equity (ME)</h3>
+
+    <p>Market equity is the stock-market capitalisation of a company: share price multiplied by the relevant number of shares outstanding under the dataset's convention. It is used both as a measure of company size and as the basis for value weights. In French's six portfolios, the median market equity of eligible New York Stock Exchange firms separates Small from Big at each annual sort. Market equity should not be confused with book equity, which comes from accounting statements, or with the market portfolio, which is a portfolio concept.</p>
+
+    <h3 id="market-portfolio">Market portfolio (M)</h3>
+
+    <p>The market portfolio in the CAPM is aggregate risky wealth: every risky asset in the economy, weighted by its market value. In principle that includes listed shares, risky debt, private businesses, property and other claims, with difficult boundary questions around human capital and non-traded assets. It is not automatically the Standard &amp; Poor's 500 Index, the Center for Research in Security Prices equity universe or French's Mkt−RF factor. Under the standard CAPM's assumptions, market clearing identifies this portfolio with the common tangency portfolio. Because aggregate risky wealth is not directly observed, empirical CAPM work uses proxies.</p>
+
+    <h3 id="market-proxy-and-roll-critique">Market proxy and Roll critique</h3>
+
+    <p>A market proxy is an observable portfolio used in place of the CAPM's unobservable market portfolio. Richard Roll's critique is not merely that every proxy contains noise. For a candidate portfolio, mean–variance efficiency and the linear beta expected-return relation are mathematically linked. A test that rejects the relation may therefore reject the CAPM, the chosen proxy's efficiency or both. A failure to reject supplies no evidence against the proxy's efficiency relative to the selected test assets, but it does not establish that efficiency or validate the CAPM. High correlation with another proxy does not solve the identification problem because different portfolio weights can generate different betas and alphas.</p>
+
+    <h3 id="market-risk-premium">Market risk premium</h3>
+
+    <p>The expected market risk premium is <span class="inline-math" data-tex="\mathbb{E}[R_M]-R_f"><code class="math-fallback">\mathbb{E}[R_M]-R_f</code></span>: the expected return on the market portfolio above the matched risk-free return. A realised market excess return, such as one month's Mkt−RF observation, is an outcome; its historical average is an estimate of the expected premium. The CAPM Security Market Line has this expected premium as its slope. Its value depends on the market definition, horizon, currency and estimation method, so “the market premium” is not one timeless observed constant.</p>
+
+    <h3 id="mean-vector">Mean vector (μ)</h3>
+
+    <p>The mean vector lists one expected return for each asset in the chosen order: <span class="inline-math" data-tex="\mu=(\mathbb{E}[R_1],\ldots,\mathbb{E}[R_N])&#x27;"><code class="math-fallback">\mu=(\mathbb{E}[R_1],\ldots,\mathbb{E}[R_N])&#x27;</code></span>. Together with the covariance matrix it supplies the inputs to the basic Markowitz problem. A sample mean vector replaces the unknown expectations with historical averages. That plug-in step is an estimation choice, not part of the mathematical definition of the efficient frontier, and small changes in the vector can produce large changes in unconstrained optimal weights.</p>
+
+    <h3 id="mean-variance-model">Mean–variance model and optimisation</h3>
+
+    <p>Mean–variance analysis represents a portfolio by its expected return <span class="inline-math" data-tex="w&#x27;\mu"><code class="math-fallback">w&#x27;\mu</code></span> and variance <span class="inline-math" data-tex="w&#x27;\Sigma w"><code class="math-fallback">w&#x27;\Sigma w</code></span>, where <span class="inline-math" data-tex="w"><code class="math-fallback">w</code></span> is the vector of weights, <span class="inline-math" data-tex="\mu"><code class="math-fallback">\mu</code></span> the expected-return vector and <span class="inline-math" data-tex="\Sigma"><code class="math-fallback">\Sigma</code></span> the covariance matrix. A common optimisation form chooses</p>
+
+    <div class="display-math" data-tex="\max_w\; w&#x27;\mu-\frac{\gamma}{2}w&#x27;\Sigma w"><code class="math-fallback">\max_w\; w&#x27;\mu-\frac{\gamma}{2}w&#x27;\Sigma w</code></div>
+
+    <p>subject to a budget equation and any trading constraints; <span class="inline-math" data-tex="\gamma&gt;0"><code class="math-fallback">\gamma&gt;0</code></span> encodes the chosen risk-aversion convention. Equivalent formulations minimise variance for a target expected return or maximise expected return for a variance limit. The framework treats variance as its risk measure. It is conditional on inputs and constraints and does not claim to estimate them, capture every feature of return distributions or describe every investor preference.</p>
+
+    <h3 id="mean-variance-efficiency">Mean–variance efficiency</h3>
+
+    <p>A portfolio is mean–variance efficient relative to specified assets when no combination of those assets offers a higher expected return without higher variance or lower variance without lower expected return. In the one-traded-factor setting used in the second essay, the null that all regression alphas are zero is equivalent, under the model conditions, to the factor proxy being mean–variance efficient in the augmented span of that proxy and the selected test assets. In a multi-factor traded model, the corresponding statement concerns whether the factor span contains an efficient portfolio; no individual factor need be efficient. This is not informational market efficiency, which concerns how prices reflect information. Mean–variance efficiency is always conditional on the asset set, moments, horizon and admissible portfolio positions.</p>
+
+    <h3 id="minimum-variance-portfolio">Minimum-variance portfolio</h3>
+
+    <p>The minimum-variance portfolio is the feasible portfolio with the smallest return variance. The global minimum-variance portfolio imposes no target expected return beyond the budget and other constraints. It depends on the covariance matrix but not directly on the expected-return vector, which can make it less sensitive to noisy mean estimates than a tangency portfolio. It can still be unstable when covariances are estimated poorly, and an unconstrained solution can contain short positions and leverage.</p>
+
+    <h3 id="moment">Moment</h3>
+
+    <p>A moment is an expectation involving powers of a random variable and summarises a feature of its distribution. The first raw moment is the mean; the second central moment is variance; the fourth central moment helps describe tail weight and enters the sampling behaviour of variance estimators. A sample moment is calculated from observed data and estimates a population moment. Existence and reliable estimation are separate: a population variance may be finite while extreme observations make its finite-sample estimate highly unstable.</p>
+
+    <h3 id="mkt-rf">Mkt−RF</h3>
+
+    <p>Mkt−RF is Kenneth French's label for the United States equity-market return minus the dataset's monthly risk-free-return proxy. In the companion study it is the single explanatory factor in the six portfolio regressions. It is an observable United States equity proxy, not the CAPM's aggregate-wealth market portfolio. The minus sign denotes subtraction; “RF” conventionally means risk-free rate, while each observation is the proxy's return for that period. The risk-free source and exact market construction can change across a long sample or data vintage, so the provider's documentation remains part of the definition.</p>
+
+    <h3 id="multivariate-normal">Multivariate-normal distribution</h3>
+
+    <p>A multivariate-normal distribution is a joint Gaussian distribution for a vector of variables, characterised completely by a mean vector and covariance matrix. Every linear combination is normally distributed. This assumption makes exact finite-sample derivations possible, including the classical GRS <span class="inline-math" data-tex="F"><code class="math-fallback">F</code></span> law, but financial returns can exhibit skewness, heavy tails and changing volatility that it does not capture. Mean–variance analysis itself can still be used as a decision approximation without claiming that returns are exactly normal; the interpretation then comes from the chosen objective rather than full distributional sufficiency.</p>
+
+    <h3 id="multiplicative-wealth">Multiplicative wealth and absorbing ruin</h3>
+
+    <p>With multiplicative wealth, returns compound on the current capital base: <span class="inline-math" data-tex="W_{t+1}=W_t(1+R_{t+1})"><code class="math-fallback">W_{t+1}=W_t(1+R_{t+1})</code></span>. A 50% loss therefore requires a subsequent 100% gain to return to the starting level. An absorbing ruin state is a wealth level—typically zero in a simplified model—from which the process cannot recover without outside capital. Path order and survival can then matter even when an ensemble expectation looks attractive. These concepts motivate time-average analysis in the first essay but do not by themselves choose a unique portfolio objective.</p>
+
+    <h2 id="n-r">N–R</h2>
+
+    <h3 id="newey-west">Newey–West standard error</h3>
+
+    <p>A Newey–West standard error estimates coefficient uncertainty with a long-run covariance calculation that allows residual variance to change and includes estimated residual autocovariances through a chosen lag. It is a heteroskedasticity-and-autocorrelation-consistent large-sample procedure. The chosen lag or bandwidth matters: too few lags can leave dependence unaccounted for, while too many can make the estimate noisy. In the second essay, the calculation includes autocovariances through six monthly lags; this truncation does not assert that later dependence is absent. Newey–West changes the estimated covariance matrix of the regression coefficients, not the alpha and beta point estimates, and it does not transfer robustness to the separate classical GRS test.</p>
+
+    <h3 id="norm-constraint">Norm constraint</h3>
+
+    <p>A norm constraint limits the collective magnitude of a portfolio's weights, for example by bounding <span class="inline-math" data-tex="\sum_i|w_i|"><code class="math-fallback">\sum_i|w_i|</code></span> or <span class="inline-math" data-tex="\sum_i w_i^2"><code class="math-fallback">\sum_i w_i^2</code></span>. Such a restriction can reduce shorting, concentration and gross exposure without requiring every weight to be non-negative. In estimated portfolio problems it also acts as regularisation: the optimiser has less freedom to convert small differences in noisy inputs into enormous offsetting positions. The economic meaning depends on the selected norm and bound, which should not be chosen only because they improve one historical backtest.</p>
+
+    <h3 id="null-hypothesis-and-p-value">Null hypothesis, significance level and p-value</h3>
+
+    <p>A null hypothesis is the precise claim a statistical test uses as its reference case. A p-value is the probability, assuming that null and the test's other assumptions, of observing a statistic at least as extreme as the one obtained. It is not the probability that the null is true, the probability that the result occurred “by chance,” or a measure of economic importance. A 5% significance level is a decision threshold chosen before interpretation; a p-value below 0.05 leads to rejection under that rule. For the GRS test here, the null is that all six true alphas are zero for the chosen proxy and test assets.</p>
+
+    <h3 id="objective-and-feasible-set">Objective function, loss function and feasible set</h3>
+
+    <p>An objective function is the quantity an optimiser is instructed to maximise or minimise. A loss function assigns a numerical penalty to an outcome or prediction error; minimising expected loss is one way to define an objective. The feasible set contains every portfolio allowed by the budget equation, long-only rule, leverage cap and other constraints. “Optimal” means best for that objective inside that set, using the supplied inputs. It does not mean uniquely correct outside the model. When the objective is shallow near its maximum, visibly different portfolios can have nearly identical estimated objective values; small input changes can then move the reported optimum substantially with little change in modelled risk and return.</p>
+
+    <h3 id="percentage-point">Percentage point</h3>
+
+    <p>A percentage point is an absolute difference between percentages. A move from 26.1% to 37.6% is an increase of 11.5 percentage points, not 11.5%; relative to 26.1%, it is approximately a 44% increase. Portfolio weights, rates and annualised returns should use “percentage points” when the comparison is subtraction rather than proportional growth.</p>
+
+    <h3 id="plug-in-estimator">Plug-in estimator</h3>
+
+    <p>A plug-in procedure estimates unknown parameters from a sample and inserts those estimates into a formula as if they were the true values. A sample mean–variance portfolio plugs historical means and covariances into an optimisation defined for population moments. The resulting weights can be highly sensitive because the same data both create the apparent opportunities and determine how aggressively the optimiser exploits them. Plug-in is a method, not an error; the problem is forgetting the uncertainty that entered with the estimates.</p>
+
+    <h3 id="population-and-sample">Population, sample, parameter and estimate</h3>
+
+    <p>A population is the probability model or full process about which a claim is made. A parameter is a fixed but usually unknown feature of it, such as an expected return or covariance. A sample is the finite set of observations available to the researcher; an estimate is a statistic calculated from that sample. Repeated samples would give different estimates even if the population did not change. In the second essay's controlled population, alphas can be calculated analytically from specified moments. In the historical exercise, alpha is estimated and must be accompanied by uncertainty.</p>
+
+    <h3 id="analytical-simulated-and-historical">Analytical, simulated and historical result</h3>
+
+    <p>An analytical result follows directly from stated equations or population quantities. A simulated result is generated by drawing artificial observations from a specified stochastic process and therefore varies across random draws unless the seed and draw are fixed. A historical estimate is calculated from realised data. The second essay's proxy experiment is analytical: it changes the portfolio inserted into an exact population relation without drawing return histories. Its pricing errors are therefore not sampling accidents. The later six-portfolio exercise is historical and its alpha estimates carry sampling uncertainty.</p>
+
+    <h3 id="positive-semidefinite-and-positive-definite">Positive semidefinite and positive definite</h3>
+
+    <p>A symmetric matrix <span class="inline-math" data-tex="\Sigma"><code class="math-fallback">\Sigma</code></span> is positive semidefinite when <span class="inline-math" data-tex="w&#x27;\Sigma w\geq0"><code class="math-fallback">w&#x27;\Sigma w\geq0</code></span> for every vector <span class="inline-math" data-tex="w"><code class="math-fallback">w</code></span>. This is the basic validity condition for a covariance matrix because a portfolio variance cannot be negative. It is positive definite when the inequality is strict for every non-zero <span class="inline-math" data-tex="w"><code class="math-fallback">w</code></span>. Positive definiteness rules out zero-variance linear combinations and makes the matrix invertible. A valid covariance matrix need not be positive definite; redundant assets or too little data can produce a singular positive-semidefinite matrix.</p>
+
+    <h3 id="quadratic-programme">Quadratic programme</h3>
+
+    <p>A quadratic programme optimises an objective containing quadratic terms subject to linear equality or inequality constraints. Portfolio variance <span class="inline-math" data-tex="w&#x27;\Sigma w"><code class="math-fallback">w&#x27;\Sigma w</code></span> is quadratic in the weights, so minimum-variance and many mean–variance problems have this form. “Quadratic” describes the mathematical structure, not the reliability of the inputs. A solver can find the numerical optimum of a quadratic programme very accurately even when expected returns and covariances were estimated with substantial error.</p>
+
+    <h3 id="portfolio-and-weight">Portfolio and portfolio weight</h3>
+
+    <p>A portfolio is a collection of asset positions. For one-period simple returns and beginning-of-period self-financing capital weights, its return is exactly <span class="inline-math" data-tex="R_p=\sum_iw_iR_i"><code class="math-fallback">R_p=\sum_iw_iR_i</code></span>. “Self-financing” means that changes in positions are funded entirely from within the portfolio, without adding or withdrawing outside capital during the period. The analogous return equation is not generally true for continuously compounded or log returns. Weights commonly sum to one; a negative weight is a short position, and a weight above one generally requires borrowing or offsetting negative weights. A portfolio description is incomplete without the asset universe, <a href="#return-conventions">return</a> and weight conventions, rebalance rule and treatment of cash, leverage and transaction costs.</p>
+
+    <h3 id="rebalancing-and-turnover">Rebalancing, target weights and turnover</h3>
+
+    <p>Asset returns move actual holdings away from their target weights. Rebalancing trades back toward those targets on a stated schedule or when a threshold is crossed. Turnover measures how much is traded, but conventions differ: one-way versus two-way turnover, target-weight changes versus executed trades, and treatment of cash flows all matter. The first essay's month-to-month sum of absolute changes in target weights is an instability diagnostic. It is not a fully costed measure of actual trading because it does not first drift holdings with realised returns or model market impact, spreads and fees.</p>
+
+    <h3 id="regression">Regression, intercept, slope and residual</h3>
+
+    <p>A regression describes the conditional linear relationship between an outcome and one or more explanatory variables. In the empirical one-factor regression <span class="inline-math" data-tex="R_i-R_f=\alpha_i+\beta_{i\mid P}(R_P-R_f)+\varepsilon_i"><code class="math-fallback">R_i-R_f=\alpha_i+\beta_{i\mid P}(R_P-R_f)+\varepsilon_i</code></span>, alpha is the intercept, <span class="inline-math" data-tex="\beta_{i\mid P}"><code class="math-fallback">\beta_{i\mid P}</code></span> the slope relative to proxy <span class="inline-math" data-tex="P"><code class="math-fallback">P</code></span>, and the residual <span class="inline-math" data-tex="\varepsilon_i"><code class="math-fallback">\varepsilon_i</code></span> the period-specific part not fitted by that line. Ordinary least squares chooses coefficients that minimise the sum of squared sample residuals. Statistical fit does not by itself establish causation or the truth of an economic model. The residual covariance across test portfolios matters to the GRS joint test.</p>
+
+    <h3 id="renormalising-weights">Renormalising weights</h3>
+
+    <p>Renormalising rescales a set of retained weights so that they again satisfy the desired budget total. If assets with original weights totalling <span class="inline-math" data-tex="s"><code class="math-fallback">s</code></span> remain after exclusions, each retained weight becomes <span class="inline-math" data-tex="w_i/s"><code class="math-fallback">w_i/s</code></span>, and the new weights sum to one. In the second essay's proxy experiment, private firms and property are removed from the true-market weights and the listed-asset weights are renormalised. This changes the portfolio used as “market” without changing any asset's population expected return or covariance.</p>
+
+    <h3 id="regularisation">Regularisation, shrinkage and Bayesian prior</h3>
+
+    <p>Regularisation stabilises an estimate or decision rule by limiting how freely it can fit the sample. A long-only or norm constraint regularises the weights. Shrinkage pulls noisy estimated means or covariances toward a structured target. A Bayesian prior expresses beliefs about unknown parameters before the current data. It is combined with a likelihood—the model's account of how probable the observed data would be under different parameter values—to obtain a posterior, the updated distribution of beliefs after seeing the data. These methods can all reduce sensitivity to noise, but they impose different information and should not be treated as interchangeable. Black–Litterman, for example, uses equilibrium-implied returns as a structured reference that is blended with investor views and their uncertainty.</p>
+
+    <h3 id="risk-aversion">Risk aversion (γ)</h3>
+
+    <p>Risk aversion describes how strongly an investor trades expected reward against risk under a stated preference model. In the quadratic mean–variance objective <span class="inline-math" data-tex="w&#x27;\mu-\frac{\gamma}{2}w&#x27;\Sigma w"><code class="math-fallback">w&#x27;\mu-\frac{\gamma}{2}w&#x27;\Sigma w</code></span>, a larger positive <span class="inline-math" data-tex="\gamma"><code class="math-fallback">\gamma</code></span> places more penalty on variance. The numerical value has meaning only with the equation's units, horizon and scaling convention. Risk aversion changes how much risk an investor chooses; under textbook one-fund separation it does not change the composition of the common tangency fund.</p>
+
+    <h3 id="risk">Risk</h3>
+
+    <p>Risk is exposure to uncertain outcomes that matter to the decision maker. It has no single model-free numerical definition. Mean–variance analysis represents risk with return variance or volatility; safety-first rules emphasise falling below a threshold; other frameworks focus on drawdown, tail loss, ruin, illiquidity or uncertainty about the model itself. Whenever an essay says a portfolio has “more risk,” the relevant measure and horizon must be identified. Lower volatility does not automatically mean lower risk in every economically important sense.</p>
+
+    <h3 id="risk-tolerance">Risk tolerance</h3>
+
+    <p>Risk tolerance describes willingness or capacity to bear uncertain outcomes; in common parameterisations it moves inversely with risk aversion. Under textbook one-fund separation, greater risk tolerance leads an investor to place more wealth in the common tangency portfolio and less in the risk-free asset, possibly borrowing to hold more than 100% in the risky fund. It does not change that fund's internal asset weights when investors share the same beliefs and opportunity set. Practical tolerance can also reflect horizon, liabilities, liquidity needs and loss capacity beyond one parameter.</p>
+
+    <h3 id="risk-free-return">Risk-free asset and risk-free return (Rf)</h3>
+
+    <p>In the textbook one-period model, a risk-free asset has a return known at the decision date for the model's horizon and currency, so its return variance and covariance with risky returns are zero. Real instruments can carry inflation, reinvestment, liquidity, currency, default or horizon mismatch even when government bills are used as a practical proxy. A one-month Treasury-bill return may be a reasonable empirical proxy for a one-month United States dollar risk-free return; a ten-year bond is not risk-free over a short holding period because its price changes when yields move.</p>
+
+    <h3 id="robust-optimisation">Robust optimisation and uncertainty set</h3>
+
+    <p>Robust optimisation replaces one assumed input table with a stated set of plausible inputs and selects a decision that performs acceptably under the least favourable member of that set. An uncertainty set may contain means and covariances; a distributional ambiguity set contains whole probability distributions. Robustness protects against the errors encoded by the selected set and radius. It does not protect against every omitted mechanism, and an excessively broad set can produce a decision that is needlessly conservative.</p>
+
+    <h3 id="rolling-window">Rolling estimation window</h3>
+
+    <p>A rolling window repeatedly estimates a model using only the most recent fixed number of observations. A 120-month window dated December 2006 uses the 120 months ending at that date; when the date advances one month, the oldest observation drops out and the newest enters. Rolling windows show how estimates respond to changing samples and avoid using future returns in each fit. They do not guarantee stable parameters, eliminate data snooping or turn a historical study into live performance.</p>
+
+    <h2 id="s-z">S–Z</h2>
+
+    <h3 id="security-market-line">Security Market Line (SML)</h3>
+
+    <p>The Security Market Line is the CAPM relation between expected return and beta:</p>
+
+    <div class="display-math" data-tex="\mathbb{E}[R_i]=R_f+\beta_i\bigl(\mathbb{E}[R_M]-R_f\bigr)."><code class="math-fallback">\mathbb{E}[R_i]=R_f+\beta_i\bigl(\mathbb{E}[R_M]-R_f\bigr).</code></div>
+
+    <p>Its intercept is the risk-free return and its slope is the expected market risk premium. Within the model every asset and portfolio lies on the line when beta is measured against the true market. Its horizontal axis is beta, not total volatility. Do not confuse it with the Capital Market Line, which plots expected return against total volatility and contains only efficient complete portfolios. An empirical regression line against a market proxy is evidence about that proxy-dependent relation, not the theoretical line observed directly.</p>
+
+    <h3 id="sharpe-ratio">Sharpe ratio</h3>
+
+    <p>The Sharpe ratio is expected excess return per unit of excess-return volatility:</p>
+
+    <div class="display-math" data-tex="S=\frac{\mathbb{E}[R-R_f]}{\sqrt{\operatorname{Var}(R-R_f)}}."><code class="math-fallback">S=\frac{\mathbb{E}[R-R_f]}{\sqrt{\operatorname{Var}(R-R_f)}}.</code></div>
+
+    <p>When the matched risk-free return is fixed, this reduces to <span class="inline-math" data-tex="(\mathbb{E}[R]-R_f)/\sigma(R)"><code class="math-fallback">(\mathbb{E}[R]-R_f)/\sigma(R)</code></span>. A sample Sharpe ratio replaces the expectation and volatility with estimates. The ratio depends on horizon, return frequency, risk-free convention and annualisation. It treats upside and downside dispersion symmetrically and does not report tail risk, drawdown, liquidity, estimation uncertainty or investor-specific utility. The tangency portfolio maximises the population Sharpe ratio within its stated asset universe and constraints; the portfolio with the largest estimated Sharpe ratio need not have the largest future Sharpe ratio.</p>
+
+    <h3 id="return-conventions">Simple return, gross return and log return</h3>
+
+    <p>A simple return measures the gain or loss as a fraction of beginning value. If one unit of value becomes <span class="inline-math" data-tex="1+R"><code class="math-fallback">1+R</code></span>, then <span class="inline-math" data-tex="R"><code class="math-fallback">R</code></span> is the simple return and <span class="inline-math" data-tex="1+R"><code class="math-fallback">1+R</code></span> is the gross return—the end-to-beginning value ratio after including distributions under the stated convention. A log return is <span class="inline-math" data-tex="\log(1+R)"><code class="math-fallback">\log(1+R)</code></span>, defined only when the gross return is positive. Simple returns compound by multiplying gross returns across periods; log returns add across periods. For beginning-of-period weights, a portfolio's simple return is the weighted sum of its component simple returns, but its log return is generally not the weighted sum of their log returns. The choice must be consistent across inputs, equations and annualisation.</p>
+
+    <h3 id="single-index-model">Single-index model</h3>
+
+    <p>Sharpe's single-index model represents each security return as an intercept plus a loading on one common index and a security-specific residual. Residuals are assumed uncorrelated with the index; the simplified covariance structure also assumes residuals are mutually uncorrelated across securities. Those restrictions replace the need to estimate every pairwise covariance with one loading and residual variance per asset plus the index variance. Beta began in this setting as a statistical compression device. The single-index model does not by itself say that beta is priced or that the index is the equilibrium market portfolio; those are additional economic claims made by the CAPM.</p>
+
+    <h3 id="standard-error">Standard error</h3>
+
+    <p>A standard error estimates how much a statistic such as alpha or beta would vary across repeated samples generated under the maintained conditions. It measures uncertainty about an estimate, not the volatility of the underlying investment return. Dividing an estimate by its standard error produces a standardised statistic only when the corresponding reference approximation is appropriate. Conventional, heteroskedasticity-robust and Newey–West standard errors can differ because they make different allowances for residual behaviour.</p>
+
+    <h3 id="systematic-and-idiosyncratic-risk">Systematic and idiosyncratic risk</h3>
+
+    <p>Systematic or market risk is return variation associated with common aggregate movements that broad diversification cannot remove. Idiosyncratic or firm-specific risk is variation particular to an asset relative to the chosen factor model and can, in principle, be reduced by holding many imperfectly related assets. In the CAPM, expected return compensates beta exposure to market risk, not total idiosyncratic volatility. The boundary is model-dependent: a residual can contain omitted common factors and need not be truly independent across assets.</p>
+
+    <h3 id="tangency-portfolio">Tangency portfolio (T)</h3>
+
+    <p>The tangency portfolio is the risky portfolio with the highest expected excess return per unit of volatility for a specified risk-free rate, expected-return vector, covariance matrix, asset universe and set of constraints. Graphically, the line from the risk-free point touches the risky efficient frontier there. Its composition can change when any of those inputs or constraints changes, and uniqueness can fail in degenerate cases such as singular covariance structures. Tobin separation says investors with common inputs hold the same risky tangency fund in different proportions; the CAPM's market-clearing step additionally identifies <span class="inline-math" data-tex="T=M"><code class="math-fallback">T=M</code></span>.</p>
+
+    <h3 id="t-equals-m">T = M</h3>
+
+    <p><span class="inline-math" data-tex="T=M"><code class="math-fallback">T=M</code></span> means equality of portfolio composition: the asset weights of the risky fund investors all want to hold equal the market-value weights of the risky assets they collectively own. It does not mean that every investor holds only risky assets; each can combine <span class="inline-math" data-tex="M"><code class="math-fallback">M</code></span> with lending or borrowing. It also does not mean that an observable equity index is merely highly correlated with <span class="inline-math" data-tex="T"><code class="math-fallback">T</code></span>. The identity follows only under the equilibrium assumptions that make investors choose a common tangency portfolio and make their aggregate holdings clear the market.</p>
+
+    <h3 id="test-asset-and-joint-hypothesis">Test asset and joint hypothesis</h3>
+
+    <p>A test asset is an asset or portfolio whose return is used to evaluate an asset-pricing restriction. A joint hypothesis is a set of restrictions tested together. In the second essay, the six size–book-to-market portfolios are the test assets, and the GRS null requires all six true regression alphas to equal zero. The result is conditional on those choices: rejection relative to six portfolios does not establish failure for every risky claim, and failure to reject in a weak or narrow set need not be strong evidence for the model.</p>
+
+    <h3 id="value-weighting">Value-weighted portfolio</h3>
+
+    <p>A value-weighted portfolio assigns each asset a weight proportional to its market value. For equities this is usually market capitalisation, so larger companies exert more influence on the portfolio return. “Value weighted” describes the weighting rule; it does not mean the portfolio is tilted toward high-book-to-market “value stocks.” The CAPM market is value weighted because aggregate holdings reflect the market value of assets in supply. French's six test portfolios are also value weighted within each size and book-to-market cell.</p>
+
+    <h3 id="variance-and-volatility">Variance and volatility</h3>
+
+    <p>Variance is the expected squared deviation of a return from its mean: <span class="inline-math" data-tex="\operatorname{Var}(R)=\mathbb{E}[(R-\mathbb{E}[R])^2]"><code class="math-fallback">\operatorname{Var}(R)=\mathbb{E}[(R-\mathbb{E}[R])^2]</code></span>. Standard deviation, commonly called volatility for returns, is <span class="inline-math" data-tex="\sigma=\sqrt{\operatorname{Var}(R)}"><code class="math-fallback">\sigma=\sqrt{\operatorname{Var}(R)}</code></span> and is expressed in the same units as return. Variance and volatility measure dispersion, not every form of investment risk. They do not distinguish upside from downside, describe tail shape, reveal liquidity constraints or capture the consequences of ruin. Mean–variance analysis uses variance because that is the risk measure specified by the framework.</p>
+
+    <h3 id="zero-beta-model">Black zero-beta model</h3>
+
+    <p>Fischer Black's zero-beta version of the CAPM removes the assumption that every investor can borrow and lend without limit at one risk-free rate. Expected returns can remain linear in beta, but the intercept is the expected return on the zero-beta portfolio associated with the relevant market or efficient portfolio rather than necessarily the risk-free return. This is not an arbitrary portfolio that happens to have an estimated beta of zero. The model preserves a two-parameter pricing relation while changing the economic meaning of its intercept. “Zero beta” means zero covariance exposure to the market, not zero variance or an asset with a certain return.</p>
+
+    <h2 id="data-labels-and-conventions">Data labels and conventions</h2>
+
+    <h3 id="french-six-portfolios">French six size–book-to-market portfolios</h3>
+
+    <p>Kenneth French's six portfolios are the <span class="inline-math" data-tex="2\times3"><code class="math-fallback">2\times3</code></span> intersections of two size groups and three book-to-market groups: Small Growth, Small Neutral, Small Value, Big Growth, Big Neutral and Big Value. For the relevant United States series, Small and Big are separated using the median market equity of eligible New York Stock Exchange firms. Growth, Neutral and Value are the low, middle and high book-to-market groups separated at the 30th and 70th NYSE percentiles. The portfolios are formed at the end of each June and held from July through the following June, subject to the provider's eligibility and accounting-data rules; each cell is value weighted. The breakpoints are research conventions that are recomputed on that annual schedule, not permanent economic definitions of company types.</p>
+
+    <h3 id="factor-labels">MKT, SMB, HML, UMD and FF</h3>
+
+    <p>MKT denotes a market excess-return factor in dataset labels and is closely related to the Mkt−RF notation used elsewhere. SMB means Small Minus Big, a long–short size factor. HML means High Minus Low, a long–short book-to-market factor. UMD means Up Minus Down, a momentum factor comparing stocks with high and low prior returns. FF abbreviates Fama–French. In Figure 3 of the first essay, labels such as “FF 1-factor” and “FF 4-factor” name datasets in the underlying DeMiguel–Garlappi–Uppal comparison; they do not name the portfolio rule being plotted.</p>
+
+    <h3 id="figure-one-dataset-labels">First essay: Figure 3 dataset labels</h3>
+
+    <p>“S&amp;P Sectors” contains ten Standard &amp; Poor's sector portfolios plus the United States equity market, so <span class="inline-math" data-tex="N=11"><code class="math-fallback">N=11</code></span>. “Industry” contains ten United States industry portfolios plus the market, also <span class="inline-math" data-tex="N=11"><code class="math-fallback">N=11</code></span>. “International” contains eight country equity indices plus a world index, <span class="inline-math" data-tex="N=9"><code class="math-fallback">N=9</code></span>. “Mkt/SMB/HML” contains the three named factor portfolios, <span class="inline-math" data-tex="N=3"><code class="math-fallback">N=3</code></span>. “FF 1-factor” contains twenty size–book-to-market portfolios plus MKT, <span class="inline-math" data-tex="N=21"><code class="math-fallback">N=21</code></span>. “FF 4-factor” adds MKT, SMB, HML and UMD to those twenty portfolios, <span class="inline-math" data-tex="N=24"><code class="math-fallback">N=24</code></span>. These are the test datasets reported in the underlying study, not six alternative definitions of one market.</p>
+
+    <h3 id="crsp">Center for Research in Security Prices (CRSP)</h3>
+
+    <p>The Center for Research in Security Prices maintains widely used historical United States security and index data. A CRSP value-weighted equity series is broader than the Standard &amp; Poor's 500 but still represents listed equity rather than the CAPM's portfolio of aggregate risky wealth. Dataset definitions and return-construction conventions can change across releases, which is why the essays identify the data vintage instead of treating a provider name as a timeless specification.</p>
+
+    <h3 id="fred">Federal Reserve Economic Data (FRED)</h3>
+
+    <p>Federal Reserve Economic Data is a database maintained by the Federal Reserve Bank of St. Louis. The first essay uses its ten-year constant-maturity Treasury yield as an input to a par-bond return approximation. A published yield is not itself a holding-period total return: converting it into a bond-return series requires assumptions about price, coupon, maturity roll and reinvestment.</p>
+
+    <h3 id="nyse">New York Stock Exchange (NYSE)</h3>
+
+    <p>The New York Stock Exchange is a United States securities exchange. In French's portfolio construction, eligible NYSE firms provide reference breakpoints for size and book-to-market sorts even though the resulting portfolios can include eligible stocks from other United States exchanges. “NYSE breakpoint” therefore describes how the thresholds are calculated, not the full membership of each portfolio.</p>
+
+    <h3 id="sp-500">Standard &amp; Poor's 500 Index (S&amp;P 500)</h3>
+
+    <p>The S&amp;P 500 is an index of large listed United States companies maintained under Standard &amp; Poor's index methodology. It is widely used as an equity-market benchmark but covers neither every listed United States stock nor aggregate global risky wealth. Shiller's long historical Standard &amp; Poor's series and a modern investable S&amp;P 500 total-return series also need not share identical price, dividend and timing conventions. In CAPM applications the index is a market proxy, not the theoretical market by definition.</p>
+
+    <h3 id="wti">West Texas Intermediate (WTI)</h3>
+
+    <p>West Texas Intermediate is a crude-oil benchmark. The first essay uses a WTI spot-price series as one leg of a classroom reconstruction. A spot-price change is not the total return on an investable oil-futures strategy: futures returns also depend on contract selection and roll, while a collateralised strategy earns collateral returns. The approximation is explicitly a data choice, not an assertion that spot oil can be held costlessly like a security.</p>
+
+    <h3 id="treasury-instruments">Treasury bill, Treasury bond and constant-maturity yield</h3>
+
+    <p>A Treasury bill is a short-maturity United States government instrument commonly used as a risk-free-rate proxy for short horizons. A Treasury bond has longer duration and a market price that changes when yields change, so it is risky over a shorter holding period even if its promised nominal payments are treated as default-free. A constant-maturity yield is a constructed yield series for a fixed maturity, not the return on one security held through time. The first essay converts the ten-year yield into an approximate par-bond return series and labels that approximation explicitly.</p>
+
+    <h3 id="total-return">Total return and price return</h3>
+
+    <p>Total return combines price appreciation with cash distributions such as dividends or interest, assuming a stated reinvestment convention. Price return records only the change in quoted price. Two series for the same broad market can therefore differ because one includes distributions, because prices are sampled at different times, or because their constituent universes differ. Comparisons and regressions should align these conventions; otherwise an apparent model difference can be partly a data-definition difference.</p>
+
+    <h3 id="ciz-fiz">CIZ and FIZ return-construction conventions</h3>
+
+    <p>CIZ and FIZ identify successive CRSP data and return-construction regimes used by the French Data Library. Under the newer CIZ convention, monthly portfolio returns are compounded from daily returns and dividends are reinvested on ex-dates; the legacy FIZ convention constructed month-to-month returns with dividends reinvested at month end. These are methodological labels rather than economic models. A series can change when the provider changes convention even if its name and historical span remain familiar, so a reproducible study records the applicable vintage and construction.</p>
+
+    <h3 id="data-vintage">Data vintage</h3>
+
+    <p>A data vintage is a dataset fixed as of a particular release or retrieval date. Historical observations can change because providers correct records, add late information, alter constituent histories or revise methodology. Naming the vintage makes a result reproducible and distinguishes a genuine computational discrepancy from an upstream revision. “Latest data” is not a stable identifier; the second essay therefore pins Kenneth French's July 2025 archive rather than silently downloading whatever file happens to be current later.</p>
+
+    <h3 id="sha-256">SHA-256 (Secure Hash Algorithm with a 256-bit digest)</h3>
+
+    <p>SHA-256 produces a fixed-length digital digest from a file's bytes. The companion studies record the expected digest of each pinned input and verify it before calculation. If even one byte changes, the digest will almost certainly differ, warning that the input is not the recorded vintage. A matching digest establishes byte identity with the expected file; it does not establish that the data are economically correct, appropriately licensed or suitable for the research question.</p>
+
+    <h2 id="models-and-methods-named-for-later-comparison">Models and methods named for later comparison</h2>
+
+    <h3 id="black-litterman">Black–Litterman model</h3>
+
+    <p>Black–Litterman is a portfolio framework that begins with equilibrium-implied expected returns and combines them with investor views weighted by stated uncertainty. It can reduce the extreme weights produced by unconstrained sample means and provides a disciplined way to express relative confidence. It is not a newer version of the CAPM in the sense of testing the same proposition: it uses equilibrium as a prior or reference point inside an estimation and allocation procedure.</p>
+
+    <h3 id="resampled-frontier">Resampled frontier</h3>
+
+    <p>Resampled-frontier methods repeatedly perturb or simulate estimated inputs, solve the portfolio problem across those draws and combine the resulting portfolios. The aim is to reduce the instability of a single plug-in optimum and reflect input uncertainty. The output depends on the assumed sampling distribution, simulation procedure and averaging rule. Smoother weights are not automatically more accurate; the method changes how estimation uncertainty enters the decision.</p>
+
+    <h3 id="roys-safety-first">Roy's safety-first rule</h3>
+
+    <p>Roy's safety-first approach chooses a portfolio to reduce the chance that return falls below a specified disaster threshold <span class="inline-math" data-tex="d"><code class="math-fallback">d</code></span>. With finite variance and <span class="inline-math" data-tex="\mathbb{E}[R]&gt;d"><code class="math-fallback">\mathbb{E}[R]&gt;d</code></span>, maximising <span class="inline-math" data-tex="(\mathbb{E}[R]-d)/\sigma(R)"><code class="math-fallback">(\mathbb{E}[R]-d)/\sigma(R)</code></span> minimises a conservative mathematical upper bound on shortfall probability that uses only the mean and variance; this bound-based motivation does not require normal returns. If returns are normal, the same ratio also orders the exact shortfall probability. Roy's rule is historically adjacent to Markowitz's work but starts from a downside target rather than the whole efficient set. The threshold and the assumptions used to turn a bound into an exact probability statement must be stated.</p>
+
+    <h3 id="tobin-separation">Tobin separation</h3>
+
+    <p>Tobin separation is the result that, with common beliefs and access to the same risk-free asset, investors can separate the choice of the best risky fund from the choice of how much total risk to take. They hold the same tangency portfolio but mix it with lending or borrowing in different proportions. This establishes a common risky fund. The additional CAPM market-clearing argument is what identifies that fund with the market portfolio.</p>
+
+    <h2 id="sources-and-update-policy">Sources and update policy</h2>
+
+    <p>Definitions are aligned with the assumptions and data conventions stated in <a href="/posts/five-hundred-years-of-data"><em>Five Hundred Years of Data</em></a> and <a href="/posts/from-the-frontier-to-the-market"><em>From the Frontier to the Market</em></a>. Primary papers and official data-methodology pages are cited in those essays, including Markowitz on portfolio selection, Sharpe, Lintner and Mossin on the CAPM, Roll on the market-proxy problem, Gibbons, Ross and Shanken on the joint alpha test, and Kenneth French's <a href="https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/Data_Library/six_portfolios.html">six-portfolio construction notes</a> and <a href="https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/Data_Library.html">Data Library archive</a>.</p>
+
+    <p>This is a living reference. New terms will be added as later essays introduce estimation repairs, conditional models, asymmetric risk measures, factor models and predictive methods. A new entry should say what the term means, what assumptions make the definition operative, how it is measured in the series and what it must not be confused with.</p>
+<!-- GLOSSARY_CONTENT:END -->
+  </article>
+  <p class="backlink"><a href="/">← Back to writing</a></p>
+</div></main>
+
+<footer class="site-foot"><div class="bar">
+  <div>© 2026 Spatium Novum · Denis Joly</div>
+  <div><a href="/">Writing</a> · <a href="/glossary">Glossary</a> · <a href="/about">About</a> · <a href="/ai-use">AI use</a> · <a href="/contact/">Contact</a> · <a href="/feed.xml">RSS</a> · <a href="/privacy">Privacy</a></div>
+</div></footer>
+
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "c4f2d3476eec4a9fab59a0c8590c2b4a"}'></script>
+
+</body>
+</html>

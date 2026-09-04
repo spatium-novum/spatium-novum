@@ -301,6 +301,30 @@ mark{background:var(--signal);color:var(--on-signal);padding:0 3px}
 .toc a{color:var(--body);text-decoration:none}
 .toc a:hover{color:var(--signal)}
 
+/* ---------- glossaire Beyond Markowitz ---------- */
+.glossary-dek{font-size:18.5px;line-height:1.5;color:var(--body);max-width:39rem;
+  margin:0 0 9px}
+.glossary-updated{font-family:var(--mono);font-size:12px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--muted);margin:0 0 24px}
+.glossary-page article{margin-top:0}
+.glossary-jump{display:flex;flex-wrap:wrap;gap:8px;background:var(--panel);
+  border-left:2px solid var(--signal);padding:14px 16px;margin:4px 0 32px}
+.post article .glossary-jump a{display:inline-flex;align-items:center;min-height:36px;
+  padding:7px 10px;border:1px solid var(--rule);background:var(--paper);color:var(--body);
+  font-family:var(--mono);font-size:14px;line-height:1;text-decoration:none}
+.post article .glossary-jump a:hover,.post article .glossary-jump a:focus-visible{
+  border-color:var(--signal);background:var(--signal);color:var(--on-signal)}
+.post article .glossary-jump a:focus-visible{outline:3px solid var(--signal);
+  outline-offset:2px}
+.glossary h2{scroll-margin-top:88px}
+.post article.glossary h3{scroll-margin-top:88px;margin:2em 0 .48em;padding-top:18px;
+  border-top:1px solid var(--rule);font-size:19px;line-height:1.25}
+.post article.glossary h3:target{color:var(--signal);border-top-color:var(--signal)}
+.post article.glossary table{font-size:14px}
+.post article.glossary th:first-child,.post article.glossary td:first-child{
+  width:22%;white-space:nowrap}
+.glossary-scope{margin-top:4px!important}
+
 /* ---------- inscription aux essais ----------
    Le formulaire est rendu par le site et n'appelle MailerLite qu'apres envoi.
    Il reprend donc exactement la grille et les fontes locales du site. */
@@ -457,4 +481,10 @@ mark{background:var(--signal);color:var(--on-signal);padding:0 3px}
     width:84px;height:84px}
   .contact-field-grid,.contact-actions{grid-template-columns:1fr}
   .contact-actions button{width:100%}
+  .glossary-jump{gap:6px;padding:12px}
+  .post article .glossary-jump a{font-size:13px;min-height:34px}
+  .post article.glossary table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .post article.glossary th:first-child,.post article.glossary td:first-child{
+    min-width:8.5rem}
+  .glossary h2,.post article.glossary h3{scroll-margin-top:132px}
 }
