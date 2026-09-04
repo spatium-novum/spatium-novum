@@ -61,9 +61,12 @@
 
 <header class="site-head"><div class="bar">
   <a class="brand" href="/">Spatium<span class="dot">·</span>Novum</a>
-  <nav class="nav">
-    <a href="/">Writing</a>
+  <nav class="nav" aria-label="Primary">
+    <a href="/" aria-current="page">Writing</a>
     <a href="/about">About</a>
+    <a href="/ai-use">AI use</a>
+    <a href="/contact/">Contact</a>
+    <a href="/privacy">Privacy</a>
   </nav>
 </div></header>
 
@@ -81,7 +84,17 @@
         <p class="lede">I rebuild models from their original papers and data, trace the assumptions they hide, and publish the code needed to see where they break.</p>
         <div class="qrub">Markets · Machines · Molecules · Minds</div>
       </div>
-    </div>
+      <!-- QUANTOCRACY_BADGE:START -->
+      <aside class="quantocracy-mark" aria-label="Quantocracy">
+        <a class="quantocracy-badge" href="https://quantocracy.com" aria-label="Visit Quantocracy">
+          <picture>
+            <source media="(prefers-color-scheme: dark)" srcset="/assets/quantocracy-badge-130-white.png">
+            <img src="/assets/quantocracy-badge-130.png" width="130" height="130" alt="Quantocracy — Power to the Quants" loading="lazy" decoding="async">
+          </picture>
+        </a>
+      </aside>
+      <!-- QUANTOCRACY_BADGE:END -->
+</div>
   </div></section>
 
   <!-- NEWSLETTER_SIGNUP:START -->
@@ -140,16 +153,16 @@
       <p class="dek">The same local solver can report success at $0, $100 and $400 on one small continuous problem. Only a valid bound can say which answer is global.</p>
     </a>
 
-    <a class="entry" href="/posts/optimising-against-a-guess">
-      <div class="meta"><span class="tag">Optimization</span><time datetime="2026-08-20">August 2026</time></div>
-      <h2>Optimising Against a Guess</h2>
-      <p class="dek">The optimum of a model is the optimum of your estimates. Those are not the same thing.</p>
-    </a>
-
     <a class="entry" href="/posts/when-the-answer-is-yes-or-no">
       <div class="meta"><span class="tag">Optimization</span><time datetime="2026-08-20">August 2026</time></div>
       <h2>When the Answer Is Yes or No</h2>
       <p class="dek">Half a warehouse is not a warehouse. That innocent fact changes both the answer and the proof.</p>
+    </a>
+
+    <a class="entry" href="/posts/optimising-against-a-guess">
+      <div class="meta"><span class="tag">Optimization</span><time datetime="2026-08-20">August 2026</time></div>
+      <h2>Optimising Against a Guess</h2>
+      <p class="dek">The optimum of a model is the optimum of your estimates. Those are not the same thing.</p>
     </a>
 
     <a class="entry" href="/posts/rows-columns-and-what-they-cost">
@@ -183,7 +196,7 @@
 
 <footer class="site-foot"><div class="bar">
   <div>© 2026 Spatium Novum · Denis Joly</div>
-  <div><a href="/about">About</a> · <a href="mailto:notes@spatium-novum.com">Contact</a> · <a href="/feed.xml">RSS</a> · <a href="/privacy">Privacy</a> · <a href="/ai-use">AI use</a></div>
+  <div><a href="/">Writing</a> · <a href="/about">About</a> · <a href="/ai-use">AI use</a> · <a href="/contact/">Contact</a> · <a href="/feed.xml">RSS</a> · <a href="/privacy">Privacy</a></div>
 </div></footer>
 
 <script defer src="/assets/newsletter-form.js?v=20260823-cta"></script>

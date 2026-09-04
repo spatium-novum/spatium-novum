@@ -31,18 +31,18 @@
       <pubDate>Fri, 21 Aug 2026 09:00:00 +0000</pubDate>
     </item>
     <item>
-      <title>Optimising Against a Guess</title>
-      <link>https://spatium-novum.com/posts/optimising-against-a-guess</link>
-      <guid isPermaLink="true">https://spatium-novum.com/posts/optimising-against-a-guess</guid>
-      <description>The optimum of a model is the optimum of your estimates. Those are not the same thing.</description>
-      <category>Optimization</category>
-      <pubDate>Thu, 20 Aug 2026 09:00:00 +0000</pubDate>
-    </item>
-    <item>
       <title>When the Answer Is Yes or No</title>
       <link>https://spatium-novum.com/posts/when-the-answer-is-yes-or-no</link>
       <guid isPermaLink="true">https://spatium-novum.com/posts/when-the-answer-is-yes-or-no</guid>
       <description>Half a warehouse is not a warehouse. That innocent fact changes both the answer and the proof.</description>
+      <category>Optimization</category>
+      <pubDate>Thu, 20 Aug 2026 09:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Optimising Against a Guess</title>
+      <link>https://spatium-novum.com/posts/optimising-against-a-guess</link>
+      <guid isPermaLink="true">https://spatium-novum.com/posts/optimising-against-a-guess</guid>
+      <description>The optimum of a model is the optimum of your estimates. Those are not the same thing.</description>
       <category>Optimization</category>
       <pubDate>Thu, 20 Aug 2026 09:00:00 +0000</pubDate>
     </item>

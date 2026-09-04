@@ -81,14 +81,22 @@
 }
 </script>
 <!-- STRUCTURED_DATA:END -->
+<!-- MATH_ASSETS:START -->
+<link rel="stylesheet" href="/assets/katex/katex-swap.min.css">
+<script defer src="/assets/katex/katex.min.js"></script>
+<script defer src="/assets/math-render.js"></script>
+<!-- MATH_ASSETS:END -->
 </head>
 <body>
 
 <header class="site-head"><div class="bar">
   <a class="brand" href="/">Spatium<span class="dot">·</span>Novum</a>
-  <nav class="nav">
-    <a href="/">Writing</a>
+  <nav class="nav" aria-label="Primary">
+    <a href="/" aria-current="page">Writing</a>
     <a href="/about">About</a>
+    <a href="/ai-use">AI use</a>
+    <a href="/contact/">Contact</a>
+    <a href="/privacy">Privacy</a>
   </nav>
 </div></header>
 
@@ -286,7 +294,7 @@
 
     <p>That bracket is not hidden. Later pages call belief formation difficult, suggest combining statistical methods with expert judgement, and leave it as “another story.”[5] The frontier is conditional reasoning: <em>given</em> a vector of expected returns and a covariance matrix, these portfolios are efficient. It does not say that the estimated vector and matrix are true, or even stable enough to support a real decision.</p>
 
-    <p>The input count grows quickly. For <em>N</em> assets, an unrestricted mean–variance model needs <em>N</em> expected returns, <em>N</em> variances and <em>N</em>(<em>N</em> − 1)/2 pairwise covariances: <em>N</em>(<em>N</em> + 3)/2 numbers. Fifty assets require 1,325 inputs; one hundred require 5,150; five hundred require 125,750. A thirty-year monthly record contains 360 observations per asset. Computing more sample moments does not create more history.</p>
+    <p>The input count grows quickly. For <span class="inline-math" data-tex="N"><code class="math-fallback">N</code></span> assets, an unrestricted mean–variance model needs <span class="inline-math" data-tex="N"><code class="math-fallback">N</code></span> expected returns, <span class="inline-math" data-tex="N"><code class="math-fallback">N</code></span> variances and <span class="inline-math" data-tex="N(N-1)/2"><code class="math-fallback">N(N-1)/2</code></span> pairwise covariances: <span class="inline-math" data-tex="N(N+3)/2"><code class="math-fallback">N(N+3)/2</code></span> numbers. Fifty assets require 1,325 inputs; one hundred require 5,150; five hundred require 125,750. A thirty-year monthly record contains 360 observations per asset. Computing more sample moments does not create more history.</p>
 
     <p>The mean is the fragile part. In a continuous-time diffusion model, Robert Merton showed that sampling more frequently improves estimation of variance but does not increase the information available about expected return when the calendar span is fixed.[10] Daily observations can make volatility precise while leaving the drift “almost useless.” The scope matters: this is not a theorem about every possible return process. It explains why an apparently long price series can still contain little information about its mean.</p>
 
@@ -296,15 +304,15 @@
 
     <h2 id="five-hundred-years">Five hundred years</h2>
 
-    <p>Gerd Gigerenzer supplied the line that became the title of this article. Reporting DeMiguel, Garlappi and Uppal's analysis, he wrote that an optimiser allocating among fifty assets could require a 500-year window before outperforming 1/<em>N</em>.[13]</p>
+    <p>Gerd Gigerenzer supplied the line that became the title of this article. Reporting DeMiguel, Garlappi and Uppal's analysis, he wrote that an optimiser allocating among fifty assets could require a 500-year window before outperforming <span class="inline-math" data-tex="1/N"><code class="math-fallback">1/N</code></span>.[13]</p>
 
-    <p>The underlying study compared fourteen allocation rules with equal weighting over seven datasets. Portfolios were estimated on rolling 120-month windows and judged out of sample by Sharpe ratio, certainty-equivalent return and turnover. None of the fourteen rules beat 1/<em>N</em> consistently across those criteria and datasets.[12]</p>
+    <p>The underlying study compared fourteen allocation rules with equal weighting over seven datasets. Portfolios were estimated on rolling 120-month windows and judged out of sample by Sharpe ratio, certainty-equivalent return and turnover. None of the fourteen rules beat <span class="inline-math" data-tex="1/N"><code class="math-fallback">1/N</code></span> consistently across those criteria and datasets.[12]</p>
 
-    <p>Their analytical question was narrower than “How many years does Markowitz need?” Given a number of assets, an assumed Sharpe advantage for the population tangency portfolio over 1/<em>N</em>, and a risk-aversion calibration, how long must an estimation window be before the expected utility cost of estimating parameters falls below the cost of imposing equal weights? In one fifty-asset calibration, the answer exceeded 6,000 months, or 500 years. Another fifty-asset calibration gave 530 months, about 44 years. The headline is real; it is also conditional.</p>
+    <p>Their analytical question was narrower than “How many years does Markowitz need?” Given a number of assets, an assumed Sharpe advantage for the population tangency portfolio over <span class="inline-math" data-tex="1/N"><code class="math-fallback">1/N</code></span>, and a risk-aversion calibration, how long must an estimation window be before the expected utility cost of estimating parameters falls below the cost of imposing equal weights? In one fifty-asset calibration, the answer exceeded 6,000 months, or 500 years. Another fifty-asset calibration gave 530 months, about 44 years. The headline is real; it is also conditional.</p>
 
-    <p>The paper's industry dataset is public, so I reproduced the 1/<em>N</em> leg using the current Kenneth French vintage. Ten industry portfolios plus the US market, a 120-month window, and the paper's July 1963 to November 2004 sample span produce 377 evaluated monthly returns after the first 120 months are reserved as the common estimation window. The resulting monthly Sharpe ratio is 0.13533, against 0.1353 in the published table.</p>
+    <p>The paper's industry dataset is public, so I reproduced the <span class="inline-math" data-tex="1/N"><code class="math-fallback">1/N</code></span> leg using the current Kenneth French vintage. Ten industry portfolios plus the US market, a 120-month window, and the paper's July 1963 to November 2004 sample span produce 377 evaluated monthly returns after the first 120 months are reserved as the common estimation window. The resulting monthly Sharpe ratio is 0.13533, against 0.1353 in the published table.</p>
 
-    <p>I also ran four portfolio rules on the same current-vintage panel. These runs are a sensitivity study, not an exact reproduction of every published rule: the public pipeline uses French's one-month risk-free series, whereas the original study used a 90-day Treasury-bill rate. The unconstrained sample mean–variance rule has a monthly Sharpe ratio of −0.0166 and annualised volatility of 88.4%. Its mean month-to-month sum of absolute changes in target weights is 41.3; because the calculation compares targets directly, this is an instability diagnostic rather than a transaction-cost turnover measure. At the most extreme dates, one target weight reaches −2,134 times capital (−213,445%) and another +519 times (+51,883%). The long-only rule produces much smaller swings. The unconstrained minimum-variance rule has a slightly higher Sharpe than 1/<em>N</em> on this period, but it too permits short positions and leverage. No single row supports the slogan that optimisation always loses.</p>
+    <p>I also ran four portfolio rules on the same current-vintage panel. These runs are a sensitivity study, not an exact reproduction of every published rule: the public pipeline uses French's one-month risk-free series, whereas the original study used a 90-day Treasury-bill rate. The unconstrained sample mean–variance rule has a monthly Sharpe ratio of −0.0166 and annualised volatility of 88.4%. Its mean month-to-month sum of absolute changes in target weights is 41.3; because the calculation compares targets directly, this is an instability diagnostic rather than a transaction-cost turnover measure. At the most extreme dates, one target weight reaches −2,134 times capital (−213,445%) and another +519 times (+51,883%). The long-only rule produces much smaller swings. The unconstrained minimum-variance rule has a slightly higher Sharpe than <span class="inline-math" data-tex="1/N"><code class="math-fallback">1/N</code></span> on this period, but it too permits short positions and leverage. No single row supports the slogan that optimisation always loses.</p>
 
     <figure class="fig fig-wide bm-static-figure">
 <style>
@@ -377,11 +385,11 @@
 
     <p>Equal weighting imposes symmetry. It ignores differences in expected return, risk and correlation, so calling it unbiased would be wrong. Conditional on the chosen asset universe, however, its weights have no sampling variance because no return parameter is estimated. That can be valuable when samples are short, signals weak and correlations unstable. It can be costly when persistent differences are large and measurable.</p>
 
-    <p>Gigerenzer says this explicitly on the same page as the 500-year result: both heuristics and optimisation can produce good or bad outcomes depending on the environment.[13] The claim is not 1/<em>N</em> over Markowitz. It is that model complexity must earn its estimation cost.</p>
+    <p>Gigerenzer says this explicitly on the same page as the 500-year result: both heuristics and optimisation can produce good or bad outcomes depending on the environment.[13] The claim is not <span class="inline-math" data-tex="1/N"><code class="math-fallback">1/N</code></span> over Markowitz. It is that model complexity must earn its estimation cost.</p>
 
     <p>Many later repairs share a regularising effect. Long-only and norm constraints remove degrees of freedom; covariance shrinkage and Bayesian priors add structure; robust uncertainty sets change the errors a portfolio must survive. These methods are not equivalent, but each limits how directly a noisy sample can become a leveraged bet.</p>
 
-    <p>Even the theoretical case for 1/<em>N</em> has boundaries. Pflug, Pichler and Wozabal show that, for a broad class of convex risk functionals and Kantorovich-distance ambiguity sets, optimal portfolios converge towards uniform weights as the ambiguity radius grows.[15] This is an asymptotic result under a specified ambiguity model, not proof that equal weighting is universally, or at every finite ambiguity level, optimal. Its value is its precision: it identifies a stated regime in which refusing to distinguish assets is rational.</p>
+    <p>Even the theoretical case for <span class="inline-math" data-tex="1/N"><code class="math-fallback">1/N</code></span> has boundaries. Pflug, Pichler and Wozabal show that, for a broad class of convex risk functionals and Kantorovich-distance ambiguity sets, optimal portfolios converge towards uniform weights as the ambiguity radius grows.[15] This is an asymptotic result under a specified ambiguity model, not proof that equal weighting is universally, or at every finite ambiguity level, optimal. Its value is its precision: it identifies a stated regime in which refusing to distinguish assets is rational.</p>
 
     <h2 id="where-the-simplification-leaks">Where the simplification leaks</h2>
 
@@ -449,7 +457,17 @@
 </nav>
   </article>
 
-  <!-- RELATED_WRITING:START -->
+  <!-- QUANTOCRACY_BADGE:START -->
+  <aside class="quantocracy-mark" aria-label="Quantocracy">
+    <a class="quantocracy-badge" href="https://quantocracy.com" aria-label="Visit Quantocracy">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="/assets/quantocracy-badge-130-white.png">
+        <img src="/assets/quantocracy-badge-130.png" width="130" height="130" alt="Quantocracy — Power to the Quants" loading="lazy" decoding="async">
+      </picture>
+    </a>
+  </aside>
+  <!-- QUANTOCRACY_BADGE:END -->
+<!-- RELATED_WRITING:START -->
 <nav class="related-writing" aria-labelledby="related-five-hundred-years-of-data-title">
   <h2 id="related-five-hundred-years-of-data-title">Related writing</h2>
   <ul>
@@ -494,7 +512,7 @@
 
 <footer class="site-foot"><div class="bar">
   <div>© 2026 Spatium Novum · Denis Joly</div>
-  <div><a href="/">Writing</a> · <a href="mailto:notes@spatium-novum.com">Contact</a> · <a href="/feed.xml">RSS</a> · <a href="/privacy">Privacy</a> · <a href="/ai-use">AI use</a></div>
+  <div><a href="/">Writing</a> · <a href="/about">About</a> · <a href="/ai-use">AI use</a> · <a href="/contact/">Contact</a> · <a href="/feed.xml">RSS</a> · <a href="/privacy">Privacy</a></div>
 </div></footer>
 
 <script defer src="/assets/newsletter-form.js?v=20260823-cta"></script>

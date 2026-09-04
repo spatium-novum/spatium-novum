@@ -16,18 +16,18 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://spatium-novum.com/posts/where-the-proof-runs-out">
 <meta property="og:image" content="https://spatium-novum.com/assets/og-where-the-proof-runs-out.png">
+<meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Spatium Novum social card for Where the Proof Runs Out.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://spatium-novum.com/assets/og-where-the-proof-runs-out.png">
+<meta name="twitter:image:alt" content="Spatium Novum social card for Where the Proof Runs Out.">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/favicon-180.png">
 <link rel="alternate" type="application/rss+xml" title="Spatium Novum" href="/feed.xml">
 <link rel="stylesheet" href="/assets/style.css">
 <link rel="stylesheet" href="/assets/visuals.css">
-<meta property="og:image:type" content="image/png">
-<meta property="og:image:alt" content="Spatium Novum social card for Where the Proof Runs Out.">
-<meta name="twitter:image:alt" content="Spatium Novum social card for Where the Proof Runs Out.">
 <!-- STRUCTURED_DATA:START -->
 <meta property="article:published_time" content="2026-08-21">
 <meta property="article:modified_time" content="2026-08-21">
@@ -81,14 +81,22 @@
 }
 </script>
 <!-- STRUCTURED_DATA:END -->
+<!-- MATH_ASSETS:START -->
+<link rel="stylesheet" href="/assets/katex/katex-swap.min.css">
+<script defer src="/assets/katex/katex.min.js"></script>
+<script defer src="/assets/math-render.js"></script>
+<!-- MATH_ASSETS:END -->
 </head>
 <body>
 
 <header class="site-head"><div class="bar">
   <a class="brand" href="/">Spatium<span class="dot">·</span>Novum</a>
-  <nav class="nav">
-    <a href="/">Writing</a>
+  <nav class="nav" aria-label="Primary">
+    <a href="/" aria-current="page">Writing</a>
     <a href="/about">About</a>
+    <a href="/ai-use">AI use</a>
+    <a href="/contact/">Contact</a>
+    <a href="/privacy">Privacy</a>
   </nav>
 </div></header>
 
@@ -144,12 +152,17 @@
 
     <p>Let <em>a</em> and <em>b</em> be the flows into the pool, <em>p</em><sub>X</sub> and <em>p</em><sub>Y</sub> its outputs, <em>c</em><sub>X</sub> and <em>c</em><sub>Y</sub> the direct flows from C, and <em>q</em> the pool's sulphur concentration. The model's constraints include:</p>
 
-    <div class="display-math" role="img" aria-label="Pool flow balance a plus b equals p X plus p Y. Pool sulphur balance q times a plus b equals three a plus b. Product quality inequalities q p X plus two c X is at most two point five times p X plus c X, and q p Y plus two c Y is at most one point five times p Y plus c Y">
-  <span><i>a</i> + <i>b</i> = <i>p</i><sub>X</sub> + <i>p</i><sub>Y</sub></span>
-  <span><i>q</i>(<i>a</i> + <i>b</i>) = 3<i>a</i> + <i>b</i></span>
-  <span><i>q p</i><sub>X</sub> + 2<i>c</i><sub>X</sub> ≤ 2.5(<i>p</i><sub>X</sub> + <i>c</i><sub>X</sub>)</span>
-  <span><i>q p</i><sub>Y</sub> + 2<i>c</i><sub>Y</sub> ≤ 1.5(<i>p</i><sub>Y</sub> + <i>c</i><sub>Y</sub>)</span>
-</div>
+    <div class="display-math" data-tex="\begin{aligned}
+a + b &amp;= p_X + p_Y \\
+q(a+b) &amp;= 3a + b \\
+q p_X + 2c_X &amp;\le 2.5(p_X+c_X) \\
+q p_Y + 2c_Y &amp;\le 1.5(p_Y+c_Y)
+\end{aligned}"><code class="math-fallback">\begin{aligned}
+a + b &amp;= p_X + p_Y \\
+q(a+b) &amp;= 3a + b \\
+q p_X + 2c_X &amp;\le 2.5(p_X+c_X) \\
+q p_Y + 2c_Y &amp;\le 1.5(p_Y+c_Y)
+\end{aligned}</code></div>
 
     <p>The objective is revenue from X and Y minus the three feed costs. Every decision variable can take fractional values. The difficulty comes from the products <em>q</em>(<em>a</em> + <em>b</em>), <em>qp</em><sub>X</sub> and <em>qp</em><sub>Y</sub>. They multiply one decision by another.</p>
 
@@ -234,12 +247,17 @@
 
     <p>Suppose a model contains <em>w</em> = <em>xy</em>, with finite bounds <em>x</em> ∈ [ℓ<sub>x</sub>, <em>u</em><sub>x</sub>] and <em>y</em> ∈ [ℓ<sub>y</sub>, <em>u</em><sub>y</sub>]. Garth P. McCormick showed how four linear inequalities can surround that product:[5]</p>
 
-    <div class="display-math" role="img" aria-label="The four McCormick inequalities for w equals x y on bounded intervals">
-  <span><i>w</i> ≥ ℓ<sub>x</sub><i>y</i> + ℓ<sub>y</sub><i>x</i> − ℓ<sub>x</sub>ℓ<sub>y</sub></span>
-  <span><i>w</i> ≥ <i>u</i><sub>x</sub><i>y</i> + <i>u</i><sub>y</sub><i>x</i> − <i>u</i><sub>x</sub><i>u</i><sub>y</sub></span>
-  <span><i>w</i> ≤ <i>u</i><sub>x</sub><i>y</i> + ℓ<sub>y</sub><i>x</i> − <i>u</i><sub>x</sub>ℓ<sub>y</sub></span>
-  <span><i>w</i> ≤ ℓ<sub>x</sub><i>y</i> + <i>u</i><sub>y</sub><i>x</i> − ℓ<sub>x</sub><i>u</i><sub>y</sub></span>
-</div>
+    <div class="display-math" data-tex="\begin{aligned}
+w &amp;\ge \ell_x y + \ell_y x - \ell_x\ell_y \\
+w &amp;\ge u_x y + u_y x - u_xu_y \\
+w &amp;\le u_x y + \ell_y x - u_x\ell_y \\
+w &amp;\le \ell_x y + u_y x - \ell_xu_y
+\end{aligned}"><code class="math-fallback">\begin{aligned}
+w &amp;\ge \ell_x y + \ell_y x - \ell_x\ell_y \\
+w &amp;\ge u_x y + u_y x - u_xu_y \\
+w &amp;\le u_x y + \ell_y x - u_x\ell_y \\
+w &amp;\le \ell_x y + u_y x - \ell_xu_y
+\end{aligned}</code></div>
 
     <p>For this isolated bilinear graph on that box, the resulting polytope is its exact convex hull. “Exact convex hull” does not mean that every point in the polytope satisfies <em>w</em> = <em>xy</em>. It is the tightest convex relaxation of the graph, and therefore still contains points the original equality forbids.</p>
 
@@ -305,7 +323,17 @@
 </nav>
   </article>
 
-  <!-- RELATED_WRITING:START -->
+  <!-- QUANTOCRACY_BADGE:START -->
+  <aside class="quantocracy-mark" aria-label="Quantocracy">
+    <a class="quantocracy-badge" href="https://quantocracy.com" aria-label="Visit Quantocracy">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="/assets/quantocracy-badge-130-white.png">
+        <img src="/assets/quantocracy-badge-130.png" width="130" height="130" alt="Quantocracy — Power to the Quants" loading="lazy" decoding="async">
+      </picture>
+    </a>
+  </aside>
+  <!-- QUANTOCRACY_BADGE:END -->
+<!-- RELATED_WRITING:START -->
 <nav class="related-writing" aria-labelledby="related-where-the-proof-runs-out-title">
   <h2 id="related-where-the-proof-runs-out-title">Related writing</h2>
   <ul>
@@ -315,7 +343,7 @@
 </nav>
 <!-- RELATED_WRITING:END -->
 
-<!-- NEWSLETTER_SIGNUP:START -->
+  <!-- NEWSLETTER_SIGNUP:START -->
 <section class="newsletter-signup newsletter-signup--article" aria-labelledby="newsletter-where-the-proof-runs-out-title" data-newsletter-placement="web:article:where-the-proof-runs-out:end:v1">
 <div class="newsletter-box">
   <div class="newsletter-kicker">Email essays</div>
@@ -345,12 +373,12 @@
 </section>
 <!-- NEWSLETTER_SIGNUP:END -->
 
-<p class="backlink"><a href="/">← Back to writing</a></p>
+  <p class="backlink"><a href="/">← Back to writing</a></p>
 </div></main>
 
 <footer class="site-foot"><div class="bar">
   <div>© 2026 Spatium Novum · Denis Joly</div>
-  <div><a href="/">Writing</a> · <a href="mailto:notes@spatium-novum.com">Contact</a> · <a href="/feed.xml">RSS</a> · <a href="/privacy">Privacy</a> · <a href="/ai-use">AI use</a></div>
+  <div><a href="/">Writing</a> · <a href="/about">About</a> · <a href="/ai-use">AI use</a> · <a href="/contact/">Contact</a> · <a href="/feed.xml">RSS</a> · <a href="/privacy">Privacy</a></div>
 </div></footer>
 
 <script defer src="/assets/newsletter-form.js?v=20260823-cta"></script>

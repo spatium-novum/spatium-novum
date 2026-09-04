@@ -81,14 +81,22 @@
 }
 </script>
 <!-- STRUCTURED_DATA:END -->
+<!-- MATH_ASSETS:START -->
+<link rel="stylesheet" href="/assets/katex/katex-swap.min.css">
+<script defer src="/assets/katex/katex.min.js"></script>
+<script defer src="/assets/math-render.js"></script>
+<!-- MATH_ASSETS:END -->
 </head>
 <body>
 
 <header class="site-head"><div class="bar">
   <a class="brand" href="/">Spatium<span class="dot">·</span>Novum</a>
-  <nav class="nav">
-    <a href="/">Writing</a>
+  <nav class="nav" aria-label="Primary">
+    <a href="/" aria-current="page">Writing</a>
     <a href="/about">About</a>
+    <a href="/ai-use">AI use</a>
+    <a href="/contact/">Contact</a>
+    <a href="/privacy">Privacy</a>
   </nav>
 </div></header>
 
@@ -162,16 +170,21 @@
 
     <p>Now aggregate their positions. Investors can disagree about how much risk to take, but the shares they own must add up to the shares that exist. The common risky portfolio must therefore coincide with aggregate risky wealth, with each asset weighted by its market value. The CAPM's decisive move is an identity:</p>
 
-    <div class="display-math display-math-signal" role="img" aria-label="The tangency portfolio T equals the aggregate market portfolio M">
-  <span><i>T</i> = <i>M</i></span>
-</div>
+    <div class="display-math display-math-signal" data-tex="T = M"><code class="math-fallback">T = M</code></div>
 
     <p>Once that identity holds, expected returns cannot be chosen freely. For any asset <em>i</em>,</p>
 
-    <div class="display-math" role="img" aria-label="Expected return on asset i minus the risk free rate equals beta i times expected market return minus the risk free rate; beta i equals covariance of asset i with the market divided by market variance">
-  <span>E[<i>R</i><sub>i</sub>] − <i>R</i><sub>f</sub> = β<sub>i</sub>(E[<i>R</i><sub>M</sub>] − <i>R</i><sub>f</sub>)</span>
-  <span>β<sub>i</sub> = Cov(<i>R</i><sub>i</sub>, <i>R</i><sub>M</sub>) / Var(<i>R</i><sub>M</sub>)</span>
-</div>
+    <div class="display-math" data-tex="\begin{aligned}
+\mathbb{E}[R_i] - R_f
+  &amp;= \beta_i\bigl(\mathbb{E}[R_M] - R_f\bigr) \\
+\beta_i
+  &amp;= \frac{\operatorname{Cov}(R_i,R_M)}{\operatorname{Var}(R_M)}
+\end{aligned}"><code class="math-fallback">\begin{aligned}
+\mathbb{E}[R_i] - R_f
+  &amp;= \beta_i\bigl(\mathbb{E}[R_M] - R_f\bigr) \\
+\beta_i
+  &amp;= \frac{\operatorname{Cov}(R_i,R_M)}{\operatorname{Var}(R_M)}
+\end{aligned}</code></div>
 
     <p>The first essay's estimation problem has not disappeared. The CAPM has placed structure around it. Instead of <em>N</em> unrelated expected returns, it gives one risk-free rate, one market premium and <em>N</em> covariances relative to the market.</p>
 
@@ -251,9 +264,11 @@
 
     <p>The <strong>Capital Market Line</strong> lives in total-risk space. Its horizontal axis is portfolio volatility. It contains only efficient combinations of the risk-free asset and the market portfolio:</p>
 
-    <div class="display-math" role="img" aria-label="Expected return on an efficient complete portfolio C equals the risk free rate plus portfolio C volatility divided by market volatility times the market risk premium">
-  <span>E[<i>R</i><sub>C</sub>] = <i>R</i><sub>f</sub> + (σ<sub>C</sub> / σ<sub>M</sub>)(E[<i>R</i><sub>M</sub>] − <i>R</i><sub>f</sub>)</span>
-</div>
+    <div class="display-math" data-tex="\mathbb{E}[R_C]
+= R_f + \frac{\sigma_C}{\sigma_M}
+  \bigl(\mathbb{E}[R_M] - R_f\bigr)"><code class="math-fallback">\mathbb{E}[R_C]
+= R_f + \frac{\sigma_C}{\sigma_M}
+  \bigl(\mathbb{E}[R_M] - R_f\bigr)</code></div>
 
     <p>Its slope is the market's Sharpe ratio. Move along it and the composition of the risky fund stays fixed; only the balance between that fund and the risk-free asset changes. The line answers a portfolio question: among efficient complete portfolios, how much expected return accompanies another unit of total volatility?</p>
 
@@ -479,7 +494,17 @@
 </nav>
   </article>
 
-  <!-- RELATED_WRITING:START -->
+  <!-- QUANTOCRACY_BADGE:START -->
+  <aside class="quantocracy-mark" aria-label="Quantocracy">
+    <a class="quantocracy-badge" href="https://quantocracy.com" aria-label="Visit Quantocracy">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="/assets/quantocracy-badge-130-white.png">
+        <img src="/assets/quantocracy-badge-130.png" width="130" height="130" alt="Quantocracy — Power to the Quants" loading="lazy" decoding="async">
+      </picture>
+    </a>
+  </aside>
+  <!-- QUANTOCRACY_BADGE:END -->
+<!-- RELATED_WRITING:START -->
 <nav class="related-writing" aria-labelledby="related-from-the-frontier-to-the-market-title">
   <h2 id="related-from-the-frontier-to-the-market-title">Related writing</h2>
   <ul>
@@ -524,7 +549,7 @@
 
 <footer class="site-foot"><div class="bar">
   <div>© 2026 Spatium Novum · Denis Joly</div>
-  <div><a href="/">Writing</a> · <a href="mailto:notes@spatium-novum.com">Contact</a> · <a href="/feed.xml">RSS</a> · <a href="/privacy">Privacy</a> · <a href="/ai-use">AI use</a></div>
+  <div><a href="/">Writing</a> · <a href="/about">About</a> · <a href="/ai-use">AI use</a> · <a href="/contact/">Contact</a> · <a href="/feed.xml">RSS</a> · <a href="/privacy">Privacy</a></div>
 </div></footer>
 
 <script defer src="/assets/newsletter-form.js?v=20260823-cta"></script>

@@ -62,9 +62,12 @@
 
 <header class="site-head"><div class="bar">
   <a class="brand" href="/">Spatium<span class="dot">·</span>Novum</a>
-  <nav class="nav">
+  <nav class="nav" aria-label="Primary">
     <a href="/">Writing</a>
-    <a href="/about">About</a>
+    <a href="/about" aria-current="page">About</a>
+    <a href="/ai-use">AI use</a>
+    <a href="/contact/">Contact</a>
+    <a href="/privacy">Privacy</a>
   </nav>
 </div></header>
 
@@ -79,42 +82,12 @@
 
     <p>The line on the front page revisits Richard Levins's 1966 remark that <q>our truth is the intersection of independent lies</q>. In <a href="https://doi.org/10.1007/s11229-021-03434-8"><cite>The Epistemic Value of Independent Lies: False Analogies and Equivocations</cite></a>, Margherita Harris gives it the necessary qualification: agreement among models does not by itself confirm a claim about the world. Models may share assumptions and errors, and agreement inside "model land" still needs a reason to count as knowledge outside it.</p>
 
-    <p>Anchor essays go up roughly every two weeks, with shorter reading notes in between. If something here is useful, or wrong, I want to hear about it.</p>
-
-    <section class="quant-community" aria-labelledby="quant-community-title">
-      <div>
-        <h2 id="quant-community-title">Quant community</h2>
-        <p>Spatium Novum's finance feed is followed by <a href="https://quantocracy.com">Quantocracy</a>, a community-built mashup of current quantitative research.</p>
-      </div>
-      <a class="quantocracy-badge" href="https://quantocracy.com" aria-label="Visit Quantocracy">
-        <picture>
-          <source media="(prefers-color-scheme: dark)" srcset="/assets/quantocracy-badge-130-white.png">
-          <img src="/assets/quantocracy-badge-130.png" width="130" height="130" alt="Quantocracy — Power to the Quants" loading="lazy" decoding="async">
-        </picture>
-      </a>
-    </section>
-
-    <h2 id="ai-use">How I use AI</h2>
-
-    <!-- AI_STATEMENT:START -->
-<p>Accessible generative AI is transforming how knowledge is created and shared. I believe it is one of the defining technologies of the 2020s. I am a technology enthusiast, and I am excited to use it. For a project devoted to rebuilding models, testing ideas and sharing what I learn, ignoring these tools would make little sense.</p>
-
-    <p>My role begins before I open a model. I choose the general topic and develop the initial questions and ideas through books, research papers, lectures and conferences. I do an initial investigation, follow what interests me and decide which problem is worth pursuing. That starting direction is mine.</p>
-
-    <p>Once I have that direction, I use AI extensively. Language models help me investigate the literature more deeply, locate possible sources and citations, explain unfamiliar material, suggest connections, develop arguments and prose, and build or revise code and figures. Their contribution is substantial. It can affect the framing, analysis and eventual shape of an essay as well as its language.</p>
-
-    <p>I work with several models and providers because their different approaches can reveal disagreements, gaps and alternatives worth examining. Cross-model agreement is not verification: different systems can reproduce the same error. A citation suggested by a model is a lead to investigate. A derivation, historical claim or numerical result needs evidence appropriate to the claim.</p>
-
-    <p>These tools influence how I think. A proposed connection can change my question, a counterargument can change an essay's structure, and a useful explanation can become part of my understanding. I decide what to pursue and what to publish, while recognising that the exchange itself helps the work develop. Calling this language editing would give readers an inaccurate picture.</p>
-
-    <p>I reread every article in depth, revise the prose, code and figures, and ask for further explanations when something is unclear. I work through the material until I understand the reasoning I choose to publish: what each claim says, which assumptions support it and where its limits lie. Fluency alone cannot do that work.</p>
-
-    <p>Source documents, mathematical reasoning, data and reproducible calculations provide evidence that readers can inspect and challenge. Code and tests can expose mistakes, and reproducibility makes a calculation easier to examine. A reproducible result can still rest on an unsuitable assumption or receive the wrong interpretation. Those questions remain part of my work as the author.</p>
-
-    <p>I fit this writing around research and other activities. AI lets me investigate more, try implementations sooner and devote more of the available time to learning and working through difficult points. That increase in reach and speed is exciting. It also makes careful judgment more valuable, because producing an answer and earning confidence in it are different tasks.</p>
-
-    <p>I choose what appears under my name and take responsibility for it, including errors in AI-assisted work. This disclosure gives readers context for how the work is made; its claims still have to earn their trust. If you find a mistaken citation, a calculation that fails, an unsupported argument or a misleading interpretation, please <a href="mailto:notes@spatium-novum.com">write to me</a>. Corrections and useful objections help improve the work.</p>
-    <p><a href="/ai-use">Open this statement on its dedicated page</a>.</p>
+    <p>Anchor essays go up roughly every two weeks, with shorter reading notes in between. If something here is useful, or wrong, <a href="/contact/">I want to hear about it</a>.</p>
+<!-- AI_STATEMENT:START -->
+<section class="about-ai" aria-labelledby="about-ai-title">
+  <h2 id="about-ai-title">How I use AI</h2>
+  <p>AI is part of how I research, test and develop this work. <a href="/ai-use">Read my full statement on AI use, verification and responsibility</a>.</p>
+</section>
 <!-- AI_STATEMENT:END -->
 
     <hr>
@@ -128,12 +101,22 @@
     </p>
   </article>
 
-  <p class="backlink"><a href="/">← Back to writing</a></p>
+  <!-- QUANTOCRACY_BADGE:START -->
+  <aside class="quantocracy-mark" aria-label="Quantocracy">
+    <a class="quantocracy-badge" href="https://quantocracy.com" aria-label="Visit Quantocracy">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="/assets/quantocracy-badge-130-white.png">
+        <img src="/assets/quantocracy-badge-130.png" width="130" height="130" alt="Quantocracy — Power to the Quants" loading="lazy" decoding="async">
+      </picture>
+    </a>
+  </aside>
+  <!-- QUANTOCRACY_BADGE:END -->
+<p class="backlink"><a href="/">← Back to writing</a></p>
 </div></main>
 
 <footer class="site-foot"><div class="bar">
   <div>© 2026 Spatium Novum · Denis Joly</div>
-  <div><a href="/">Writing</a> · <a href="mailto:notes@spatium-novum.com">Contact</a> · <a href="/feed.xml">RSS</a> · <a href="/privacy">Privacy</a> · <a href="/ai-use">AI use</a></div>
+  <div><a href="/">Writing</a> · <a href="/about">About</a> · <a href="/ai-use">AI use</a> · <a href="/contact/">Contact</a> · <a href="/feed.xml">RSS</a> · <a href="/privacy">Privacy</a></div>
 </div></footer>
 
 <!-- Cloudflare Web Analytics — cookieless traffic and performance measurement; see /privacy. -->
